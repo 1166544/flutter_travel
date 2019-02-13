@@ -31,7 +31,7 @@ class _TravelHomePageState extends State<TravelHomePage> {
 
   void _incrementCounter() {
     setState(() {
-      _counter++; 
+      _counter++;  
     });
   }
 
