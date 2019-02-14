@@ -27,11 +27,11 @@ class TravelHomePage extends StatefulWidget {
 }
 
 class _TravelHomePageState extends State<TravelHomePage> {
-  int _counter = 0; 
+  int _counter = 0;
 
   void _incrementCounter() {
     setState(() {
-      _counter++;  
+      _counter++;
     });
   }
 
