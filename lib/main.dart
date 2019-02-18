@@ -23,6 +23,7 @@ class TravelHomePage extends StatefulWidget {
 
   final String title;
 
+  /// STATE事件注册
   @override
   _TravelHomePageState createState() => _TravelHomePageState();
 }
