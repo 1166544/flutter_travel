@@ -37,6 +37,7 @@ class _TravelHomePageState extends State<TravelHomePage> {
     });
   }
 
+  /// 构建
   @override
   Widget build(BuildContext context) {
     return Scaffold(
