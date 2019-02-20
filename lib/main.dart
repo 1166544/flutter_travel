@@ -18,7 +18,7 @@ class TravelApp extends StatelessWidget {
 
 /// 入口类
 class TravelHomePage extends StatefulWidget {
-  /// 构造参数
+  /// 构造参数 KEY
   TravelHomePage({Key key, this.title}) : super(key: key);
 
   final String title;
