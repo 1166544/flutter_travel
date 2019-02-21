@@ -60,7 +60,7 @@ class _TravelHomePageState extends State<TravelHomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
-        tooltip: 'Increment',
+        tooltip: 'Increments',
         child: Icon(Icons.add),
       ),
     );
