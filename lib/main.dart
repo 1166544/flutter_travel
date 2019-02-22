@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 void main() => runApp(TravelApp());
 
 class TravelApp extends StatelessWidget {
-  // This widget is the root of your application.
+  // 程序根目录
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
