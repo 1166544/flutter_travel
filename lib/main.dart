@@ -63,7 +63,12 @@ class _TravelHomePageState extends State<TravelHomePage> with SingleTickerProvid
       return Padding(
 		  padding: EdgeInsets.fromLTRB(15.0, 15.0, 15.0, 15.0),
 		  child: Row(
+			  crossAxisAlignment: CrossAxisAlignment.center,
+			  children: <Widget>[
+				  Text('travelogram', style: TextStyle(fontFamily: 'Montserrat', fontSize: 20.0, color: Colors.grey.shade900)),
+				  SizedBox(width: 90.0),
 
+			  ],
 		  ),
       );
   }
