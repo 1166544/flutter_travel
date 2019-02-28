@@ -7,62 +7,80 @@ class TravelApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Travel gram',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: TravelHomePage(title: 'Travel gram'),
+      debugShowCheckedModeBanner: false,
+      home: TravelHomePage()
     );
   }
 }
 
 /// 入口类
 class TravelHomePage extends StatefulWidget {
-  /// 构造参数
-  TravelHomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
-
-  /// STATE事件注册
   @override
   _TravelHomePageState createState() => _TravelHomePageState();
 }
 
-class _TravelHomePageState extends State<TravelHomePage> {
-  int _counter = 0;
+class _TravelHomePageState extends State<TravelHomePage> with SingleTickerProviderStateMixin {
 
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
+  TabController tabController;
+  var tripDetails;
+
+  @override
+  void initState() {
+    super.initState();
+    this.tabController = new TabController(length: 4, vsync: this);
   }
 
-  /// 构建
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.display1,
-            ),
-          ],
+        bottomNavigationBar: Material(
+          color: Colors.white,
+          child: TabBar(
+            controller: this.tabController,
+            indicatorColor: Colors.white,
+            tabs: <Widget>[
+              Tab(icon: Icon(Icons.home, color: Colors.black)),
+              Tab(icon: Icon(Icons.search, color: Colors.grey)),
+              Tab(icon: Icon(Icons.graphic_eq, color: Colors.grey)),
+              Tab(icon: Icon(Icons.add_circle_outline, color: Colors.grey))
+            ],
+          ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increments',
-        child: Icon(Icons.add),
-      ),
+        backgroundColor: Colors.white,
+        body: ListView(
+          this._buildTravelogram(),
+          this._buildCircle(),
+          this._buildCommunity(),
+          this._buildImageGrid(),
+          this._buildImgGalleryDetail(),
+          this._buildImageGrid(),
+          this._buildImgGalleryDetail(),
+        ),
     );
+  }
+
+  Widget _buildTravelogram() {
+      return Padding(
+		  padding: EdgeInsets.fromLTRB(15.0, 15.0, 15.0, 15.0),
+		  child: Row(
+
+		  ),
+      );
+  }
+
+  Widget _buildCircle() {
+
+  }
+
+  Widget _buildCommunity() {
+
+  }
+
+  Widget _buildImageGrid() {
+
+  }
+
+  Widget _buildImgGalleryDetail() {
+
   }
 }
