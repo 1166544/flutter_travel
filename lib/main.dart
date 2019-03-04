@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './pages/profile.dart';
 
 void main() => runApp(TravelApp());
 
@@ -67,7 +68,27 @@ class _TravelHomePageState extends State<TravelHomePage> with SingleTickerProvid
 			  children: <Widget>[
 				  Text('travelogram', style: TextStyle(fontFamily: 'Montserrat', fontSize: 20.0, color: Colors.grey.shade900)),
 				  SizedBox(width: 90.0),
-
+          IconButton(icon:Icon(Icons.notifications), color: Colors.grey.shade500, iconSize: 30.0, onPressed: (){}),
+          SizedBox(width: 5.0),
+          InkWell(
+            child: Hero(
+              tag: 'assets/chris.jpg',
+              child: Container(
+                height: 50.0,
+                width: 50.0,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(25.0),
+                  image: DecorationImage(image: AssetImage('assets/chris.jpg'))
+                ),
+              ),
+            ),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => new ProfilePage())
+              );
+            },
+          )
 			  ],
 		  ),
       );
