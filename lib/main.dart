@@ -140,10 +140,6 @@ class _TravelHomePageState extends State<TravelHomePage> with SingleTickerProvid
   }
 
   Widget _buildImageGrid() {
-
-  }
-
-  Widget _buildImgGalleryDetail() {
 	  return Padding(
 		  padding: EdgeInsets.only(top: 25.0, left: 15.0, right: 15.0),
 		  child: Container(
@@ -193,4 +189,56 @@ class _TravelHomePageState extends State<TravelHomePage> with SingleTickerProvid
 		  ),
 	  );
   }
+
+  Widget _buildImgGalleryDetail() {
+	  return Padding(
+		  padding: EdgeInsets.only(left: 25.0, right: 25.0, top: 15.0),
+		  child: Row(
+			  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+			  children: <Widget>[
+				  Column(
+					  crossAxisAlignment: CrossAxisAlignment.start,
+					  children: <Widget>[
+						  Text('Maui Summer 2019', style:TextStyle(fontWeight:FontWeight.bold, fontFamily: 'Montserrat', fontSize: 15.0)),
+						  SizedBox(height: 7.0),
+						  Row(
+							  children: <Widget>[
+								  Text('Teresa Soto added 52 Photos', style: TextStyle(color: Colors.grey.shade700, fontFamily: 'Montserrat', fontSize: 11.0)),
+								  SizedBox(width: 4.0),
+								  Icon(Icons.timer, size: 4.0, color: Colors.black),
+								  SizedBox(width: 4.0),
+								  Text('2h ago', style:TextStyle(color: Colors.grey.shade500, fontFamily: 'Montserrat', fontSize: 11.0))
+							  ],
+						  )
+					  ],
+				  ),
+				  Row(
+					  crossAxisAlignment: CrossAxisAlignment.center,
+					  children: <Widget>[
+						  SizedBox(width: 7.0),
+						  this._inkWellButton(inkWidth: 20.0, inkHeight: 20.0, picUrl: 'assets/navarrow.png', onCallBack: (){}),
+						  SizedBox(width: 7.0),
+						  this._inkWellButton(inkWidth: 20.0, inkHeight: 20.0, picUrl: 'assets/chatbubble.png', onCallBack: (){}),
+						  SizedBox(width: 7.0),
+						  this._inkWellButton(inkWidth: 22.0, inkHeight: 22.0, picUrl: 'assets/fav.png', onCallBack: (){}),
+					  ],
+				  )
+			  ],
+		  ),
+	  );
+  }
+
+	/**
+	 * 封装小型图标函数
+	 */
+	Widget _inkWellButton({double inkWidth, double inkHeight, String picUrl, Function onCallBack}) {
+		return InkWell(
+			onTap: onCallBack,
+			child: Container(
+				height: inkHeight,
+				width: inkWidth,
+				child: Image.asset(picUrl),
+			),
+		);
+	}
 }
