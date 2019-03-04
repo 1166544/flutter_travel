@@ -95,7 +95,33 @@ class _TravelHomePageState extends State<TravelHomePage> with SingleTickerProvid
   }
 
   Widget _buildCircle() {
-
+	  return Padding(
+		  padding: EdgeInsets.fromLTRB(15.0, 10.0, 15.0, 15.0),
+		  child: Container(
+			  padding: EdgeInsets.only(left: 10.0),
+			  height: 100.0,
+			  decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.0), color: Colors.grey.shade100),
+			  child: Row(
+				  children: <Widget>[
+					  IconButton(icon: Icon(Icons.navigation, color: Colors.blue), iconSize: 50.0, onPressed: (){}),
+					  SizedBox(width: 5.0),
+					  Padding(
+						  padding: EdgeInsets.only(top: 27.0),
+						  child: Column(
+							  crossAxisAlignment: CrossAxisAlignment.start,
+							  children: <Widget>[
+								  Text('MALDIVES TRIP 2019', style:TextStyle(color: Colors.grey.shade500, fontSize: 14.0)),
+								  SizedBox(height: 4.0),
+								  Text('Add an update', style: TextStyle(fontFamily: 'Montserrat', fontWeight: FontWeight.bold, fontSize: 16.0)),
+								  SizedBox(width: 50.0),
+								  IconButton(icon: Icon(Icons.arrow_forward_ios, color: Colors.grey), iconSize: 30.0, onPressed: (){})
+							  ],
+						  ),
+					  )
+				  ],
+			  ),
+		  ),
+	  );
   }
 
   Widget _buildCommunity() {
