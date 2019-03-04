@@ -49,13 +49,15 @@ class _TravelHomePageState extends State<TravelHomePage> with SingleTickerProvid
         ),
         backgroundColor: Colors.white,
         body: ListView(
-          this._buildTravelogram(),
-          this._buildCircle(),
-          this._buildCommunity(),
-          this._buildImageGrid(),
-          this._buildImgGalleryDetail(),
-          this._buildImageGrid(),
-          this._buildImgGalleryDetail(),
+          children: <Widget>[
+			this._buildTravelogram(),
+			this._buildCircle(),
+			this._buildCommunity(),
+			this._buildImageGrid(),
+			this._buildImgGalleryDetail(),
+			this._buildImageGrid(),
+			this._buildImgGalleryDetail(),
+		  ],
         ),
     );
   }
@@ -125,7 +127,16 @@ class _TravelHomePageState extends State<TravelHomePage> with SingleTickerProvid
   }
 
   Widget _buildCommunity() {
-
+	  return Padding(
+		  padding: EdgeInsets.only(top: 10.0, left: 25.0, right: 25.0),
+		  child: Row(
+			  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+			  children: <Widget>[
+				  Text('FROM THE COMMUNITY', style:TextStyle(color: Colors.grey, fontSize: 15.0, fontFamily: 'Monsterrat')),
+				  Text('View All', style:TextStyle(color: Colors.blue, fontWeight:FontWeight.bold, fontSize: 15.0, fontFamily: 'Monsterrat')),
+			  ],
+		  ),
+	  );
   }
 
   Widget _buildImageGrid() {
@@ -133,6 +144,53 @@ class _TravelHomePageState extends State<TravelHomePage> with SingleTickerProvid
   }
 
   Widget _buildImgGalleryDetail() {
-
+	  return Padding(
+		  padding: EdgeInsets.only(top: 25.0, left: 15.0, right: 15.0),
+		  child: Container(
+			  height: 225.0,
+			  child: Row(
+				  children: <Widget>[
+					  Container(
+						  height: 225.0,
+						  child: Row(
+							  children: <Widget>[
+								  Container(
+									  height: 225.0,
+									  width: MediaQuery.of(context).size.width / 2 + 40.0,
+									  decoration: BoxDecoration(
+										  borderRadius: BorderRadius.only(topLeft: Radius.circular(15.0), bottomLeft: Radius.circular(15.0)),
+										  image: DecorationImage(image: AssetImage('assets/beach1.jpg'), fit: BoxFit.cover)
+									  ),
+								  ),
+								  SizedBox(width: 2.0),
+								  Column(
+									  crossAxisAlignment: CrossAxisAlignment.start,
+									  children: <Widget>[
+										  Container(
+											  height: 111.5,
+											  width: MediaQuery.of(context).size.width / 2 - 72.0,
+											  decoration: BoxDecoration(
+												  borderRadius: BorderRadius.only(topRight: Radius.circular(15.0)),
+												  image: DecorationImage(image: AssetImage('assets/beach2.jpg'), fit: BoxFit.cover)
+											  ),
+										  )
+									  ],
+								  ),
+								  SizedBox(width: 2.0),
+								  Container(
+									  height: 111.5,
+									  width: MediaQuery.of(context).size.width / 2 - 72.0,
+									  decoration: BoxDecoration(
+										  borderRadius: BorderRadius.only(bottomRight: Radius.circular(15.0)),
+										  image: DecorationImage(image: AssetImage('assets/beach3.jpg'), fit: BoxFit.cover)
+									  ),
+								  )
+							  ],
+						  ),
+					  )
+				  ],
+			  ),
+		  ),
+	  );
   }
 }
