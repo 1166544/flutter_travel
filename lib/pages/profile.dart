@@ -121,7 +121,31 @@ class _ProfilePageState extends State<ProfilePage> {
 
   Widget buildInfoDetail() {
 	  return Padding(
+		  padding: EdgeInsets.only(left: 25.0, right: 25.0, top: 10.0, bottom: 15.0),
+		  child: Row(
+			  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+			  children: <Widget>[
+				  Column(
+					  crossAxisAlignment: CrossAxisAlignment.start,
+					  children: <Widget>[
+						  Text('Maldives - 12 Days', style:TextStyle(fontWeight: FontWeight.bold, fontFamily: 'Montserrat', fontSize: 15.0)),
+						  SizedBox(height: 7.0),
+						  Row(
+							  children: <Widget>[
+									Text('Teresa Soto', style:TextStyle(color: Colors.grey.shade700, fontFamily: 'Montserrat', fontSize: 11.0)),
+									SizedBox(width: 4.0),
+									Icon(Icons.timer, size: 4.0, color: Colors.black),
+									SizedBox(width: 4.0),
+									Text('3 Videos', style:TextStyle(color: Colors.grey.shade500, fontFamily: 'Montserrat', fontSize: 11.0)),
+							  ],
+						  )
+					  ],
+				  ),
+				  Row(
 
+				  )
+			  ],
+		  ),
 	  );
   }
 
