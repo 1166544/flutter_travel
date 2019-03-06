@@ -142,7 +142,36 @@ class _ProfilePageState extends State<ProfilePage> {
 					  ],
 				  ),
 				  Row(
-
+					  crossAxisAlignment: CrossAxisAlignment.center,
+					  children: <Widget>[
+						  SizedBox(width: 7.0),
+						  InkWell(
+							  onTap: () {},
+							  child: Container(
+								  height: 20.0,
+								  width: 20.0,
+								  child: Image.asset('assets/navarrow.png'),
+							  ),
+						  ),
+						  SizedBox(width: 7.0),
+						  InkWell(
+							  onTap: () {},
+							  child: Container(
+								  height: 20.0,
+								  width: 20.0,
+								  child: Image.asset('assets/chatbubble.png'),
+							  ),
+						  ),
+						  SizedBox(width: 7.0),
+						  InkWell(
+							  onTap: () {},
+							  child: Container(
+								  height: 20.0,
+								  width: 20.0,
+								  child: Image.asset('assets/fav.png'),
+							  ),
+						  ),
+					  ],
 				  )
 			  ],
 		  ),
