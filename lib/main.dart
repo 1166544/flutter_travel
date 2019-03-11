@@ -29,6 +29,7 @@ class _TravelHomePageState extends State<TravelHomePage> with SingleTickerProvid
 	@override
 	void initState() {
 		super.initState();
+		//  初始化TAB数量
 		this.tabController = new TabController(length: 4, vsync: this);
 	}
 
@@ -37,28 +38,30 @@ class _TravelHomePageState extends State<TravelHomePage> with SingleTickerProvid
 		return Scaffold(
 			bottomNavigationBar: Material(
 			color: Colors.white,
+			// 绑定TAB按钮
 			child: TabBar(
 				controller: this.tabController,
 				indicatorColor: Colors.white,
 				tabs: <Widget>[
-				Tab(icon: Icon(Icons.home, color: Colors.black)),
-				Tab(icon: Icon(Icons.search, color: Colors.grey)),
-				Tab(icon: Icon(Icons.graphic_eq, color: Colors.grey)),
-				Tab(icon: Icon(Icons.add_circle_outline, color: Colors.grey))
-				],
-			),
+					Tab(icon: Icon(Icons.home, color: Colors.black)),
+					Tab(icon: Icon(Icons.search, color: Colors.grey)),
+					Tab(icon: Icon(Icons.graphic_eq, color: Colors.grey)),
+					Tab(icon: Icon(Icons.add_circle_outline, color: Colors.grey))
+				]
+				),
 			),
 			backgroundColor: Colors.white,
+			// 绑定TAB内容
 			body: ListView(
-			children: <Widget>[
-				this._buildTravelogram(),
-				this._buildCircle(),
-				this._buildCommunity(),
-				this._buildImageGrid(),
-				this._buildImgGalleryDetail(),
-				this._buildImageGrid(),
-				this._buildImgGalleryDetail(),
-			],
+				children: <Widget>[
+					this._buildTravelogram(),
+					this._buildCircle(),
+					this._buildCommunity(),
+					this._buildImageGrid(),
+					this._buildImgGalleryDetail(),
+					this._buildImageGrid(),
+					this._buildImgGalleryDetail(),
+				]
 			),
 		);
   }

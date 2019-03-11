@@ -2,7 +2,15 @@
 
 A new Flutter project.
 
-## Getting Started
+## Upgrade
+```shell
+flutter upgrade
+```
+
+## RUN
+```shell
+flutter run
+```
 
 This project is a starting point for a Flutter application.
 
