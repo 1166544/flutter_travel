@@ -228,9 +228,7 @@ class _TravelHomePageState extends State<TravelHomePage> with SingleTickerProvid
 	  );
   }
 
-	/**
-	 * 封装小型图标函数
-	 */
+	/// 封装小型图标函数
 	Widget _inkWellButton({double inkWidth, double inkHeight, String picUrl, Function onCallBack}) {
 		return InkWell(
 			onTap: onCallBack,
