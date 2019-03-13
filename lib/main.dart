@@ -66,6 +66,7 @@ class _TravelHomePageState extends State<TravelHomePage> with SingleTickerProvid
 		);
   }
 
+	/// 旅行标题
   Widget _buildTravelogram() {
       return Padding(
 		  padding: EdgeInsets.fromLTRB(15.0, 15.0, 15.0, 15.0),
