@@ -49,6 +49,7 @@ class _ProfilePageState extends State<ProfilePage> {
 	);
   }
 
+  /// 用户头像
   Widget buildHero() {
 	  return Hero(
 		  tag: 'assets/chris.jpg',
