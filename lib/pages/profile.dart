@@ -79,6 +79,7 @@ class _ProfilePageState extends State<ProfilePage> {
 	);
   }
 
+  /// sanjose text
   Widget buildSanJose() {
 	  return Text('San Jose, CA', style:TextStyle(fontFamily: 'Montserrat', color: Colors.grey));
   }
