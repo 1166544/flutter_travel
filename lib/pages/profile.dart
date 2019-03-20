@@ -84,6 +84,7 @@ class _ProfilePageState extends State<ProfilePage> {
 	  return Text('San Jose, CA', style:TextStyle(fontFamily: 'Montserrat', color: Colors.grey));
   }
 
+  /// build flowwers
   Widget buildFlowers() {
 	  return Padding(
 		  padding: EdgeInsets.all(30.0),
