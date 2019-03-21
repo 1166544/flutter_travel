@@ -182,6 +182,7 @@ class _ProfilePageState extends State<ProfilePage> {
 	  );
   }
 
+  /// 图片支持
   Widget buildImages() {
 	  return Padding(
 		  padding: EdgeInsets.only(left: 15.0, top: 15.0, right: 15.0),
