@@ -196,6 +196,7 @@ class _ProfilePageState extends State<ProfilePage> {
 	  );
   }
 
+  /// buildSizeBox
   Widget buildSizeBox(double widthValue) {
     return SizedBox(height: widthValue);
   }
