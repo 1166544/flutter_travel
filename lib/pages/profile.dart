@@ -123,6 +123,7 @@ class _ProfilePageState extends State<ProfilePage> {
 	  );
   }
 
+  /// 详细信息
   Widget buildInfoDetail() {
 	  return Padding(
 		  padding: EdgeInsets.only(left: 25.0, right: 25.0, top: 10.0, bottom: 15.0),
