@@ -110,6 +110,7 @@ class _ProfilePageState extends State<ProfilePage> {
 		);
   }
 
+  /// 表格信息
   Widget buildTableChart() {
 	  return Padding(
 		  padding: EdgeInsets.only(left: 15.0),
