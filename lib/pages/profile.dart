@@ -99,6 +99,7 @@ class _ProfilePageState extends State<ProfilePage> {
 	  );
   }
 
+  /// flowersItem
   Widget buildFollowersItem({String titleValue, String detailValue}) {
 	  return Column(
 			mainAxisAlignment: MainAxisAlignment.center,
