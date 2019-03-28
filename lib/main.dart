@@ -70,6 +70,7 @@ class _TravelHomePageState extends State<TravelHomePage> with SingleTickerProvid
   Widget _buildTravelogram() {
       return Padding(
 		  padding: EdgeInsets.fromLTRB(15.0, 15.0, 15.0, 15.0),
+		  // 横向布局
 		  child: Row(
 			  crossAxisAlignment: CrossAxisAlignment.center,
 			  children: <Widget>[
