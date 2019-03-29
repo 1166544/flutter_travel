@@ -78,6 +78,7 @@ class _TravelHomePageState extends State<TravelHomePage> with SingleTickerProvid
 				  SizedBox(width: 90.0),
           IconButton(icon:Icon(Icons.notifications), color: Colors.grey.shade500, iconSize: 30.0, onPressed: (){}),
           SizedBox(width: 5.0),
+					// 自定义按钮
           InkWell(
             child: Hero(
               tag: 'assets/chris.jpg',
