@@ -147,6 +147,7 @@ class _TravelHomePageState extends State<TravelHomePage> with SingleTickerProvid
 	  );
   }
 
+	/// 构建图片网格
   Widget _buildImageGrid() {
 	  return Padding(
 		  padding: EdgeInsets.only(top: 25.0, left: 15.0, right: 15.0),
