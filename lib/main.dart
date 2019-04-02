@@ -134,6 +134,7 @@ class _TravelHomePageState extends State<TravelHomePage> with SingleTickerProvid
 	  );
   }
 
+	/// 社区标题
   Widget _buildCommunity() {
 	  return Padding(
 		  padding: EdgeInsets.only(top: 10.0, left: 25.0, right: 25.0),
