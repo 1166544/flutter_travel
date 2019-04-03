@@ -26,6 +26,7 @@ class _TravelHomePageState extends State<TravelHomePage> with SingleTickerProvid
 	TabController tabController;
 	var tripDetails;
 
+	/// 初始化
 	@override
 	void initState() {
 		super.initState();
