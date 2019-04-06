@@ -75,7 +75,7 @@ class _TravelHomePageState extends State<TravelHomePage> with SingleTickerProvid
 		  child: Row(
 			  crossAxisAlignment: CrossAxisAlignment.center,
 			  children: <Widget>[
-				  Text('travelogram', style: TextStyle(fontFamily: 'Montserrat', fontSize: 20.0, color: Colors.grey.shade900)),
+				  Text('travelogram', style: TextStyle(fontFamily: 'Montserrat', fontSize: 22.0, color: Colors.grey.shade700, fontWeight: FontWeight.bold)),
 				  Spacer(),
           IconButton(icon:Icon(Icons.notifications), color: Colors.grey.shade500, iconSize: 30.0, onPressed: (){}),
           SizedBox(width: 5.0),
@@ -114,21 +114,21 @@ class _TravelHomePageState extends State<TravelHomePage> with SingleTickerProvid
 			  decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.0), color: Colors.grey.shade100),
 			  child: Row(
 				  children: <Widget>[
-					  IconButton(icon: Icon(Icons.navigation, color: Colors.blue), iconSize: 50.0, onPressed: (){}),
-					  SizedBox(width: 5.0),
-					  Padding(
-						  padding: EdgeInsets.only(top: 27.0),
-						  child: Column(
-							  crossAxisAlignment: CrossAxisAlignment.start,
-							  children: <Widget>[
-								  Text('MALDIVES TRIP 2019', style:TextStyle(color: Colors.grey.shade500, fontSize: 14.0)),
-								  SizedBox(height: 4.0),
-								  Text('Add an update', style: TextStyle(fontFamily: 'Montserrat', fontWeight: FontWeight.bold, fontSize: 16.0)),
-								  SizedBox(width: 50.0),
-								  IconButton(icon: Icon(Icons.arrow_forward_ios, color: Colors.grey), iconSize: 30.0, onPressed: (){})
-							  ],
-						  ),
-					  )
+					IconButton(icon: Icon(Icons.navigation, color: Colors.blue), iconSize: 50.0, onPressed: (){}),
+					SizedBox(width: 5.0),
+					Padding(
+						padding: EdgeInsets.only(top: 27.0),
+						child: Column(
+							crossAxisAlignment: CrossAxisAlignment.start,
+							children: <Widget>[
+								Text('MALDIVES TRIP 2019', style:TextStyle(color: Colors.grey.shade500, fontSize: 13.0)),
+								SizedBox(height: 4.0),
+								Text('Add an update', style: TextStyle(fontFamily: 'Montserrat', fontWeight: FontWeight.bold, fontSize: 16.0)),
+							],
+						),
+					),
+					Spacer(),
+					IconButton(icon: Icon(Icons.arrow_forward_ios, color: Colors.grey), iconSize: 20.0, onPressed: (){})
 				  ],
 			  ),
 		  ),
