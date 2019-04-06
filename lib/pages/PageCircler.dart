@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-class CirclerPage extends StatefulWidget {
+class PageCircler extends StatefulWidget {
   final Widget child;
 
-  CirclerPage({Key key, this.child}) : super(key: key);
+  PageCircler({Key key, this.child}) : super(key: key);
 
   _CirclerState createState() => _CirclerState();
 }
 
-class _CirclerState extends State<CirclerPage> {
+class _CirclerState extends State<PageCircler> {
   @override
   Widget build(BuildContext context) {
 	return Container(

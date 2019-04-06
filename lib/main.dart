@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import './pages/Circler.dart';
-import './pages/Graphics.dart';
-import './pages/Search.dart';
-import './pages/home.dart';
+import 'package:flutter_travel/common/CommonPageData.dart';
+import 'package:flutter_travel/pages/PageCircler.dart';
+import 'package:flutter_travel/pages/PageGraphics.dart';
+import 'package:flutter_travel/pages/PageHome.dart';
+import 'package:flutter_travel/pages/PageSearch.dart';
 
 void main() => runApp(TravelApp());
 
@@ -27,14 +28,11 @@ class TravelHomePage extends StatefulWidget {
 class _TravelHomePageState extends State<TravelHomePage> with SingleTickerProviderStateMixin {
 
 	int _currentIndex = 0;
-	List<Widget> _bodysView= [
-		HomePage(),
-		SearchPage(),
-		GraphicsPage(),
-		CirclerPage(),
-	];
-	List<String> _bodysMenu = [
-		'Home', 'Search', 'Graphics', 'Circler'
+	List<CommonPageData> _bodysView= [
+		CommonPageData(view: new PageHome(), pageTitle: 'Home', icon: Icons.home),
+		CommonPageData(view: new PageSearch(), pageTitle: 'Search', icon: Icons.search),
+		CommonPageData(view: new PageGraphics(), pageTitle: 'Graphics', icon: Icons.graphic_eq),
+		CommonPageData(view: new PageCircler(), pageTitle: 'Circler', icon: Icons.home),
 	];
 
 	/// 初始化
@@ -60,7 +58,7 @@ class _TravelHomePageState extends State<TravelHomePage> with SingleTickerProvid
 	Widget build(BuildContext context) {
 		return Scaffold(
 			// 绑定TAB内容
-			body: _bodysView[this._currentIndex],
+			body: _bodysView[this._currentIndex].view,
 
 			// 绑定TAB菜单
 			bottomNavigationBar: BottomNavigationBar(
@@ -76,30 +74,22 @@ class _TravelHomePageState extends State<TravelHomePage> with SingleTickerProvid
 	/// TAB菜单
 	List<BottomNavigationBarItem> getTabBarMenu() {
 		return [
-			BottomNavigationBarItem(
-				icon: this._currentIndex == 0
-					? Icon(Icons.home, color: Colors.black)
-					: Icon(Icons.home, color: Colors.grey),
-				title: Text(this._bodysMenu[this._currentIndex]),
-			),
-			BottomNavigationBarItem(
-				icon: this._currentIndex == 1
-					? Icon(Icons.search, color: Colors.black)
-					: Icon(Icons.search, color: Colors.grey),
-				title: Text(this._bodysMenu[this._currentIndex]),
-			),
-			BottomNavigationBarItem(
-				icon: this._currentIndex == 2
-					? Icon(Icons.graphic_eq, color: Colors.black)
-					: Icon(Icons.graphic_eq, color: Colors.grey),
-				title: Text(this._bodysMenu[this._currentIndex]),
-			),
-			BottomNavigationBarItem(
-				icon: this._currentIndex == 3
-					? Icon(Icons.add_circle_outline, color: Colors.black)
-					: Icon(Icons.add_circle_outline, color: Colors.grey),
-				title: Text(this._bodysMenu[this._currentIndex]),
-			)
+			this.getBottomNavigationBarItem(0),
+			this.getBottomNavigationBarItem(1),
+			this.getBottomNavigationBarItem(2),
+			this.getBottomNavigationBarItem(3)
 		];
+	}
+
+	/// 单个菜单按钮定义
+	BottomNavigationBarItem getBottomNavigationBarItem(int index) {
+		CommonPageData pageData = this._bodysView[index];
+
+		return BottomNavigationBarItem(
+			icon: this._currentIndex == index
+				? Icon(pageData.icon, color: Colors.black)
+				: Icon(pageData.icon, color: Colors.grey),
+			title: Text(pageData.pageTitle),
+		);
 	}
 }

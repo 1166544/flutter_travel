@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import './profile.dart';
+import './PageProfile.dart';
 
-class HomePage extends StatefulWidget {
+class PageHome extends StatefulWidget {
   final Widget child;
 
-  HomePage({Key key, this.child}) : super(key: key);
+  PageHome({Key key, this.child}) : super(key: key);
 
-  _HomePageState createState() => _HomePageState();
+  _PageHomeState createState() => _PageHomeState();
 }
 
 /// 首页面内容
-class _HomePageState extends State<HomePage> {
+class _PageHomeState extends State<PageHome> {
   @override
   Widget build(BuildContext context) {
 	return ListView(
@@ -55,7 +55,7 @@ class _HomePageState extends State<HomePage> {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => new ProfilePage())
+                MaterialPageRoute(builder: (context) => new PageProfile())
               );
             },
           )
