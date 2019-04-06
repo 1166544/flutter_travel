@@ -173,25 +173,25 @@ class _TravelHomePageState extends State<TravelHomePage> with SingleTickerProvid
 								  Column(
 									  crossAxisAlignment: CrossAxisAlignment.start,
 									  children: <Widget>[
-										  Container(
-											  height: 111.5,
-											  width: MediaQuery.of(context).size.width / 2 - 72.0,
-											  decoration: BoxDecoration(
-												  borderRadius: BorderRadius.only(topRight: Radius.circular(15.0)),
-												  image: DecorationImage(image: AssetImage('assets/beach2.jpg'), fit: BoxFit.cover)
-											  ),
-										  )
+										Container(
+											height: 111.5,
+											width: MediaQuery.of(context).size.width / 2 - 72.0,
+											decoration: BoxDecoration(
+												borderRadius: BorderRadius.only(topRight: Radius.circular(15.0)),
+												image: DecorationImage(image: AssetImage('assets/beach2.jpg'), fit: BoxFit.cover)
+											),
+										),
+										SizedBox(width: 2.0),
+										Container(
+											height: 111.5,
+											width: MediaQuery.of(context).size.width / 2 - 72.0,
+											decoration: BoxDecoration(
+												borderRadius: BorderRadius.only(bottomRight: Radius.circular(15.0)),
+												image: DecorationImage(image: AssetImage('assets/beach3.jpg'), fit: BoxFit.cover)
+											),
+										)
 									  ],
 								  ),
-								  SizedBox(width: 2.0),
-								  Container(
-									  height: 111.5,
-									  width: MediaQuery.of(context).size.width / 2 - 72.0,
-									  decoration: BoxDecoration(
-										  borderRadius: BorderRadius.only(bottomRight: Radius.circular(15.0)),
-										  image: DecorationImage(image: AssetImage('assets/beach3.jpg'), fit: BoxFit.cover)
-									  ),
-								  )
 							  ],
 						  ),
 					  )
