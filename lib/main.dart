@@ -59,9 +59,9 @@ class _TravelHomePageState extends State<TravelHomePage> with SingleTickerProvid
 					this._buildCircle(),
 					this._buildCommunity(),
 					this._buildImageGrid('assets/beach1.jpg', 'assets/beach2.jpg', 'assets/beach3.jpg'),
-					this._buildImgGalleryDetail(),
+					this._buildImgGalleryDetail('Maui Summer 2019', 'Teresa Soto added 52 Photos', '2h ago'),
 					this._buildImageGrid('assets/beach5.jpg', 'assets/beach4.jpg', 'assets/beach6.jpg'),
-					this._buildImgGalleryDetail(),
+					this._buildImgGalleryDetail('Maldives- 12 Days', 'Teresa Soto . 3 Videos', '5h ago'),
 				]
 			),
 		);
@@ -202,7 +202,7 @@ class _TravelHomePageState extends State<TravelHomePage> with SingleTickerProvid
 	}
 
 	/// 图片详情
-	Widget _buildImgGalleryDetail() {
+	Widget _buildImgGalleryDetail(String mainTitle, String subTitle, String timeTitle) {
 	  return Padding(
 		  padding: EdgeInsets.only(left: 25.0, right: 15.0, top: 15.0),
 		  child: Row(
@@ -211,15 +211,15 @@ class _TravelHomePageState extends State<TravelHomePage> with SingleTickerProvid
 				  Column(
 					  crossAxisAlignment: CrossAxisAlignment.start,
 					  children: <Widget>[
-						  Text('Maui Summer 2019', style:TextStyle(fontWeight:FontWeight.bold, fontFamily: 'Montserrat', fontSize: 15.0)),
+						  Text(mainTitle, style:TextStyle(fontWeight:FontWeight.bold, fontFamily: 'Montserrat', fontSize: 15.0)),
 						  SizedBox(height: 7.0),
 						  Row(
 							  children: <Widget>[
-								  Text('Teresa Soto added 52 Photos', style: TextStyle(color: Colors.grey.shade700, fontFamily: 'Montserrat', fontSize: 11.0)),
+								  Text(subTitle, style: TextStyle(color: Colors.grey.shade700, fontFamily: 'Montserrat', fontSize: 11.0)),
 								  SizedBox(width: 4.0),
 								  Icon(Icons.timer, size: 4.0, color: Colors.black),
 								  SizedBox(width: 4.0),
-								  Text('2h ago', style:TextStyle(color: Colors.grey.shade500, fontFamily: 'Montserrat', fontSize: 11.0))
+								  Text(timeTitle, style:TextStyle(color: Colors.grey.shade500, fontFamily: 'Montserrat', fontSize: 11.0))
 							  ],
 						  )
 					  ],
