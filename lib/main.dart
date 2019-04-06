@@ -24,7 +24,6 @@ class TravelHomePage extends StatefulWidget {
 class _TravelHomePageState extends State<TravelHomePage> with SingleTickerProviderStateMixin {
 
 	TabController tabController;
-	var tripDetails;
 
 	/// 初始化
 	@override
@@ -35,25 +34,39 @@ class _TravelHomePageState extends State<TravelHomePage> with SingleTickerProvid
 	}
 
 	@override
+	void dispose() {
+		this.tabController.dispose();
+		super.dispose();
+	}
+
+	@override
 	Widget build(BuildContext context) {
 		return Scaffold(
 			bottomNavigationBar: Material(
-			color: Colors.white,
-			// 绑定TAB按钮
-			child: TabBar(
-				controller: this.tabController,
-				indicatorColor: Colors.white,
-				tabs: <Widget>[
-					Tab(icon: Icon(Icons.home, color: Colors.black)),
-					Tab(icon: Icon(Icons.search, color: Colors.grey)),
-					Tab(icon: Icon(Icons.graphic_eq, color: Colors.grey)),
-					Tab(icon: Icon(Icons.add_circle_outline, color: Colors.grey))
-				]
+				color: Colors.white,
+				// 绑定TAB按钮
+				child: TabBar(
+					controller: this.tabController,
+					indicatorColor: Colors.white,
+					tabs: <Widget>[
+						Tab(icon: Icon(Icons.home, color: Colors.black)),
+						Tab(icon: Icon(Icons.search, color: Colors.grey)),
+						Tab(icon: Icon(Icons.graphic_eq, color: Colors.grey)),
+						Tab(icon: Icon(Icons.add_circle_outline, color: Colors.grey))
+					]
 				),
 			),
 			backgroundColor: Colors.white,
 			// 绑定TAB内容
-			body:HomePage(),
+			body: TabBarView(
+				controller: this.tabController,
+				children: <Widget>[
+					HomePage(),
+					HomePage(),
+					HomePage(),
+					HomePage(),
+				],
+			)
 		);
   }
 }
