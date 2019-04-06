@@ -58,9 +58,9 @@ class _TravelHomePageState extends State<TravelHomePage> with SingleTickerProvid
 					this._buildTravelogram(),
 					this._buildCircle(),
 					this._buildCommunity(),
-					this._buildImageGrid(),
+					this._buildImageGrid('assets/beach1.jpg', 'assets/beach2.jpg', 'assets/beach3.jpg'),
 					this._buildImgGalleryDetail(),
-					this._buildImageGrid(),
+					this._buildImageGrid('assets/beach5.jpg', 'assets/beach4.jpg', 'assets/beach6.jpg'),
 					this._buildImgGalleryDetail(),
 				]
 			),
@@ -150,7 +150,7 @@ class _TravelHomePageState extends State<TravelHomePage> with SingleTickerProvid
 	}
 
 	/// 构建图片网格
-	Widget _buildImageGrid() {
+	Widget _buildImageGrid(String leftImageUrl, String assistantImage1Url, String assistantImage2Url) {
 		return Padding(
 			padding: EdgeInsets.only(top: 25.0, left: 15.0, right: 15.0),
 			child: Container(
@@ -166,7 +166,7 @@ class _TravelHomePageState extends State<TravelHomePage> with SingleTickerProvid
 										width: MediaQuery.of(context).size.width / 2 + 40.0,
 										decoration: BoxDecoration(
 											borderRadius: BorderRadius.only(topLeft: Radius.circular(15.0), bottomLeft: Radius.circular(15.0)),
-											image: DecorationImage(image: AssetImage('assets/beach1.jpg'), fit: BoxFit.cover)
+											image: DecorationImage(image: AssetImage(leftImageUrl), fit: BoxFit.cover)
 										),
 									),
 									SizedBox(width: 2.0),
@@ -178,7 +178,7 @@ class _TravelHomePageState extends State<TravelHomePage> with SingleTickerProvid
 												width: MediaQuery.of(context).size.width / 2 - 72.0,
 												decoration: BoxDecoration(
 													borderRadius: BorderRadius.only(topRight: Radius.circular(15.0)),
-													image: DecorationImage(image: AssetImage('assets/beach2.jpg'), fit: BoxFit.cover)
+													image: DecorationImage(image: AssetImage(assistantImage1Url), fit: BoxFit.cover)
 												),
 											),
 											SizedBox(width: 2.0),
@@ -187,7 +187,7 @@ class _TravelHomePageState extends State<TravelHomePage> with SingleTickerProvid
 												width: MediaQuery.of(context).size.width / 2 - 72.0,
 												decoration: BoxDecoration(
 													borderRadius: BorderRadius.only(bottomRight: Radius.circular(15.0)),
-													image: DecorationImage(image: AssetImage('assets/beach3.jpg'), fit: BoxFit.cover)
+													image: DecorationImage(image: AssetImage(assistantImage2Url), fit: BoxFit.cover)
 												),
 											)
 										],
