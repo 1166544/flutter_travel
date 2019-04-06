@@ -201,9 +201,10 @@ class _TravelHomePageState extends State<TravelHomePage> with SingleTickerProvid
 	  );
   }
 
+  /// 图片详情
   Widget _buildImgGalleryDetail() {
 	  return Padding(
-		  padding: EdgeInsets.only(left: 25.0, right: 25.0, top: 15.0),
+		  padding: EdgeInsets.only(left: 25.0, right: 15.0, top: 15.0),
 		  child: Row(
 			  mainAxisAlignment: MainAxisAlignment.spaceBetween,
 			  children: <Widget>[
@@ -223,15 +224,15 @@ class _TravelHomePageState extends State<TravelHomePage> with SingleTickerProvid
 						  )
 					  ],
 				  ),
+				  Spacer(),
 				  Row(
-					  crossAxisAlignment: CrossAxisAlignment.center,
+					  crossAxisAlignment: CrossAxisAlignment.start,
 					  children: <Widget>[
-						  SizedBox(width: 7.0),
-						  this._inkWellButton(inkWidth: 20.0, inkHeight: 20.0, picUrl: 'assets/navarrow.png', onCallBack: (){}),
-						  SizedBox(width: 7.0),
-						  this._inkWellButton(inkWidth: 20.0, inkHeight: 20.0, picUrl: 'assets/chatbubble.png', onCallBack: (){}),
-						  SizedBox(width: 7.0),
-						  this._inkWellButton(inkWidth: 22.0, inkHeight: 22.0, picUrl: 'assets/fav.png', onCallBack: (){}),
+						  this._inkWellButton(inkWidth: 13.0, inkHeight: 13.0, picUrl: 'assets/navarrow.png', onCallBack: (){}),
+						  SizedBox(width: 5.0),
+						  this._inkWellButton(inkWidth: 13.0, inkHeight: 13.0, picUrl: 'assets/chatbubble.png', onCallBack: (){}),
+						  SizedBox(width: 5.0),
+						  this._inkWellButton(inkWidth: 13.0, inkHeight: 13.0, picUrl: 'assets/fav.png', onCallBack: (){}),
 					  ],
 				  )
 			  ],
