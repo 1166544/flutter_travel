@@ -76,7 +76,7 @@ class _TravelHomePageState extends State<TravelHomePage> with SingleTickerProvid
 			  crossAxisAlignment: CrossAxisAlignment.center,
 			  children: <Widget>[
 				  Text('travelogram', style: TextStyle(fontFamily: 'Montserrat', fontSize: 20.0, color: Colors.grey.shade900)),
-				  SizedBox(width: 90.0),
+				  Spacer(),
           IconButton(icon:Icon(Icons.notifications), color: Colors.grey.shade500, iconSize: 30.0, onPressed: (){}),
           SizedBox(width: 5.0),
 					// 自定义按钮
