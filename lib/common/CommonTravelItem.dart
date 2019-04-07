@@ -34,7 +34,7 @@ class CommonTravelItem {
 													image: DecorationImage(image: AssetImage(assistantImage1Url), fit: BoxFit.cover)
 												),
 											),
-											SizedBox(width: 2.0),
+											SizedBox(height: 2.0),
 											Container(
 												height: 111.5,
 												width: MediaQuery.of(context).size.width / 2 - 72.0,
