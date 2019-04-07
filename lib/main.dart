@@ -27,7 +27,7 @@ class TravelHomePage extends StatefulWidget {
 /// 定义菜单和图标
 class _TravelHomePageState extends State<TravelHomePage> with SingleTickerProviderStateMixin {
 
-	int _currentIndex = 0;
+	int _currentIndex = 1;
 	List<CommonPageData> _bodysView= [
 		CommonPageData(view: new PageHome(), pageTitle: 'Home', icon: Icons.home),
 		CommonPageData(view: new PageSearch(), pageTitle: 'Search', icon: Icons.search),

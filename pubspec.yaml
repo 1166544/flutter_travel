@@ -48,7 +48,13 @@ flutter:
     - assets/speechbubble.png
     - assets/navarrow.png
     - assets/chatbubble.png
-    - assets/fav.png
+    - assets/dot.png
+    - assets/start.png
+    - assets/p1.jpg
+    - assets/p2.jpg
+    - assets/p3.jpg
+    - assets/p5.jpg
+    - assets/p6.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.
