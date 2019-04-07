@@ -11,9 +11,10 @@ class PageHome extends StatefulWidget {
 }
 
 /// 首页面内容
-class _PageHomeState extends State<PageHome> {
+class _PageHomeState extends State<PageHome> with CommonTravelItem {
 
-  CommonTravelItem commonTravelItem = CommonTravelItem();
+  @override
+  bool get wantKeepAlive => null;
 
   @override
   Widget build(BuildContext context) {
@@ -22,10 +23,10 @@ class _PageHomeState extends State<PageHome> {
 			this._buildTravelogram(),
 			this._buildCircle(),
 			this._buildCommunity(),
-			commonTravelItem.buildImageGrid(context, 'assets/beach1.jpg', 'assets/beach2.jpg', 'assets/beach3.jpg'),
-			commonTravelItem.buildImgGalleryDetail('Maui Summer 2019', 'Teresa Soto added 52 Photos', '2h ago'),
-			commonTravelItem.buildImageGrid(context, 'assets/beach5.jpg', 'assets/beach4.jpg', 'assets/beach6.jpg'),
-			commonTravelItem.buildImgGalleryDetail('Maldives- 12 Days', 'Teresa Soto . 3 Videos', '5h ago'),
+			this.buildImageGrid(context, 'assets/beach1.jpg', 'assets/beach2.jpg', 'assets/beach3.jpg'),
+			this.buildImgGalleryDetail('Maui Summer 2019', 'Teresa Soto added 52 Photos', '2h ago'),
+			this.buildImageGrid(context, 'assets/beach5.jpg', 'assets/beach4.jpg', 'assets/beach6.jpg'),
+			this.buildImgGalleryDetail('Maldives- 12 Days', 'Teresa Soto . 3 Videos', '5h ago'),
 		]
 	);
   }

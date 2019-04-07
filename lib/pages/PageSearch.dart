@@ -10,8 +10,10 @@ class PageSearch extends StatefulWidget {
   _PageSearchState createState() => _PageSearchState();
 }
 
-class _PageSearchState extends State<PageSearch> {
-  CommonTravelItem commonTravelItem = CommonTravelItem();
+class _PageSearchState extends State<PageSearch> with CommonTravelItem {
+
+  @override
+  bool get wantKeepAlive => null;
 
   @override
   Widget build(BuildContext context) {
@@ -61,14 +63,14 @@ class _PageSearchState extends State<PageSearch> {
 
 			  this.buildTravelDate('Aug 12, 2012 - Baros Island'),
 			  this.buildTravelSep(),
-			  commonTravelItem.buildImageGrid(context, 'assets/p1.jpg', 'assets/beach5.jpg', 'assets/p2.jpg', paddingTop: 0.0),
-			  commonTravelItem.buildImgGalleryDetail('Day 1- Sun Bath', 'Teresa Soto', ''),
+			  this.buildImageGrid(context, 'assets/p1.jpg', 'assets/beach5.jpg', 'assets/p2.jpg', paddingTop: 0.0),
+			  this.buildImgGalleryDetail('Day 1- Sun Bath', 'Teresa Soto', ''),
 
 			  SizedBox(height: 45.0),
 			  this.buildTravelDate('Aug 13, 2012 - Mihiri Island'),
 			  this.buildTravelSep(),
-			  commonTravelItem.buildImageGrid(context, 'assets/p3.jpg', 'assets/p5.jpg', 'assets/p6.jpg', paddingTop: 0.0),
-			  commonTravelItem.buildImgGalleryDetail('Day 2- Sun Raise', 'Tiland buject', ''),
+			  this.buildImageGrid(context, 'assets/p3.jpg', 'assets/p5.jpg', 'assets/p6.jpg', paddingTop: 0.0),
+			  this.buildImgGalleryDetail('Day 2- Sun Raise', 'Tiland buject', ''),
 		  ],
 	  );
   }
