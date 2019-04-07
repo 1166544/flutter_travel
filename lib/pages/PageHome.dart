@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../common/CommonTravelItem.dart';
 import './PageProfile.dart';
 
 class PageHome extends StatefulWidget {
@@ -11,6 +12,9 @@ class PageHome extends StatefulWidget {
 
 /// 首页面内容
 class _PageHomeState extends State<PageHome> {
+
+  CommonTravelItem commonTravelItem = CommonTravelItem();
+
   @override
   Widget build(BuildContext context) {
 	return ListView(
@@ -18,10 +22,10 @@ class _PageHomeState extends State<PageHome> {
 			this._buildTravelogram(),
 			this._buildCircle(),
 			this._buildCommunity(),
-			this._buildImageGrid('assets/beach1.jpg', 'assets/beach2.jpg', 'assets/beach3.jpg'),
-			this._buildImgGalleryDetail('Maui Summer 2019', 'Teresa Soto added 52 Photos', '2h ago'),
-			this._buildImageGrid('assets/beach5.jpg', 'assets/beach4.jpg', 'assets/beach6.jpg'),
-			this._buildImgGalleryDetail('Maldives- 12 Days', 'Teresa Soto . 3 Videos', '5h ago'),
+			commonTravelItem.buildImageGrid(context, 'assets/beach1.jpg', 'assets/beach2.jpg', 'assets/beach3.jpg'),
+			commonTravelItem.buildImgGalleryDetail('Maui Summer 2019', 'Teresa Soto added 52 Photos', '2h ago'),
+			commonTravelItem.buildImageGrid(context, 'assets/beach5.jpg', 'assets/beach4.jpg', 'assets/beach6.jpg'),
+			commonTravelItem.buildImgGalleryDetail('Maldives- 12 Days', 'Teresa Soto . 3 Videos', '5h ago'),
 		]
 	);
   }
@@ -105,109 +109,6 @@ class _PageHomeState extends State<PageHome> {
 					Text('FROM THE COMMUNITY', style:TextStyle(color: Colors.grey, fontSize: 15.0, fontFamily: 'Monsterrat')),
 					Text('View All', style:TextStyle(color: Colors.blue, fontWeight:FontWeight.bold, fontSize: 15.0, fontFamily: 'Monsterrat')),
 				],
-			),
-		);
-	}
-
-	/// 构建图片网格
-	Widget _buildImageGrid(String leftImageUrl, String assistantImage1Url, String assistantImage2Url) {
-		return Padding(
-			padding: EdgeInsets.only(top: 25.0, left: 15.0, right: 15.0),
-			child: Container(
-				height: 225.0,
-				child: Row(
-					children: <Widget>[
-						Container(
-							height: 225.0,
-							child: Row(
-								children: <Widget>[
-									Container(
-										height: 225.0,
-										width: MediaQuery.of(context).size.width / 2 + 40.0,
-										decoration: BoxDecoration(
-											borderRadius: BorderRadius.only(topLeft: Radius.circular(15.0), bottomLeft: Radius.circular(15.0)),
-											image: DecorationImage(image: AssetImage(leftImageUrl), fit: BoxFit.cover)
-										),
-									),
-									SizedBox(width: 2.0),
-									Column(
-										crossAxisAlignment: CrossAxisAlignment.start,
-										children: <Widget>[
-											Container(
-												height: 111.5,
-												width: MediaQuery.of(context).size.width / 2 - 72.0,
-												decoration: BoxDecoration(
-													borderRadius: BorderRadius.only(topRight: Radius.circular(15.0)),
-													image: DecorationImage(image: AssetImage(assistantImage1Url), fit: BoxFit.cover)
-												),
-											),
-											SizedBox(width: 2.0),
-											Container(
-												height: 111.5,
-												width: MediaQuery.of(context).size.width / 2 - 72.0,
-												decoration: BoxDecoration(
-													borderRadius: BorderRadius.only(bottomRight: Radius.circular(15.0)),
-													image: DecorationImage(image: AssetImage(assistantImage2Url), fit: BoxFit.cover)
-												),
-											)
-										],
-									),
-								],
-							),
-						)
-					],
-				),
-			),
-		);
-	}
-
-	/// 图片详情
-	Widget _buildImgGalleryDetail(String mainTitle, String subTitle, String timeTitle) {
-	  return Padding(
-		  padding: EdgeInsets.only(left: 25.0, right: 15.0, top: 15.0),
-		  child: Row(
-			  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-			  children: <Widget>[
-				  Column(
-					  crossAxisAlignment: CrossAxisAlignment.start,
-					  children: <Widget>[
-						  Text(mainTitle, style:TextStyle(fontWeight:FontWeight.bold, fontFamily: 'Montserrat', fontSize: 15.0)),
-						  SizedBox(height: 7.0),
-						  Row(
-							  children: <Widget>[
-								  Text(subTitle, style: TextStyle(color: Colors.grey.shade700, fontFamily: 'Montserrat', fontSize: 11.0)),
-								  SizedBox(width: 4.0),
-								  Icon(Icons.timer, size: 4.0, color: Colors.black),
-								  SizedBox(width: 4.0),
-								  Text(timeTitle, style:TextStyle(color: Colors.grey.shade500, fontFamily: 'Montserrat', fontSize: 11.0))
-							  ],
-						  )
-					  ],
-				  ),
-				  Spacer(),
-				  Row(
-					  crossAxisAlignment: CrossAxisAlignment.start,
-					  children: <Widget>[
-						  this._inkWellButton(inkWidth: 13.0, inkHeight: 13.0, picUrl: 'assets/navarrow.png', onCallBack: (){}),
-						  SizedBox(width: 5.0),
-						  this._inkWellButton(inkWidth: 13.0, inkHeight: 13.0, picUrl: 'assets/chatbubble.png', onCallBack: (){}),
-						  SizedBox(width: 5.0),
-						  this._inkWellButton(inkWidth: 13.0, inkHeight: 13.0, picUrl: 'assets/fav.png', onCallBack: (){}),
-					  ],
-				  )
-			  ],
-		  ),
-	  );
-  }
-
-	/// 封装小型图标函数
-	Widget _inkWellButton({double inkWidth, double inkHeight, String picUrl, Function onCallBack}) {
-		return InkWell(
-			onTap: onCallBack,
-			child: Container(
-				height: inkHeight,
-				width: inkWidth,
-				child: Image.asset(picUrl),
 			),
 		);
 	}
