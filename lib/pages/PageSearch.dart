@@ -15,7 +15,14 @@ class _PageSearchState extends State<PageSearch> {
 	return Scaffold(
 		appBar: AppBar(
 			title: Center(
-				child: Text('Maldives - 12 Days', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
+				child: Text(
+					'Maldives - 12 Days',
+					style: TextStyle(
+						color: Colors.black,
+						fontWeight: FontWeight.bold,
+						fontSize: 20.0
+					)
+				),
 			),
 			elevation: 0.0,
 			backgroundColor: Colors.white,
@@ -38,9 +45,48 @@ class _PageSearchState extends State<PageSearch> {
 				)
 			],
 		),
-		body: Center(
-			child: Text('Text'),
-		)
+		body: this.buildSearchLayout()
 	);
+  }
+
+  /// 基础页面结构
+  Widget buildSearchLayout() {
+	  return Column(
+		  children: <Widget>[
+			  this.buildMarkTitle(),
+			  this.buildStartIcon(),
+			  this.buildDateTitle(),
+			  this.buildTravelItem(),
+			  this.buildTravelItem(),
+		  ],
+	  );
+  }
+
+  /// 顶部标题
+  Widget buildMarkTitle() {
+	  return Container(
+		  width: MediaQuery.of(context).size.width,
+		  child: Text(
+			  'Mark, 4 Others',
+			  textAlign: TextAlign.center,
+			  style: TextStyle(fontSize: 17.0, color: Colors.black.withOpacity(0.7)),
+		  )
+	  );
+  }
+
+  /// 构建START图标
+  Widget buildStartIcon() {
+	  return Padding(
+		  padding: EdgeInsets.all(7.0),
+		  child: Image.asset('assets/start.png', width: 150.0, height: 150.0),
+	  );
+  }
+
+  Widget buildDateTitle() {
+	  return Text('getDateTitle');
+  }
+
+  Widget buildTravelItem() {
+	  return Text('getTravelItem');
   }
 }

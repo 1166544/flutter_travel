@@ -32,7 +32,7 @@ class _TravelHomePageState extends State<TravelHomePage> with SingleTickerProvid
 		CommonPageData(view: new PageHome(), pageTitle: 'Home', icon: Icons.home),
 		CommonPageData(view: new PageSearch(), pageTitle: 'Search', icon: Icons.search),
 		CommonPageData(view: new PageGraphics(), pageTitle: 'Graphics', icon: Icons.graphic_eq),
-		CommonPageData(view: new PageCircler(), pageTitle: 'Circler', icon: Icons.home),
+		CommonPageData(view: new PageCircler(), pageTitle: 'Circler', icon: Icons.account_circle),
 	];
 
 	/// 初始化
