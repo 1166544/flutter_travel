@@ -12,7 +12,7 @@ class _PageGraphicsState extends State<PageGraphics> {
   @override
   Widget build(BuildContext context) {
 	return Container(
-	   child: Text('Graphics'),
+	   child: Text('Graphics', style: TextStyle(color: Colors.black),),
 	);
   }
 }

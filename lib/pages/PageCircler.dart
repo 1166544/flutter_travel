@@ -12,7 +12,7 @@ class _CirclerState extends State<PageCircler> {
   @override
   Widget build(BuildContext context) {
 	return Container(
-	   child: Text('Circler'),
+	   child: Text('Circler', style: TextStyle(color: Colors.black))
 	);
   }
 }
