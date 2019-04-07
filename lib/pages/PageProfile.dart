@@ -175,7 +175,7 @@ class _PageProfileState extends State<PageProfile> {
 							  child: Container(
 								  height: 20.0,
 								  width: 20.0,
-								  child: Image.asset('assets/fav.png'),
+								  child: Image.asset('assets/chatbubble.png'),
 							  ),
 						  ),
 					  ],
