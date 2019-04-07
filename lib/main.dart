@@ -24,7 +24,7 @@ class TravelHomePage extends StatefulWidget {
 	_TravelHomePageState createState() => _TravelHomePageState();
 }
 
-/// 首页
+/// 定义菜单和图标
 class _TravelHomePageState extends State<TravelHomePage> with SingleTickerProviderStateMixin {
 
 	int _currentIndex = 0;
