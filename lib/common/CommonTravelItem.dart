@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 class CommonTravelItem {
 
 	/// 构建图片网格
-	Widget buildImageGrid(BuildContext context, String leftImageUrl, String assistantImage1Url, String assistantImage2Url) {
+	Widget buildImageGrid(BuildContext context, String leftImageUrl, String assistantImage1Url, String assistantImage2Url, {double paddingTop = 25.0}) {
 		return Padding(
-			padding: EdgeInsets.only(top: 25.0, left: 15.0, right: 15.0),
+			padding: EdgeInsets.only(top: paddingTop, left: 15.0, right: 15.0),
 			child: Container(
 				height: 225.0,
 				child: Row(

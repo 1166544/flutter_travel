@@ -48,6 +48,7 @@ flutter:
     - assets/speechbubble.png
     - assets/navarrow.png
     - assets/chatbubble.png
+    - assets/fav.png
     - assets/dot.png
     - assets/start.png
     - assets/p1.jpg

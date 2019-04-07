@@ -58,10 +58,17 @@ class _PageSearchState extends State<PageSearch> {
 		  children: <Widget>[
 			  this.buildMarkTitle(),
 			  this.buildStartIcon(),
-			  this.buildTravelDate(),
+
+			  this.buildTravelDate('Aug 12, 2012 - Baros Island'),
 			  this.buildTravelSep(),
-			  commonTravelItem.buildImageGrid(context, 'assets/beach1.jpg', 'assets/beach2.jpg', 'assets/beach3.jpg'),
-			  commonTravelItem.buildImgGalleryDetail('Maui Summer 2019', 'Teresa Soto added 52 Photos', '2h ago'),
+			  commonTravelItem.buildImageGrid(context, 'assets/p1.jpg', 'assets/beach5.jpg', 'assets/p2.jpg', paddingTop: 0.0),
+			  commonTravelItem.buildImgGalleryDetail('Day 1- Sun Bath', 'Teresa Soto', ''),
+
+			  SizedBox(height: 45.0),
+			  this.buildTravelDate('Aug 13, 2012 - Mihiri Island'),
+			  this.buildTravelSep(),
+			  commonTravelItem.buildImageGrid(context, 'assets/p3.jpg', 'assets/p5.jpg', 'assets/p6.jpg', paddingTop: 0.0),
+			  commonTravelItem.buildImgGalleryDetail('Day 2- Sun Raise', 'Tiland buject', ''),
 		  ],
 	  );
   }
@@ -87,11 +94,16 @@ class _PageSearchState extends State<PageSearch> {
   }
 
   /// 旅行日志时间
-  Widget buildTravelDate() {
-	  return Text('Aug 12, 2012 - Baros Island');
+  Widget buildTravelDate(String travelTitle) {
+	  return Text(
+		  travelTitle,
+		  textAlign: TextAlign.center,
+		  style: TextStyle(color: Colors.black.withOpacity(0.8))
+	  );
   }
+
   /// 旅行日志分隔
   Widget buildTravelSep() {
-	  return Image.asset('assets/dot.png', width: 10.0, height: 70.0);
+	  return Image.asset('assets/dot.png', width: 10.0, height: 80.0);
   }
 }
