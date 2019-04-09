@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+///  图表
 class PageGraphics extends StatefulWidget {
   final Widget child;
 
