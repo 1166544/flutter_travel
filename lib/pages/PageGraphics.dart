@@ -9,6 +9,7 @@ class PageGraphics extends StatefulWidget {
   _PageGraphicsState createState() => _PageGraphicsState();
 }
 
+/// 图表状态
 class _PageGraphicsState extends State<PageGraphics> {
   @override
   Widget build(BuildContext context) {
