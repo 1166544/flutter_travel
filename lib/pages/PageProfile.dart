@@ -8,6 +8,7 @@ class PageProfile extends StatefulWidget {
 	_PageProfileState createState() => _PageProfileState();
 }
 
+/// 详情页
 class _PageProfileState extends State<PageProfile> {
 	@override
 	Widget build(BuildContext context) {
