@@ -62,7 +62,15 @@ class _PageGraphicsState extends State<PageGraphics> {
 				  ),
 				  color: Color(0xFFFFFFFF),
 				  shape: BoxShape.rectangle,
-				  borderRadius: BorderRadius.circular(20.0)
+				  borderRadius: BorderRadius.circular(20.0),
+				  boxShadow: [
+					  BoxShadow(
+						  color: Colors.black.withOpacity(0.2),
+						  blurRadius: 1.0,
+						  spreadRadius: 0.5,
+						  offset: Offset(0.0, 1.0),
+					  )
+				  ]
 			  ),
 			  child: Column(
 				children: <Widget>[
@@ -157,16 +165,16 @@ class _PageGraphicsState extends State<PageGraphics> {
 
 					// 第五行
 					Padding(
-						padding: EdgeInsets.fromLTRB(30.0, 10.0, 35.0, 15.0),
+						padding: EdgeInsets.fromLTRB(30.0, 10.0, 35.0, 25.0),
 						child: Row(
 							children: <Widget>[
 								this.buildAvataImage('assets/chris.jpg'),
-								SizedBox(width: 12.0),
+								SizedBox(width: 10.0),
 								this.buildAvataImage('assets/p2.jpg'),
-								SizedBox(width: 12.0),
+								SizedBox(width: 10.0),
 								Container(
-									width: 80.0,
-									height: 40.0,
+									width: 70.0,
+									height: 35.0,
 									decoration: BoxDecoration(
 										color: Colors.grey.withOpacity(0.3),
 										shape: BoxShape.rectangle,
@@ -176,7 +184,7 @@ class _PageGraphicsState extends State<PageGraphics> {
 										child: Text('+134', style: TextStyle(fontSize: 18.0, color: Colors.deepPurple, fontWeight: FontWeight.bold))
 									),
 								),
-								SizedBox(width: 12.0),
+								SizedBox(width: 10.0),
 								Text('liked this', style: TextStyle(fontSize: 16.0, color: Colors.black.withOpacity(0.5))),
 							],
 						),
@@ -190,8 +198,8 @@ class _PageGraphicsState extends State<PageGraphics> {
   /// 构建圆形图片
   Widget buildAvataImage(String imageUrl) {
 	  return Container(
-		  width: 50.0,
-		  height: 50.0,
+		  width: 40.0,
+		  height: 40.0,
 		  decoration: BoxDecoration(
 			  image: DecorationImage(
 				  image: AssetImage(imageUrl),
