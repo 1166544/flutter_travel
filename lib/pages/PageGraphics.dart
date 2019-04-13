@@ -113,12 +113,14 @@ class _PageGraphicsState extends State<PageGraphics> {
 
 					// 第二行
 					Padding(
-						padding: EdgeInsets.fromLTRB(30.0, 35.0, 25.0, 15.0),
+						padding: EdgeInsets.fromLTRB(30.0, 10.0, 25.0, 15.0),
 						child: Row(
 							children: <Widget>[
-								Text('image1'),
-								Text('image2'),
-								Text('image3'),
+								this.buildRoundItemImage('assets/beach1.jpg'),
+								SizedBox(width: 10.0),
+								this.buildRoundItemImage('assets/beach2.jpg'),
+								SizedBox(width: 10.0),
+								this.buildRoundItemImage('assets/beach3.jpg'),
 							],
 						),
 					),
@@ -151,6 +153,21 @@ class _PageGraphicsState extends State<PageGraphics> {
 					),
 				],
 			 ),
+		  ),
+	  );
+  }
+
+  /// 构建圆角图片项
+  Widget buildRoundItemImage(String imageUrl) {
+	  return Container(
+		  width: 80.0,
+		  height: 80.0,
+		  decoration: BoxDecoration(
+			  image: DecorationImage(
+				  image: AssetImage(imageUrl),
+				  fit: BoxFit.cover
+			  ),
+			  borderRadius: BorderRadius.circular(10.0)
 		  ),
 	  );
   }
