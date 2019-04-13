@@ -30,11 +30,11 @@ class _PageGraphicsState extends State<PageGraphics> {
 					gradient: LinearGradient(
 					begin: Alignment.topCenter,
 					end: Alignment.bottomCenter,
-					stops: [0.0, 0.5, 0.75, 0.9],
+					stops: [0.0, 0.5, 0.65, 0.9],
 					colors: [
 						Colors.white.withOpacity(0.0),
 						Colors.white.withOpacity(0.25),
-						Colors.white.withOpacity(0.75),
+						Colors.white.withOpacity(0.95),
 						Colors.white,
 					],
 					)
@@ -195,6 +195,64 @@ class _PageGraphicsState extends State<PageGraphics> {
 	  );
   }
 
+  /// 底部内容
+  Widget buildBottomChildren() {
+	  return Padding(
+		  padding: EdgeInsets.fromLTRB(15.0, 45.0, 15.0, 20.0),
+		  child: Column(
+			  mainAxisAlignment: MainAxisAlignment.start,
+			  crossAxisAlignment: CrossAxisAlignment.start,
+			  children: <Widget>[
+				  Text(
+					  'Our heritage itza',
+					  style: TextStyle(fontSize: 20.0, color: Colors.black, fontWeight: FontWeight.bold)
+				  ),
+				  SizedBox(height: 20.0),
+				  Text(
+					  'Chichen Itza archaeological site in the Mexicon tate of Yucatrain.The building is more formally de add favorite logist, All I need is my text to be multi-line. Am giving the property of maxLines but its still getting RenderFlex overflowed error to the right as the next is not going to 2nd line',
+					  maxLines: 7,
+					  style: TextStyle(fontSize: 15.0, color: Colors.grey)
+				  ),
+				  SizedBox(height: 20.0),
+				  Row(
+					  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+					  children: <Widget>[
+						  this.buildFavoriteButton('Add favorite', Colors.white, Colors.black),
+						  this.buildFavoriteButton('Buy tickets', Colors.deepPurple, Colors.white),
+					  ]
+				  )
+			  ],
+		  ),
+	  );
+  }
+
+  /// 构建圆形按钮
+  Widget buildFavoriteButton(String textLabel, Color colorContent, Color colorText) {
+	  return Container(
+		width: 130,
+		height: 53,
+		decoration: BoxDecoration(
+			color: colorContent,
+			shape: BoxShape.rectangle,
+			borderRadius: BorderRadius.circular(50.0),
+			boxShadow: [
+			BoxShadow(
+				color: Colors.black.withOpacity(0.3),
+				blurRadius: 3.0,
+				spreadRadius: 5.0,
+				offset: Offset(0.0, 5.0)
+			)
+			]
+		),
+		child: Center(
+			child: Text(
+				textLabel,
+				style: TextStyle(fontSize: 15.0, color: colorText)
+			)
+		),
+	);
+  }
+
   /// 构建圆形图片
   Widget buildAvataImage(String imageUrl) {
 	  return Container(
@@ -251,10 +309,5 @@ class _PageGraphicsState extends State<PageGraphics> {
 				),
 			),
 		);
-  }
-
-  /// 底部内容
-  Widget buildBottomChildren() {
-	  return Text('Bottom');
   }
 }
