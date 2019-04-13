@@ -18,8 +18,23 @@ class _PageGraphicsState extends State<PageGraphics> {
 			decoration: BoxDecoration(
 				image: DecorationImage(
 					image: AssetImage('assets/road.jpg'),
-					fit: BoxFit.cover
-				)
+					fit: BoxFit.cover,
+				),
+			),
+			child: Container(
+				decoration: BoxDecoration(
+					 gradient: LinearGradient(
+					begin: Alignment.topCenter,
+					end: Alignment.bottomCenter,
+					stops: [0.0, 0.5, 0.75, 0.9],
+					colors: [
+						Colors.white.withOpacity(0.0),
+						Colors.white.withOpacity(0.25),
+						Colors.white.withOpacity(0.75),
+						Colors.white,
+					],
+					)
+				),
 			),
 		),
 	);
