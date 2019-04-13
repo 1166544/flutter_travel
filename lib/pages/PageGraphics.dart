@@ -14,6 +14,13 @@ class PageGraphics extends StatefulWidget {
 
 /// 摄影状态
 class _PageGraphicsState extends State<PageGraphics> {
+
+	List<String> bgList = [
+	'assets/road.jpg',
+	'assets/bg1.jpg',
+	'assets/bg2.jpg'
+	];
+
   @override
   Widget build(BuildContext context) {
 	return Scaffold(
@@ -53,17 +60,11 @@ class _PageGraphicsState extends State<PageGraphics> {
 
   /// 随机背景
   String buildRandomBackground() {
-	  List<String> bgList = [
-		'assets/road.jpg',
-		'assets/bg1.jpg',
-		'assets/bg2.jpg'
-	  ];
-
 	int min = 0;
 	int max = 3;
 	int selection = min + (Random().nextInt(max-min));
 
-	return bgList[selection];
+	return this.bgList[selection];
   }
 
   /// 顶部内容
