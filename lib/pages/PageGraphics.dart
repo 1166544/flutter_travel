@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-///  图表
+/// 摄影
 class PageGraphics extends StatefulWidget {
   final Widget child;
 
@@ -9,12 +9,19 @@ class PageGraphics extends StatefulWidget {
   _PageGraphicsState createState() => _PageGraphicsState();
 }
 
-/// 图表状态
+/// 摄影状态
 class _PageGraphicsState extends State<PageGraphics> {
   @override
   Widget build(BuildContext context) {
-	return Container(
-	   child: Text('Graphics', style: TextStyle(color: Colors.black),),
+	return Scaffold(
+		body: Container(
+			decoration: BoxDecoration(
+				image: DecorationImage(
+					image: AssetImage('assets/road.jpg'),
+					fit: BoxFit.cover
+				)
+			),
+		),
 	);
   }
 }
