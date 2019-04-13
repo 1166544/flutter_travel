@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 /// 摄影
@@ -116,11 +118,11 @@ class _PageGraphicsState extends State<PageGraphics> {
 						padding: EdgeInsets.fromLTRB(30.0, 10.0, 25.0, 15.0),
 						child: Row(
 							children: <Widget>[
-								this.buildRoundItemImage('assets/beach1.jpg'),
+								this.buildRoundItemImage('assets/beach3.jpg'),
 								SizedBox(width: 10.0),
 								this.buildRoundItemImage('assets/beach2.jpg'),
 								SizedBox(width: 10.0),
-								this.buildRoundItemImage('assets/beach3.jpg'),
+								this.buildRoundBlurImage('assets/beach1.jpg'),
 							],
 						),
 					),
@@ -170,6 +172,33 @@ class _PageGraphicsState extends State<PageGraphics> {
 			  borderRadius: BorderRadius.circular(10.0)
 		  ),
 	  );
+  }
+
+  /// 构建圆角模糊图片项
+  Widget buildRoundBlurImage(String imageUrl) {
+	  return Container(
+			width: 80.0,
+			height: 80.0,
+			decoration: BoxDecoration(
+				image: DecorationImage(
+					image: ExactAssetImage(imageUrl),
+					fit: BoxFit.cover
+				),
+				borderRadius: BorderRadius.circular(10.0)
+			),
+			child: BackdropFilter(
+				filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
+				child: Container(
+					decoration: BoxDecoration(
+						color: Colors.white.withOpacity(0.0),
+						borderRadius: BorderRadius.circular(20.0)
+					),
+					child: Center(
+						child: Text('+57', style: TextStyle(fontSize: 30.0, color: Colors.white)),
+					),
+				),
+			),
+		);
   }
 
   /// 底部内容
