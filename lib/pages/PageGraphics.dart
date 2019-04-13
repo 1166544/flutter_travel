@@ -43,7 +43,6 @@ class _PageGraphicsState extends State<PageGraphics> {
 					children: <Widget>[
 						// 页面列表内容
 						this.buildTopChildren(),
-						this.buildBottomChildren()
 					],
 				),
 			),
@@ -63,14 +62,6 @@ class _PageGraphicsState extends State<PageGraphics> {
 				  color: Color(0xFFFFFFFF),
 				  shape: BoxShape.rectangle,
 				  borderRadius: BorderRadius.circular(20.0),
-				  boxShadow: [
-					  BoxShadow(
-						  color: Colors.black.withOpacity(0.2),
-						  blurRadius: 1.0,
-						  spreadRadius: 0.5,
-						  offset: Offset(0.0, 1.0),
-					  )
-				  ]
 			  ),
 			  child: Column(
 				children: <Widget>[
@@ -165,7 +156,7 @@ class _PageGraphicsState extends State<PageGraphics> {
 
 					// 第五行
 					Padding(
-						padding: EdgeInsets.fromLTRB(30.0, 10.0, 35.0, 25.0),
+						padding: EdgeInsets.fromLTRB(30.0, 10.0, 35.0, 0.0),
 						child: Row(
 							children: <Widget>[
 								this.buildAvataImage('assets/chris.jpg'),
@@ -189,39 +180,62 @@ class _PageGraphicsState extends State<PageGraphics> {
 							],
 						),
 					),
+
+					// 装饰圆角
+					Container(
+						width: MediaQuery.of(context).size.width - 30.0,
+						height: 30.0,
+						decoration: BoxDecoration(
+							color: Color(0xFFFFFFFF),
+							shape: BoxShape.rectangle,
+							// 只有顶部圆角效果，底部无圆角效果
+							borderRadius: BorderRadius.only(
+								topLeft: Radius.circular(20.0),
+								topRight: Radius.circular(20.0),
+								bottomLeft: Radius.circular(0.0),
+								bottomRight: Radius.circular(0.0),
+							),
+							boxShadow: [
+								BoxShadow(
+									color: Colors.black.withOpacity(0.1),
+									blurRadius: 3.0,
+									spreadRadius: 2.5,
+									offset: Offset(0.0, 3.0),
+								)
+							]
+						)
+					),
+
+					// 底部内容
+					Padding(
+						padding: EdgeInsets.fromLTRB(30.0, 40.0, 30.0, 20.0),
+						child: Column(
+							mainAxisAlignment: MainAxisAlignment.start,
+							crossAxisAlignment: CrossAxisAlignment.start,
+							children: <Widget>[
+								Text(
+									'Our heritage itza',
+									style: TextStyle(fontSize: 20.0, color: Colors.black, fontWeight: FontWeight.bold)
+								),
+								SizedBox(height: 20.0),
+								Text(
+									'Chichen Itza archaeological site in the Mexicon tate of Yucatrain.The building is more formally de add favorite logist, All I need is my text to be multi-line. Am giving the property of maxLines but its still getting RenderFlex overflowed error to the right as the next is not going to 2nd line',
+									maxLines: 7,
+									style: TextStyle(fontSize: 15.0, color: Colors.grey)
+								),
+								SizedBox(height: 25.0),
+								Row(
+									mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+									children: <Widget>[
+										this.buildFavoriteButton('Add favorite', Colors.white, Colors.black),
+										this.buildFavoriteButton('Buy tickets', Colors.deepPurple, Colors.white),
+									]
+								),
+							],
+						),
+					)
 				],
 			 ),
-		  ),
-	  );
-  }
-
-  /// 底部内容
-  Widget buildBottomChildren() {
-	  return Padding(
-		  padding: EdgeInsets.fromLTRB(15.0, 45.0, 15.0, 20.0),
-		  child: Column(
-			  mainAxisAlignment: MainAxisAlignment.start,
-			  crossAxisAlignment: CrossAxisAlignment.start,
-			  children: <Widget>[
-				  Text(
-					  'Our heritage itza',
-					  style: TextStyle(fontSize: 20.0, color: Colors.black, fontWeight: FontWeight.bold)
-				  ),
-				  SizedBox(height: 20.0),
-				  Text(
-					  'Chichen Itza archaeological site in the Mexicon tate of Yucatrain.The building is more formally de add favorite logist, All I need is my text to be multi-line. Am giving the property of maxLines but its still getting RenderFlex overflowed error to the right as the next is not going to 2nd line',
-					  maxLines: 7,
-					  style: TextStyle(fontSize: 15.0, color: Colors.grey)
-				  ),
-				  SizedBox(height: 20.0),
-				  Row(
-					  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-					  children: <Widget>[
-						  this.buildFavoriteButton('Add favorite', Colors.white, Colors.black),
-						  this.buildFavoriteButton('Buy tickets', Colors.deepPurple, Colors.white),
-					  ]
-				  )
-			  ],
 		  ),
 	  );
   }
@@ -229,8 +243,8 @@ class _PageGraphicsState extends State<PageGraphics> {
   /// 构建圆形按钮
   Widget buildFavoriteButton(String textLabel, Color colorContent, Color colorText) {
 	  return Container(
-		width: 130,
-		height: 53,
+		width: 110,
+		height: 45,
 		decoration: BoxDecoration(
 			color: colorContent,
 			shape: BoxShape.rectangle,
