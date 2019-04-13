@@ -95,7 +95,7 @@ class _PageGraphicsState extends State<PageGraphics> {
 									crossAxisAlignment: CrossAxisAlignment.start,
 									children: <Widget>[
 										Text('Chichen Itza', style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold, color: Colors.black)),
-										Text('Mexico', style: TextStyle(fontSize: 17.0, fontWeight: FontWeight.normal, color: Colors.green)),
+										Text('Mexico', style: TextStyle(fontSize: 17.0, fontWeight: FontWeight.normal, color: Colors.blueGrey)),
 									],
 								),
 								Spacer(),
@@ -115,7 +115,7 @@ class _PageGraphicsState extends State<PageGraphics> {
 
 					// 第二行
 					Padding(
-						padding: EdgeInsets.fromLTRB(30.0, 10.0, 25.0, 15.0),
+						padding: EdgeInsets.fromLTRB(30.0, 15.0, 25.0, 25.0),
 						child: Row(
 							children: <Widget>[
 								this.buildRoundItemImage('assets/beach3.jpg'),
@@ -128,33 +128,77 @@ class _PageGraphicsState extends State<PageGraphics> {
 					),
 
 					// 第三行
-					Text('UNESCO World heritage site inscription 1988'),
+					Text(
+						'UNESCO World heritage site inscription 1988',
+						textAlign: TextAlign.left,
+						style: TextStyle(fontSize: 15.0, color: Colors.black)
+					),
 
 					// 第四行
 					Padding(
-						padding: EdgeInsets.fromLTRB(35.0, 35.0, 35.0, 15.0),
+						padding: EdgeInsets.fromLTRB(27.0, 35.0, 35.0, 15.0),
 						child: Row(
+							mainAxisAlignment: MainAxisAlignment.start,
 							children: <Widget>[
-								Text('start1'),
-								Text('start1'),
-								Text('start1'),
+								Icon(Icons.star, color: Colors.orange, size: 15.0),
+								Icon(Icons.star, color: Colors.orange, size: 15.0),
+								Icon(Icons.star, color: Colors.orange, size: 15.0),
+								Icon(Icons.star, color: Colors.orange, size: 15.0),
+								Icon(Icons.star, color: Colors.orange, size: 15.0),
+								Icon(Icons.star, color: Colors.orange, size: 15.0),
+								Icon(Icons.star, color: Colors.orange, size: 15.0),
+								SizedBox(width: 12.0),
+								Text('4.6', style: TextStyle(fontSize: 15.0, color: Colors.red, fontWeight: FontWeight.bold)),
+								SizedBox(width: 10.0),
+								Text('1455 critics reviews', style: TextStyle(fontSize: 15.0, color: Colors.black)),
 							],
 						),
 					),
 
 					// 第五行
 					Padding(
-						padding: EdgeInsets.fromLTRB(35.0, 35.0, 35.0, 15.0),
+						padding: EdgeInsets.fromLTRB(30.0, 10.0, 35.0, 15.0),
 						child: Row(
 							children: <Widget>[
-								Text('Avata1'),
-								Text('Avata1'),
-								Text('Avata1'),
+								this.buildAvataImage('assets/chris.jpg'),
+								SizedBox(width: 12.0),
+								this.buildAvataImage('assets/p2.jpg'),
+								SizedBox(width: 12.0),
+								Container(
+									width: 80.0,
+									height: 40.0,
+									decoration: BoxDecoration(
+										color: Colors.grey.withOpacity(0.3),
+										shape: BoxShape.rectangle,
+										borderRadius: BorderRadius.circular(20.0)
+									),
+									child: Center(
+										child: Text('+134', style: TextStyle(fontSize: 18.0, color: Colors.deepPurple, fontWeight: FontWeight.bold))
+									),
+								),
+								SizedBox(width: 12.0),
+								Text('liked this', style: TextStyle(fontSize: 16.0, color: Colors.black.withOpacity(0.5))),
 							],
 						),
 					),
 				],
 			 ),
+		  ),
+	  );
+  }
+
+  /// 构建圆形图片
+  Widget buildAvataImage(String imageUrl) {
+	  return Container(
+		  width: 50.0,
+		  height: 50.0,
+		  decoration: BoxDecoration(
+			  image: DecorationImage(
+				  image: AssetImage(imageUrl),
+				  fit: BoxFit.cover
+			  ),
+			  borderRadius: BorderRadius.circular(50.0),
+			  border:Border.all(width: 1.0, color: Colors.grey.withOpacity(0.5))
 		  ),
 	  );
   }
