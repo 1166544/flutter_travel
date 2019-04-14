@@ -20,14 +20,18 @@ class _CirclerState extends State<PageCircler> {
 				this.buildCoverImage(),
 
 				// 第1行
-				Text(
-					"Discover europe's surprising secret villages",
-					style: TextStyle(fontSize: 27.0, fontWeight: FontWeight.bold),
-					maxLines: 2
+				Padding(
+					padding: EdgeInsets.fromLTRB(15.0, 0.0, 0.0, 0.0),
+					child: Text(
+						"Discover europe's surprising secret villages",
+						style: TextStyle(fontSize: 27.0, fontWeight: FontWeight.bold),
+						maxLines: 2
+					)
 				),
 
 				// 第2行 横向滚动列表
 				Container(
+					padding: EdgeInsets.fromLTRB(15.0, 0.0, 0.0, 0.0),
 					width: MediaQuery.of(context).size.width,
 					height: 220.0,
 					child: ListView(
@@ -45,32 +49,34 @@ class _CirclerState extends State<PageCircler> {
 
 				// 第3行
 				Padding(
-					padding: EdgeInsets.fromLTRB(0.0, 55.0, 0.0, 0.0),
+					padding: EdgeInsets.fromLTRB(15.0, 55.0, 0.0, 0.0),
 					child: Column(
 						crossAxisAlignment: CrossAxisAlignment.start,
 						children: <Widget>[
 							// 标题
 							Text('To DO:', style: TextStyle(fontSize: 27.0, fontWeight: FontWeight.bold)),
 
+							SizedBox(height: 10.0),
+
 							// 圆角GRID
 							Container(
 								width: MediaQuery.of(context).size.width,
 								height: 280.0,
 								child: GridView.count(
-								crossAxisCount: 2,
-								crossAxisSpacing: 23.0,
-								mainAxisSpacing: 23.0,
-								childAspectRatio: (90 / 65),  // CELL宽高
-								controller: new ScrollController(keepScrollOffset: false),
-								shrinkWrap: true,
-								scrollDirection: Axis.vertical,
-								padding: EdgeInsets.fromLTRB(0.0, 10.0, 12.0, 0.0),
-								children: <Widget>[
-									this.buildGridIconView('98', 'Airbnbs', Colors.orangeAccent, Colors.orange),
-									this.buildGridIconView('56', 'Attractions', Colors.lightBlue[300], Colors.blue),
-									this.buildGridIconView('34', 'Experiences', Colors.purple, Colors.deepPurple),
-									this.buildGridIconView('09', 'Restaurants', Colors.grey.withOpacity(0.5), Colors.grey),
-								],
+									crossAxisCount: 2,
+									crossAxisSpacing: 23.0,
+									mainAxisSpacing: 23.0,
+									childAspectRatio: (90 / 65),  // CELL宽高
+									controller: new ScrollController(keepScrollOffset: false),
+									shrinkWrap: true,
+									scrollDirection: Axis.vertical,
+									padding: EdgeInsets.fromLTRB(0.0, 0.0, 12.0, 0.0),
+									children: <Widget>[
+										this.buildGridIconView('98', 'Airbnbs', Colors.orangeAccent, Colors.orange),
+										this.buildGridIconView('56', 'Attractions', Colors.lightBlue[300], Colors.blue),
+										this.buildGridIconView('34', 'Experiences', Colors.purple, Colors.deepPurple),
+										this.buildGridIconView('09', 'Restaurants', Colors.grey.withOpacity(0.5), Colors.grey),
+									],
 								),
 							)
 						],
@@ -79,7 +85,7 @@ class _CirclerState extends State<PageCircler> {
 
 				// 第四行
 				Padding(
-					padding: EdgeInsets.fromLTRB(0.0, 45.0, 0.0, 0.0),
+					padding: EdgeInsets.fromLTRB(10.0, 45.0, 0.0, 0.0),
 					child: Column(
 						crossAxisAlignment: CrossAxisAlignment.start,
 						children: <Widget>[
