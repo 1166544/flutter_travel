@@ -13,8 +13,12 @@ class _CirclerState extends State<PageCircler> {
   @override
   Widget build(BuildContext context) {
 	return ListView(
-			padding: EdgeInsets.fromLTRB(15.0, 30.0, 0.0, 0.0),
+			padding: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
 			children: <Widget>[
+
+				// 封面
+				this.buildCoverImage(),
+
 				// 第1行
 				Text(
 					"Discover europe's surprising secret villages",
@@ -109,6 +113,101 @@ class _CirclerState extends State<PageCircler> {
 				)
 			],
 		);
+  }
+
+  /// 构建封面
+  Widget buildCoverImage() {
+	  return Container(
+		  width: MediaQuery.of(context).size.width,
+		  height: 360,
+		  decoration: BoxDecoration(
+			  image: DecorationImage(
+				  image: AssetImage('assets/beach3.jpg'),
+				  fit: BoxFit.cover
+			  ),
+			  shape: BoxShape.rectangle,
+		  ),
+		  child: Container(
+			  decoration: BoxDecoration(
+				  color: Colors.white,
+			  	  shape: BoxShape.rectangle,
+				  gradient: LinearGradient(
+					begin: Alignment.topCenter,
+					end: Alignment.bottomCenter,
+					colors: [Colors.white.withOpacity(0.0), Colors.white.withOpacity(0.75), Colors.white],
+					stops: [0.70, 0.85, 1.0]
+				)
+			  ),
+			  child: Padding(
+				  padding: EdgeInsets.fromLTRB(30.0, 150.0, 0.0, 0.0),
+				  child: Row(
+					  mainAxisAlignment: MainAxisAlignment.start,
+					  crossAxisAlignment: CrossAxisAlignment.center,
+					  children: <Widget>[
+						  Container(
+							width: 100,
+							height: 170,
+							decoration: BoxDecoration(
+								color: Colors.blueAccent.withOpacity(0.5),
+								shape: BoxShape.rectangle,
+								borderRadius: BorderRadius.circular(10.0)
+							),
+							child: Padding(
+								padding: EdgeInsets.fromLTRB(10.0, 5.0, 0.0, 0.0),
+								child: Column(
+									mainAxisAlignment: MainAxisAlignment.start,
+									crossAxisAlignment: CrossAxisAlignment.start,
+									children: <Widget>[
+											Icon(Icons.cloud_queue, color: Colors.white, size: 27.0),
+											SizedBox(height: 7.0),
+											Row(
+												crossAxisAlignment: CrossAxisAlignment.start,
+												children: <Widget>[
+													Text('10', style: TextStyle(fontSize: 50.0, color: Colors.white)),
+													Row(
+														crossAxisAlignment: CrossAxisAlignment.start,
+														children: <Widget>[
+															Text('0', style: TextStyle(fontSize: 12.0, color: Colors.white)),
+															Text('C', style: TextStyle(fontSize: 18.0, color: Colors.white)),
+														],
+													)
+												],
+											),
+											SizedBox(height: 25.0),
+											Container(
+												width: 120,
+												child: Text('19 th October', style: TextStyle(fontSize: 18.0, color: Colors.white), softWrap: true, maxLines: 2),
+											)
+									]
+								),
+							),
+						  ),
+						  SizedBox(width: 10.0),
+						  Text(
+							  'San Francisco',
+							  style: TextStyle(
+								  fontSize: 35.0,
+								  fontWeight: FontWeight.bold,
+								  color: Colors.white,
+								  shadows: <Shadow>[
+									  Shadow(
+										  offset: Offset(3.0, 3.0),
+										  blurRadius: 3.0,
+										  color: Colors.grey.withOpacity(0.5)
+									  ),
+									  Shadow(
+										  offset: Offset(3.0, 3.0),
+										  blurRadius: 8.0,
+										  color: Colors.grey
+									  ),
+								  ]
+								)
+							)
+					  ]
+				  ),
+			  ),
+		  ),
+	  );
   }
 
   /// 构建留言区
