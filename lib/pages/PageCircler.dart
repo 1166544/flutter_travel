@@ -206,25 +206,7 @@ class _CirclerState extends State<PageCircler> {
                           Icon(Icons.cloud_queue,
                               color: Colors.white, size: 27.0),
                           SizedBox(height: 7.0),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Text('10',
-                                  style: TextStyle(
-                                      fontSize: 50.0, color: Colors.white)),
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  Text('0',
-                                      style: TextStyle(
-                                          fontSize: 12.0, color: Colors.white)),
-                                  Text('C',
-                                      style: TextStyle(
-                                          fontSize: 18.0, color: Colors.white)),
-                                ],
-                              )
-                            ],
-                          ),
+                          this.buildDegree(),
                           SizedBox(height: 25.0),
                           Container(
                             width: 120,
@@ -238,25 +220,54 @@ class _CirclerState extends State<PageCircler> {
                   ),
                 ),
                 SizedBox(width: 10.0),
-                Text('San Francisco',
-                    style: TextStyle(
-                        fontSize: 35.0,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                        shadows: <Shadow>[
-                          Shadow(
-                              offset: Offset(3.0, 3.0),
-                              blurRadius: 3.0,
-                              color: Colors.grey.withOpacity(0.5)),
-                          Shadow(
-                              offset: Offset(3.0, 3.0),
-                              blurRadius: 8.0,
-                              color: Colors.grey),
-                        ]))
+                this.buildShadowText()
               ]),
         ),
       ),
     );
+  }
+
+  /// 阴影文本
+  Widget buildShadowText() {
+	  return Text('San Francisco',
+		style: TextStyle(
+			fontSize: 35.0,
+			fontWeight: FontWeight.bold,
+			color: Colors.white,
+			shadows: <Shadow>[
+				Shadow(
+					offset: Offset(3.0, 3.0),
+					blurRadius: 3.0,
+					color: Colors.grey.withOpacity(0.5)),
+				Shadow(
+					offset: Offset(3.0, 3.0),
+					blurRadius: 8.0,
+					color: Colors.grey),
+			])
+		);
+  }
+
+  /// 构建度C单位
+  Widget buildDegree() {
+	  return Row(
+		crossAxisAlignment: CrossAxisAlignment.start,
+		children: <Widget>[
+			Text('10',
+				style: TextStyle(
+					fontSize: 50.0, color: Colors.white)),
+			Row(
+			crossAxisAlignment: CrossAxisAlignment.start,
+			children: <Widget>[
+				Text('0',
+					style: TextStyle(
+						fontSize: 12.0, color: Colors.white)),
+				Text('C',
+					style: TextStyle(
+						fontSize: 18.0, color: Colors.white)),
+			],
+			)
+		],
+	);
   }
 
   /// 构建留言区
