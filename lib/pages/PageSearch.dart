@@ -56,22 +56,26 @@ class _PageSearchState extends State<PageSearch> with CommonTravelItem {
 
   /// 基础页面结构
   Widget buildSearchLayout() {
-	  return ListView(
-		  children: <Widget>[
-			  this.buildMarkTitle(),
-			  this.buildStartIcon(),
+	  return Container(
+		  width: MediaQuery.of(context).size.width,
+		  color: Colors.white,
+		  child: ListView(
+			children: <Widget>[
+				this.buildMarkTitle(),
+				this.buildStartIcon(),
 
-			  this.buildTravelDate('Aug 12, 2012 - Baros Island'),
-			  this.buildTravelSep(),
-			  this.buildImageGrid(context, 'assets/p1.jpg', 'assets/beach5.jpg', 'assets/p2.jpg', paddingTop: 0.0),
-			  this.buildImgGalleryDetail('Day 1- Sun Bath', 'Teresa Soto', ''),
+				this.buildTravelDate('Aug 12, 2012 - Baros Island'),
+				this.buildTravelSep(),
+				this.buildImageGrid(context, 'assets/p1.jpg', 'assets/beach5.jpg', 'assets/p2.jpg', paddingTop: 0.0),
+				this.buildImgGalleryDetail('Day 1- Sun Bath', 'Teresa Soto', ''),
 
-			  SizedBox(height: 45.0),
-			  this.buildTravelDate('Aug 13, 2012 - Mihiri Island'),
-			  this.buildTravelSep(),
-			  this.buildImageGrid(context, 'assets/p3.jpg', 'assets/p5.jpg', 'assets/p6.jpg', paddingTop: 0.0),
-			  this.buildImgGalleryDetail('Day 2- Sun Raise', 'Tiland buject', ''),
-		  ],
+				SizedBox(height: 45.0),
+				this.buildTravelDate('Aug 13, 2012 - Mihiri Island'),
+				this.buildTravelSep(),
+				this.buildImageGrid(context, 'assets/p3.jpg', 'assets/p5.jpg', 'assets/p6.jpg', paddingTop: 0.0),
+				this.buildImgGalleryDetail('Day 2- Sun Raise', 'Tiland buject', ''),
+			],
+		)
 	  );
   }
 

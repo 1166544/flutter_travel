@@ -63,14 +63,29 @@ class CommonTravelItem {
 			  children: <Widget>[
 				  Column(
 					  crossAxisAlignment: CrossAxisAlignment.start,
+					  mainAxisAlignment: MainAxisAlignment.start,
 					  children: <Widget>[
-						  Text(mainTitle, style:TextStyle(fontWeight:FontWeight.bold, fontFamily: 'Montserrat', fontSize: 15.0)),
-						  SizedBox(height: 7.0),
+						  Container(
+							  width: 200,
+							  child: Text(
+								  mainTitle,
+								  overflow: TextOverflow.ellipsis,
+								  style:TextStyle(fontWeight:FontWeight.bold, fontFamily: 'Montserrat', fontSize: 15.0)
+							  ),
+						  ),
+						  SizedBox(height: 4.0),
 						  Row(
 							  children: <Widget>[
-								  Text(subTitle, style: TextStyle(color: Colors.grey.shade700, fontFamily: 'Montserrat', fontSize: 11.0)),
-								  SizedBox(width: 4.0),
-								  Icon(Icons.timer, size: 4.0, color: Colors.black),
+								  Container(
+									  width: 150,
+									  child: Text(
+										  subTitle,
+										  overflow: TextOverflow.ellipsis,
+										  style: TextStyle(color: Colors.grey.shade700, fontFamily: 'Montserrat', fontSize: 11.0)
+									  ),
+								  ),
+								  timeTitle.isNotEmpty ? SizedBox(width: 4.0) : Spacer(),
+								  timeTitle.isNotEmpty ? Icon(Icons.timer, size: 12.0, color: Colors.black) : Spacer(),
 								  SizedBox(width: 4.0),
 								  Text(timeTitle, style:TextStyle(color: Colors.grey.shade500, fontFamily: 'Montserrat', fontSize: 11.0))
 							  ],
@@ -81,11 +96,11 @@ class CommonTravelItem {
 				  Row(
 					  crossAxisAlignment: CrossAxisAlignment.start,
 					  children: <Widget>[
-						  this.inkWellButton(inkWidth: 13.0, inkHeight: 13.0, picUrl: 'assets/navarrow.png', onCallBack: (){}),
-						  SizedBox(width: 5.0),
-						  this.inkWellButton(inkWidth: 13.0, inkHeight: 13.0, picUrl: 'assets/chatbubble.png', onCallBack: (){}),
-						  SizedBox(width: 5.0),
-						  this.inkWellButton(inkWidth: 13.0, inkHeight: 13.0, picUrl: 'assets/fav.png', onCallBack: (){}),
+						  this.inkWellButton(inkWidth: 20.0, inkHeight: 20.0, picUrl: 'assets/navarrow.png', onCallBack: (){}),
+						  SizedBox(width: 12.0),
+						  this.inkWellButton(inkWidth: 20.0, inkHeight: 20.0, picUrl: 'assets/chatbubble.png', onCallBack: (){}),
+						  SizedBox(width: 12.0),
+						  this.inkWellButton(inkWidth: 20.0, inkHeight: 20.0, picUrl: 'assets/fav.png', onCallBack: (){}),
 					  ],
 				  )
 			  ],
