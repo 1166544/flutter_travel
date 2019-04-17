@@ -20,9 +20,9 @@ class _CirclerState extends State<PageCircler> {
 
         // 第1行
         Padding(
-            padding: EdgeInsets.fromLTRB(15.0, 0.0, 0.0, 0.0),
+            padding: EdgeInsets.fromLTRB(15.0, 30.0, 0.0, 0.0),
             child: Text("Discover europe's surprising secret villages",
-                style: TextStyle(fontSize: 27.0, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
                 maxLines: 2)),
 
         // 第2行 横向滚动列表
@@ -59,9 +59,7 @@ class _CirclerState extends State<PageCircler> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               // 标题
-              Text('To DO:',
-                  style:
-                      TextStyle(fontSize: 27.0, fontWeight: FontWeight.bold)),
+              Text('TO DO:', style:TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold)),
 
               SizedBox(height: 10.0),
 
@@ -118,7 +116,7 @@ class _CirclerState extends State<PageCircler> {
             children: <Widget>[
               Text('Experiences',
                   style:
-                      TextStyle(fontSize: 27.0, fontWeight: FontWeight.bold)),
+                      TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold)),
               SizedBox(height: 20.0),
               Column(
                 children: <Widget>[
@@ -198,7 +196,7 @@ class _CirclerState extends State<PageCircler> {
                       shape: BoxShape.rectangle,
                       borderRadius: BorderRadius.circular(10.0)),
                   child: Padding(
-                    padding: EdgeInsets.fromLTRB(10.0, 5.0, 0.0, 0.0),
+                    padding: EdgeInsets.fromLTRB(10.0, 5.0, 0.0, 5.0),
                     child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -206,14 +204,8 @@ class _CirclerState extends State<PageCircler> {
                           Icon(Icons.cloud_queue, color: Colors.white, size: 27.0),
                           SizedBox(height: 7.0),
                           this.buildDegree(),
-                          SizedBox(height: 25.0),
-                          Container(
-                            width: 120,
-                            child: Text('19 th October',
-                                style: TextStyle(fontSize: 18.0, color: Colors.white),
-                                softWrap: true,
-                                maxLines: 2),
-                          )
+                          Spacer(),
+                          this.buildDate()
                         ]),
                   ),
                 ),
@@ -225,23 +217,39 @@ class _CirclerState extends State<PageCircler> {
     );
   }
 
+  /// 构建日期
+  Widget buildDate() {
+	  return Container(
+			width: 120,
+			child: Text('19 th October',
+				style: TextStyle(fontSize: 18.0, color: Colors.white),
+				softWrap: true,
+				maxLines: 2),
+	  );
+  }
+
   /// 阴影文本
   Widget buildShadowText() {
-	  return Text('San Francisco',
-		style: TextStyle(
-			fontSize: 35.0,
-			fontWeight: FontWeight.bold,
-			color: Colors.white,
-			shadows: <Shadow>[
-				Shadow(
-					offset: Offset(3.0, 3.0),
-					blurRadius: 3.0,
-					color: Colors.grey.withOpacity(0.5)),
-				Shadow(
-					offset: Offset(3.0, 3.0),
-					blurRadius: 8.0,
-					color: Colors.grey),
-			])
+	  return Expanded(
+		  child: Text(
+			'San Francisco',
+			maxLines: 2,
+			style: TextStyle(
+				fontSize: 35.0,
+				fontWeight: FontWeight.bold,
+				letterSpacing: -1.0,
+				color: Colors.white,
+				shadows: <Shadow>[
+					Shadow(
+						offset: Offset(3.0, 3.0),
+						blurRadius: 3.0,
+						color: Colors.grey.withOpacity(0.5)),
+					Shadow(
+						offset: Offset(3.0, 3.0),
+						blurRadius: 8.0,
+						color: Colors.grey),
+				])
+			),
 		);
   }
 
@@ -249,10 +257,11 @@ class _CirclerState extends State<PageCircler> {
   Widget buildDegree() {
 	  return Row(
 		crossAxisAlignment: CrossAxisAlignment.start,
+		mainAxisAlignment: MainAxisAlignment.center,
 		children: <Widget>[
 			Text('10',
 				style: TextStyle(
-					fontSize: 50.0, color: Colors.white)),
+					fontSize: 45.0, color: Colors.white)),
 			Row(
 			crossAxisAlignment: CrossAxisAlignment.start,
 			children: <Widget>[
@@ -296,17 +305,17 @@ class _CirclerState extends State<PageCircler> {
                       maxLines: 2,
                       softWrap: true,
                       style: TextStyle(
-                          fontSize: 20.0,
+                          fontSize: 16.0,
                           color: Colors.black87.withOpacity(0.5),
                           fontWeight: FontWeight.bold)),
                 ),
-                SizedBox(height: 10.0),
+                SizedBox(height: 5.0),
                 Container(
                   width: MediaQuery.of(context).size.width - 100,
                   child: Text(chatDesc,
                       maxLines: 5,
                       softWrap: true,
-                      style: TextStyle(fontSize: 14.0)),
+                      style: TextStyle(fontSize: 12.0)),
                 ),
               ],
             )
@@ -427,7 +436,7 @@ class _CirclerState extends State<PageCircler> {
             ),
             SizedBox(height: 20.0),
             Text(hotelName,
-                style: TextStyle(fontSize: 21.0, color: Colors.white))
+                style: TextStyle(fontSize: 17.0, color: Colors.white))
           ],
         ),
       ),
