@@ -203,16 +203,14 @@ class _CirclerState extends State<PageCircler> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          Icon(Icons.cloud_queue,
-                              color: Colors.white, size: 27.0),
+                          Icon(Icons.cloud_queue, color: Colors.white, size: 27.0),
                           SizedBox(height: 7.0),
                           this.buildDegree(),
                           SizedBox(height: 25.0),
                           Container(
                             width: 120,
                             child: Text('19 th October',
-                                style: TextStyle(
-                                    fontSize: 18.0, color: Colors.white),
+                                style: TextStyle(fontSize: 18.0, color: Colors.white),
                                 softWrap: true,
                                 maxLines: 2),
                           )
