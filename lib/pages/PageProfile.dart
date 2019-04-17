@@ -73,7 +73,7 @@ class _PageProfileState extends State<PageProfile> {
 	return Text(
 		'Mark Stewart',
 		style: TextStyle(
-			fontFamily: 'Monsterrat',
+			fontFamily: 'Montserrat',
 			fontSize: 20.0,
 			fontWeight: FontWeight.bold
 		)

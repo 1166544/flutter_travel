@@ -84,8 +84,8 @@ class CommonTravelItem {
 										  style: TextStyle(color: Colors.grey.shade700, fontFamily: 'Montserrat', fontSize: 11.0)
 									  ),
 								  ),
-								  timeTitle.isNotEmpty ? SizedBox(width: 4.0) : Spacer(),
-								  timeTitle.isNotEmpty ? Icon(Icons.timer, size: 12.0, color: Colors.black) : Spacer(),
+								  timeTitle.isNotEmpty ? SizedBox(width: 4.0) : SizedBox(width: 0.0),
+								  timeTitle.isNotEmpty ? Icon(Icons.timer, size: 12.0, color: Colors.black) : SizedBox(width: 0.0),
 								  SizedBox(width: 4.0),
 								  Text(timeTitle, style:TextStyle(color: Colors.grey.shade500, fontFamily: 'Montserrat', fontSize: 11.0))
 							  ],

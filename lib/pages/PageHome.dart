@@ -117,8 +117,8 @@ class _PageHomeState extends State<PageHome> with CommonTravelItem {
 			child: Row(
 				mainAxisAlignment: MainAxisAlignment.spaceBetween,
 				children: <Widget>[
-					Text('FROM THE COMMUNITY', style:TextStyle(color: Colors.grey, fontSize: 15.0, fontFamily: 'Monsterrat')),
-					Text('View All', style:TextStyle(color: Colors.blue, fontWeight:FontWeight.bold, fontSize: 15.0, fontFamily: 'Monsterrat')),
+					Text('FROM THE COMMUNITY', style:TextStyle(color: Colors.grey, fontSize: 15.0, fontFamily: 'Montserrat')),
+					Text('View All', style:TextStyle(color: Colors.blue, fontWeight:FontWeight.bold, fontSize: 15.0, fontFamily: 'Montserrat')),
 				],
 			),
 		);

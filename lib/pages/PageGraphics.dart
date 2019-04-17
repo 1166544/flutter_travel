@@ -100,8 +100,8 @@ class _PageGraphicsState extends State<PageGraphics> {
 										padding: EdgeInsets.fromLTRB(10.0, 5.0, 10.0, 5.0),
 										child: Column(
 											children: <Widget>[
-												Text('03', style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold, color: Color(0xFF2f93e0))),
-												Text('Mar', style: TextStyle(fontSize: 13.0, color: Colors.black)),
+												Text('03', style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold, color: Color(0xFF2f93e0), fontFamily: 'Montserrat')),
+												Text('Mar', style: TextStyle(fontSize: 13.0, color: Colors.black, fontFamily: 'Montserrat')),
 											],
 										),
 									),
@@ -116,10 +116,10 @@ class _PageGraphicsState extends State<PageGraphics> {
 												'Chichen Itza',
 												overflow: TextOverflow.ellipsis,
 												softWrap: true,
-												style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Colors.black)
+												style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold, color: Colors.black, fontFamily: 'Montserrat')
 											)
 										),
-										Text('Mexico', style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.normal, color: Colors.blueGrey)),
+										Text('Mexico', style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.normal, color: Colors.blueGrey, fontFamily: 'Montserrat')),
 									],
 								),
 								Spacer(),
@@ -158,7 +158,7 @@ class _PageGraphicsState extends State<PageGraphics> {
 						child: Text(
 							'UNESCO World heritage site inscription 1988',
 							textAlign: TextAlign.left,
-							style: TextStyle(fontSize: 15.0, color: Colors.black),
+							style: TextStyle(fontSize: 13.0, color: Colors.black, fontFamily: 'Montserrat'),
 							overflow: TextOverflow.ellipsis,
 							softWrap: true,
 							maxLines: 2,
@@ -247,7 +247,7 @@ class _PageGraphicsState extends State<PageGraphics> {
 							children: <Widget>[
 								Text(
 									'Our heritage itza',
-									style: TextStyle(fontSize: 20.0, color: Colors.black, fontWeight: FontWeight.bold)
+									style: TextStyle(fontSize: 20.0, color: Colors.black, fontWeight: FontWeight.bold, fontFamily: 'Montserrat')
 								),
 								SizedBox(height: 10.0),
 								Text(
@@ -293,7 +293,7 @@ class _PageGraphicsState extends State<PageGraphics> {
 		child: Center(
 			child: Text(
 				textLabel,
-				style: TextStyle(fontSize: 15.0, color: colorText)
+				style: TextStyle(fontSize: 12.0, color: colorText, fontFamily: 'Montserrat')
 			)
 		),
 	);

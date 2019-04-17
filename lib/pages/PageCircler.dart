@@ -20,9 +20,9 @@ class _CirclerState extends State<PageCircler> {
 
         // 第1行
         Padding(
-            padding: EdgeInsets.fromLTRB(15.0, 30.0, 0.0, 0.0),
+            padding: EdgeInsets.fromLTRB(15.0, 30.0, 10.0, 0.0),
             child: Text("Discover europe's surprising secret villages",
-                style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontFamily: 'Montserrat'),
                 maxLines: 2)),
 
         // 第2行 横向滚动列表
@@ -59,7 +59,7 @@ class _CirclerState extends State<PageCircler> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               // 标题
-              Text('TO DO:', style:TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold)),
+              Text('TO DO:', style:TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontFamily: 'Montserrat')),
 
               SizedBox(height: 10.0),
 
@@ -116,7 +116,7 @@ class _CirclerState extends State<PageCircler> {
             children: <Widget>[
               Text('Experiences',
                   style:
-                      TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold)),
+                      TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontFamily: 'Montserrat')),
               SizedBox(height: 20.0),
               Column(
                 children: <Widget>[
@@ -222,7 +222,7 @@ class _CirclerState extends State<PageCircler> {
 	  return Container(
 			width: 120,
 			child: Text('19 th October',
-				style: TextStyle(fontSize: 18.0, color: Colors.white),
+				style: TextStyle(fontSize: 18.0, color: Colors.white, fontFamily: 'Montserrat'),
 				softWrap: true,
 				maxLines: 2),
 	  );
@@ -239,6 +239,8 @@ class _CirclerState extends State<PageCircler> {
 				fontWeight: FontWeight.bold,
 				letterSpacing: -1.0,
 				color: Colors.white,
+				wordSpacing: 0.0,
+				fontFamily: 'Montserrat',
 				shadows: <Shadow>[
 					Shadow(
 						offset: Offset(3.0, 3.0),
@@ -436,7 +438,7 @@ class _CirclerState extends State<PageCircler> {
             ),
             SizedBox(height: 20.0),
             Text(hotelName,
-                style: TextStyle(fontSize: 17.0, color: Colors.white))
+                style: TextStyle(fontSize: 14.0, color: Colors.white, fontFamily: 'Montserrat'))
           ],
         ),
       ),
@@ -473,13 +475,13 @@ class _CirclerState extends State<PageCircler> {
             ),
             SizedBox(width: 15.0),
             Container(
-                width: 95.0,
+                width: 120.0,
                 height: 40.0,
                 child: Text(titleDesc,
                     maxLines: 2,
                     softWrap: true,
                     style:
-                        TextStyle(fontWeight: FontWeight.bold, fontSize: 15.0)))
+                        TextStyle(fontWeight: FontWeight.normal, fontSize: 12.0)))
           ],
         )
       ],
