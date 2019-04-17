@@ -91,17 +91,17 @@ class _PageGraphicsState extends State<PageGraphics> {
 							children: <Widget>[
 								Container(
 									decoration: BoxDecoration(
-										border: Border.all(color: Colors.white, width: 0.0),
-										color: Colors.deepPurple.withOpacity(0.3),
+										border: Border.all(color: Color(0xFF86b9e0), width: 0.0),
+										color: Color(0xFF86b9e0).withOpacity(0.3),
 										shape: BoxShape.rectangle,
 										borderRadius: BorderRadius.circular(15.0)
 									),
 									child: Padding(
-										padding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+										padding: EdgeInsets.fromLTRB(10.0, 5.0, 10.0, 5.0),
 										child: Column(
 											children: <Widget>[
-												Text('03', style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold, color: Colors.deepPurple)),
-												Text('Mar', style: TextStyle(fontSize: 13.0, color: Colors.deepPurple)),
+												Text('03', style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold, color: Color(0xFF2f93e0))),
+												Text('Mar', style: TextStyle(fontSize: 13.0, color: Colors.black)),
 											],
 										),
 									),
@@ -110,8 +110,16 @@ class _PageGraphicsState extends State<PageGraphics> {
 								Column(
 									crossAxisAlignment: CrossAxisAlignment.start,
 									children: <Widget>[
-										Text('Chichen Itza', style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold, color: Colors.black)),
-										Text('Mexico', style: TextStyle(fontSize: 17.0, fontWeight: FontWeight.normal, color: Colors.blueGrey)),
+										Container(
+											width: 150,
+											child: Text(
+												'Chichen Itza',
+												overflow: TextOverflow.ellipsis,
+												softWrap: true,
+												style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Colors.black)
+											)
+										),
+										Text('Mexico', style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.normal, color: Colors.blueGrey)),
 									],
 								),
 								Spacer(),
@@ -121,8 +129,9 @@ class _PageGraphicsState extends State<PageGraphics> {
 									decoration: BoxDecoration(
 										image: DecorationImage(
 											image: AssetImage('assets/arrow.png'),
-											fit: BoxFit.cover
+											fit: BoxFit.cover,
 										),
+										borderRadius: BorderRadius.circular(50.0),
 									),
 								)
 							],
@@ -131,7 +140,7 @@ class _PageGraphicsState extends State<PageGraphics> {
 
 					// 第二行
 					Padding(
-						padding: EdgeInsets.fromLTRB(30.0, 15.0, 25.0, 25.0),
+						padding: EdgeInsets.fromLTRB(30.0, 15.0, 25.0, 10.0),
 						child: Row(
 							children: <Widget>[
 								this.buildRoundItemImage('assets/beach3.jpg'),
@@ -144,36 +153,42 @@ class _PageGraphicsState extends State<PageGraphics> {
 					),
 
 					// 第三行
-					Text(
-						'UNESCO World heritage site inscription 1988',
-						textAlign: TextAlign.left,
-						style: TextStyle(fontSize: 15.0, color: Colors.black)
+					Padding(
+						padding: EdgeInsets.fromLTRB(30.0, 0.0, 10.0, 0.0),
+						child: Text(
+							'UNESCO World heritage site inscription 1988',
+							textAlign: TextAlign.left,
+							style: TextStyle(fontSize: 15.0, color: Colors.black),
+							overflow: TextOverflow.ellipsis,
+							softWrap: true,
+							maxLines: 2,
+						),
 					),
 
 					// 第四行
 					Padding(
-						padding: EdgeInsets.fromLTRB(27.0, 35.0, 35.0, 15.0),
+						padding: EdgeInsets.fromLTRB(27.0, 35.0, 20.0, 15.0),
 						child: Row(
 							mainAxisAlignment: MainAxisAlignment.start,
 							children: <Widget>[
-								Icon(Icons.star, color: Colors.orange, size: 15.0),
-								Icon(Icons.star, color: Colors.orange, size: 15.0),
-								Icon(Icons.star, color: Colors.orange, size: 15.0),
-								Icon(Icons.star, color: Colors.orange, size: 15.0),
-								Icon(Icons.star, color: Colors.orange, size: 15.0),
-								Icon(Icons.star, color: Colors.orange, size: 15.0),
-								Icon(Icons.star, color: Colors.orange, size: 15.0),
-								SizedBox(width: 12.0),
+								Icon(Icons.star, color: Colors.yellow, size: 15.0),
+								Icon(Icons.star, color: Colors.yellow, size: 15.0),
+								Icon(Icons.star, color: Colors.yellow, size: 15.0),
+								Icon(Icons.star, color: Colors.yellow, size: 15.0),
+								Icon(Icons.star, color: Colors.yellow, size: 15.0),
+								Icon(Icons.star, color: Colors.yellow, size: 15.0),
+								Icon(Icons.star, color: Colors.yellow, size: 15.0),
+								SizedBox(width: 6.0),
 								Text('4.6', style: TextStyle(fontSize: 15.0, color: Colors.red, fontWeight: FontWeight.bold)),
 								SizedBox(width: 10.0),
-								Text('1455 critics reviews', style: TextStyle(fontSize: 15.0, color: Colors.black)),
+								Text('1455 critics reviews', style: TextStyle(fontSize: 12.0, color: Colors.black)),
 							],
 						),
 					),
 
 					// 第五行
 					Padding(
-						padding: EdgeInsets.fromLTRB(30.0, 10.0, 35.0, 0.0),
+						padding: EdgeInsets.fromLTRB(30.0, 0.0, 35.0, 0.0),
 						child: Row(
 							children: <Widget>[
 								this.buildAvataImage('assets/chris.jpg'),
@@ -181,19 +196,19 @@ class _PageGraphicsState extends State<PageGraphics> {
 								this.buildAvataImage('assets/p2.jpg'),
 								SizedBox(width: 10.0),
 								Container(
-									width: 70.0,
-									height: 35.0,
+									width: 50.0,
+									height: 20.0,
 									decoration: BoxDecoration(
 										color: Colors.grey.withOpacity(0.3),
 										shape: BoxShape.rectangle,
 										borderRadius: BorderRadius.circular(20.0)
 									),
 									child: Center(
-										child: Text('+134', style: TextStyle(fontSize: 18.0, color: Colors.deepPurple, fontWeight: FontWeight.bold))
+										child: Text('+134', style: TextStyle(fontSize: 13.0, color: Colors.black, fontWeight: FontWeight.bold))
 									),
 								),
 								SizedBox(width: 10.0),
-								Text('liked this', style: TextStyle(fontSize: 16.0, color: Colors.black.withOpacity(0.5))),
+								Text('Liked this', style: TextStyle(fontSize: 12.0, color: Colors.black.withOpacity(0.5))),
 							],
 						),
 					),
@@ -216,8 +231,8 @@ class _PageGraphicsState extends State<PageGraphics> {
 								BoxShadow(
 									color: Colors.black.withOpacity(0.1),
 									blurRadius: 3.0,
-									spreadRadius: 2.5,
-									offset: Offset(0.0, 3.0),
+									spreadRadius: 0.0,
+									offset: Offset(0.0, 2.5),
 								)
 							]
 						)
@@ -234,11 +249,11 @@ class _PageGraphicsState extends State<PageGraphics> {
 									'Our heritage itza',
 									style: TextStyle(fontSize: 20.0, color: Colors.black, fontWeight: FontWeight.bold)
 								),
-								SizedBox(height: 20.0),
+								SizedBox(height: 10.0),
 								Text(
 									'Chichen Itza archaeological site in the Mexicon tate of Yucatrain.The building is more formally de add favorite logist, All I need is my text to be multi-line. Am giving the property of maxLines but its still getting RenderFlex overflowed error to the right as the next is not going to 2nd line',
 									maxLines: 7,
-									style: TextStyle(fontSize: 15.0, color: Colors.grey)
+									style: TextStyle(fontSize: 12.0, color: Colors.grey)
 								),
 								SizedBox(height: 25.0),
 								Row(
@@ -323,19 +338,19 @@ class _PageGraphicsState extends State<PageGraphics> {
 			decoration: BoxDecoration(
 				image: DecorationImage(
 					image: ExactAssetImage(imageUrl),
-					fit: BoxFit.cover
+					fit: BoxFit.cover,
 				),
 				borderRadius: BorderRadius.circular(10.0)
 			),
 			child: BackdropFilter(
-				filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
+				filter: ImageFilter.blur(sigmaX: 2.0, sigmaY: 2.0),
 				child: Container(
 					decoration: BoxDecoration(
 						color: Colors.white.withOpacity(0.0),
-						borderRadius: BorderRadius.circular(20.0)
+						borderRadius: BorderRadius.circular(10.0),
 					),
 					child: Center(
-						child: Text('+57', style: TextStyle(fontSize: 30.0, color: Colors.white)),
+						child: Text('+57', style: TextStyle(fontSize: 25.0, color: Colors.white)),
 					),
 				),
 			),
