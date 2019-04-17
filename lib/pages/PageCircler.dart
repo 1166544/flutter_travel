@@ -262,17 +262,12 @@ class _CirclerState extends State<PageCircler> {
 		mainAxisAlignment: MainAxisAlignment.center,
 		children: <Widget>[
 			Text('10',
-				style: TextStyle(
-					fontSize: 45.0, color: Colors.white)),
+				style: TextStyle(fontSize: 45.0, color: Colors.white)),
 			Row(
 			crossAxisAlignment: CrossAxisAlignment.start,
 			children: <Widget>[
-				Text('0',
-					style: TextStyle(
-						fontSize: 12.0, color: Colors.white)),
-				Text('C',
-					style: TextStyle(
-						fontSize: 18.0, color: Colors.white)),
+				Text('0', style: TextStyle(fontSize: 12.0, color: Colors.white)),
+				Text('C', style: TextStyle(fontSize: 18.0, color: Colors.white)),
 			],
 			)
 		],
