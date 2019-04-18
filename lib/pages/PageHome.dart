@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_travel/pages/PageOrderView.dart';
 import '../common/CommonTravelItem.dart';
 import './PageProfile.dart';
 
@@ -98,12 +99,27 @@ class _PageHomeState extends State<PageHome> with CommonTravelItem {
 							children: <Widget>[
 								Text('MALDIVES TRIP 2019', style:TextStyle(color: Colors.grey.shade500, fontSize: 13.0)),
 								SizedBox(height: 1.0),
-								Text('Add an update', style: TextStyle(fontFamily: 'Montserrat', fontWeight: FontWeight.bold, fontSize: 16.0)),
+								Text(
+									'Add an update',
+									style: TextStyle(
+										fontFamily: 'Montserrat',
+										fontWeight: FontWeight.bold,
+										fontSize: 16.0
+									)
+								),
 							],
 						),
 					),
 					Spacer(),
-					IconButton(icon: Icon(Icons.arrow_forward_ios, color: Colors.grey), iconSize: 20.0, onPressed: (){})
+					InkWell(
+						child: Icon(Icons.arrow_forward_ios, color: Colors.grey),
+						onTap: (){
+							Navigator.push(
+								context,
+								MaterialPageRoute(builder: (context) => PageOrderView())
+							);
+						},
+					)
 				  ],
 			  ),
 		  ),
