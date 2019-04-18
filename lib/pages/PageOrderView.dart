@@ -43,6 +43,13 @@ class _PageOrderViewState extends State<PageOrderView> {
               ],
             ),
           ),
+		  Padding(
+			  padding: EdgeInsets.fromLTRB(15.0, 0.0, 15.0, 30.0),
+			  child: Text(
+				  "Plugin that allows Flutter to communicate with a native WebView.Warning: The webview is not integrated in the widget tree, it is a native view on top of the flutter view. you won't be able to use snackbars, dialogs ...",
+				  style: TextStyle(fontWeight: FontWeight.normal, fontSize: 14.0)
+				  ),
+		  ),
           Padding(
             padding: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
             child: Container(
