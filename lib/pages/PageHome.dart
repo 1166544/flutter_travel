@@ -113,11 +113,13 @@ class _PageHomeState extends State<PageHome> with CommonTravelItem {
 	/// 社区标题
 	Widget _buildCommunity() {
 		return Padding(
-			padding: EdgeInsets.only(top: 10.0, left: 25.0, right: 25.0),
+			padding: EdgeInsets.only(top: 25.0, left: 25.0, right: 15.0),
 			child: Row(
-				mainAxisAlignment: MainAxisAlignment.spaceBetween,
+				mainAxisAlignment: MainAxisAlignment.start,
+				crossAxisAlignment: CrossAxisAlignment.start,
 				children: <Widget>[
-					Text('FROM THE COMMUNITY', style:TextStyle(color: Colors.grey, fontSize: 15.0, fontFamily: 'Montserrat')),
+					Text('From the community', style:TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 15.0, fontFamily: 'Montserrat')),
+					Spacer(),
 					Text('View All', style:TextStyle(color: Colors.blue, fontWeight:FontWeight.bold, fontSize: 15.0, fontFamily: 'Montserrat')),
 				],
 			),
