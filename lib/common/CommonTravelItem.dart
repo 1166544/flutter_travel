@@ -19,19 +19,12 @@ class CommonTravelItem {
           children: <Widget>[
             Container(
               height: 225.0,
-              child: GestureDetector(
-                onTap: () {
-					this.showPhoto(
-						context,
-						[
-							leftImageUrl,
-							assistantImage1Url,
-							assistantImage2Url
-						]
-					);
-				},
-                child: this.buildComumnImage(context, leftImageUrl, assistantImage1Url, assistantImage2Url),
-              ),
+              child: this.buildComumnImage(
+				  context,
+				  leftImageUrl,
+				  assistantImage1Url,
+				  assistantImage2Url
+				),
             )
           ],
         ),
@@ -40,10 +33,10 @@ class CommonTravelItem {
   }
 
   /// 点击后显示图片
-  void showPhoto(BuildContext context, List<String> list) {
+  void showPhoto(BuildContext context, List<String> list, int index) {
 	  CommonPhoto photo = new CommonPhoto(
 		  assetName: 'Desc',
-		  assetPackage: list[0],
+		  assetPackage: list[index],
 		  title: 'Test title',
 		  caption: 'caption'
 	 );
@@ -66,49 +59,83 @@ class CommonTravelItem {
 	  );
   }
 
-  /// 构建封面图片
+  /// 构建封面图片(左边大图，右边上下小图结构)
   Widget buildComumnImage(BuildContext context, String leftImageUrl, String assistantImage1Url, String assistantImage2Url) {
+
+	List<String> imageList = [leftImageUrl, assistantImage1Url, assistantImage2Url];
+
     return Row(
       children: <Widget>[
-        Container(
-          height: 225.0,
-          width: MediaQuery.of(context).size.width / 2 + 40.0,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(15.0),
-                  bottomLeft: Radius.circular(15.0)),
-              image: DecorationImage(
-                  image: AssetImage(leftImageUrl), fit: BoxFit.cover)),
-        ),
+		  GestureDetector(
+			onTap: () {
+				this.showPhoto(context, imageList, 0);
+			},
+			// 左部大图
+			child: this.buildLeftBigImage(context, leftImageUrl)
+		),
         SizedBox(width: 2.0),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Container(
-              height: 111.5,
-              width: MediaQuery.of(context).size.width / 2 - 72.0,
-              decoration: BoxDecoration(
-                  borderRadius:
-                      BorderRadius.only(topRight: Radius.circular(15.0)),
-                  image: DecorationImage(
-                      image: AssetImage(assistantImage1Url),
-                      fit: BoxFit.cover)),
-            ),
+			// 右上小图
+            GestureDetector(
+				onTap: () {
+					this.showPhoto(context, imageList, 1);
+				},
+				child: this.buildRightTopSmallImage(context, assistantImage1Url),
+			),
             SizedBox(height: 2.0),
-            Container(
-              height: 111.5,
-              width: MediaQuery.of(context).size.width / 2 - 72.0,
-              decoration: BoxDecoration(
-                  borderRadius:
-                      BorderRadius.only(bottomRight: Radius.circular(15.0)),
-                  image: DecorationImage(
-                      image: AssetImage(assistantImage2Url),
-                      fit: BoxFit.cover)),
-            )
+            // 右下小图
+			GestureDetector(
+				onTap: () {
+					this.showPhoto(context, imageList, 2);
+				},
+				child: this.buildRightBottomSmallImage(context, assistantImage2Url),
+			)
           ],
         ),
       ],
     );
+  }
+
+  /// 右下小图
+  Widget buildRightBottomSmallImage(BuildContext context, String assistantImage2Url) {
+	  return Container(
+		height: 111.5,
+		width: MediaQuery.of(context).size.width / 2 - 72.0,
+		decoration: BoxDecoration(
+			borderRadius:
+				BorderRadius.only(bottomRight: Radius.circular(15.0)),
+			image: DecorationImage(
+				image: AssetImage(assistantImage2Url),
+				fit: BoxFit.cover)),
+	);
+  }
+
+  /// 右上小图
+  Widget buildRightTopSmallImage(BuildContext context, String assistantImage1Url) {
+	  return Container(
+		height: 111.5,
+		width: MediaQuery.of(context).size.width / 2 - 72.0,
+		decoration: BoxDecoration(
+			borderRadius:
+				BorderRadius.only(topRight: Radius.circular(15.0)),
+			image: DecorationImage(
+				image: AssetImage(assistantImage1Url),
+				fit: BoxFit.cover)),
+		);
+  }
+
+  /// 左部大图
+  Widget buildLeftBigImage(BuildContext context, String leftImageUrl) {
+	  return Container(
+		height: 225.0,
+		width: MediaQuery.of(context).size.width / 2 + 40.0,
+		decoration: BoxDecoration(
+			borderRadius: BorderRadius.only(topLeft: Radius.circular(15.0), bottomLeft: Radius.circular(15.0)),
+			image: DecorationImage(image: AssetImage(leftImageUrl), fit: BoxFit.cover)
+		)
+	);
   }
 
   /// 图片详情
