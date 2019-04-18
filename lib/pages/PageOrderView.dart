@@ -43,13 +43,13 @@ class _PageOrderViewState extends State<PageOrderView> {
               ],
             ),
           ),
-		  Padding(
-			  padding: EdgeInsets.fromLTRB(15.0, 0.0, 15.0, 30.0),
-			  child: Text(
-				  "Plugin that allows Flutter to communicate with a native WebView.Warning: The webview is not integrated in the widget tree, it is a native view on top of the flutter view. you won't be able to use snackbars, dialogs ...",
-				  style: TextStyle(fontWeight: FontWeight.normal, fontSize: 14.0)
-				  ),
-		  ),
+          Padding(
+            padding: EdgeInsets.fromLTRB(15.0, 0.0, 15.0, 30.0),
+            child: Text(
+                "Plugin that allows Flutter to communicate with a native WebView.Warning: The webview is not integrated in the widget tree, it is a native view on top of the flutter view. you won't be able to use snackbars, dialogs ...",
+                style:
+                    TextStyle(fontWeight: FontWeight.normal, fontSize: 14.0)),
+          ),
           Padding(
             padding: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
             child: Container(
@@ -113,8 +113,21 @@ class _PageOrderViewState extends State<PageOrderView> {
                   fontWeight: FontWeight.bold,
                   color: Colors.black)),
           SizedBox(height: 30.0),
-          this.buildCircleTitle(
-              Color(0xFFd09dd3), Color(0xFFae96e7), 'Samantha William', 'SW'),
+          this.buildCircleTitle(Color(0xFFd09dd3), Color(0xFFae96e7), 'Samantha William', 'SW'),
+          SizedBox(height: 10.0),
+          Row(
+            children: <Widget>[
+              SizedBox(width: 70.0),
+              Expanded(
+                  child: Container(
+                width: 50.0,
+                height: 0.5,
+                decoration: BoxDecoration(
+                    color: Colors.grey.withOpacity(0.5),
+                    shape: BoxShape.rectangle),
+              ))
+            ],
+          ),
           SizedBox(height: 15.0),
           this.buildCircleTitle(
               Color(0xFF1dd8ba), Color(0x14c5cf), 'Johanthan Hope', 'JH'),
