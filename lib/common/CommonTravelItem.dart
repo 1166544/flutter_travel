@@ -1,4 +1,8 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_travel/pages/PageOrderView.dart';
+import 'package:flutter_travel/pages/PageProfile.dart';
 
 class CommonTravelItem {
 
@@ -55,7 +59,7 @@ class CommonTravelItem {
 	}
 
 	/// 图片详情
-	Widget buildImgGalleryDetail(String mainTitle, String subTitle, String timeTitle) {
+	Widget buildImgGalleryDetail(BuildContext context, String mainTitle, String subTitle, String timeTitle) {
 	  return Padding(
 		  padding: EdgeInsets.only(left: 25.0, right: 15.0, top: 15.0),
 		  child: Row(
@@ -67,10 +71,21 @@ class CommonTravelItem {
 					  children: <Widget>[
 						  Container(
 							  width: 200,
-							  child: Text(
-								  mainTitle,
-								  overflow: TextOverflow.ellipsis,
-								  style:TextStyle(fontWeight:FontWeight.bold, fontFamily: 'Montserrat', fontSize: 15.0)
+							  child: InkWell(
+								  child: Text(
+									mainTitle,
+									overflow: TextOverflow.ellipsis,
+									style:TextStyle(fontWeight:FontWeight.bold, fontFamily: 'Montserrat', fontSize: 15.0)
+								),
+								onTap: () {
+									Navigator.push(
+										context,
+										MaterialPageRoute(builder: (context) {
+											var ran = Random().nextInt(100);
+											return ran < 50 ? PageOrderView() : PageProfile();
+										})
+									);
+								},
 							  ),
 						  ),
 						  SizedBox(height: 4.0),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_travel/pages/PageAllView.dart';
 import 'package:flutter_travel/pages/PageOrderView.dart';
 import '../common/CommonTravelItem.dart';
 import './PageProfile.dart';
@@ -25,9 +26,9 @@ class _PageHomeState extends State<PageHome> with CommonTravelItem {
 			this._buildCircle(),
 			this._buildCommunity(),
 			this.buildImageGrid(context, 'assets/beach1.jpg', 'assets/beach2.jpg', 'assets/beach3.jpg'),
-			this.buildImgGalleryDetail('Maui Summer 2019', 'Teresa Soto added 52 Photos', '2h ago'),
+			this.buildImgGalleryDetail(context, 'Maui Summer 2019', 'Teresa Soto added 52 Photos', '2h ago'),
 			this.buildImageGrid(context, 'assets/beach5.jpg', 'assets/beach4.jpg', 'assets/beach6.jpg'),
-			this.buildImgGalleryDetail('Maldives- 12 Days', 'Teresa Soto . 3 Videos', '5h ago'),
+			this.buildImgGalleryDetail(context, 'Maldives- 12 Days', 'Teresa Soto . 3 Videos', '5h ago'),
 		]
 	);
   }
@@ -136,7 +137,15 @@ class _PageHomeState extends State<PageHome> with CommonTravelItem {
 				children: <Widget>[
 					Text('From the community', style:TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 15.0, fontFamily: 'Montserrat')),
 					Spacer(),
-					Text('View All', style:TextStyle(color: Colors.blue, fontWeight:FontWeight.bold, fontSize: 15.0, fontFamily: 'Montserrat')),
+					InkWell(
+						child: Text('View All', style:TextStyle(color: Colors.blue, fontWeight:FontWeight.bold, fontSize: 15.0, fontFamily: 'Montserrat')),
+						onTap: (){
+							Navigator.push(
+								context,
+								MaterialPageRoute(builder: (context) => PageAllView())
+							);
+						},
+					)
 				],
 			),
 		);
