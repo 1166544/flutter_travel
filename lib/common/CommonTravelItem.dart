@@ -127,56 +127,32 @@ class CommonTravelItem {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              Container(
-                width: 200,
-                child: InkWell(
-                  child: Text(mainTitle,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'Montserrat',
-                          fontSize: 15.0)),
-                  onTap: () {
+			InkWell(
+				child: Column(
+					crossAxisAlignment: CrossAxisAlignment.start,
+					mainAxisAlignment: MainAxisAlignment.start,
+					children: <Widget>[
+					Container(
+						width: 200,
+						child: Text(mainTitle,
+							overflow: TextOverflow.ellipsis,
+							style: TextStyle(
+								fontWeight: FontWeight.bold,
+								fontFamily: 'Montserrat',
+								fontSize: 15.0)),
+					),
+					SizedBox(height: 4.0),
+					this.buildSubTravelItem(subTitle, timeTitle),
+					],
+				),
+				onTap: () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) {
                       var ran = Random().nextInt(100);
                       return ran < 50 ? PageOrderView() : PageProfile();
                     }));
-                  },
-                ),
-              ),
-              SizedBox(height: 4.0),
-              Row(
-                children: <Widget>[
-                  Container(
-                    width: 150,
-                    child: Text(subTitle,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                            color: Colors.grey.shade700,
-                            fontFamily: 'Montserrat',
-                            fontSize: 11.0)),
-                  ),
-                  timeTitle.isNotEmpty
-                      ? SizedBox(width: 4.0)
-                      : SizedBox(width: 0.0),
-                  timeTitle.isNotEmpty
-                      ? Icon(Icons.timer, size: 12.0, color: Colors.black)
-                      : SizedBox(width: 0.0),
-                  SizedBox(width: 4.0),
-                  Text(timeTitle,
-                      style: TextStyle(
-                          color: Colors.grey.shade500,
-                          fontFamily: 'Montserrat',
-                          fontSize: 11.0))
-                ],
-              )
-            ],
-          ),
+                }
+		  ),
           Spacer(),
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -203,6 +179,34 @@ class CommonTravelItem {
         ],
       ),
     );
+  }
+
+  Widget buildSubTravelItem(String subTitle, String timeTitle) {
+	  return Row(
+		children: <Widget>[
+			Container(
+			width: 150,
+			child: Text(subTitle,
+				overflow: TextOverflow.ellipsis,
+				style: TextStyle(
+					color: Colors.grey.shade700,
+					fontFamily: 'Montserrat',
+					fontSize: 11.0)),
+			),
+			timeTitle.isNotEmpty
+				? SizedBox(width: 4.0)
+				: SizedBox(width: 0.0),
+			timeTitle.isNotEmpty
+				? Icon(Icons.timer, size: 12.0, color: Colors.black)
+				: SizedBox(width: 0.0),
+			SizedBox(width: 4.0),
+			Text(timeTitle,
+				style: TextStyle(
+					color: Colors.grey.shade500,
+					fontFamily: 'Montserrat',
+					fontSize: 11.0))
+		],
+	);
   }
 
   /// 封装小型图标函数
