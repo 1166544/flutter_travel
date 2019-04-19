@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_travel/common/CommonPhotoViewer.dart';
+import 'package:flutter_travel/common/CommonGalleryItem.dart';
 import '../common/CommonTravelItem.dart';
 
 /// 搜索页

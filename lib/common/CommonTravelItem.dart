@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_travel/common/CommonGalleryItem.dart';
 import 'package:flutter_travel/common/CommonPhotoViewer.dart';
 import 'package:flutter_travel/pages/PageOrderView.dart';
 import 'package:flutter_travel/pages/PageProfile.dart';

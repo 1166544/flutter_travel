@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_travel/common/CommonGalleryItem.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
 
@@ -69,8 +70,8 @@ class _CommonPhotoViewerState extends State<CommonPhotoViewer> {
                 builder: (BuildContext context, int index) {
                   return PhotoViewGalleryPageOptions(
                     imageProvider: AssetImage(widget.galleryItems[index].image),
-                    initialScale: PhotoViewComputedScale.contained * 0.8,
-                    minScale: PhotoViewComputedScale.contained * 0.8,
+                    initialScale: PhotoViewComputedScale.contained * 0.95,
+                    minScale: PhotoViewComputedScale.contained * 0.95,
                     maxScale: PhotoViewComputedScale.covered * 1.1,
                     heroTag: widget.galleryItems[index].id,
                   );
@@ -97,12 +98,4 @@ class _CommonPhotoViewerState extends State<CommonPhotoViewer> {
           )),
     );
   }
-}
-
-class CommonGalleryItem {
-  CommonGalleryItem({this.id, this.image, this.description});
-
-  String id;
-  String image;
-  String description;
 }
