@@ -1,7 +1,6 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_travel/common/CommonPhoto.dart';
 import 'package:flutter_travel/common/CommonPhotoViewer.dart';
 import 'package:flutter_travel/pages/PageOrderView.dart';
 import 'package:flutter_travel/pages/PageProfile.dart';
@@ -33,22 +32,17 @@ class CommonTravelItem {
   }
 
   /// 点击后显示图片
-  void showPhoto(BuildContext context, List<String> list, int index) {
-	  CommonPhoto photo = new CommonPhoto(
-		  assetName: 'Desc',
-		  assetPackage: list[index],
-		  title: 'Test title',
-		  caption: 'caption'
-	 );
+  void showPhoto(BuildContext context, List<CommonGalleryItem> list, int index) {
 
 	  Navigator.push(
 		  context,
 		  MaterialPageRoute<void>(
 			 builder: (BuildContext context) {
-				 return Scaffold(
-					 appBar: AppBar(title: Text('Image View')),
-					 body: CommonPhotoViewer(photo: photo, photoList: list, photoIndex: index),
-				 );
+				 return CommonPhotoViewer(
+						galleryItems: list,
+						initialIndex: index,
+						backgroundDecoration: BoxDecoration(color: Colors.black)
+					);
 			 }
 		  )
 	  );
@@ -57,7 +51,11 @@ class CommonTravelItem {
   /// 构建封面图片(左边大图，右边上下小图结构)
   Widget buildComumnImage(BuildContext context, String leftImageUrl, String assistantImage1Url, String assistantImage2Url) {
 
-	List<String> imageList = [leftImageUrl, assistantImage1Url, assistantImage2Url];
+	List<CommonGalleryItem> imageList = [
+		new CommonGalleryItem(id: 0.toString(), image: leftImageUrl),
+		new CommonGalleryItem(id: 1.toString(), image: assistantImage1Url),
+		new CommonGalleryItem(id: 2.toString(), image: assistantImage2Url),
+	];
 
     return Row(
       children: <Widget>[
