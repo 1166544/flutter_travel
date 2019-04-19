@@ -56,7 +56,12 @@ class _PageHomeState extends State<PageHome> with CommonTravelItem {
 			  children: <Widget>[
 				  Text('Travelogram', style: TextStyle(fontFamily: 'Montserrat', fontSize: 22.0, color: Colors.grey.shade700, fontWeight: FontWeight.bold)),
 				  Spacer(),
-          IconButton(icon:Icon(Icons.notifications), color: Colors.grey.shade500, iconSize: 30.0, onPressed: (){}),
+          IconButton(
+			  icon:Icon(Icons.notifications),
+			  color: Colors.grey.shade500,
+			  iconSize: 30.0,
+			  onPressed: (){}
+		  ),
           SizedBox(width: 5.0),
 					// 自定义按钮
           InkWell(
@@ -124,9 +129,11 @@ class _PageHomeState extends State<PageHome> with CommonTravelItem {
 						),
 					),
 					Spacer(),
-					InkWell(
-						child: Icon(Icons.arrow_forward_ios, color: Colors.grey),
-						onTap: (){
+					IconButton(
+						icon: Icon(Icons.arrow_forward_ios),
+						iconSize: 23.0,
+						color: Colors.grey,
+						onPressed: (){
 							Navigator.push(
 								context,
 								MaterialPageRoute(builder: (context) => PageOrderView())
