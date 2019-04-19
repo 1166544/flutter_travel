@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_travel/common/CommonPhoto.dart';
+import 'package:photo_view/photo_view.dart';
+import 'package:photo_view/photo_view_gallery.dart';
 
 const double _kMinFlingVelocity = 800.0;
 
 class CommonPhotoViewer extends StatefulWidget {
-  const CommonPhotoViewer({ Key key, this.photo }) : super(key: key);
+  const CommonPhotoViewer({ Key key, this.photo, List<String> this.photoList, int this.photoIndex }) : super(key: key);
 
   final CommonPhoto photo;
+  final List<String> photoList;
+  final int photoIndex;
 
   @override
   _CommonPhotoViewerState createState() => _CommonPhotoViewerState();
@@ -81,21 +85,26 @@ class _CommonPhotoViewerState extends State<CommonPhotoViewer> with SingleTicker
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onScaleStart: _handleOnScaleStart,
-      onScaleUpdate: _handleOnScaleUpdate,
-      onScaleEnd: _handleOnScaleEnd,
-      child: ClipRect(
-        child: Transform(
-          transform: Matrix4.identity()
-            ..translate(_offset.dx, _offset.dy)
-            ..scale(_scale),
-          child: Image.asset(
-            widget.photo.assetPackage,
-            fit: BoxFit.cover,
-          ),
-        ),
-      ),
-    );
+	return Container(
+		child: PhotoViewGallery(
+			pageOptions: <PhotoViewGalleryPageOptions>[
+				PhotoViewGalleryPageOptions(
+					imageProvider: AssetImage(widget.photoList[0]),
+					heroTag: widget.photo.tag
+				),
+				PhotoViewGalleryPageOptions(
+					imageProvider: AssetImage(widget.photoList[1]),
+					heroTag: widget.photo.tag,
+					maxScale: PhotoViewComputedScale.covered * 0.3
+				),
+				PhotoViewGalleryPageOptions(
+					imageProvider: AssetImage(widget.photoList[2]),
+					heroTag: widget.photo.tag,
+					maxScale: PhotoViewComputedScale.covered * 0.98
+				),
+			],
+			backgroundDecoration: BoxDecoration(color: Colors.black87),
+		),
+	);
   }
 }

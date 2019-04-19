@@ -50,7 +50,7 @@ class CommonTravelItem {
 					 body: SizedBox.expand(
 						 child: Hero(
 							 tag: photo.tag,
-							 child: CommonPhotoViewer(photo: photo),
+							 child: CommonPhotoViewer(photo: photo, photoList: list, photoIndex: index),
 						 ),
 					 ),
 				 );
