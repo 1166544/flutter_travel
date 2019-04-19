@@ -47,12 +47,7 @@ class CommonTravelItem {
 			 builder: (BuildContext context) {
 				 return Scaffold(
 					 appBar: AppBar(title: Text('Image View')),
-					 body: SizedBox.expand(
-						 child: Hero(
-							 tag: photo.tag,
-							 child: CommonPhotoViewer(photo: photo, photoList: list, photoIndex: index),
-						 ),
-					 ),
+					 body: CommonPhotoViewer(photo: photo, photoList: list, photoIndex: index),
 				 );
 			 }
 		  )
