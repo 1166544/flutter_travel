@@ -28,15 +28,19 @@ class CommonPhotoViewer extends StatefulWidget {
 
 class _CommonPhotoViewerState extends State<CommonPhotoViewer> {
   int currentIndex;
+  String imageTitle;
+
   @override
   void initState() {
     currentIndex = widget.initialIndex;
+	imageTitle = widget.galleryItems[widget.initialIndex].description.toString();
     super.initState();
   }
 
   void onPageChanged(int index) {
     setState(() {
       currentIndex = index;
+	  imageTitle = widget.galleryItems[currentIndex].description.toString();
     });
   }
 
@@ -47,6 +51,8 @@ class _CommonPhotoViewerState extends State<CommonPhotoViewer> {
 			leading: IconButton(icon: Icon(Icons.arrow_back_ios), onPressed: () {
 				Navigator.of(context).pop();
 			},),
+			title: Text("${imageTitle}", style: TextStyle(color: Colors.white, fontFamily: 'Montserrat')),
+			centerTitle: true,
 			elevation: 0.0,
 			backgroundColor: Colors.black,
 		),
@@ -77,11 +83,15 @@ class _CommonPhotoViewerState extends State<CommonPhotoViewer> {
               ),
               Container(
                 padding: const EdgeInsets.all(20.0),
-                child: Text(
-                  "Image ${currentIndex + 1}",
-                  style: const TextStyle(
-                      color: Colors.white, fontSize: 17.0, decoration: null),
-                ),
+                child: Row(
+					crossAxisAlignment: CrossAxisAlignment.center,
+					mainAxisAlignment: MainAxisAlignment.center,
+					children: <Widget>[
+						Text(
+							"${currentIndex + 1} / ${widget.galleryItems.length}", style: const TextStyle(fontFamily: 'Montserrat', color: Colors.white, fontSize: 17.0, decoration: null),
+						)
+					],
+				),
               )
             ],
           )),
@@ -90,8 +100,9 @@ class _CommonPhotoViewerState extends State<CommonPhotoViewer> {
 }
 
 class CommonGalleryItem {
-  CommonGalleryItem({this.id, this.image});
+  CommonGalleryItem({this.id, this.image, this.description});
 
   String id;
   String image;
+  String description;
 }

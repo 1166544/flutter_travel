@@ -7,9 +7,7 @@ import 'package:flutter_travel/pages/PageProfile.dart';
 
 class CommonTravelItem {
   /// 构建图片网格
-  Widget buildImageGrid(BuildContext context, String leftImageUrl,
-      String assistantImage1Url, String assistantImage2Url,
-      {double paddingTop = 25.0}) {
+  Widget buildImageGrid(BuildContext context, List<CommonGalleryItem> imageList, {double paddingTop = 25.0}) {
     return Padding(
       padding: EdgeInsets.only(top: paddingTop, left: 15.0, right: 15.0),
       child: Container(
@@ -18,12 +16,7 @@ class CommonTravelItem {
           children: <Widget>[
             Container(
               height: 225.0,
-              child: this.buildComumnImage(
-				  context,
-				  leftImageUrl,
-				  assistantImage1Url,
-				  assistantImage2Url
-				),
+              child: this.buildComumnImage(context, imageList),
             )
           ],
         ),
@@ -49,13 +42,7 @@ class CommonTravelItem {
   }
 
   /// 构建封面图片(左边大图，右边上下小图结构)
-  Widget buildComumnImage(BuildContext context, String leftImageUrl, String assistantImage1Url, String assistantImage2Url) {
-
-	List<CommonGalleryItem> imageList = [
-		new CommonGalleryItem(id: 0.toString(), image: leftImageUrl),
-		new CommonGalleryItem(id: 1.toString(), image: assistantImage1Url),
-		new CommonGalleryItem(id: 2.toString(), image: assistantImage2Url),
-	];
+  Widget buildComumnImage(BuildContext context, List<CommonGalleryItem> imageList) {
 
     return Row(
       children: <Widget>[
@@ -64,7 +51,7 @@ class CommonTravelItem {
 				this.showPhoto(context, imageList, 0);
 			},
 			// 左部大图
-			child: this.buildLeftBigImage(context, leftImageUrl)
+			child: this.buildLeftBigImage(context, imageList[0].image)
 		),
         SizedBox(width: 2.0),
         Column(
@@ -75,7 +62,7 @@ class CommonTravelItem {
 				onTap: () {
 					this.showPhoto(context, imageList, 1);
 				},
-				child: this.buildRightTopSmallImage(context, assistantImage1Url),
+				child: this.buildRightTopSmallImage(context, imageList[1].image),
 			),
             SizedBox(height: 2.0),
             // 右下小图
@@ -83,7 +70,7 @@ class CommonTravelItem {
 				onTap: () {
 					this.showPhoto(context, imageList, 2);
 				},
-				child: this.buildRightBottomSmallImage(context, assistantImage2Url),
+				child: this.buildRightBottomSmallImage(context, imageList[2].image),
 			)
           ],
         ),

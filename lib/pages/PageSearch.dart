@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_travel/common/CommonPhotoViewer.dart';
 import '../common/CommonTravelItem.dart';
 
 /// 搜索页
@@ -33,7 +34,7 @@ class _PageSearchState extends State<PageSearch> with CommonTravelItem {
 			backgroundColor: Colors.white,
 			leading: IconButton(
 				tooltip: 'Search Page',
-				icon: Icon(Icons.arrow_back),
+				icon: Icon(Icons.arrow_back_ios),
 				color: Colors.grey,
 				onPressed: () {
 					// hole
@@ -56,6 +57,19 @@ class _PageSearchState extends State<PageSearch> with CommonTravelItem {
 
   /// 基础页面结构
   Widget buildSearchLayout() {
+
+	  List<CommonGalleryItem> list1 = [
+		  CommonGalleryItem(id: 0.toString(), image: 'assets/p1.jpg', description: 'Sun Bath'),
+		  CommonGalleryItem(id: 1.toString(), image: 'assets/beach5.jpg', description: 'Blue oceans'),
+		  CommonGalleryItem(id: 2.toString(), image: 'assets/p2.jpg', description: 'Mihiri Island.'),
+	  ];
+
+	  List<CommonGalleryItem> list2 = [
+		  CommonGalleryItem(id: 0.toString(), image: 'assets/p3.jpg', description: 'The Sun Raise'),
+		  CommonGalleryItem(id: 1.toString(), image: 'assets/p5.jpg', description: 'Tiland buject'),
+		  CommonGalleryItem(id: 2.toString(), image: 'assets/p6.jpg', description: 'Beach Baros.'),
+	  ];
+
 	  return Container(
 		  width: MediaQuery.of(context).size.width,
 		  color: Colors.white,
@@ -66,12 +80,12 @@ class _PageSearchState extends State<PageSearch> with CommonTravelItem {
 
 				this.buildTravelDate('Aug 12, 2012 - Baros Island'),
 				this.buildTravelSep(),
-				this.buildImageGrid(context, 'assets/p1.jpg', 'assets/beach5.jpg', 'assets/p2.jpg', paddingTop: 0.0),
+				this.buildImageGrid(context, list1, paddingTop: 0.0),
 				this.buildImgGalleryDetail(context, 'Day 1- Sun Bath', 'Teresa Soto', ''),
 				SizedBox(height: 45.0),
 				this.buildTravelDate('Aug 13, 2012 - Mihiri Island'),
 				this.buildTravelSep(),
-				this.buildImageGrid(context, 'assets/p3.jpg', 'assets/p5.jpg', 'assets/p6.jpg', paddingTop: 0.0),
+				this.buildImageGrid(context, list2, paddingTop: 0.0),
 				this.buildImgGalleryDetail(context, 'Day 2- Sun Raise', 'Tiland buject', ''),
 			],
 		)
