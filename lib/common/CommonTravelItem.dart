@@ -146,11 +146,7 @@ class CommonTravelItem {
 					],
 				),
 				onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) {
-                      var ran = Random().nextInt(100);
-                      return ran < 50 ? PageOrderView() : PageProfile();
-                    }));
+                    this.navigateToSubPage(context);
                 }
 		  ),
           Spacer(),
@@ -161,7 +157,9 @@ class CommonTravelItem {
                   inkWidth: 20.0,
                   inkHeight: 20.0,
                   picUrl: 'assets/navarrow.png',
-                  onCallBack: () {}),
+                  onCallBack: () {
+                    this.navigateToSubPage(context);
+				  }),
               SizedBox(width: 12.0),
               this.inkWellButton(
                   inkWidth: 20.0,
@@ -179,6 +177,15 @@ class CommonTravelItem {
         ],
       ),
     );
+  }
+
+  /// 导航至子页面
+  void navigateToSubPage(BuildContext context) {
+	  Navigator.push(context,
+		MaterialPageRoute(builder: (context) {
+		var ran = Random().nextInt(100);
+		return ran < 50 ? PageOrderView() : PageProfile();
+	}));
   }
 
   Widget buildSubTravelItem(String subTitle, String timeTitle) {
