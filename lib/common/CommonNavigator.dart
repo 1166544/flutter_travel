@@ -14,4 +14,10 @@ class CommonNavigator {
 			)
 		);
 	}
+
+	/// 返回上一页面
+	/// * [BuildContext context] 原始页面对像
+	navigateBack(BuildContext context) {
+		Navigator.of(context).pop();
+	}
 }
