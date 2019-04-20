@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_travel/common/CommonGalleryItem.dart';
+import 'package:flutter_travel/common/CommonNavigator.dart';
 import 'package:flutter_travel/pages/PageAllView.dart';
+import 'package:flutter_travel/pages/PageNotice.dart';
 import 'package:flutter_travel/pages/PageOrderView.dart';
 import '../common/CommonTravelItem.dart';
 import './PageProfile.dart';
@@ -14,7 +16,7 @@ class PageHome extends StatefulWidget {
 }
 
 /// 首页面内容
-class _PageHomeState extends State<PageHome> with CommonTravelItem {
+class _PageHomeState extends State<PageHome> with CommonTravelItem, CommonNavigator {
 
   @override
   bool get wantKeepAlive => null;
@@ -60,7 +62,10 @@ class _PageHomeState extends State<PageHome> with CommonTravelItem {
 			  icon:Icon(Icons.notifications),
 			  color: Colors.grey.shade500,
 			  iconSize: 30.0,
-			  onPressed: (){}
+			  onPressed: (){
+				  // 跳转到详情页
+				  this.navigateTo(context, new PageNotice());
+			  }
 		  ),
           SizedBox(width: 5.0),
 					// 自定义按钮
@@ -77,10 +82,7 @@ class _PageHomeState extends State<PageHome> with CommonTravelItem {
               ),
             ),
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => new PageProfile())
-              );
+              this.navigateTo(context, new PageProfile());
             },
           )
 			  ],
