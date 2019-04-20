@@ -18,22 +18,24 @@ class _PageNoticeState extends State<PageNotice> with CommonNavigator {
   Widget build(BuildContext context) {
 	return Scaffold(
 		appBar: AppBar(
-			backgroundColor: Colors.transparent,
-			elevation: 0.0,
+			backgroundColor: Colors.white,
+			elevation: 0.3,
 			leading: IconButton(
 				icon: Icon(Icons.arrow_back_ios),
 				color: Colors.black,
-				onPressed: () {
-					this.navigateBack(context);
-				},
+				onPressed: () { this.navigateBack(context); },
 			),
 			title: Text('Notifications', style: TextStyle(color: Colors.black)),
 			centerTitle: true,
 		),
 		body: ListView(
 			children: <Widget>[
+				// 封面
 				this.buildCoverImage(),
+				// 主标题
 				this.buildAboutTitle(),
+				SizedBox(height: 20.0),
+				// 通知列表
 				this.buildNotifcationList()
 			],
 		),
@@ -110,10 +112,10 @@ class _PageNoticeState extends State<PageNotice> with CommonNavigator {
 			  children: <Widget>[
 				  Padding(
 					  padding: EdgeInsets.only(bottom: 10.0),
-					  child: Text('Latest news', style: TextStyle(fontSize: 17.0, fontWeight: FontWeight.bold)),
+					  child: Text('Latest news', style: TextStyle(fontFamily: 'Montserrat', fontSize: 17.0, fontWeight: FontWeight.bold)),
 				  ),
 				  Container(
-					  width: 100.0,
+					  width: 120.0,
 					  height: 2.0,
 					  decoration: BoxDecoration(
 						  color: Colors.black,
@@ -161,14 +163,29 @@ class _PageNoticeState extends State<PageNotice> with CommonNavigator {
 		readSubRenderList.add(this.buildSubReadRenderItem(item));
 	  }
 
-	  return Row(
-		  children: <Widget>[
-			  Text(item.dateTitle),
-			  SizedBox(width: 10.0),
-			  Column(
-				  children: readSubRenderList
-			  )
-		  ],
+	  return Padding(
+		  padding: EdgeInsets.only(left: 10.0),
+		  child: Row(
+			crossAxisAlignment: CrossAxisAlignment.start,
+			mainAxisAlignment: MainAxisAlignment.start,
+			children: <Widget>[
+				Container(
+					width: 80.0,
+					child: Text(
+						item.dateTitle,
+						softWrap: true,
+						style: TextStyle(
+							fontSize: 12.0,
+							fontWeight: FontWeight.bold,
+						),
+					),
+				),
+				Column(
+					crossAxisAlignment: CrossAxisAlignment.start,
+					children: readSubRenderList
+				)
+			],
+		)
 	  );
   }
 
@@ -176,74 +193,125 @@ class _PageNoticeState extends State<PageNotice> with CommonNavigator {
   /// * [PageNoticeVO item] 消息数据源
   Widget buildSubReadRenderItem(PageNoticeVO item) {
 	  return Column(
+		  crossAxisAlignment: CrossAxisAlignment.start,
 		  children: <Widget>[
 			    // 带圆圈标题行
 				Row(
 					children: <Widget>[
 						// 圆圈
-						Icon(Icons.check_circle_outline, size: 12.0, color: Colors.purple),
+						Icon(Icons.check_circle_outline, size: 20.0, color: Colors.blue),
 						// 子标题
-						SizedBox(width: 15.0),
-						Text(item.subTitle)
+						SizedBox(width: 12.0),
+						Container(
+							width: 230.0,
+							child: Text(
+								item.subTitle,
+								overflow: TextOverflow.ellipsis,
+								style: TextStyle(
+									fontFamily: 'Montserrat',
+									fontWeight: FontWeight.bold,
+									color: Colors.black87.withOpacity(0.6)
+								)
+							)
+						)
 					]
 				),
 				// 带虚线行
 				Row(
+					crossAxisAlignment: CrossAxisAlignment.start,
+					mainAxisAlignment: MainAxisAlignment.start,
 					children: <Widget>[
 						// 虚线
 						Container(
 							width: 10.0,
 							height: 120.0,
+							margin: EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 30.0),
 							decoration: BoxDecoration(
-								image: DecorationImage(
-									image: AssetImage('assets/dot.png'),
-									fit: BoxFit.cover
-								)
+								color: Colors.white.withOpacity(0.0),
+								border: Border(right: BorderSide(color: Colors.grey.withOpacity(0.2), width: 1.0, style: BorderStyle.solid))
 							),
 						),
-						SizedBox(width: 10.0),
+						SizedBox(width: 22.0),
 						// 描述文本区
 						Column(
+							crossAxisAlignment: CrossAxisAlignment.end,
+							mainAxisAlignment: MainAxisAlignment.start,
 							children: <Widget>[
+								SizedBox(height: 8.0),
 								// 描述文本
-								Text(
-									item.description,
-									softWrap: true,
+								Container(
+									width: 230.0,
+									child: Text(
+										item.description,
+										softWrap: true,
+										overflow: TextOverflow.ellipsis,
+										maxLines: 10,
+										style: TextStyle(
+											color: Colors.black.withOpacity(0.8),
+											fontSize: 12.0
+										),
+									)
 								),
-								SizedBox(height: 10.0),
+								SizedBox(height: 60.0),
 								// 操作按钮
-								Row(
-									children: <Widget>[
-										Container(
-											width: 80.0,
-											height: 20.0,
-											decoration: BoxDecoration(
-												color: Colors.deepOrange,
-												shape: BoxShape.rectangle
-											),
-											child: Center(
-												child: Text('Make as readed'),
-											),
-										),
-										SizedBox(width: 10.0),
-										Container(
-											width: 80.0,
-											height: 20.0,
-											decoration: BoxDecoration(
-												color: Colors.deepOrange,
-												shape: BoxShape.rectangle
-											),
-											child: Center(
-												child: Text('DELETE'),
-											),
-										),
-									],
-								)
+								this.buildOperationButton(),
 							],
 						)
 					]
 				)
 		  ],
+	  );
+  }
+
+  /// 操作按钮区
+  Widget buildOperationButton() {
+	  return Padding(
+		  padding: EdgeInsets.only(bottom: 10.0),
+		  child: Row(
+			children: <Widget>[
+				InkWell(
+					highlightColor: Colors.orangeAccent,
+					child: Container(
+						width: 110.0,
+						height: 30.0,
+						decoration: BoxDecoration(
+							color: Colors.yellow,
+							shape: BoxShape.rectangle,
+							borderRadius: BorderRadius.circular(2.0)
+						),
+						child: Center(
+							child: Text('Make readed', style: TextStyle(
+										fontFamily: 'Montserrat',
+										fontSize: 12.0,
+										color: Colors.black
+							)),
+						),
+					),
+					onTap: () {},
+				),
+				SizedBox(width: 10.0),
+				InkWell(
+					highlightColor: Colors.grey,
+					child: Container(
+						width: 80.0,
+						height: 30.0,
+						decoration: BoxDecoration(
+							color: Colors.grey.withOpacity(0.5),
+							shape: BoxShape.rectangle,
+							borderRadius: BorderRadius.circular(2.0)
+						),
+						child: Center(
+							child: Text('DELETE', style: TextStyle(
+										fontFamily: 'Montserrat',
+										fontSize: 12.0,
+										color: Colors.black
+							)),
+						),
+					),
+					onTap: () {},
+				)
+			],
+		),
 	  );
   }
 
