@@ -5,6 +5,7 @@ import 'package:flutter_travel/common/CommonGalleryItem.dart';
 import 'package:flutter_travel/common/CommonPhotoViewer.dart';
 import 'package:flutter_travel/pages/PageOrderView.dart';
 import 'package:flutter_travel/pages/PageProfile.dart';
+import 'package:flutter_travel/pages/comments/PageComments.dart';
 
 class CommonTravelItem {
   /// 构建图片网格
@@ -165,7 +166,12 @@ class CommonTravelItem {
                   inkWidth: 20.0,
                   inkHeight: 20.0,
                   picUrl: 'assets/chatbubble.png',
-                  onCallBack: () {}),
+                  onCallBack: () {
+					  Navigator.push(
+						context,
+						MaterialPageRoute(builder: (context) => PageComments())
+					  );
+				  }),
               SizedBox(width: 12.0),
               this.inkWellButton(
                   inkWidth: 20.0,

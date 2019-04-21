@@ -17,17 +17,7 @@ class _PageNoticeState extends State<PageNotice> with CommonNavigator {
   @override
   Widget build(BuildContext context) {
 	return Scaffold(
-		appBar: AppBar(
-			backgroundColor: Colors.white,
-			elevation: 0.3,
-			leading: IconButton(
-				icon: Icon(Icons.arrow_back_ios),
-				color: Colors.black,
-				onPressed: () { this.navigateBack(context); },
-			),
-			title: Text('Notifications', style: TextStyle(color: Colors.black)),
-			centerTitle: true,
-		),
+		appBar: this.getAppBar(context, 'Notifications'),
 		body: ListView(
 			children: <Widget>[
 				// 封面
