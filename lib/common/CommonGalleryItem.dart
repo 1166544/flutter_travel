@@ -4,4 +4,5 @@ class CommonGalleryItem {
   String id;
   String image;
   String description;
+  int index;
 }

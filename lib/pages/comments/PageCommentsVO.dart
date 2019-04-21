@@ -1,3 +1,5 @@
+import 'package:flutter_travel/common/CommonGalleryItem.dart';
+
 /// 留言区数据结构
 class PageCommentsVO {
 	PageCommentsVO(
@@ -22,7 +24,7 @@ class PageCommentsVO {
 	String commentDate;
 	int likeNum;
 	int commentsNum;
-	List<String> commentsImageList = [];
+	List<CommonGalleryItem> commentsImageList = [];
 
     /// 拿测试数据
 	List<PageCommentsVO> getTestData() {
@@ -49,12 +51,12 @@ class PageCommentsVO {
 			likeNum: 1623,
 			commentsNum: 2,
 			commentsImageList: [
-				'assets/beach5.jpg',
-				'assets/beach6.jpg',
-				'assets/beach4.jpg',
-				'assets/p3.jpg',
-				'assets/p5.jpg',
-				'assets/p2.jpg',
+				CommonGalleryItem(id: 0.toString(), image: 'assets/beach5.jpg', description: 'A drink in beach'),
+				CommonGalleryItem(id: 1.toString(), image: 'assets/beach6.jpg', description: 'A shoes in under the sun'),
+				CommonGalleryItem(id: 2.toString(), image: 'assets/beach4.jpg', description: 'Cross the bridge.'),
+				CommonGalleryItem(id: 3.toString(), image: 'assets/p3.jpg', description: 'A drink in beach'),
+				CommonGalleryItem(id: 4.toString(), image: 'assets/p5.jpg', description: 'A shoes in under the sun'),
+				CommonGalleryItem(id: 5.toString(), image: 'assets/p2.jpg', description: 'Cross the bridge.'),
 			]
 		));
 		commentsList.add(new PageCommentsVO(

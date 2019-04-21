@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_travel/common/CommonGalleryItem.dart';
 import 'package:flutter_travel/common/CommonNavigator.dart';
+import 'package:flutter_travel/common/CommonPhotoViewer.dart';
 import 'package:flutter_travel/pages/comments/PageCommentsVO.dart';
 
 /// 留言区
@@ -201,21 +203,29 @@ class _PageCommentsState extends State<PageComments> with CommonNavigator {
   /// 图片区
   Widget getThumbilsArea(PageCommentsVO item) {
 	  List<Widget> thumbilsList = [];
-	  for (String itemUrl in item.commentsImageList) {
+	  int index = 0;
+	  for (CommonGalleryItem itemVO in item.commentsImageList) {
 		thumbilsList.add(
-			Container(
-				width: 120.0,
-				height: 80.0,
-				margin: EdgeInsets.only(top: 5.0, right: 5.0),
-				decoration: BoxDecoration(
-					image: DecorationImage(
-						image: AssetImage(itemUrl),
-						fit: BoxFit.cover
+			InkWell(
+				onTap: () {
+					this.showPhoto(item, itemVO.index);
+				},
+				child: Container(
+					width: 120.0,
+					height: 80.0,
+					margin: EdgeInsets.only(top: 5.0, right: 5.0),
+					decoration: BoxDecoration(
+						image: DecorationImage(
+							image: AssetImage(itemVO.image),
+							fit: BoxFit.cover
+						),
+						borderRadius: BorderRadius.circular(5.0)
 					),
-					borderRadius: BorderRadius.circular(5.0)
 				),
 			)
 		);
+		itemVO.index = index;
+		index++;
 	  }
 
 	  return item.commentsImageList.length > 0 ?
@@ -230,6 +240,21 @@ class _PageCommentsState extends State<PageComments> with CommonNavigator {
 			),
 		) :
 		Container();
+  }
+
+  /// 点击后显示图片
+  void showPhoto(PageCommentsVO item, int index) {
+	  Navigator.push(this.context,
+	  	MaterialPageRoute<void>(
+			  builder: (BuildContext context) {
+				  return CommonPhotoViewer(
+					  galleryItems: item.commentsImageList,
+					  initialIndex: index,
+					  backgroundDecoration: BoxDecoration(color: Colors.black),
+				  );
+			  }
+		  )
+	  );
   }
 
   /// 留言数量区
