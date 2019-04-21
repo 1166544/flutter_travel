@@ -105,7 +105,7 @@ class _PageCommentsState extends State<PageComments> with CommonNavigator {
 		  padding: EdgeInsets.fromLTRB(26.0, 5.0, 26.0, 0.0),
 		  child: Container(
 			  width: MediaQuery.of(this.context).size.width - 80.0,
-			  child: Text(item.title, maxLines: 2, overflow: TextOverflow.ellipsis, style: TextStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.bold)),
+			  child: Text(item.title, maxLines: 2, overflow: TextOverflow.ellipsis, style: TextStyle(fontFamily: 'Montserrat', color: Color(0xff5b6774), fontSize: 15, fontWeight: FontWeight.bold)),
 		  )
 	  );
   }
@@ -136,13 +136,13 @@ class _PageCommentsState extends State<PageComments> with CommonNavigator {
 	  }
 
 	  if (postTitleNum > 5) {
-		backgroundColor = Color(0xFFffea59);
-		fontColor = Color(0xFFd3b733);
+		backgroundColor = Color(0xFFafcdee);
+		fontColor = Color(0xFF004da1);
 	  }
 
 	  return postTitleNum > 0 ? Container(
-		width: 22.0,
-		height: 22.0,
+		width: 18.0,
+		height: 18.0,
 		decoration: BoxDecoration(
 			color: backgroundColor,
 			shape: BoxShape.rectangle,
@@ -153,7 +153,7 @@ class _PageCommentsState extends State<PageComments> with CommonNavigator {
 				postTitleNum.toString(),
 				style: TextStyle(
 					color: fontColor,
-					fontSize: 12,
+					fontSize: 10,
 					fontWeight: FontWeight.bold
 				)
 			)
@@ -163,20 +163,37 @@ class _PageCommentsState extends State<PageComments> with CommonNavigator {
 
   /// 描述文本
   Widget getDescriptionArea(PageCommentsVO item) {
+	  double containerWidth = MediaQuery.of(this.context).size.width - 50.0;
+	  double textWidth = containerWidth - 40;
+
 	  return Padding(
-		  padding: EdgeInsets.fromLTRB(26.0, 10.0, 26.0, 0.0),
+		  padding: EdgeInsets.fromLTRB(26.0, 10.0, 0.0, 0.0),
 		  child: Container(
-			  width: MediaQuery.of(this.context).size.width - 50.0,
-			  child: Text(
-				  item.description,
-				  maxLines: 8,
-				  overflow: TextOverflow.ellipsis,
-				  style: TextStyle(
-					  color: Color(0xFF808d9a),
-					  fontSize: 12,
-					  fontWeight: FontWeight.normal
-					)
-				),
+			  width: containerWidth,
+			  child: Row(
+				  crossAxisAlignment: CrossAxisAlignment.start,
+				  children: <Widget>[
+					  CircleAvatar(
+						  backgroundImage: AssetImage(item.avataUrl),
+						  radius: 15.0,
+					  ),
+					  SizedBox(width: 10.0),
+					  Container(
+						  width: textWidth,
+						  child: Text(
+							item.description,
+							maxLines: 8,
+							softWrap: true,
+							overflow: TextOverflow.ellipsis,
+							style: TextStyle(
+								color: Color(0xFF808d9a),
+								fontSize: 12,
+								fontWeight: FontWeight.normal
+								)
+						),
+					  )
+				  ],
+			  ),
 		  )
 	  );
   }
@@ -189,7 +206,7 @@ class _PageCommentsState extends State<PageComments> with CommonNavigator {
 			Container(
 				width: 120.0,
 				height: 80.0,
-				margin: EdgeInsets.only(right: 5.0),
+				margin: EdgeInsets.only(top: 5.0, right: 5.0),
 				decoration: BoxDecoration(
 					image: DecorationImage(
 						image: AssetImage(itemUrl),

@@ -2,6 +2,7 @@
 class PageCommentsVO {
 	PageCommentsVO(
 		{
+			this.avataUrl,
 			this.postTitle,
 			this.postTitleNum,
 			this.title,
@@ -14,6 +15,7 @@ class PageCommentsVO {
 	);
 
 	String postTitle;
+	String avataUrl;
 	int postTitleNum;
 	String title;
 	String description;
@@ -27,6 +29,7 @@ class PageCommentsVO {
 		List<PageCommentsVO> commentsList = [];
 
 		commentsList.add(new PageCommentsVO(
+			avataUrl: 'assets/chris.jpg',
 			postTitle: 'PROSPECT',
 			postTitleNum: 3,
 			title: 'Jessica Hische',
@@ -37,6 +40,7 @@ class PageCommentsVO {
 			commentsImageList: []
 		));
 		commentsList.add(new PageCommentsVO(
+			avataUrl: 'assets/p1.jpg',
 			postTitle: 'PROSPECT',
 			postTitleNum: 0,
 			title: 'How Ifind Inspiration',
@@ -54,6 +58,7 @@ class PageCommentsVO {
 			]
 		));
 		commentsList.add(new PageCommentsVO(
+			avataUrl: 'assets/p2.jpg',
 			postTitle: 'CUSTOMER',
 			postTitleNum: 2,
 			title: 'Rovane Durso',
@@ -64,6 +69,7 @@ class PageCommentsVO {
 			commentsImageList: []
 		));
 		commentsList.add(new PageCommentsVO(
+			avataUrl: 'assets/p3.jpg',
 			postTitle: 'PROSPECT',
 			postTitleNum: 8,
 			title: 'Dark Patterns: The Devil in Mobile UI UX Design?',
