@@ -31,7 +31,7 @@ class PageCommentsVO {
 			postTitleNum: 3,
 			title: 'Jessica Hische',
 			description: "In that Widget, I don't need to rewrite the circle image, because I've already built it once.",
-			commentDate: '2 May 2018',
+			commentDate: '2 Aug, 2019',
 			likeNum: 1623,
 			commentsNum: 2,
 			commentsImageList: []
@@ -41,7 +41,7 @@ class PageCommentsVO {
 			postTitleNum: 0,
 			title: 'How Ifind Inspiration',
 			description: "The most important part of using Flutter Widgets effectively is designing your lowest level widgets to be reusable.",
-			commentDate: '2 May 2018',
+			commentDate: '2 Jun, 2018',
 			likeNum: 1623,
 			commentsNum: 2,
 			commentsImageList: [
@@ -58,7 +58,7 @@ class PageCommentsVO {
 			postTitleNum: 2,
 			title: 'Rovane Durso',
 			description: "In that Widget, I don't need to rewrite the circle image, because I've already built it once.",
-			commentDate: '22 Feb 2018',
+			commentDate: '22 Feb, 2018',
 			likeNum: 25,
 			commentsNum: 56,
 			commentsImageList: []
@@ -68,7 +68,7 @@ class PageCommentsVO {
 			postTitleNum: 8,
 			title: 'Dark Patterns: The Devil in Mobile UI UX Design?',
 			description: "The green outline represents the page. And a page in Flutter is a widget. The blue outlines represent pieces of UI that logically group together. The rest are outlined white, and they're simply dumb components that have no concern over their content, they just display what they're told.",
-			commentDate: '2 May 2018',
+			commentDate: '2 May, 2018',
 			likeNum: 852,
 			commentsNum: 159,
 			commentsImageList: []

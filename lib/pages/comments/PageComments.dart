@@ -164,7 +164,7 @@ class _PageCommentsState extends State<PageComments> with CommonNavigator {
   /// 描述文本
   Widget getDescriptionArea(PageCommentsVO item) {
 	  return Padding(
-		  padding: EdgeInsets.fromLTRB(26.0, 5.0, 26.0, 0.0),
+		  padding: EdgeInsets.fromLTRB(26.0, 10.0, 26.0, 0.0),
 		  child: Container(
 			  width: MediaQuery.of(this.context).size.width - 50.0,
 			  child: Text(
@@ -217,6 +217,50 @@ class _PageCommentsState extends State<PageComments> with CommonNavigator {
 
   /// 留言数量区
   Widget getCommentsNumArea(PageCommentsVO item) {
-	  return Container();
+	  return Padding(
+		  padding: EdgeInsets.fromLTRB(26.0, 25.0, 20.0, 30.0),
+		  child: Row(
+			  children: <Widget>[
+				  Text(
+					  item.commentDate,
+					  style: TextStyle(
+						  color: Color(0xFF5f6f7f).withOpacity(0.5),
+						  fontSize: 10
+						)
+				  ),
+				  Spacer(),
+				  this.buildCommentIcon(Icons.favorite_border, item.likeNum),
+				  SizedBox(width: 20.0),
+				  this.buildCommentIcon(Icons.comment, item.commentsNum)
+			  ],
+		  ),
+	  );
+  }
+
+  /// 留言区图标按钮
+  Widget buildCommentIcon(IconData iconComment, int commentNum) {
+	  return Row(
+			mainAxisAlignment: MainAxisAlignment.start,
+			crossAxisAlignment: CrossAxisAlignment.start,
+			children: <Widget>[
+				Container(
+					width: 12.0,
+					height: 12.0,
+					child: IconButton(
+					padding: EdgeInsets.all(0.0),
+						icon: Icon(iconComment, color: Color(0xFF5f6f7f).withOpacity(0.5), size: 12.0),
+						onPressed: () {},
+					)
+				),
+				SizedBox(width: 5.0),
+				Text(
+					commentNum.toString(),
+					style: TextStyle(
+						color: Color(0xFF5f6f7f).withOpacity(0.5),
+						fontSize: 10
+						)
+				)
+			],
+		);
   }
 }
