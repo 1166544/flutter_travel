@@ -1,3 +1,4 @@
+/// 图片描述单元
 class CommonGalleryItem {
   CommonGalleryItem({this.id, this.image, this.description});
 
