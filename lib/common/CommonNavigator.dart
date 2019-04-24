@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// 基础功能类封装
 class CommonNavigator {
 
 	/// 页面跳转
