@@ -3,6 +3,7 @@ import 'package:flutter_travel/common/CommonGalleryItem.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
 
+/// 图片预览
 class CommonPhotoViewer extends StatefulWidget {
   CommonPhotoViewer(
       {this.loadingChild,
