@@ -39,6 +39,8 @@ class _CommonPhotoViewerState extends State<CommonPhotoViewer> {
     super.initState();
   }
 
+  /// 页码更改处理
+  /// * [int index] 页码
   void onPageChanged(int index) {
     setState(() {
       currentIndex = index;
