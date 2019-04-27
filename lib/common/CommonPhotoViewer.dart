@@ -51,14 +51,18 @@ class _CommonPhotoViewerState extends State<CommonPhotoViewer> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-		appBar: AppBar(
-			leading: IconButton(icon: Icon(Icons.arrow_back_ios), onPressed: () {
-				Navigator.of(context).pop();
-			},),
-			title: Text("${imageTitle}", style: TextStyle(color: Colors.white, fontFamily: 'Montserrat')),
-			centerTitle: true,
-			elevation: 0.0,
-			backgroundColor: Colors.black,
+		appBar: AppBar(leading: IconButton(
+        icon: Icon(Icons.arrow_back_ios),
+        onPressed: () {
+			Navigator.of(context).pop();
+		}),
+		title: Text(
+			"${imageTitle}",
+			style: TextStyle(color: Colors.white, fontFamily: 'Montserrat')
+      	),
+		centerTitle: true,
+		elevation: 0.0,
+		backgroundColor: Colors.black,
 		),
       body: Container(
           decoration: widget.backgroundDecoration,
