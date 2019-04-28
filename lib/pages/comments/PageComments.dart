@@ -258,6 +258,7 @@ class _PageCommentsState extends State<PageComments> with CommonNavigator {
   }
 
   /// 留言数量区
+  /// * [PageCommentsVO item] 留言数据
   Widget getCommentsNumArea(PageCommentsVO item) {
 	  return Padding(
 		  padding: EdgeInsets.fromLTRB(26.0, 25.0, 20.0, 30.0),
