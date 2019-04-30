@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// 页面预览
 class PageAllView extends StatefulWidget {
   @override
   _PageAllViewState createState() => _PageAllViewState();
