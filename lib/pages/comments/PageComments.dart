@@ -164,6 +164,7 @@ class _PageCommentsState extends State<PageComments> with CommonNavigator {
   }
 
   /// 描述文本
+  /// * [PageCommentsVO item] 描述数据列表
   Widget getDescriptionArea(PageCommentsVO item) {
 	  double containerWidth = MediaQuery.of(this.context).size.width - 50.0;
 	  double textWidth = containerWidth - 40;
