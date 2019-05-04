@@ -4,6 +4,7 @@ import 'package:flutter_travel/pages/PageCircler.dart';
 import 'package:flutter_travel/pages/PageGraphics.dart';
 import 'package:flutter_travel/pages/PageHome.dart';
 import 'package:flutter_travel/pages/PageSearch.dart';
+import 'package:flutter_travel/pages/login/PageLogin.dart';
 
 void main() => runApp(TravelApp());
 
@@ -13,7 +14,7 @@ class TravelApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: TravelHomePage()
+      home: PageLogin()
     );
   }
 }
@@ -29,8 +30,8 @@ class _TravelHomePageState extends State<TravelHomePage> with SingleTickerProvid
 
 	int _currentIndex = 0;
 	List<CommonPageData> _bodysView= [
-		CommonPageData(view: new PageHome(), pageTitle: 'Home', icon: Icons.home),
-		CommonPageData(view: new PageSearch(), pageTitle: 'Search', icon: Icons.search),
+		CommonPageData(view: new PageSearch(), pageTitle: 'Home', icon: Icons.home),
+		CommonPageData(view: new PageHome(), pageTitle: 'Search', icon: Icons.search),
 		CommonPageData(view: new PageGraphics(), pageTitle: 'Graphics', icon: Icons.graphic_eq),
 		CommonPageData(view: new PageCircler(), pageTitle: 'Circler', icon: Icons.account_circle),
 	];
