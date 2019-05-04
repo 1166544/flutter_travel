@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class PageLogin extends StatefulWidget {
   PageLogin({Key key}) : super(key: key);
@@ -8,7 +9,9 @@ class PageLogin extends StatefulWidget {
 
 /// 登录页面，无APPBAR
 class _PageLoginState extends State<PageLogin> {
-// var usernameController = new TextEditingController();
+
+  TextEditingController userNameController = TextEditingController();
+//   TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -105,54 +108,61 @@ class _PageLoginState extends State<PageLogin> {
   Widget buildLoginInput() {
 	  return Column(
 		  children: <Widget>[
-			  Container(
-				  margin: EdgeInsets.fromLTRB(0, 0, 7, 0),
-				  decoration: BoxDecoration(
-					  border: BorderDirectional(bottom: BorderSide(color: Color(0xFFb0c0d0), width: 1.0, style: BorderStyle.solid))
-				  ),
-				  child: Row(
-					children: <Widget>[
-						Container(
-							width: 26,
-							height: 37,
-							decoration: BoxDecoration(
-								image: DecorationImage(
-									image: AssetImage('assets/login_btn.png'),
-									fit: BoxFit.cover
-								),
-								shape: BoxShape.rectangle
-							),
-						),
-						SizedBox(width: 10.0),
-						Text('Account')
-					],
-				),
-			  ),
+			  this.buildUserNameInput(),
 			  SizedBox(height: 15.0),
-			  Container(
-				  margin: EdgeInsets.fromLTRB(0, 0, 7, 0),
-				  decoration: BoxDecoration(
-					  border: BorderDirectional(bottom: BorderSide(color: Color(0xFFb0c0d0), width: 1.0, style: BorderStyle.solid))
-				  ),
-				  child: Row(
-					children: <Widget>[
-						Container(
-							width: 26,
-							height: 37,
-							decoration: BoxDecoration(
-								image: DecorationImage(
-									image: AssetImage('assets/password_btn.png'),
-									fit: BoxFit.cover
-								),
-								shape: BoxShape.rectangle
-							),
-						),
-						SizedBox(width: 10.0),
-						Text('Password')
-					],
-				)
-			  )
+			  this.buildPasswordInput()
 		  ],
+	  );
+  }
+
+  Widget buildUserNameInput() {
+	  return Container(
+		  padding: EdgeInsets.fromLTRB(0.0, 0.0, 7.0, 0.0),
+		  child: TextField(
+			controller: this.userNameController,
+			textAlign: TextAlign.left,//文本对齐方式
+			style: TextStyle(fontSize: 12.0, color: Colors.black),
+			decoration: InputDecoration(
+				fillColor: Colors.white.withOpacity(0.0),
+				filled: true,
+				labelText: 'Account',
+				// helperText: 'Please enter user name',
+				prefixIcon: Image.asset('assets/login_btn.png', width: 1.0, height: 1.0),
+				suffixText: 'user name',
+			),
+			onChanged: (text) {
+				print('change $text');
+			},
+			onSubmitted: (text) {
+				print('submit $text');
+			}
+		),
+	  );
+  }
+
+  Widget buildPasswordInput() {
+	  return Padding(
+		  padding: EdgeInsets.fromLTRB(0.0, 0.0, 7.0, 0.0),
+		  child: TextField(
+			controller: this.userNameController,
+			textAlign: TextAlign.left,
+			style: TextStyle(fontSize: 12.0, color: Colors.black),
+			obscureText: true,
+			decoration: InputDecoration(
+				fillColor: Colors.white.withOpacity(0.0),
+				filled: true,
+				labelText: 'Password',
+				// helperText: 'Please enter password',
+				prefixIcon: Image.asset('assets/password_btn.png', width: 2.0, height: 2.0),
+				suffixText: 'password',
+			),
+			onChanged: (text) {
+				print('change $text');
+			},
+			onSubmitted: (text) {
+				print('submit $text');
+			}
+		),
 	  );
   }
 
