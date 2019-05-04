@@ -126,9 +126,8 @@ class _PageLoginState extends State<PageLogin> {
 				fillColor: Colors.white.withOpacity(0.0),
 				filled: true,
 				labelText: 'Account',
-				// helperText: 'Please enter user name',
 				prefixIcon: Image.asset('assets/login_btn.png', width: 1.0, height: 1.0),
-				suffixText: 'user name',
+				suffixText: 'Enter user name',
 			),
 			onChanged: (text) {
 				print('change $text');
@@ -152,9 +151,8 @@ class _PageLoginState extends State<PageLogin> {
 				fillColor: Colors.white.withOpacity(0.0),
 				filled: true,
 				labelText: 'Password',
-				// helperText: 'Please enter password',
 				prefixIcon: Image.asset('assets/password_btn.png', width: 2.0, height: 2.0),
-				suffixText: 'password',
+				suffixText: 'Enter password',
 			),
 			onChanged: (text) {
 				print('change $text');
@@ -201,7 +199,7 @@ class _PageLoginState extends State<PageLogin> {
 				  child: Container(
 					  decoration: BoxDecoration(
 						  color: Colors.white,
-						//   borderRadius: BorderRadius.only(bottomRight: Radius.circular(10.0)),
+						  borderRadius: BorderRadius.only(bottomRight: Radius.circular(10.0)),
 					  	  border: BorderDirectional(bottom: BorderSide(color: Colors.white, width: 0.0, style: BorderStyle.solid))
 					  ),
 				  ),
@@ -213,7 +211,7 @@ class _PageLoginState extends State<PageLogin> {
 				  decoration: BoxDecoration(
 					  color: Color(0xFF0061f8),
 					  shape: BoxShape.rectangle,
-					//   borderRadius: BorderRadius.only(topLeft: Radius.circular(10.0), bottomLeft: Radius.circular(10.0))
+					  borderRadius: BorderRadius.only(topLeft: Radius.circular(10.0), bottomLeft: Radius.circular(10.0))
 				  ),
 				  child: Center(
 					  child: this.buildButtonText('Log in', Colors.white),
@@ -231,7 +229,7 @@ class _PageLoginState extends State<PageLogin> {
 				  child: Container(
 					  decoration: BoxDecoration(
 						  color: Colors.white,
-						//   borderRadius: BorderRadius.only(topRight: Radius.circular(10.0)),
+						  borderRadius: BorderRadius.only(topRight: Radius.circular(10.0)),
 					  	  border: BorderDirectional(top: BorderSide(color: Colors.white, width: 0.0, style: BorderStyle.solid))
 					  ),
 				  ),
@@ -250,7 +248,7 @@ class _PageLoginState extends State<PageLogin> {
   Widget buildForginButton() {
 	  return Container(
 		  padding: EdgeInsets.fromLTRB(0.0, 40.0, 0.0, 0.0),
-		  child: this.buildButtonText('forget password', Colors.black.withOpacity(0.3)),
+		  child: this.buildButtonText('Forget password?', Colors.black.withOpacity(0.3)),
 	  );
   }
 
