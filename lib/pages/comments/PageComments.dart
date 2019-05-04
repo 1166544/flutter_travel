@@ -102,6 +102,7 @@ class _PageCommentsState extends State<PageComments> with CommonNavigator {
   }
 
   /// 标题
+  /// * [PageCommentsVO item] 标题数据源
   Widget getTitle(PageCommentsVO item) {
 	  return Padding(
 		  padding: EdgeInsets.fromLTRB(26.0, 5.0, 26.0, 0.0),
