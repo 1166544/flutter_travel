@@ -79,7 +79,8 @@ class _PageLoginState extends State<PageLogin> {
 		)
 	  );
   }
-
+  
+  /// 登录标题
   Widget buildLoginTitle() {
 	  return Column(
 		  crossAxisAlignment: CrossAxisAlignment.start,
