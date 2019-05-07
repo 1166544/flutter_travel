@@ -79,7 +79,7 @@ class _PageLoginState extends State<PageLogin> {
 		)
 	  );
   }
-  
+
   /// 登录标题
   Widget buildLoginTitle() {
 	  return Column(
@@ -106,6 +106,7 @@ class _PageLoginState extends State<PageLogin> {
 	  );
   }
 
+  /// 登录输入
   Widget buildLoginInput() {
 	  return Column(
 		  children: <Widget>[
@@ -121,7 +122,7 @@ class _PageLoginState extends State<PageLogin> {
 		  padding: EdgeInsets.fromLTRB(0.0, 0.0, 7.0, 0.0),
 		  child: TextField(
 			controller: this.userNameController,
-			textAlign: TextAlign.left,//文本对齐方式
+			textAlign: TextAlign.left,
 			style: TextStyle(fontSize: 12.0, color: Colors.black),
 			decoration: InputDecoration(
 				fillColor: Colors.white.withOpacity(0.0),
