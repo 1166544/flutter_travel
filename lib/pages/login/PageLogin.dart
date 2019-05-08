@@ -117,6 +117,7 @@ class _PageLoginState extends State<PageLogin> {
 	  );
   }
 
+  /// 用户名输入
   Widget buildUserNameInput() {
 	  return Container(
 		  padding: EdgeInsets.fromLTRB(0.0, 0.0, 7.0, 0.0),
