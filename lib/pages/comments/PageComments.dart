@@ -203,6 +203,7 @@ class _PageCommentsState extends State<PageComments> with CommonNavigator {
   }
 
   /// 图片区
+  /// * [PageCommentsVO item] 图片数据项
   Widget getThumbilsArea(PageCommentsVO item) {
 	  List<Widget> thumbilsList = [];
 	  int index = 0;
