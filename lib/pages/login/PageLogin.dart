@@ -142,6 +142,7 @@ class _PageLoginState extends State<PageLogin> {
 	  );
   }
 
+  /// 密码框
   Widget buildPasswordInput() {
 	  return Padding(
 		  padding: EdgeInsets.fromLTRB(0.0, 0.0, 7.0, 0.0),
