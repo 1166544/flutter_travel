@@ -167,7 +167,8 @@ class _PageLoginState extends State<PageLogin> {
 		),
 	  );
   }
-
+  
+  /// 登录按钮
   Widget buildLoginButton() {
 	  return Column(
 		  children: <Widget>[
