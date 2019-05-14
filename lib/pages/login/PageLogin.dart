@@ -167,7 +167,7 @@ class _PageLoginState extends State<PageLogin> {
 		),
 	  );
   }
-  
+
   /// 登录按钮
   Widget buildLoginButton() {
 	  return Column(
@@ -243,6 +243,7 @@ class _PageLoginState extends State<PageLogin> {
 	  );
   }
 
+  /// 登录底部按钮
   Widget buildLoginBtottomButton() {
 	  return Container(
 		  padding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 0.0),
