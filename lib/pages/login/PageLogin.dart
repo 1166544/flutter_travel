@@ -181,7 +181,7 @@ class _PageLoginState extends State<PageLogin> {
 				  onTap: () {},
 			  ),
 			  InkWell(
-				  child: this.buildForginButton(),
+				  child: this.buildForgotButton(),
 			  )
 		  ],
 	  );
@@ -251,7 +251,8 @@ class _PageLoginState extends State<PageLogin> {
 	  );
   }
 
-  Widget buildForginButton() {
+  /// 忘记密码按钮
+  Widget buildForgotButton() {
 	  return Container(
 		  padding: EdgeInsets.fromLTRB(0.0, 40.0, 0.0, 0.0),
 		  child: this.buildButtonText('Forget password?', Colors.black.withOpacity(0.3)),
