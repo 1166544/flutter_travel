@@ -94,6 +94,7 @@ class _PageAllViewState extends State<PageAllView> {
     );
   }
 
+  /// 构建Participant信息条
   Widget buildParticipant() {
     return Container(
       padding: EdgeInsets.fromLTRB(30.0, 30.0, 30.0, 0.0),
