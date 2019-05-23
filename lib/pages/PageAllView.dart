@@ -138,6 +138,7 @@ class _PageAllViewState extends State<PageAllView> {
     );
   }
 
+  /// 封面图片
   Widget buildCoverImage() {
     return Container(
       padding: EdgeInsets.fromLTRB(30.0, 30.0, 30.0, 0.0),
