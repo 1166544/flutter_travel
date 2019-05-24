@@ -190,6 +190,7 @@ class _PageAllViewState extends State<PageAllView> {
     );
   }
 
+  /// 圆角title
   Widget buildCircleTitle(
       Color startColor, Color endColor, String title, String subTitle) {
     return Row(
