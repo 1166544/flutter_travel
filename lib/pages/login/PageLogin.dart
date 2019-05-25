@@ -259,6 +259,7 @@ class _PageLoginState extends State<PageLogin> {
 	  );
   }
 
+  /// 按钮文字
   Widget buildButtonText(String labelStr, Color colorValue) {
 	  return Text(labelStr, style: TextStyle(
 			fontSize: 15.0,
