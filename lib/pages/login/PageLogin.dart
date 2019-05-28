@@ -192,7 +192,7 @@ class _PageLoginState extends State<PageLogin> {
 	  double buttonWidth = MediaQuery.of(context).size.width - 40;
 	  return Column(
 		  children: <Widget>[
-        // 饰修性背景
+        		// 饰修性背景
 			  Container(
 				  margin: EdgeInsets.fromLTRB(59.0, 0, 7.0, 0),
 				  width: buttonWidth,
@@ -210,6 +210,7 @@ class _PageLoginState extends State<PageLogin> {
 					  ),
 				  ),
 			  ),
+			  // 登录提示文字
 			  Container(
 				  margin: EdgeInsets.fromLTRB(0.0, 0, 7.0, 0),
 				  width: buttonWidth,
