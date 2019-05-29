@@ -224,6 +224,7 @@ class _PageLoginState extends State<PageLogin> {
 					  child: this.buildButtonText('Log in', Colors.white),
 				  ),
 			  ),
+        // 圆角背景
 			  Container(
 				  margin: EdgeInsets.fromLTRB(59.0, 0, 7.0, 0),
 				  width: buttonWidth,
