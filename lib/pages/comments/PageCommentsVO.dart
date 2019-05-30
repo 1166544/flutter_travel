@@ -29,7 +29,7 @@ class PageCommentsVO {
     /// 拿测试数据
 	List<PageCommentsVO> getTestData() {
 		List<PageCommentsVO> commentsList = [];
-
+		// 模拟数据源
 		commentsList.add(new PageCommentsVO(
 			avataUrl: 'assets/chris.jpg',
 			postTitle: 'PROSPECT',
