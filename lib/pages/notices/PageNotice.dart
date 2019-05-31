@@ -290,6 +290,7 @@ class _PageNoticeState extends State<PageNotice> with CommonNavigator {
 							shape: BoxShape.rectangle,
 							borderRadius: BorderRadius.circular(2.0)
 						),
+						// 描述删除按钮
 						child: Center(
 							child: Text('DELETE', style: TextStyle(
 										fontFamily: 'Montserrat',
