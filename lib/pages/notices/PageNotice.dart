@@ -264,6 +264,7 @@ class _PageNoticeState extends State<PageNotice> with CommonNavigator {
 					child: Container(
 						width: 110.0,
 						height: 30.0,
+            			// 圆角背景按钮
 						decoration: BoxDecoration(
 							color: Colors.yellow,
 							shape: BoxShape.rectangle,
