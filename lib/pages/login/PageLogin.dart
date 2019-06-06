@@ -202,6 +202,7 @@ class _PageLoginState extends State<PageLogin> {
 					  shape: BoxShape.rectangle,
 					  border: BorderDirectional(bottom: BorderSide(color: Color(0xFF0061f8), width: 0.0, style: BorderStyle.solid))
 				  ),
+				  //  圆角背景
 				  child: Container(
 					  decoration: BoxDecoration(
 						  color: Colors.white,
