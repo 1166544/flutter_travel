@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
-import '../../main.dart';
+import 'package:flutter_travel/core/CoreBottomNavigation.dart';
 
 class PageLogin extends StatefulWidget {
   PageLogin({Key key}) : super(key: key);
@@ -180,7 +179,7 @@ class _PageLoginState extends State<PageLogin> {
 					  // 跳转至主页面
 					  Navigator.push(context, MaterialPageRoute(
 						  builder: (context) {
-							  return TravelHomePage();
+							  return BottomNavigation();
 						  }
 					  ));
 				  },
