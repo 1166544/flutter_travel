@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_travel/pages/login/PageLogin.dart';
 import 'package:flutter_travel/redux/states/StateGlobal.dart';
+import 'package:flutter_travel/redux/reducers/ReducerGlobal.dart';
 import 'package:redux/redux.dart';
 
 void main() => runApp(TravelApp());

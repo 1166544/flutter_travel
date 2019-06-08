@@ -3,6 +3,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:flutter_travel/redux/actions/ActionGlobal.dart';
 import 'package:flutter_travel/redux/states/StateGlobal.dart';
 
 /// 摄影
@@ -278,7 +279,7 @@ class _PageGraphicsState extends State<PageGraphics> {
 	Widget buildBuyButtonAction() {
 		return StoreConnector<StateGlobal, VoidCallback>(
 			converter: (store) {
-				return () => store.dispatch(Action.increment);
+				return () => store.dispatch(ActionGlobal.increment);
 			},
 			builder: (context, callback) {
 				return InkWell(
