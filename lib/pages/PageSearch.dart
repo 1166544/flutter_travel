@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_travel/common/CommonGalleryItem.dart';
+import 'package:flutter_travel/redux/states/StateGlobal.dart';
 import '../common/CommonTravelItem.dart';
 
 /// 搜索页
@@ -13,7 +15,6 @@ class PageSearch extends StatefulWidget {
 
 class _PageSearchState extends State<PageSearch> with CommonTravelItem {
 
-  @override
   bool get wantKeepAlive => null;
 
   @override
@@ -21,14 +22,7 @@ class _PageSearchState extends State<PageSearch> with CommonTravelItem {
 	return Scaffold(
 		appBar: AppBar(
 			title: Center(
-				child: Text(
-					'Maldives - 12 Days',
-					style: TextStyle(
-						color: Colors.black,
-						fontWeight: FontWeight.bold,
-						fontSize: 20.0
-					)
-				),
+				child: this.getSearchTitle(),
 			),
 			elevation: 0.0,
 			backgroundColor: Colors.white,
@@ -54,6 +48,23 @@ class _PageSearchState extends State<PageSearch> with CommonTravelItem {
 		body: this.buildSearchLayout()
 	);
   }
+
+	/// 绑定动态标题
+	Widget getSearchTitle() {
+		return StoreConnector<StateGlobal, int>(
+			converter: (store) => store.state.count,
+			builder: (context, count) {
+				return Text(
+					'Maldives - 12 Days ${count.toString()}',
+					style: TextStyle(
+						color: Colors.black,
+						fontWeight: FontWeight.bold,
+						fontSize: 20.0
+					)
+				);
+			}
+		);
+	}
 
   /// 基础页面结构
   Widget buildSearchLayout() {

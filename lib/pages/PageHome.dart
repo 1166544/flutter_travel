@@ -18,7 +18,6 @@ class PageHome extends StatefulWidget {
 /// 首页面内容
 class _PageHomeState extends State<PageHome> with CommonTravelItem, CommonNavigator {
 
-  @override
   bool get wantKeepAlive => null;
 
   @override

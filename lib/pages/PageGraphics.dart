@@ -2,6 +2,8 @@ import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_redux/flutter_redux.dart';
+import 'package:flutter_travel/redux/states/StateGlobal.dart';
 
 /// 摄影
 class PageGraphics extends StatefulWidget {
@@ -260,7 +262,7 @@ class _PageGraphicsState extends State<PageGraphics> {
 									mainAxisAlignment: MainAxisAlignment.spaceEvenly,
 									children: <Widget>[
 										this.buildFavoriteButton('Add favorite', Colors.white, Colors.black),
-										this.buildFavoriteButton('Buy tickets', Colors.deepPurple, Colors.white),
+										this.buildBuyButtonAction(),
 									]
 								),
 							],
@@ -271,6 +273,21 @@ class _PageGraphicsState extends State<PageGraphics> {
 		  ),
 	  );
   }
+
+	/// 包装点击按钮
+	Widget buildBuyButtonAction() {
+		return StoreConnector<StateGlobal, VoidCallback>(
+			converter: (store) {
+				return () => store.dispatch(Action.increment);
+			},
+			builder: (context, callback) {
+				return InkWell(
+					child: this.buildFavoriteButton('Buy tickets', Colors.deepPurple, Colors.white),
+					onTap: callback,
+				);
+			},
+		);
+	}
 
   /// 构建圆形按钮
   Widget buildFavoriteButton(String textLabel, Color colorContent, Color colorText) {
@@ -350,7 +367,12 @@ class _PageGraphicsState extends State<PageGraphics> {
 						borderRadius: BorderRadius.circular(10.0),
 					),
 					child: Center(
-						child: Text('+57', style: TextStyle(fontSize: 25.0, color: Colors.white)),
+						child: StoreConnector<StateGlobal, int>(
+							converter: (store) => store.state.count,
+							builder: (context, count) {
+								return Text('+${count.toString()}', style: TextStyle(fontSize: 25.0, color: Colors.white));
+							}
+						),
 					),
 				),
 			),

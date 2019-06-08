@@ -1,38 +1,52 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_travel/core/CoreBottomNavigation.dart';
+import 'package:flutter_travel/redux/states/StateGlobal.dart';
+import 'package:redux/redux.dart';
 
 class PageLogin extends StatefulWidget {
-  PageLogin({Key key}) : super(key: key);
+	final Store<StateGlobal> store;
 
-  _PageLoginState createState() => _PageLoginState();
+	PageLogin({Key key, this.store}) : super(key: key);
+
+	_PageLoginState createState() => _PageLoginState(this.store);
 }
 
 /// 登录页面，无APPBAR
 class _PageLoginState extends State<PageLogin> {
+	final Store<StateGlobal> store;
+	_PageLoginState(Store<StateGlobal> store) : store = store;
 
-  TextEditingController userNameController = TextEditingController();
-//   TextEditingController passwordController = TextEditingController();
+	TextEditingController userNameController = TextEditingController();
+	//   TextEditingController passwordController = TextEditingController();
 
-  @override
-  Widget build(BuildContext context) {
-	return Material(
-		child: Container(
-			decoration: BoxDecoration(
-				color: Colors.white,
-				shape: BoxShape.rectangle,
+	@override
+	Widget build(BuildContext context) {
+		return StoreProvider<StateGlobal>(
+			store: this.store,
+			child: this.getLoginEntrance(context)
+		);
+  	}
+
+	/// 登录页面入口
+	Widget getLoginEntrance(BuildContext context) {
+		return Material(
+			child: Container(
+				decoration: BoxDecoration(
+					color: Colors.white,
+					shape: BoxShape.rectangle,
+				),
+				width: MediaQuery.of(context).size.width,
+				height: MediaQuery.of(context).size.height,
+				child: Stack(
+					children: <Widget>[
+						this.buildBackground(),
+						this.buildLoginPanel()
+					],
+				),
 			),
-			width: MediaQuery.of(context).size.width,
-			height: MediaQuery.of(context).size.height,
-			child: Stack(
-				children: <Widget>[
-					this.buildBackground(),
-					this.buildLoginPanel()
-				],
-			),
-		),
-	);
-  }
+		);
+	}
 
   /// 背景布局
   Widget buildBackground() {
@@ -95,17 +109,27 @@ class _PageLoginState extends State<PageLogin> {
 						color: Colors.black,
 					)
 			 ),
-			Text(
-				  'UN   ICN_PART',
+			this.getUpdatedLabel()
+		  ],
+	  );
+  }
+
+	/// 动态绑定数据源使用
+	Widget getUpdatedLabel() {
+		return StoreConnector<StateGlobal, int>(
+			converter: (store) => store.state.count,
+			builder: (context, count) {
+				return Text(
+					'UN   ICN_PART ${count.toString()}',
 					style: TextStyle(
 						fontSize: 25.0,
 						fontWeight: FontWeight.normal,
 						color: Colors.black.withOpacity(0.5),
 					)
-			 )
-		  ],
-	  );
-  }
+				);
+			}
+		);
+	}
 
   /// 登录输入
   Widget buildLoginInput() {
@@ -179,7 +203,7 @@ class _PageLoginState extends State<PageLogin> {
 					  // 跳转至主页面
 					  Navigator.push(context, MaterialPageRoute(
 						  builder: (context) {
-							  return BottomNavigation();
+							  return BottomNavigation(store: this.store);
 						  }
 					  ));
 				  },

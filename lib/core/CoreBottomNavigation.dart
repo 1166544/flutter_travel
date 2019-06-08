@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_travel/pages/PageCircler.dart';
 import 'package:flutter_travel/pages/PageGraphics.dart';
 import 'package:flutter_travel/pages/PageHome.dart';
 import 'package:flutter_travel/pages/PageSearch.dart';
+import 'package:flutter_travel/redux/states/StateGlobal.dart';
+import 'package:redux/redux.dart';
 
 /// TAB枚举
 enum TabItem {
@@ -29,12 +32,18 @@ String tabItemName(TabItem tabItem) {
 
 /// 底部TAB按钮入口类
 class BottomNavigation extends StatefulWidget {
+	final Store<StateGlobal> store;
+	BottomNavigation({Key key, this.store}) : super(key: key);
+
 	@override
-	State<StatefulWidget> createState() => BottomNavigationState();
+	State<StatefulWidget> createState() => BottomNavigationState(this.store);
 }
 
 /// TAB VIEW STATE入口类
 class BottomNavigationState extends State<BottomNavigation> {
+	final Store<StateGlobal> store;
+	BottomNavigationState(Store<StateGlobal> store) : store = store;
+
 	TabItem currentItem = TabItem.Home;
 
 	/// TAB选择处理
@@ -77,20 +86,31 @@ class BottomNavigationState extends State<BottomNavigation> {
 		switch (currentItem) {
 			// Home
 			case TabItem.Home:
-				return PageSearch();
+				return StoreProvider<StateGlobal>(
+					store: this.store,
+					child: PageSearch(),
+				);
 
 			// Search
 			case TabItem.Search:
-				return PageHome();
+				return StoreProvider<StateGlobal>(
+					store: this.store,
+					child: PageHome(),
+				);
 
 			// Graphics
 			case TabItem.Graphics:
-				return PageGraphics();
+				return StoreProvider<StateGlobal>(
+					store: this.store,
+					child: PageGraphics(),
+				);
 
 			// Circler
 			case TabItem.Circler:
-				return PageCircler();
-
+				return StoreProvider<StateGlobal>(
+					store: this.store,
+					child: PageCircler(),
+				);
 		}
 
 		return Container();

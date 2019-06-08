@@ -57,7 +57,7 @@ class _CommonPhotoViewerState extends State<CommonPhotoViewer> {
 			Navigator.of(context).pop();
 		}),
 		title: Text(
-			"${imageTitle}",
+			"$imageTitle",
 			style: TextStyle(color: Colors.white, fontFamily: 'Montserrat')
       	),
 		centerTitle: true,
