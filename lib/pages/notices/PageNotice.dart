@@ -281,6 +281,7 @@ class _PageNoticeState extends State<PageNotice> with CommonNavigator {
 					onTap: () {},
 				),
 				SizedBox(width: 10.0),
+				// 描述删除按钮使用InkWell包装
 				InkWell(
 					highlightColor: Colors.grey,
 					child: Container(
