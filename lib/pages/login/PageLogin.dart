@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../../main.dart';
+
 class PageLogin extends StatefulWidget {
   PageLogin({Key key}) : super(key: key);
 
@@ -174,7 +176,14 @@ class _PageLoginState extends State<PageLogin> {
 		  children: <Widget>[
 			  InkWell(
 				  child: this.buildLoginTopButton(),
-				  onTap: () {},
+				  onTap: () {
+					  // 跳转至主页面
+					  Navigator.push(context, MaterialPageRoute(
+						  builder: (context) {
+							  return TravelHomePage();
+						  }
+					  ));
+				  },
 			  ),
 			  InkWell(
 				  child: this.buildLoginBtottomButton(),
