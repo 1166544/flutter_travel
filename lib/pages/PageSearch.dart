@@ -32,24 +32,24 @@ class _PageSearchState extends State<PageSearch> with CommonTravelItem {
 			),
 			elevation: 0.0,
 			backgroundColor: Colors.white,
-			leading: IconButton(
-				tooltip: 'Search Page',
-				icon: Icon(Icons.arrow_back_ios),
-				color: Colors.grey,
-				onPressed: () {
-					// hole
-				},
-			),
-			actions: <Widget>[
-				IconButton(
-					color: Colors.grey,
-					icon: Icon(Icons.menu),
-					tooltip: 'Settings',
-					onPressed: () {
-						// hole
-					},
-				)
-			],
+			// leading: IconButton(
+			// 	tooltip: 'Search Page',
+			// 	icon: Icon(Icons.arrow_back_ios),
+			// 	color: Colors.grey,
+			// 	onPressed: () {
+			// 		// hole
+			// 	},
+			// ),
+			// actions: <Widget>[
+			// 	IconButton(
+			// 		color: Colors.grey,
+			// 		icon: Icon(Icons.menu),
+			// 		tooltip: 'Settings',
+			// 		onPressed: () {
+			// 			// hole
+			// 		},
+			// 	)
+			// ],
 		),
 		body: this.buildSearchLayout()
 	);
