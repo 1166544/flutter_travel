@@ -262,7 +262,7 @@ class _PageGraphicsState extends State<PageGraphics> {
 								Row(
 									mainAxisAlignment: MainAxisAlignment.spaceEvenly,
 									children: <Widget>[
-										this.buildFavoriteButton('Add favorite', Colors.white, Colors.black),
+										this.buildFavoriteButtonAction(),
 										this.buildBuyButtonAction(),
 									]
 								),
@@ -275,7 +275,22 @@ class _PageGraphicsState extends State<PageGraphics> {
 	  );
   }
 
-	/// 包装点击按钮
+	/// 包装收藏点击按钮
+	Widget buildFavoriteButtonAction() {
+		return StoreConnector<StateGlobal, VoidCallback>(
+			converter: (store) {
+				return () => store.dispatch(ActionGlobal.decrement);
+			},
+			builder: (context, callback) {
+				return InkWell(
+					child: this.buildFavoriteButton('Add favorite', Colors.white, Colors.black),
+					onTap: callback,
+				);
+			},
+		);
+	}
+
+	/// 包装购买点击按钮
 	Widget buildBuyButtonAction() {
 		return StoreConnector<StateGlobal, VoidCallback>(
 			converter: (store) {
