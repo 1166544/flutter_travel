@@ -6,19 +6,19 @@
     "configurations": [
 		{
 			"name": "开发环境",
-			"program": "lib/env/EnviromentDev.dart",
+			"program": "lib/core/env/EnviromentDev.dart",
 			"request": "launch",
 			"type": "dart"
 		},
         {
             "name": "测试环境",
-			"program": "lib/env/EnviromentTest.dart",
+			"program": "lib/core/env/EnviromentTest.dart",
             "request": "launch",
             "type": "dart"
 		},
         {
             "name": "灰度环境",
-			"program": "lib/env/EnviromentGrey.dart",
+			"program": "lib/core/env/EnviromentGrey.dart",
             "request": "launch",
             "type": "dart"
 		},

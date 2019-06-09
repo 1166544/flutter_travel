@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_travel/config/ConfigDefault.dart';
-import 'package:flutter_travel/pages/login/PageLogin.dart';
+import 'package:flutter_travel/pages/modules/login/LoginPage.dart';
 import 'package:flutter_travel/redux/states/StateGlobal.dart';
 import 'package:flutter_travel/redux/reducers/ReducerGlobal.dart';
 import 'package:flutter_travel/services/ServiceEnviroment.dart';
 import 'package:redux/redux.dart';
 
 /// APP启动入口
-class TravelApp extends StatelessWidget {
+class CoreApp extends StatelessWidget {
 
 	final ENVIROMENT env;
 
-	TravelApp({this.env}) {
+	CoreApp({this.env}) {
 		ServiceEnviroment.init(this.env);
 	}
 
@@ -22,7 +22,7 @@ class TravelApp extends StatelessWidget {
 		return MaterialApp(
 			debugShowCheckedModeBanner: false,
 			theme: ThemeData(primaryColor: Colors.black),
-			home: PageLogin(store: store)
+			home: LoginPage(store: store)
 		);
 	}
 }

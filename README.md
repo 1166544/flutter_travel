@@ -15,16 +15,32 @@ flutter run
 ## BUILD
 ```shell
 // 开发环境
-flutter build -t lib/env/EnviromentDev.dart
+flutter build -t lib/core/env/EnviromentDev.dart
 
 // 测试环境
-flutter build -t lib/env/EnviromentTest.dart
+flutter build -t lib/core/env/EnviromentTest.dart
 
 // 灰度环境
-flutter build -t lib/env/EnviromentGrey.dart
+flutter build -t lib/core/env/EnviromentGrey.dart
 
 // 生产环境
 flutter build -t lib/main.dart
+```
+
+## STRUCTS
+```shell
+lib
+  |-- config 		环境配置目录
+  |-- core   		核心逻辑
+  |-- pages  		业务逻辑
+  |----- common  	业务逻辑公用组件
+  |----- modules 	业务逻辑模块存放目录
+  |-- redux  		状态管理
+  |----- actions 	业务逻辑action
+  |----- reducers 	业务逻辑reducer
+  |----- states 	业务逻辑state
+  |-- routers 		虚拟路由页面，用于表示各业务逻辑页面入口
+  |-- services 		业务逻辑调用接口存一存放目录
 ```
 
 This project is a starting point for a Flutter application.

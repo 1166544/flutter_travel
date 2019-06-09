@@ -1,11 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_travel/config/ConfigDefault.dart';
-import 'package:flutter_travel/core/CoreHttpService.dart';
+import 'package:flutter_travel/core/http/HttpServiceCore.dart';
 
 import 'ServiceEnviroment.dart';
 
 /// 公众API服务
-class ServiceApiOpen extends CoreHttpService {
+class ServiceApiOpen extends HttpServiceCore {
 	factory ServiceApiOpen() => _getInstance();
 	static ServiceApiOpen get instance => _getInstance();
 	static ServiceApiOpen _instance;

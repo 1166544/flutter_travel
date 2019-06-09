@@ -1,9 +1,9 @@
 import 'package:flutter_travel/config/ConfigDefault.dart';
-import 'package:flutter_travel/core/CoreHttpService.dart';
+import 'package:flutter_travel/core/http/HttpServiceCore.dart';
 import 'package:flutter_travel/services/ServiceEnviroment.dart';
 
 /// 腾讯API服务
-class ServiceQQ extends CoreHttpService {
+class ServiceQQ extends HttpServiceCore {
 	factory ServiceQQ() => _getInstance();
 	static ServiceQQ get instance => _getInstance();
 	static ServiceQQ _instance;
