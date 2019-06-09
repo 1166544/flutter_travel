@@ -20,10 +20,12 @@ class _ProfilePageState extends State<ProfilePage> {
 
 	@override
 	void initState() {
-		super.initState();
 
 		// 调用数据
-		this.serviceApiOpen.getJournalismData();
+		this.serviceApiOpen.getJournalismData().then((onValue) {
+			print(onValue);
+			super.initState();
+		});
 		// print(await this.serviceApiOpen.getJournalismData());
 	}
 

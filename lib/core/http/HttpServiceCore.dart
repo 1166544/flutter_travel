@@ -86,7 +86,6 @@ class HttpServiceCore {
 			response = await this.dio.get(path);
 		}
 
-		print(response);
 		return response;
 	}
 
