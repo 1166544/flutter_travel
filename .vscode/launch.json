@@ -1,13 +1,32 @@
 {
-    // 使用 IntelliSense 了解相关属性。 
+    // 使用 IntelliSense 了解相关属性。
     // 悬停以查看现有属性的描述。
     // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+		{
+			"name": "开发环境",
+			"program": "lib/env/EnviromentDev.dart",
+			"request": "launch",
+			"type": "dart"
+		},
         {
-            "name": "Flutter",
+            "name": "测试环境",
+			"program": "lib/env/EnviromentTest.dart",
             "request": "launch",
             "type": "dart"
-        }
+		},
+        {
+            "name": "灰度环境",
+			"program": "lib/env/EnviromentGrey.dart",
+            "request": "launch",
+            "type": "dart"
+		},
+		{
+			"name": "生产环境",
+			"program": "lib/main.dart",
+			"request": "launch",
+			"type": "dart"
+		}
     ]
 }

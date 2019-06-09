@@ -12,6 +12,21 @@ flutter upgrade
 flutter run
 ```
 
+## BUILD
+```shell
+// 开发环境
+flutter build -t lib/env/EnviromentDev.dart
+
+// 测试环境
+flutter build -t lib/env/EnviromentTest.dart
+
+// 灰度环境
+flutter build -t lib/env/EnviromentGrey.dart
+
+// 生产环境
+flutter build -t lib/main.dart
+```
+
 This project is a starting point for a Flutter application.
 
 A few resources to get you started if this is your first Flutter project:

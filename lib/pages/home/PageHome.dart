@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_travel/common/CommonGalleryItem.dart';
 import 'package:flutter_travel/common/CommonNavigator.dart';
-import 'package:flutter_travel/pages/PageAllView.dart';
-import 'package:flutter_travel/pages/PageOrderView.dart';
+import 'package:flutter_travel/pages/all/PageAllView.dart';
+import 'package:flutter_travel/pages/order/PageOrderView.dart';
 import 'package:flutter_travel/pages/notices/PageNotice.dart';
-import '../common/CommonTravelItem.dart';
-import './PageProfile.dart';
+import '../../common/CommonTravelItem.dart';
+import '../profile/PageProfile.dart';
 
 class PageHome extends StatefulWidget {
   final Widget child;

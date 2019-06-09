@@ -61,7 +61,7 @@ class _PageLoginState extends State<PageLogin> {
 			  // 中间框
 			  this.buildBackgroundByTemplate(Colors.white, middleWidth),
 			  // 右边框
-			  this.buildBackgroundByTemplate(Color(0xFF0061f8), rightWidth),
+			  this.buildBackgroundByTemplate(Colors.lightBlue, rightWidth),
 		  ],
 	  );
   }
@@ -230,9 +230,9 @@ class _PageLoginState extends State<PageLogin> {
 				  width: buttonWidth,
 				  height: 8,
 				  decoration: BoxDecoration(
-					  color: Color(0xFF0061f8),
+					  color: Colors.lightBlue,
 					  shape: BoxShape.rectangle,
-					  border: BorderDirectional(bottom: BorderSide(color: Color(0xFF0061f8), width: 0.0, style: BorderStyle.solid))
+					  border: BorderDirectional(bottom: BorderSide(color: Colors.lightBlue, width: 0.0, style: BorderStyle.solid))
 				  ),
 				  //  圆角背景
 				  child: Container(
@@ -249,7 +249,7 @@ class _PageLoginState extends State<PageLogin> {
 				  width: buttonWidth,
 				  height: 48,
 				  decoration: BoxDecoration(
-					  color: Color(0xFF0061f8),
+					  color: Colors.lightBlue,
 					  shape: BoxShape.rectangle,
 					  borderRadius: BorderRadius.only(topLeft: Radius.circular(10.0), bottomLeft: Radius.circular(10.0))
 				  ),
@@ -257,17 +257,17 @@ class _PageLoginState extends State<PageLogin> {
 					  child: this.buildButtonText('Log in', Colors.white),
 				  ),
 			  ),
-        // 圆角背景
+        	  // 圆角背景
 			  Container(
 				  margin: EdgeInsets.fromLTRB(59.0, 0, 7.0, 0),
 				  width: buttonWidth,
 				  height: 8,
 				  decoration: BoxDecoration(
-					  color: Color(0xFF0061f8),
+					  color: Colors.lightBlue,
 					  shape: BoxShape.rectangle,
-					  border: BorderDirectional(top: BorderSide(color: Color(0xFF0061f8), width: 0.0, style: BorderStyle.solid))
+					  border: BorderDirectional(top: BorderSide(color: Colors.lightBlue, width: 0.0, style: BorderStyle.solid))
 				  ),
-          // 容器内容
+          		// 容器内容
 				  child: Container(
 					  decoration: BoxDecoration(
 						  color: Colors.white,

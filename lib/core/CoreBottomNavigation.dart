@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:flutter_travel/pages/PageCircler.dart';
-import 'package:flutter_travel/pages/PageGraphics.dart';
-import 'package:flutter_travel/pages/PageHome.dart';
-import 'package:flutter_travel/pages/PageSearch.dart';
+import 'package:flutter_travel/pages/circler/PageCircler.dart';
+import 'package:flutter_travel/pages/graphics/PageGraphics.dart';
+import 'package:flutter_travel/pages/home/PageHome.dart';
+import 'package:flutter_travel/pages/search/PageSearch.dart';
 import 'package:flutter_travel/redux/states/StateGlobal.dart';
 import 'package:redux/redux.dart';
 

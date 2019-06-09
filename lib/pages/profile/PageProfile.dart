@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_travel/services/ServiceApiOpen.dart';
 
 class PageProfile extends StatefulWidget {
 	final Widget child;
@@ -10,6 +11,21 @@ class PageProfile extends StatefulWidget {
 
 /// 详情页
 class _PageProfileState extends State<PageProfile> {
+
+	ServiceApiOpen serviceApiOpen;
+
+	_PageProfileState() {
+		this.serviceApiOpen = new ServiceApiOpen();
+	}
+
+	@override
+	void initState() async {
+		super.initState();
+
+		// 调用数据
+		print(await this.serviceApiOpen.getJournalismData());
+	}
+
 	@override
 	Widget build(BuildContext context) {
 	return Scaffold(

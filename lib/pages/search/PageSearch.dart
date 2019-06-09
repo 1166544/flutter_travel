@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_travel/common/CommonGalleryItem.dart';
 import 'package:flutter_travel/redux/states/StateGlobal.dart';
-import '../common/CommonTravelItem.dart';
+import '../../common/CommonTravelItem.dart';
 
 /// 搜索页
 class PageSearch extends StatefulWidget {
