@@ -59,22 +59,22 @@ class HttpServiceCore {
 		this.dio.interceptors.add(LogInterceptor(responseBody: false));
 
 		// cookie
-		dio.interceptors.add(CookieManager(CookieJar()));
+		this.dio.interceptors.add(CookieManager(CookieJar()));
 
 		// 自定义拦截器
 		this.dio.transformer = new HttpTransformerCore();
 
 		// 开发环境抓包请求
-		if (ServiceEnviroment.instance.env == ENVIROMENT.DEVELOPEMENT) {
-			(dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
-				(HttpClient client) {
-				client.findProxy = (uri) {
-					// proxy all request to localhost:8888
-					return "PROXY localhost:8888";
-				};
-				client.badCertificateCallback = (X509Certificate cert, String host, int port) => true;
-			};
-		}
+		// if (ServiceEnviroment.instance.env == ENVIROMENT.DEVELOPEMENT) {
+		// 	(dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
+		// 		(HttpClient client) {
+		// 		client.findProxy = (uri) {
+		// 			// proxy all request to localhost:8888
+		// 			return "PROXY localhost:8888";
+		// 		};
+		// 		client.badCertificateCallback = (X509Certificate cert, String host, int port) => true;
+		// 	};
+		// }
 	}
 
 	/// 处理GET请求
@@ -86,6 +86,7 @@ class HttpServiceCore {
 			response = await this.dio.get(path);
 		}
 
+		print(response);
 		return response;
 	}
 

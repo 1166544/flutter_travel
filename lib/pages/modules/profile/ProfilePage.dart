@@ -23,6 +23,7 @@ class _ProfilePageState extends State<ProfilePage> {
 		super.initState();
 
 		// 调用数据
+		this.serviceApiOpen.getJournalismData();
 		// print(await this.serviceApiOpen.getJournalismData());
 	}
 
