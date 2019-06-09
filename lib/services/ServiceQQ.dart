@@ -20,5 +20,7 @@ class ServiceQQ extends HttpServiceCore {
 		this.apiKey = API_ENUM.TENCENT;
 		this.enviroment = ServiceEnviroment.getCurrentEnviroment();
 		this.baseUrl = this.enviroment.getEnv().getServerUrl(this.apiKey);
+
+		super.init();
 	}
 }

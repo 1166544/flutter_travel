@@ -2,27 +2,30 @@
 class ConfigDefault {
 
 	/// 调用服务器API列表配置
-	Map<API_ENUM, dynamic> serverUrlList = Map<API_ENUM, dynamic>();
+	List<ApiConfigVO> serverUrlList = [];
 
 	ConfigDefault() {
 		/// 服务器默认URL配置(各环境在构造函数中重写)
-		this.serverUrlList[API_ENUM.API_OPEN] = ApiConfigVO(
+		this.serverUrlList.add(ApiConfigVO(
 			key: API_ENUM.API_OPEN,
 			serverUrl: 'https://www.apiopen.top/'
-		);
-		this.serverUrlList[API_ENUM.TENCENT] = ApiConfigVO(
+		));
+		this.serverUrlList.add(ApiConfigVO(
 			key: API_ENUM.TENCENT,
 			serverUrl: 'https://www.qq.com/'
-		);
+		));
 	}
 
 	/// 获取服务器URL
 	String getServerUrl(API_ENUM enumName) {
-		if (this.serverUrlList[enumName]) {
-			return this.serverUrlList[enumName].serverUrl;
-		} else {
-			throw new ArgumentError('$enumName值为空');
-		}
+		String serverUrl = '';
+		this.serverUrlList.forEach((ApiConfigVO value) {
+			if (value.key == enumName) {
+				serverUrl = value.serverUrl;
+			}
+		});
+
+		return serverUrl;
 	}
 
 }

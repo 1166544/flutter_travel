@@ -20,8 +20,10 @@ class ServiceApiOpen extends HttpServiceCore {
 	ServiceApiOpen._internal(): super() {
 		// 初始化
 		this.apiKey = API_ENUM.API_OPEN;
-		this.enviroment = ServiceEnviroment.getCurrentEnviroment();
+		this.enviroment = ServiceEnviroment.instance;
 		this.baseUrl = this.enviroment.getEnv().getServerUrl(this.apiKey);
+
+		super.init();
 	}
 
 	/// 返回热点信息

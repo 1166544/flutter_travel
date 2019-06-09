@@ -19,11 +19,11 @@ class _ProfilePageState extends State<ProfilePage> {
 	}
 
 	@override
-	void initState() async {
+	void initState() {
 		super.initState();
 
 		// 调用数据
-		print(await this.serviceApiOpen.getJournalismData());
+		// print(await this.serviceApiOpen.getJournalismData());
 	}
 
 	@override
