@@ -84,28 +84,28 @@ class NavigationTabCoreState extends State<NavigationTabCore> {
 		// var database = AppDatabase();
 		// var stream = database.countersStream();
 		switch (currentItem) {
-			// Home
+			// Home模块
 			case TabItem.Home:
 				return StoreProvider<StateGlobal>(
 					store: this.store,
 					child: SearchPage(),
 				);
 
-			// Search
+			// Search模块
 			case TabItem.Search:
 				return StoreProvider<StateGlobal>(
 					store: this.store,
 					child: HomePage(),
 				);
 
-			// Graphics
+			// Graphics模块
 			case TabItem.Graphics:
 				return StoreProvider<StateGlobal>(
 					store: this.store,
 					child: GraphicsPage(),
 				);
 
-			// Circler
+			// Circler模块
 			case TabItem.Circler:
 				return StoreProvider<StateGlobal>(
 					store: this.store,
