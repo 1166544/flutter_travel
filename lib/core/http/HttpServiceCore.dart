@@ -78,6 +78,9 @@ class HttpServiceCore {
 	}
 
 	/// 处理GET请求
+	///  * [String path] 请求地址
+	///  * [Map<String, dynamic> queryParameters] 请求参数
+	///  * [Options options] 配置
 	Future<Response<dynamic>> get(String path, {Map<String, dynamic> queryParameters, Options options}) async {
 		var response;
 		if (queryParameters != null) {
