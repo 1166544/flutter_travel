@@ -93,6 +93,10 @@ class HttpServiceCore {
 	}
 
 	/// 处理POST请求
+  /// * [String path] 请求地址
+  /// * [dynamic data] 请求数据
+  /// * [Map<String, dynamic> queryParameters] 请求参数
+  /// * [Options options] 配置
 	Future<Response<dynamic>> post(String path, {dynamic data, Map<String, dynamic> queryParameters, Options options}) async {
 		var response;
 		if (queryParameters != null) {
