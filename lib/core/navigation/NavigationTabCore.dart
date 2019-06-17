@@ -131,6 +131,8 @@ class NavigationTabCoreState extends State<NavigationTabCore> {
 	}
 
 	/// 单个TAB按钮
+	/// *[IconData icon] 标题数据
+	/// *[TabItem tabItem] TAB数据
 	BottomNavigationBarItem _buildItem({IconData icon, TabItem tabItem}) {
 		String text = tabItemName(tabItem);
 		return BottomNavigationBarItem(
