@@ -148,6 +148,7 @@ class NavigationTabCoreState extends State<NavigationTabCore> {
 	}
 
 	/// TAB选中状态颜色更改
+  /// * [TabItem item] TAB数据
 	Color _colorTabMatching({TabItem item}) {
     // 选中时使用系统色，未选中灰度
 		return currentItem == item ? Theme.of(context).primaryColor : Colors.grey;
