@@ -150,6 +150,7 @@ class _AllPageViewState extends State<AllPageView> {
           borderRadius: BorderRadius.circular(15.0)),
       child: Column(
         children: <Widget>[
+			// Back to Nature Camping Under the Star
           Text('Back to Nature Camping Under the Star',
               maxLines: 3,
               softWrap: true,
