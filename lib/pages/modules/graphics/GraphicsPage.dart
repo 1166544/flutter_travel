@@ -364,6 +364,7 @@ class _GraphicsPageState extends State<GraphicsPage> {
   }
 
   /// 构建圆角模糊图片项
+  /// * [String imageUrl] 图片地址
   Widget buildRoundBlurImage(String imageUrl) {
 	  return Container(
 			width: 80.0,
