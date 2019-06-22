@@ -38,6 +38,7 @@ class ServiceEnviroment {
 	ENVIROMENT env;
 
 	/// 更新环境配置
+	/// * [ENVIROMENT env] 环境标识
 	void updateEnv(ENVIROMENT env) {
 		this.env = env;
 		print('当前环境:::  ${this.env.toString()}');
