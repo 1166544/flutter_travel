@@ -149,6 +149,7 @@ class _NoticePageState extends State<NoticePage> with CommonNavigator {
 
 	  List<Widget> readSubRenderList = [];
 
+	  // 加入预编译数据
 	  for (NoticePageVO item in item.readList) {
 		readSubRenderList.add(this.buildSubReadRenderItem(item));
 	  }
