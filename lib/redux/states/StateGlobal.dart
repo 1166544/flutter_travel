@@ -6,6 +6,7 @@ class StateGlobal {
 
 	final int _count;
 
+	/// 计数器示例
 	get count {
 		if (this._count < 0) {
 			return 0;
