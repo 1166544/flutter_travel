@@ -37,7 +37,7 @@ class ServiceEnviroment {
 	/// 当前环境
 	ENVIROMENT env;
 
-	/// 更新环境配置
+	/// 更新环境配置,依据不同的环境标识来进行实例化配置
 	/// * [ENVIROMENT env] 环境标识
 	void updateEnv(ENVIROMENT env) {
 		this.env = env;
