@@ -16,5 +16,6 @@ class StateGlobal {
 
 	StateGlobal(this._count);
 
+	// 初始化计数器
 	StateGlobal.initState(): _count = 0;
 }
