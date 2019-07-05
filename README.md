@@ -53,3 +53,13 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter, view our 
 [online documentation](https://flutter.io/docs), which offers tutorials, 
 samples, guidance on mobile development, and a full API reference.
+
+# Tips:
+```shell
+Could not determine the dependencies of task ':app:flutterBuildDebug' when start vscode flutter debugging
+错误解决办法
+
+flutter clean
+然后
+flutter run
+```
