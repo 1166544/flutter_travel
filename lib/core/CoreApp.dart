@@ -15,11 +15,12 @@ class CoreApp extends StatelessWidget {
 		ServiceEnviroment.init(this.env);
 	}
 
-	// 程序根目录
+	// 程序根入口
 	@override
 	Widget build(BuildContext context) {
 		final Store<StateGlobal> store = Store<StateGlobal>(reducer, initialState: StateGlobal.initState());
 		return MaterialApp(
+			// 去除debug标记
 			debugShowCheckedModeBanner: false,
 			theme: ThemeData(primaryColor: Colors.black),
 			home: LoginPage(store: store)
