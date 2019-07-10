@@ -22,7 +22,11 @@ class CoreApp extends StatelessWidget {
 		return MaterialApp(
 			// 去除debug标记
 			debugShowCheckedModeBanner: false,
+
+      // 主题颜色
 			theme: ThemeData(primaryColor: Colors.black),
+
+      // 首页面
 			home: LoginPage(store: store)
 		);
 	}
