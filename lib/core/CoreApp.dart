@@ -9,6 +9,7 @@ import 'package:redux/redux.dart';
 /// APP启动入口
 class CoreApp extends StatelessWidget {
 
+  // 环境标识
 	final ENVIROMENT env;
 
 	CoreApp({this.env}) {
