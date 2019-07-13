@@ -17,7 +17,7 @@ class ServiceEnviroment {
 		return _instance;
 	}
 
-  /// 实例化单例
+  	/// 实例化单例
 	static init(ENVIROMENT env) {
 		ServiceEnviroment enviroment = ServiceEnviroment.instance;
 		enviroment.updateEnv(env);

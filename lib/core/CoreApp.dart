@@ -9,7 +9,7 @@ import 'package:redux/redux.dart';
 /// APP启动入口
 class CoreApp extends StatelessWidget {
 
-  // 环境标识
+  	// 环境标识
 	final ENVIROMENT env;
 
 	CoreApp({this.env}) {
@@ -24,10 +24,10 @@ class CoreApp extends StatelessWidget {
 			// 去除debug标记
 			debugShowCheckedModeBanner: false,
 
-      // 主题颜色
+      		// 主题颜色
 			theme: ThemeData(primaryColor: Colors.black),
 
-      // 首页面
+      		// 首页面
 			home: LoginPage(store: store)
 		);
 	}
