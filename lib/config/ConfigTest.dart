@@ -17,6 +17,10 @@ class ConfigTest extends ConfigDefault {
 			key: API_ENUM.JSON_PLACE_HOLDER,
 			serverUrl: 'https://jsonplaceholder.typicode.com/'
 		));
+		this.serverUrlList.add(ApiConfigVO(
+			key: API_ENUM.CN_NODE,
+			serverUrl: 'https://cnodejs.org/'
+		));
 	}
 
 }

@@ -18,6 +18,10 @@ class ConfigDefault {
 			key: API_ENUM.JSON_PLACE_HOLDER,
 			serverUrl: 'https://jsonplaceholder.typicode.com/'
 		));
+		this.serverUrlList.add(ApiConfigVO(
+			key: API_ENUM.CN_NODE,
+			serverUrl: 'https://cnodejs.org/'
+		));
 	}
 
 	/// 获取服务器URL
@@ -51,7 +55,8 @@ enum API_ENUM {
 	BAIDU,
 	SINA,
 	TENCENT,
-	JSON_PLACE_HOLDER
+	JSON_PLACE_HOLDER,
+	CN_NODE
 }
 
 /// 环境变量
