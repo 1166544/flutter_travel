@@ -14,6 +14,10 @@ class ConfigDefault {
 			key: API_ENUM.TENCENT,
 			serverUrl: 'https://www.qq.com/'
 		));
+		this.serverUrlList.add(ApiConfigVO(
+			key: API_ENUM.JSON_PLACE_HOLDER,
+			serverUrl: 'https://jsonplaceholder.typicode.com/'
+		));
 	}
 
 	/// 获取服务器URL
@@ -46,7 +50,8 @@ enum API_ENUM {
 	API_OPEN,
 	BAIDU,
 	SINA,
-	TENCENT
+	TENCENT,
+	JSON_PLACE_HOLDER
 }
 
 /// 环境变量

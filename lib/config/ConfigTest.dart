@@ -13,6 +13,10 @@ class ConfigTest extends ConfigDefault {
 			key: API_ENUM.TENCENT,
 			serverUrl: 'https://www.qq.com/'
 		));
+		this.serverUrlList.add(ApiConfigVO(
+			key: API_ENUM.JSON_PLACE_HOLDER,
+			serverUrl: 'https://jsonplaceholder.typicode.com/'
+		));
 	}
 
 }
