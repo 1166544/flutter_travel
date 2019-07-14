@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_travel/core/bloc/BlocProvider.dart';
 import 'package:flutter_travel/pages/common/CommonGalleryItem.dart';
+import 'package:flutter_travel/pages/common/CommonLoading.dart';
 import 'package:flutter_travel/pages/common/CommonTravelItem.dart';
 import 'package:flutter_travel/pages/modules/search/blocs/BlocGalleryList.dart';
 import 'package:flutter_travel/pages/modules/search/models/ModelGallery.dart';
@@ -40,19 +41,7 @@ class _ViewSearchContentState extends State<ViewSearchContent> with CommonTravel
 
 	/// 空数据结构提示
 	Widget buildEmptyLayout(BuildContext context) {
-		return Column(
-			mainAxisAlignment: MainAxisAlignment.center,
-			crossAxisAlignment: CrossAxisAlignment.center,
-			children: [
-				Container(
-					width: MediaQuery.of(context).size.width,
-					child: Text(
-						'loading...',
-						textAlign: TextAlign.center,
-					),
-				)
-			],
-		);
+		return new CommonLoading();
 	}
 
 	/// 基础页面结构
