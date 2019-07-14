@@ -1,9 +1,12 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_travel/core/bloc/BlocProvider.dart';
 import 'package:flutter_travel/pages/common/CommonGalleryItem.dart';
 import 'package:flutter_travel/pages/common/CommonTravelItem.dart';
 import 'package:flutter_travel/pages/modules/search/blocs/BlocGalleryList.dart';
 import 'package:flutter_travel/pages/modules/search/models/ModelGallery.dart';
+import 'package:flutter_travel/pages/utils/Utils.dart';
 
 /// 搜索模块视图
 class ViewSearchContent extends StatefulWidget {
@@ -82,25 +85,53 @@ class _ViewSearchContentState extends State<ViewSearchContent> with CommonTravel
 			description: 'Beach Baros.'),
 		];
 
+		List<Widget> displayList = <Widget>[
+			this.buildMarkTitle(),
+			this.buildStartIcon(),
+		];
+
+		// 更新数据源
+		for(Map item in snapshot.data.list) {
+			int min = 1;
+			int max = 10;
+			var rnd = new Random();
+			var rndNum = min + rnd.nextInt(max - min);
+			var ranTitle = item['body'];
+			var ranTitleLength = ranTitle.length < 10 ? ranTitle.length : 10;
+			var ranPreTitle = ranTitle.substring(rndNum, rndNum + ranTitleLength);
+
+			ranPreTitle = Utils.toUppercase(ranPreTitle);
+			ranTitleLength = ranTitle.length < rndNum ? ranTitle.length : rndNum;
+
+			var ranNextTitle = ranTitle.substring(0, ranTitleLength);
+			var imageList = rndNum > 5 ? list2 : list1;
+			// print('print list:::::::${item.keys} ${item.values}');
+			// flutter: print list:::::::(userId, id, title, body)
+			// (10, 100, at nam consequatur ea labore ea harum, cupiditate quo est a modi nesciunt soluta
+
+			displayList.add(
+				this.buildTravelDate(Utils.toUppercase(item['title']))
+			);
+			displayList.add(
+				this.buildTravelSep()
+			);
+			displayList.add(
+				this.buildImageGrid(context, imageList, paddingTop: 0.0)
+			);
+			displayList.add(
+				this.buildImgGalleryDetail(
+				context, '$ranPreTitle - $ranNextTitle', ranTitle, '')
+			);
+			displayList.add(
+				SizedBox(height: 45.0)
+			);
+		}
+
 		return Container(
 			width: MediaQuery.of(context).size.width,
 			color: Colors.white,
 			child: ListView(
-			children: <Widget>[
-				this.buildMarkTitle(),
-				this.buildStartIcon(),
-				this.buildTravelDate('Aug 12, 2012 - Baros Island ${snapshot.data.name}'),
-				this.buildTravelSep(),
-				this.buildImageGrid(context, list1, paddingTop: 0.0),
-				this.buildImgGalleryDetail(
-					context, 'Day 1- Sun Bath', 'Teresa Soto', ''),
-				SizedBox(height: 45.0),
-				this.buildTravelDate('Aug 13, 2012 - Mihiri Island'),
-				this.buildTravelSep(),
-				this.buildImageGrid(context, list2, paddingTop: 0.0),
-				this.buildImgGalleryDetail(
-					context, 'Day 2- Sun Raise', 'Tiland buject', ''),
-			],
+			children: displayList,
 		));
 	}
 

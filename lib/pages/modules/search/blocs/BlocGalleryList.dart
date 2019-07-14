@@ -10,9 +10,13 @@ class BlocGalleryList implements BlocBase {
 	ModelGallery _gallery;
 	ServiceJsonPlaceHolder _serviceJsonPlaceHolder;
 
-	// 数据流处理器
+	/// 数据流处理器对象
 	StreamController<ModelGallery> _galleryController;
+
+	/// 流入流
 	Sink<ModelGallery> get _inGallery => _galleryController.sink;
+
+	/// 流出流
 	Stream<ModelGallery> get outGallery => _galleryController.stream;
 
 	BlocGalleryList() {
@@ -22,9 +26,14 @@ class BlocGalleryList implements BlocBase {
 	}
 
 	void init() async {
+		// 初始化时调用service列表数据 
 		dynamic result = await this._serviceJsonPlaceHolder.getPostsData();
-		this._gallery = new ModelGallery('name', 0, 190);
+
+		// 返回数据列表更新数据源
+		this._gallery = new ModelGallery();
 		this._gallery.update(result);
+
+		// 触发数据更新
 		this._inGallery.add(this._gallery);
 	}
 
@@ -33,6 +42,8 @@ class BlocGalleryList implements BlocBase {
 		this._galleryController.close();
 	}
 
+	/// 更新数据源操作
+	/// * [ModelGallery gallery] 数据源
 	void updateGallery(ModelGallery gallery) {
 		this._gallery = gallery;
 		this._inGallery.add(this._gallery);
