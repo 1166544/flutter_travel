@@ -29,6 +29,7 @@ class _ViewSearchContentState extends State<ViewSearchContent> with CommonTravel
 		// 连接视图, 加上下拉刷新
 		return RefreshIndicator(
 			key: refreshKey,
+			color: Colors.lightBlue,
 			child: this.getStreamBuilder(context),
 			onRefresh: refreshData,
 		);
