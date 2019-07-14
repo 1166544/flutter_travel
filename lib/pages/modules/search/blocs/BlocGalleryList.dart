@@ -37,6 +37,10 @@ class BlocGalleryList implements BlocBase {
 		this._inGallery.add(this._gallery);
 	}
 
+	Future<Null>  update() async {
+		await this.init();
+	}
+
 	@override
 	void dispose() {
 		this._galleryController.close();

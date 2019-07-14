@@ -19,18 +19,33 @@ class ViewSearchContent extends StatefulWidget {
 class _ViewSearchContentState extends State<ViewSearchContent> with CommonTravelItem {
 
 	BlocGalleryList blocGalleryList;
+	GlobalKey<RefreshIndicatorState> refreshKey = GlobalKey<RefreshIndicatorState>();
 
 	@override
 	Widget build(BuildContext context) {
 		// 连接数据源
 		this.blocGalleryList = BlocProvider.of<BlocGalleryList>(context);
 
-		// 连接视图
+		// 连接视图, 加上下拉刷新
+		return RefreshIndicator(
+			key: refreshKey,
+			child: this.getStreamBuilder(context),
+			onRefresh: refreshData,
+		);
+	}
+
+	/// 更新视图
+	Future<Null> refreshData() async {
+		await this.blocGalleryList.update();
+	}
+
+	/// 连接stream数据源
+	Widget getStreamBuilder(BuildContext context) {
 		return StreamBuilder<ModelGallery>(
 			stream: this.blocGalleryList.outGallery,
 			builder: (context, snapshot) {
+				// 数据源到位时渲染列表
 				if (snapshot.hasData) {
-					// 数据源到位时渲染列表
 					return this.buildSearchLayout(snapshot);
 				} else {
 					return this.buildEmptyLayout(context);
