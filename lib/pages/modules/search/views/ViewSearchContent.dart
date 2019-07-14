@@ -47,7 +47,7 @@ class _ViewSearchContentState extends State<ViewSearchContent> with CommonTravel
 				Container(
 					width: MediaQuery.of(context).size.width,
 					child: Text(
-						'加载中...',
+						'loading...',
 						textAlign: TextAlign.center,
 					),
 				)

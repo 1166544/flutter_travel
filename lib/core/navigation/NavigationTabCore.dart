@@ -9,57 +9,57 @@ import 'package:redux/redux.dart';
 
 /// TAB枚举
 enum TabItem {
-	Home,
-	Search,
-	Graphics,
-	Circler,
+  Home,
+  Search,
+  Graphics,
+  Circler,
 }
 
 /// TAB数据源
 String tabItemName(TabItem tabItem) {
-	switch (tabItem) {
-		case TabItem.Home:
-			return "Home";
-		case TabItem.Search:
-			return "Search";
-		case TabItem.Graphics:
-			return "Graphics";
-		case TabItem.Circler:
-			return "Circler";
-		}
-	return null;
+  switch (tabItem) {
+    case TabItem.Home:
+      return "Home";
+    case TabItem.Search:
+      return "Search";
+    case TabItem.Graphics:
+      return "Graphics";
+    case TabItem.Circler:
+      return "Circler";
+  }
+  return null;
 }
 
 /// 底部TAB按钮入口类
 class NavigationTabCore extends StatefulWidget {
-	final Store<StateGlobal> store;
-	NavigationTabCore({Key key, this.store}) : super(key: key);
+  final Store<StateGlobal> store;
+  NavigationTabCore({Key key, this.store}) : super(key: key);
 
-	@override
-	State<StatefulWidget> createState() => NavigationTabCoreState(this.store);
+  @override
+  State<StatefulWidget> createState() => NavigationTabCoreState(this.store);
 }
 
 /// TAB VIEW STATE入口类
 class NavigationTabCoreState extends State<NavigationTabCore> {
 	final Store<StateGlobal> store;
 	NavigationTabCoreState(Store<StateGlobal> store) : store = store;
-
+	Map<TabItem, Widget> mapPageList = new Map<TabItem, Widget>();
 	TabItem currentItem = TabItem.Home;
 
 	/// TAB选择处理
 	_onSelectTab(int index) {
 		switch (index) {
-			case 0:
-				this._updateCurrentItem(TabItem.Home);
+		case 0:
+			this._updateCurrentItem(TabItem.Home);
 			break;
-			case 1:
-				this._updateCurrentItem(TabItem.Search);
+		case 1:
+			this._updateCurrentItem(TabItem.Search);
 			break;
-			case 2:
-				this._updateCurrentItem(TabItem.Graphics);
+		case 2:
+			this._updateCurrentItem(TabItem.Graphics);
 			break;
-			case 3:
-				this._updateCurrentItem(TabItem.Circler);
+		case 3:
+			this._updateCurrentItem(TabItem.Circler);
 			break;
 		}
 	}
@@ -79,41 +79,45 @@ class NavigationTabCoreState extends State<NavigationTabCore> {
 		);
 	}
 
-	/// 构建界面
-	Widget _buildBody() {
-		// var database = AppDatabase();
-		// var stream = database.countersStream();
-		switch (currentItem) {
-			// Home模块
-			case TabItem.Home:
-				return StoreProvider<StateGlobal>(
-					store: this.store,
-					child: SearchPage(),
-				);
-
-			// Search模块
-			case TabItem.Search:
-				return StoreProvider<StateGlobal>(
-					store: this.store,
-					child: HomePage(),
-				);
-
-			// Graphics模块
-			case TabItem.Graphics:
-				return StoreProvider<StateGlobal>(
-					store: this.store,
-					child: GraphicsPage(),
-				);
-
-			// Circler模块
-			case TabItem.Circler:
-				return StoreProvider<StateGlobal>(
-					store: this.store,
-					child: CirclerPage(),
-				);
+	/// 组存主要首页
+	/// * [TabItem tabItem] 页面枚举
+	Widget getMapPage(TabItem tabItem) {
+		try {
+		  	if (this.mapPageList[tabItem] != null) {
+				return this.mapPageList[tabItem];
+			}
+		} catch (e) {
+			print(e);
 		}
 
-		return Container();
+		switch (tabItem) {
+			case TabItem.Home:
+				// Home模块
+				this.mapPageList[tabItem] = SearchPage();
+				break;
+			case TabItem.Search:
+				// Search模块
+				this.mapPageList[tabItem] = HomePage();
+				break;
+			case TabItem.Graphics:
+				// Graphics模块
+				this.mapPageList[tabItem] = GraphicsPage();
+				break;
+			case TabItem.Circler:
+				// Circler模块
+				this.mapPageList[tabItem] = CirclerPage();
+				break;
+		}
+
+		return this.mapPageList[tabItem];
+	}
+
+	/// 构建界面
+	Widget _buildBody() {
+		return StoreProvider<StateGlobal>(
+			store: this.store,
+			child: this.getMapPage(currentItem)
+		);
 	}
 
 	/// 底部TAB按钮
@@ -148,9 +152,9 @@ class NavigationTabCoreState extends State<NavigationTabCore> {
 	}
 
 	/// TAB选中状态颜色更改
-  /// * [TabItem item] TAB数据
+	/// * [TabItem item] TAB数据
 	Color _colorTabMatching({TabItem item}) {
-    // 选中时使用系统色，未选中灰度
+		// 选中时使用系统色，未选中灰度
 		return currentItem == item ? Theme.of(context).primaryColor : Colors.grey;
 	}
 }
