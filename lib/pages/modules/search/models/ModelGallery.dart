@@ -2,7 +2,7 @@
 class ModelGallery {
 
 	String name;
-	dynamic list = [];
+	List<ModelGalleryItem> list = [];
 
 	ModelGallery();
 
@@ -12,7 +12,29 @@ class ModelGallery {
 
 	/// 更新数据源
 	void update(dynamic result) {
-		this.list = result.data;
+		for(Map item in result.data) {
+			ModelGalleryItem itemData = new ModelGalleryItem();
+			itemData.update(item);
+			this.list.add(itemData);
+		}
 		this.name = 'udated!';
+	}
+}
+
+class ModelGalleryItem {
+	int userId;
+	int id;
+	String title;
+	String body;
+
+	ModelGalleryItem() {
+		// hole
+	}
+
+	void update(dynamic data) {
+		this.userId = data['userId'];
+		this.id = data['id'];
+		this.title = data['title'];
+		this.body = data['body'];
 	}
 }

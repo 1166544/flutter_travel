@@ -61,6 +61,25 @@ class _ViewSearchContentState extends State<ViewSearchContent> with CommonTravel
 
 	/// 基础页面结构
 	Widget buildSearchLayout(AsyncSnapshot<ModelGallery> snapshot) {
+		return ListView.builder(
+			itemCount: snapshot.data.list.length,
+			itemBuilder: (context, i) {
+				return this.buildListItem(
+					snapshot.data.list[i],
+					i,
+					snapshot.data.list.length
+				);
+			},
+		);
+	}
+
+	/// 创建动态泻染列表
+	/// * [ModelGalleryItem item] 单项数据源
+	/// * [int index] 列表顺序
+	/// * [int total] 列表总长度
+	Widget buildListItem(ModelGalleryItem item, int index, int total) {
+
+		// Mock data in real world it will be replaced.
 		List<CommonGalleryItem> list1 = [
 		CommonGalleryItem(
 			id: 0.toString(), image: 'assets/p1.jpg', description: 'Sun Bath'),
@@ -89,54 +108,62 @@ class _ViewSearchContentState extends State<ViewSearchContent> with CommonTravel
 			description: 'Beach Baros.'),
 		];
 
-		List<Widget> displayList = <Widget>[
-			this.buildMarkTitle(),
-			this.buildStartIcon(),
-		];
+		int min = 1;
+		int max = 10;
+		var rnd = new Random();
+		var rndNum = min + rnd.nextInt(max - min);
+		var ranTitle = item.body;
+		var ranTitleLength = ranTitle.length < 10 ? ranTitle.length : 10;
+		var ranPreTitle = ranTitle.substring(rndNum, rndNum + ranTitleLength);
 
-		// 更新数据源
-		for(Map item in snapshot.data.list) {
-			int min = 1;
-			int max = 10;
-			var rnd = new Random();
-			var rndNum = min + rnd.nextInt(max - min);
-			var ranTitle = item['body'];
-			var ranTitleLength = ranTitle.length < 10 ? ranTitle.length : 10;
-			var ranPreTitle = ranTitle.substring(rndNum, rndNum + ranTitleLength);
+		ranPreTitle = Utils.toUppercase(ranPreTitle);
+		ranTitleLength = ranTitle.length < rndNum ? ranTitle.length : rndNum;
 
-			ranPreTitle = Utils.toUppercase(ranPreTitle);
-			ranTitleLength = ranTitle.length < rndNum ? ranTitle.length : rndNum;
+		var ranNextTitle = ranTitle.substring(0, ranTitleLength);
+		var imageList = rndNum > 5 ? list2 : list1;
+		// print('print list:::::::${item.keys} ${item.values}');
+		// flutter: print list:::::::(userId, id, title, body)
+		// (10, 100, at nam consequatur ea labore ea harum, cupiditate quo est a modi nesciunt soluta
 
-			var ranNextTitle = ranTitle.substring(0, ranTitleLength);
-			var imageList = rndNum > 5 ? list2 : list1;
-			// print('print list:::::::${item.keys} ${item.values}');
-			// flutter: print list:::::::(userId, id, title, body)
-			// (10, 100, at nam consequatur ea labore ea harum, cupiditate quo est a modi nesciunt soluta
+		List<Widget> displayList = [];
 
+		// 开始部份
+		if (index == 0) {
 			displayList.add(
-				this.buildTravelDate(Utils.toUppercase(item['title']))
+				this.buildMarkTitle()
 			);
 			displayList.add(
-				this.buildTravelSep()
-			);
-			displayList.add(
-				this.buildImageGrid(context, imageList, paddingTop: 0.0)
-			);
-			displayList.add(
-				this.buildImgGalleryDetail(
-				context, '$ranPreTitle - $ranNextTitle', Utils.toUppercase(ranTitle), '')
-			);
-			displayList.add(
-				SizedBox(height: 45.0)
-			);
+				this.buildStartIcon())
+			;
+		}
+
+		// 中间部份
+		displayList.add(
+			this.buildTravelDate(Utils.toUppercase(item.title))
+		);
+		displayList.add(
+			this.buildTravelSep()
+		);
+		displayList.add(
+			this.buildImageGrid(context, imageList, paddingTop: 0.0)
+		);
+		displayList.add(
+			this.buildImgGalleryDetail(context, '$ranPreTitle - $ranNextTitle', Utils.toUppercase(ranTitle), '')
+		);
+
+		// 尾部
+		bool hideSepBar = index == total;
+		if (!hideSepBar) {
+			displayList.add(SizedBox(height: 45.0));
 		}
 
 		return Container(
 			width: MediaQuery.of(context).size.width,
 			color: Colors.white,
-			child: ListView(
-			children: displayList,
-		));
+			child: Column(
+				children: displayList,
+			)
+		);
 	}
 
 	/// 顶部标题
