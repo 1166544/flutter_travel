@@ -1,4 +1,5 @@
 {
-    "editor.fontSize": 14
+    "editor.fontSize": 14,
+    "prettier.tabWidth": 4
 
 }
