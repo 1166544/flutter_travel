@@ -120,7 +120,7 @@ class _ViewSearchContentState extends State<ViewSearchContent> with CommonTravel
 			);
 			displayList.add(
 				this.buildImgGalleryDetail(
-				context, '$ranPreTitle - $ranNextTitle', ranTitle, '')
+				context, '$ranPreTitle - $ranNextTitle', Utils.toUppercase(ranTitle), '')
 			);
 			displayList.add(
 				SizedBox(height: 45.0)

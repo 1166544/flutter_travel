@@ -135,8 +135,10 @@ class CommonTravelItem {
 					children: <Widget>[
 					Container(
 						width: 200,
-						child: Text(mainTitle,
+						child: Text(
+							mainTitle,
 							overflow: TextOverflow.ellipsis,
+							softWrap: false,
 							style: TextStyle(
 								fontWeight: FontWeight.bold,
 								fontFamily: 'Montserrat',
@@ -198,8 +200,9 @@ class CommonTravelItem {
 	  return Row(
 		children: <Widget>[
 			Container(
-			width: 150,
+			width: 200,
 			child: Text(subTitle,
+				softWrap: false,
 				overflow: TextOverflow.ellipsis,
 				style: TextStyle(
 					color: Colors.grey.shade700,
