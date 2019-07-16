@@ -25,6 +25,7 @@ class BlocGalleryList implements BlocBase {
 		this.init();
 	}
 
+	/// 初始化
 	Future<Null> init() async {
 		// 初始化时调用service列表数据 
 		dynamic result = await this._serviceJsonPlaceHolder.getPostsData();

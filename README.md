@@ -1,6 +1,6 @@
 # flutter_travel
 
-A new Flutter project.
+A travels Flutter project.
 
 ## Upgrade
 ```shell
@@ -35,6 +35,7 @@ lib
   |-- pages  		业务逻辑
   |----- common  	业务逻辑公用组件
   |----- modules 	业务逻辑模块存放目录
+  |----- utils 		工具类
   |-- redux  		状态管理
   |----- actions 	业务逻辑action
   |----- reducers 	业务逻辑reducer
