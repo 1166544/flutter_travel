@@ -34,6 +34,7 @@ class ServiceJsonPlaceHolder extends HttpServiceCore {
 
 	/// 返回typecode详情
 	/// url https://jsonplaceholder.typicode.com/posts/1
+	/// * [int detailId] 详情ID
 	Future<Response<dynamic>> getPostsDetailData(int detailId) async {
 		return await this.get('posts/${detailId.toString()}');
 	}
