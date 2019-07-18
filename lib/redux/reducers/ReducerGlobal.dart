@@ -8,6 +8,7 @@ StateGlobal reducer(StateGlobal state, action) {
 		case ActionGlobal.increment:
 			return StateGlobal(state.count + 1);
 		break;
+
 		// 减少
 		case ActionGlobal.decrement:
 			return StateGlobal(state.count - 1);

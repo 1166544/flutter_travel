@@ -2,6 +2,7 @@
 enum ActionGlobal {
 	/// 增加
 	increment,
+
 	/// 减少
 	decrement,
 }
