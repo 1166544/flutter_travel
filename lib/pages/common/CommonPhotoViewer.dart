@@ -80,7 +80,7 @@ class _CommonPhotoViewerState extends State<CommonPhotoViewer> {
                     initialScale: PhotoViewComputedScale.contained * 0.95,
                     minScale: PhotoViewComputedScale.contained * 0.95,
                     maxScale: PhotoViewComputedScale.covered * 1.1,
-                    heroTag: widget.galleryItems[index].id,
+                    // heroTag: widget.galleryItems[index].id,
                   );
                 },
                 itemCount: widget.galleryItems.length,

@@ -10,7 +10,7 @@ class HttpTransformerCore extends DefaultTransformer {
 	@override
 	Future<String> transformRequest(RequestOptions options) async {
 		if (options.data is List<String>) {
-			throw new DioError(message: "Can't send List to sever directly");
+			throw new DioError(error: "Can't send List to sever directly");
 		} else {
 			return super.transformRequest(options);
 		}

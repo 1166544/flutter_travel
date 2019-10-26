@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:cookie_jar/cookie_jar.dart';
+// import 'package:cookie_jar/cookie_jar.dart';
 import 'package:flutter_travel/config/ConfigDefault.dart';
 import 'package:flutter_travel/core/http/HttpTransformerCore.dart';
 import 'package:flutter_travel/services/ServiceEnviroment.dart';
@@ -57,7 +57,7 @@ class HttpServiceCore {
 		this.dio.interceptors.add(LogInterceptor(responseBody: false));
 
 		// cookie
-		this.dio.interceptors.add(CookieManager(CookieJar()));
+		// this.dio.interceptors.add(CookieManager(CookieJar()));
 
 		// 自定义拦截器
 		this.dio.transformer = new HttpTransformerCore();
