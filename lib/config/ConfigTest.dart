@@ -1,4 +1,6 @@
 import 'package:flutter_travel/config/ConfigDefault.dart';
+import 'package:flutter_travel/core/api/ApiConfigVO.dart';
+import 'package:flutter_travel/core/api/ApiEnum.dart';
 
 /// 重写测试环境配置
 class ConfigTest extends ConfigDefault {

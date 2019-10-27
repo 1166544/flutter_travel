@@ -1,4 +1,4 @@
-import 'package:flutter_travel/config/ConfigDefault.dart';
+import 'package:flutter_travel/core/api/ApiEnum.dart';
 import 'package:flutter_travel/core/http/HttpServiceCore.dart';
 import 'package:flutter_travel/services/ServiceEnviroment.dart';
 

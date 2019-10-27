@@ -1,3 +1,6 @@
+import 'package:flutter_travel/core/api/ApiConfigVO.dart';
+import 'package:flutter_travel/core/api/ApiEnum.dart';
+
 /// 默认配置
 class ConfigDefault {
 
@@ -36,27 +39,6 @@ class ConfigDefault {
 		return serverUrl;
 	}
 
-}
-
-/// URL数据源
-class ApiConfigVO {
-	/// URL KEY
-	API_ENUM key;
-
-	/// URL地址
-	String serverUrl;
-
-	ApiConfigVO({this.key, this.serverUrl});
-}
-
-/// API KEY
-enum API_ENUM {
-	API_OPEN,
-	BAIDU,
-	SINA,
-	TENCENT,
-	JSON_PLACE_HOLDER,
-	CN_NODE
 }
 
 /// 环境变量

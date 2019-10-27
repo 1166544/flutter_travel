@@ -1,7 +1,7 @@
 import 'dart:async';
 
 // import 'package:cookie_jar/cookie_jar.dart';
-import 'package:flutter_travel/config/ConfigDefault.dart';
+import 'package:flutter_travel/core/api/ApiEnum.dart';
 import 'package:flutter_travel/core/http/HttpTransformerCore.dart';
 import 'package:flutter_travel/services/ServiceEnviroment.dart';
 import 'package:dio/dio.dart';

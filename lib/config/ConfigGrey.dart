@@ -1,4 +1,6 @@
 import 'package:flutter_travel/config/ConfigDefault.dart';
+import 'package:flutter_travel/core/api/ApiConfigVO.dart';
+import 'package:flutter_travel/core/api/ApiEnum.dart';
 
 /// 重写灰度环境配置
 class ConfigGrey extends ConfigDefault {
