@@ -1,12 +1,25 @@
 {
-  "tabWidth": 4,
-  "singleQuote": true,
-  "trailingComma": "none",
-  "bracketSpacing": true,
-  "useTabs": true,
-  "eslintIntegration": true,
-  "stylelintIntegration": true,
-  "noTrailingSpaces": true,
-  "jsxBracketSameLine": true,
-  "semi": true
+	"printWidth": 200,
+	"trailingComma": "none",
+	"tabWidth": 4,
+	"useTabs": true,
+	"semi": true,
+	"singleQuote": true,
+	"bracketSpacing": true,
+	"jsxBracketSameLine": true,
+	"arrowParens": "avoid",
+	"overrides": [{
+			"files": ["*.dart", ".prettierrc"],
+			"options": {
+			"parser": "json",
+			"tabWidth": 4
+			}
+		},
+		{
+			"files": "*.dart",
+			"options": {
+			"parser": "dart"
+			}
+		}
+	]
 }

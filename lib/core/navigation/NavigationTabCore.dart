@@ -9,34 +9,34 @@ import 'package:redux/redux.dart';
 
 /// TAB枚举
 enum TabItem {
-  Home,
-  Search,
-  Graphics,
-  Circler,
+	Home,
+	Search,
+	Graphics,
+	Circler,
 }
 
 /// TAB数据源
 String tabItemName(TabItem tabItem) {
-  switch (tabItem) {
-    case TabItem.Home:
-      return "Home";
-    case TabItem.Search:
-      return "Search";
-    case TabItem.Graphics:
-      return "Graphics";
-    case TabItem.Circler:
-      return "Circler";
-  }
-  return null;
+	switch (tabItem) {
+		case TabItem.Home:
+			return "Home";
+		case TabItem.Search:
+			return "Search";
+		case TabItem.Graphics:
+			return "Graphics";
+		case TabItem.Circler:
+			return "Circler";
+	}
+	return null;
 }
 
 /// 底部TAB按钮入口类
 class NavigationTabCore extends StatefulWidget {
-  final Store<StateGlobal> store;
-  NavigationTabCore({Key key, this.store}) : super(key: key);
+	final Store<StateGlobal> store;
+	NavigationTabCore({Key key, this.store}) : super(key: key);
 
-  @override
-  State<StatefulWidget> createState() => NavigationTabCoreState(this.store);
+	@override
+	State<StatefulWidget> createState() => NavigationTabCoreState(this.store);
 }
 
 /// TAB VIEW STATE入口类

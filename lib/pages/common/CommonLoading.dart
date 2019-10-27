@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 class CommonLoading extends StatelessWidget {
-  const CommonLoading({Key key}) : super(key: key);
+	const CommonLoading({Key key}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
+	@override
+	Widget build(BuildContext context) {
 	return Container(
-	  child: Column(
+		child: Column(
 			mainAxisAlignment: MainAxisAlignment.center,
 			crossAxisAlignment: CrossAxisAlignment.center,
 			children: [
@@ -20,5 +20,5 @@ class CommonLoading extends StatelessWidget {
 			],
 		),
 	);
-  }
+	}
 }
