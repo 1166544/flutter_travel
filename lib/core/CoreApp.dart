@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_travel/config/ConfigDefault.dart';
 import 'package:flutter_travel/pages/modules/login/LoginPage.dart';
 import 'package:flutter_travel/redux/states/StateGlobal.dart';
 import 'package:flutter_travel/redux/reducers/ReducerGlobal.dart';
 import 'package:flutter_travel/services/ServiceEnviroment.dart';
 import 'package:redux/redux.dart';
+
+import 'package:flutter_travel/core/api/ApiEnviroment.dart';
 
 /// APP启动入口
 class CoreApp extends StatelessWidget {

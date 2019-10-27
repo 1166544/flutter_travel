@@ -3,6 +3,7 @@ import 'package:flutter_travel/config/ConfigDev.dart';
 import 'package:flutter_travel/config/ConfigGrey.dart';
 import 'package:flutter_travel/config/ConfigProd.dart';
 import 'package:flutter_travel/config/ConfigTest.dart';
+import 'package:flutter_travel/core/api/ApiEnviroment.dart';
 
 /// 环境配置服务
 class ServiceEnviroment {
