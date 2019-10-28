@@ -49,7 +49,7 @@ class NavigationTabCoreState extends State<NavigationTabCore> {
 		);
 	}
 
-	/// 组存主要首页
+	/// 储存主要首页
 	/// * [TabItem tabItem] 页面枚举
 	Widget getMapPage(NavigationTabItem tabItem) {
 		try {

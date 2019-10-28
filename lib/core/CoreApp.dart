@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_travel/pages/modules/login/LoginPage.dart';
+import 'package:flutter_travel/pages/modules/news/NewsPage.dart';
 import 'package:flutter_travel/redux/states/StateGlobal.dart';
 import 'package:flutter_travel/redux/reducers/ReducerGlobal.dart';
 import 'package:flutter_travel/services/ServiceEnviroment.dart';
@@ -29,7 +29,7 @@ class CoreApp extends StatelessWidget {
 			theme: ThemeData(primaryColor: Colors.black),
 
       		// 首页面
-			home: LoginPage(store: store)
+			home: NewsPage(store: store)
 		);
 	}
 }
