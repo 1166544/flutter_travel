@@ -9,7 +9,7 @@ class NewsList extends StatefulWidget {
 	_NewsListState createState() => _NewsListState();
 }
 
-/// 资讯页面
+/// 资讯页面 
 class _NewsListState extends State<NewsList> with CommonNavigator {
 	
 	@override
