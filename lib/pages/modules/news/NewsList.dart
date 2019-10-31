@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_travel/pages/common/CommonNavigator.dart';
-import 'package:flutter_travel/redux/states/StateGlobal.dart';
 
 /// 资讯列表
 class NewsList extends StatefulWidget {
 
-	_NewsListState createState() => _NewsListState();
+	_NewsListState createState() => _NewsListState(); 
 }
 
 /// 资讯页面 
