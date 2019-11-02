@@ -15,7 +15,7 @@ class _NewsListState extends State<NewsList> with CommonNavigator {
 		return Column(
 			children: <Widget>[
 				// 搜索框
-				// 装饰条
+				// 装饰条 
 				// 头条列表
 				// 非头条列表
 			],
