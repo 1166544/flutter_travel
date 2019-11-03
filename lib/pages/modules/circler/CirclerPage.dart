@@ -18,11 +18,20 @@ class CirclerPage extends StatefulWidget {
 /// 我的内容
 class _CirclerState extends State<CirclerPage> with CommonNavigator, SingleTickerProviderStateMixin {
 
+	/// TAB菜单
 	final List<Tab> _tabsData = <Tab>[
 		Tab(text: 'Your classes'),
 		Tab(text: 'Learning sets'),
 		Tab(text: 'Join classes'),
 		Tab(text: 'Latest news'),
+	];
+
+	/// TAB视图
+	final List<Widget> _tabsView = <Widget>[
+		CirclerDisplayPage(),
+		CirclerDisplayPage(),
+		CirclerDisplayPage(),
+		CirclerDisplayPage(),
 	];
 
 	TabController _tabController;
@@ -60,12 +69,7 @@ class _CirclerState extends State<CirclerPage> with CommonNavigator, SingleTicke
 				bloc: BlocGalleryList(),
 				child: TabBarView(
 				controller: this._tabController,
-					children: <Widget>[
-						CirclerDisplayPage(),
-						CirclerDisplayPage(),
-						CirclerDisplayPage(),
-						CirclerDisplayPage(),
-					],
+					children: this._tabsView,
 				),
 			),
 		);

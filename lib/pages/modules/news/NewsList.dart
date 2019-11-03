@@ -35,13 +35,13 @@ class _NewsListState extends State<NewsList> with CommonNavigator {
 		return Container(
 			padding: EdgeInsets.all(15.0),
 			decoration: BoxDecoration(
-				color: Color(0xe4e9f5)
+				color: Color(0xFFe4e9f5)
 			),
 			child: TextField(
 				textAlign: TextAlign.left,
 				style: TextStyle(fontSize: 12.0, color: Colors.black),
 				decoration: InputDecoration(
-					fillColor: Color(0xe4e9f5),
+					fillColor: Color(0xFFe4e9f5),
 					filled: true,
 					labelText: 'Search',
 					labelStyle: TextStyle(color: Colors.grey, fontSize: 15.0),
