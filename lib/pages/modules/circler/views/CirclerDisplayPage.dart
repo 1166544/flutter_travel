@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_travel/pages/modules/circler/views/CiclerImproving.dart';
 import 'package:flutter_travel/pages/modules/circler/views/CircleTitle.dart';
 import 'package:flutter_travel/pages/modules/circler/views/CirclerGrid.dart';
 import 'package:flutter_travel/pages/modules/circler/views/CirclerList.dart';
@@ -24,6 +25,9 @@ class _CirclerDisplayPageState extends State<CirclerDisplayPage> {
 
 			// 搜索条
 			CirclerSearchBar(),
+
+			// 改进提示
+			CircleImproving(),
 
 			// 第1行
 			CircleTitle(),

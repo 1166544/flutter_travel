@@ -8,8 +8,8 @@ class CircleTitle extends StatelessWidget {
 	Widget build(BuildContext context) {
 	return Padding(
 		padding: EdgeInsets.fromLTRB(15.0, 30.0, 10.0, 0.0),
-		child: Text("Discover europe's surprising secret villages",
-			style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontFamily: 'Montserrat'),
+		child: Text("Discover News",
+			style: TextStyle(fontSize: 23.0, fontWeight: FontWeight.bold, fontFamily: 'Montserrat'),
 			maxLines: 2));
 	}
 }
