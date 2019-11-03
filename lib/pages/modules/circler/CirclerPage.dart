@@ -1,42 +1,89 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_travel/pages/modules/circler/components/CircleTitle.dart';
-import 'package:flutter_travel/pages/modules/circler/components/CirclerGrid.dart';
-import 'package:flutter_travel/pages/modules/circler/components/CirclerList.dart';
-import 'package:flutter_travel/pages/modules/circler/components/CirclerScroll.dart';
-// import 'package:flutter_travel/pages/modules/circler/components/CirclerCover.dart';
+import 'package:flutter_redux/flutter_redux.dart';
+import 'package:flutter_travel/core/bloc/BlocProvider.dart';
+import 'package:flutter_travel/pages/common/CommonNavigator.dart';
+import 'package:flutter_travel/pages/modules/circler/views/CirclerDisplayPage.dart';
+import 'package:flutter_travel/pages/modules/search/blocs/BlocGalleryList.dart';
+import 'package:flutter_travel/redux/states/StateGlobal.dart';
 
 /// 资讯内容页面
 class CirclerPage extends StatefulWidget {
-  final Widget child;
+	final Widget child;
 
-  CirclerPage({Key key, this.child}) : super(key: key);
+	CirclerPage({Key key, this.child}) : super(key: key);
 
-  _CirclerState createState() => _CirclerState();
+	_CirclerState createState() => _CirclerState();
 }
 
 /// 我的内容
-class _CirclerState extends State<CirclerPage> {
-  @override
-  Widget build(BuildContext context) {
-    return ListView(
-      padding: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
-      children: <Widget>[
-        // 封面
-        // CirclerCover(),
+class _CirclerState extends State<CirclerPage> with CommonNavigator, SingleTickerProviderStateMixin {
 
-        // 第1行
-        CircleTitle(),
+	final List<Tab> _tabsData = <Tab>[
+		Tab(text: 'Your classes'),
+		Tab(text: 'Learning sets'),
+		Tab(text: 'Join classes'),
+		Tab(text: 'Latest news'),
+	];
 
-        // 第2行 横向滚动列表
-		CirclerScroll(),
+	TabController _tabController;
 
-        // 第3行
-		CirclerGrid(),
+	@override
+	void initState() {
+		super.initState();
+		this._tabController = new TabController(vsync: this, length: this._tabsData.length);
+	}
 
-        // 第四行
-		CirclerList()
-        
-      ],
-    );
-  }
+	@override
+	void dispose() {
+		this._tabController.dispose();
+		super.dispose();
+	}
+
+	@override
+	Widget build(BuildContext context) {
+		return Scaffold(
+			appBar: AppBar(
+				title: Center(
+					child: this.getSearchTitle(),
+				),
+				elevation: 0.0,
+				backgroundColor: Colors.white,
+				bottom: TabBar(
+					controller: this._tabController,
+					tabs: this._tabsData,
+					labelColor: Colors.black,
+					indicatorColor: Color(0xFF5e81f4),
+					indicatorWeight: 3.0,
+				)
+			),
+			body: BlocProvider(
+				bloc: BlocGalleryList(),
+				child: TabBarView(
+				controller: this._tabController,
+					children: <Widget>[
+						CirclerDisplayPage(),
+						CirclerDisplayPage(),
+						CirclerDisplayPage(),
+						CirclerDisplayPage(),
+					],
+				),
+			),
+		);
+	}
+
+	/// Redux数据调用: 绑定全局动态标题
+	Widget getSearchTitle() {
+		return StoreConnector<StateGlobal, int>(
+			converter: (store) => store.state.count,
+			builder: (context, count) {
+				return Text('Materials - 60 Minutes ${count.toString()}',
+					style: TextStyle(
+					color: Colors.black,
+					fontWeight: FontWeight.bold,
+					fontSize: 20.0
+					)
+				);
+			}
+		);
+	}
 }
