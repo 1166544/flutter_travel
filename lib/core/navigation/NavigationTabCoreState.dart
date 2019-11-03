@@ -62,11 +62,11 @@ class NavigationTabCoreState extends State<NavigationTabCore> {
 
 		switch (tabItem) {
 			case NavigationTabItem.Home:
-				// Home模块
-				this.mapPageList[tabItem] = SearchPage();
+				// Circler模块
+				this.mapPageList[tabItem] = CirclerPage();
 				break;
 			case NavigationTabItem.Search:
-				// Search模块
+				// Home模块
 				this.mapPageList[tabItem] = HomePage();
 				break;
 			case NavigationTabItem.Graphics:
@@ -74,8 +74,8 @@ class NavigationTabCoreState extends State<NavigationTabCore> {
 				this.mapPageList[tabItem] = GraphicsPage();
 				break;
 			case NavigationTabItem.Circler:
-				// Circler模块
-				this.mapPageList[tabItem] = CirclerPage();
+				// Search模块
+				this.mapPageList[tabItem] = SearchPage();
 				break;
 		}
 

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_travel/pages/modules/news/NewsPage.dart';
+// import 'package:flutter_travel/pages/modules/news/NewsPage.dart';
 import 'package:flutter_travel/redux/states/StateGlobal.dart';
 import 'package:flutter_travel/redux/reducers/ReducerGlobal.dart';
 import 'package:flutter_travel/services/ServiceEnviroment.dart';
+import 'package:flutter_travel/core/navigation/NavigationTabCore.dart';
 import 'package:redux/redux.dart';
 
 import 'package:flutter_travel/core/api/ApiEnviroment.dart';
@@ -29,7 +30,8 @@ class CoreApp extends StatelessWidget {
 			theme: ThemeData(primaryColor: Colors.black),
 
       		// 首页面
-			home: NewsPage(store: store)
+			// home: NewsPage(store: store)
+			home: NavigationTabCore(store: store)
 		);
 	}
 }
