@@ -77,11 +77,11 @@ class CirclerScroll extends StatelessWidget {
 								decoration: BoxDecoration(
 								image: DecorationImage(
 										image:AssetImage(avataUrl), fit: BoxFit.cover),
-									borderRadius: BorderRadius.only(
-										topLeft: Radius.circular(7.0),
-										topRight: Radius.circular(7.0),
-										bottomLeft: Radius.circular(7.0),
-										bottomRight: Radius.circular(7.0),
+										borderRadius: BorderRadius.only(
+											topLeft: Radius.circular(7.0),
+											topRight: Radius.circular(7.0),
+											bottomLeft: Radius.circular(7.0),
+											bottomRight: Radius.circular(7.0),
 								)),
 							),
 							SizedBox(width: 15.0),

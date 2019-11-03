@@ -11,7 +11,7 @@ class _CirclerSearchBarState extends State<CirclerSearchBar> {
 	@override
 	Widget build(BuildContext context) {
 		return Padding(
-				padding: EdgeInsets.fromLTRB(10.0, 25.0, 10.0, 0),
+				padding: EdgeInsets.fromLTRB(10.0, 25.0, 10.0, 3.0),
 				child: Row(
 					children: <Widget>[
 						Expanded(
@@ -28,7 +28,7 @@ class _CirclerSearchBarState extends State<CirclerSearchBar> {
 										child: Icon(Icons.search, color: Colors.black.withOpacity(0.6), size: 26.0),
 									),
 									suffixText: 'Enter search keywords',
-									border: InputBorder.none
+									border: InputBorder.none,
 								),
 								onChanged: (text) {
 									print('change $text');
