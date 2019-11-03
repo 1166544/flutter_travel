@@ -36,10 +36,10 @@ class _CirclerDisplayPageState extends State<CirclerDisplayPage> {
 			CirclerScroll(),
 
 			// 第3行
-			CirclerGrid(),
+			CirclerList(),
 
 			// 第四行
-			CirclerList()
+			CirclerGrid(),
 			
 			],
 		);

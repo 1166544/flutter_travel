@@ -7,7 +7,7 @@ class CirclerList extends StatelessWidget {
 	@override
 	Widget build(BuildContext context) {
 		return Padding(
-			padding: EdgeInsets.fromLTRB(10.0, 45.0, 0.0, 0.0),
+			padding: EdgeInsets.fromLTRB(10.0, 35.0, 0.0, 0.0),
 			child: Column(
 				crossAxisAlignment: CrossAxisAlignment.start,
 				children: <Widget>[
