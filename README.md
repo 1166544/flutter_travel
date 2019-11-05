@@ -1,9 +1,9 @@
 # flutter_travel
 
-A travels Flutter project.
+A travels Flutter project. 
 
 ## Upgrade
-```shell
+```shell 
 flutter upgrade
 ```
 
