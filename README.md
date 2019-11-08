@@ -9,7 +9,7 @@ flutter upgrade
 
 ## RUN
 ```shell
-flutter run
+flutter run 
 ```
 
 ## BUILD
