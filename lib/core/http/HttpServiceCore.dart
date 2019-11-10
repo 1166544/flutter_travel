@@ -106,12 +106,12 @@ class HttpServiceCore {
 		return response;
 	}
 
-	/// 处理POST
+	/// 处理put
 	Future<Response<dynamic>> put(String path, {data, Options options, CancelToken cancelToken}) async {
 		return await this.dio.put(path, data: data, options: options, cancelToken: cancelToken);
 	}
 
-	/// 处理DELETE
+	/// 处理delete
 	Future<Response<dynamic>> delete(String path, {data, Options options, CancelToken cancelToken}) async {
 		return await this.dio.delete(path, data: data, options: options, cancelToken: cancelToken);
 	}
