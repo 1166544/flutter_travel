@@ -124,7 +124,7 @@ class HttpServiceCore {
 	/// 处理patch
 	Future<Response<dynamic>> patch(String path, {data, Options options, CancelToken cancelToken}) async {
 		return await this.dio.patch(path, data: data, options: options, cancelToken: cancelToken);
-	}
+	} 
 
 	/// 处理download
 	// Future<Response<dynamic>> download(String urlPath, String savePath, {OnDownloadProgress onProgress, data, bool flush: false, Options options,CancelToken cancelToken}) async {
