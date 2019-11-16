@@ -27,21 +27,7 @@ class CirclerGrid extends StatelessWidget {
                 child: Column(
 					mainAxisAlignment: MainAxisAlignment.start,
 					crossAxisAlignment: CrossAxisAlignment.start,
-					children: <Widget>[
-						this.buildNewsLetterView(
-							'09',
-							'Restaurants',
-							'Stay informed as soon as important news breaks around the world',
-							context
-						),
-						SizedBox(height: 20.0),
-						this.buildNewsLetterView(
-							'07',
-							'Middle East',
-							'Stay informed as soon as important news breaks around the world',
-							context
-						),
-					],
+					children: this.generateBuildList(context),
 				),
               )
             ],
@@ -49,10 +35,31 @@ class CirclerGrid extends StatelessWidget {
         );
 	}
 
+	List<Widget> generateBuildList(BuildContext context) {
+		List<Widget> lsitWidget = [];
+		int count = this._list.length;
+		for (var i = 0; i < count; i++) {
+			CirclerModelNewsItem item = this._list[i];
+
+			lsitWidget.add(
+				this.buildNewsLetterView(
+					item.commentCount,
+					item.title,
+					item.abs,
+					context
+				),
+			);
+
+			lsitWidget.add(SizedBox(height: 10.0));
+		}
+
+		return lsitWidget;
+	}
+
 	Widget buildNewsLetterView(String bedgeeStr, String title, String desc, BuildContext context) {
 		return Container(
 			width: MediaQuery.of(context).size.width,
-			height: 80.0,
+			height: 90.0,
 			decoration: BoxDecoration(
 				color: Colors.grey.withOpacity(0.06),
 				borderRadius: BorderRadius.all(Radius.circular(6.0)),
@@ -65,26 +72,61 @@ class CirclerGrid extends StatelessWidget {
 					children: <Widget>[
 						Row(
 							children: <Widget>[
-								Text(title,
-								style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold, color: Colors.black)),
+								Container(
+									width: MediaQuery.of(context).size.width - 120.0,
+									child: Text(
+										title,
+										maxLines: 1,
+										overflow: TextOverflow.ellipsis,
+										softWrap: true,
+										style: TextStyle(
+											fontSize: 18.0, 
+											fontWeight: FontWeight.bold, 
+											color: Colors.black
+										)
+									),
+								),
 								Spacer(),
 								Container(
-									width: 50.0,
+									width: 45.0,
 									height: 18.0,
 									decoration: BoxDecoration(
 										color: Colors.grey.withOpacity(0.3),
 										borderRadius: BorderRadius.all(Radius.circular(2.0))
 									),
-									child: Center(
-										child: Text('Show $bedgeeStr',
-											style: TextStyle(fontSize: 10.0, fontWeight: FontWeight.bold, color: Colors.black.withOpacity(0.7))),
+									child: Container(
+										width: 45.0,
+										child: Padding(
+											padding: EdgeInsets.fromLTRB(4.0, 2.0, 0, 0),
+											child: Text(
+												'Show $bedgeeStr',
+												overflow: TextOverflow.ellipsis,
+												softWrap: true,
+												style: TextStyle(
+													fontSize: 10.0, 
+													fontWeight: FontWeight.bold, 
+													color: Colors.black.withOpacity(0.7)
+												)
+											),
+										)
 									),
 								)
 							],
 						),
 						SizedBox(height: 6.0),
-						Text(desc,
-						style: TextStyle(fontSize: 12.0, color: Colors.black.withOpacity(0.8)))
+						Container(
+							width: MediaQuery.of(context).size.width,
+							child: Text(
+								desc, 
+								overflow: TextOverflow.ellipsis,
+								softWrap: true,
+								maxLines: 2,
+								style: TextStyle(
+									fontSize: 12.0, 
+									color: Colors.black.withOpacity(0.8)
+								)
+							),
+						)
 					],
 				),
 			),

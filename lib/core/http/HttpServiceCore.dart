@@ -48,7 +48,7 @@ class HttpServiceCore {
 					'Origin': 'https://news.baidu.com',
 					'Referer': 'https://news.baidu.com/news',
 					'Sec-Fetch-Mode': 'cors',
-					'Cookie': 'BAIDUID=BA06E80E361A6FA5011CEFBF76C82268:FG=1; Hm_lvt_0c8070895132126fa3ba3bb7df1ac58e=1573908245; Hm_lpvt_0c8070895132126fa3ba3bb7df1ac58e=1573908245; PMS_JT=%28%7B%22s%22%3A1573908250332%2C%22r%22%3A%22https%3A//news.baidu.com/news%22%7D%29',
+					'Cookie': 'BAIDUID=CD309BA5F7D4CD91B67E193C06BE56D5:FG=1; Hm_lvt_0c8070895132126fa3ba3bb7df1ac58e=1573913046; Hm_lpvt_0c8070895132126fa3ba3bb7df1ac58e=1573913046',
 					'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1'
 				};
 				return options; //continue

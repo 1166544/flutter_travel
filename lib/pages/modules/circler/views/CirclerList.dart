@@ -126,7 +126,7 @@ class CirclerList extends StatelessWidget {
 							),
 							SizedBox(height: 5.0),
 							Container(
-								width: MediaQuery.of(context).size.width - 160,
+								width: MediaQuery.of(context).size.width - 170,
 								child: Row(
 								children: <Widget>[
 										Container(
@@ -142,12 +142,16 @@ class CirclerList extends StatelessWidget {
 										Text(this.getDateText(chatNum),
 											style: TextStyle(color: Colors.grey, fontSize: 12.0)),
 										Spacer(),
-										Text('[$favNum]',
+										Container(
+											width: 80.0,
+											child: Text('[$favNum]',
+											textAlign: TextAlign.right,
 											overflow: TextOverflow.ellipsis,
 											style: TextStyle(
 												color: Colors.black.withOpacity(0.8), 
 												fontSize: 12.0,
-											)),
+											))
+										)
 									],
 								),
 							)

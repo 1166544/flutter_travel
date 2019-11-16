@@ -51,7 +51,7 @@ class ServiceNewsList extends HttpServiceCore {
 			'category_id': '',
 			'action': 0,
 			'display_time': new DateTime.now().millisecondsSinceEpoch,
-			'mid': 'BA06E80E361A6FA5011CEFBF76C82268:FG=1'
+			'mid': 'CD309BA5F7D4CD91B67E193C06BE56D5:FG=1'
 		});
 		return await this.post('sn/api/feed_channellist', data: formData);
 	}
