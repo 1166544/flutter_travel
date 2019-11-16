@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_travel/core/bloc/BlocProvider.dart';
-import 'package:flutter_travel/pages/modules/search/blocs/BlocGalleryList.dart';
-import 'package:flutter_travel/pages/modules/search/views/ViewSearchContent.dart';
+import 'package:flutter_travel/pages/modules/search/blocs/SearchBlocGalleryList.dart';
+import 'package:flutter_travel/pages/modules/search/views/SearchContentView.dart';
 import 'package:flutter_travel/redux/states/StateGlobal.dart';
 
 /// 搜索页

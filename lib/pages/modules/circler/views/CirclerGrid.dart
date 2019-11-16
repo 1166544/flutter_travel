@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_travel/pages/modules/circler/models/CirclerModelsNewsList.dart';
 
 /// 九宫格内容
 class CirclerGrid extends StatelessWidget {
+
+	CirclerGrid(AsyncSnapshot<CirclerModelsNewsList> snapshot, {Key key}) : super(key: key);
 
 	@override
 	Widget build(BuildContext context) {

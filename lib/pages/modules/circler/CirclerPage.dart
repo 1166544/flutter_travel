@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_travel/core/bloc/BlocProvider.dart';
 import 'package:flutter_travel/pages/common/CommonNavigator.dart';
+import 'package:flutter_travel/pages/modules/circler/blocs/CirclerBlocNewsList.dart';
 import 'package:flutter_travel/pages/modules/circler/views/CirclerDisplayPage.dart';
-import 'package:flutter_travel/pages/modules/search/blocs/BlocGalleryList.dart';
 import 'package:flutter_travel/redux/states/StateGlobal.dart';
 
 /// 资讯内容页面
@@ -15,7 +15,7 @@ class CirclerPage extends StatefulWidget {
 	_CirclerState createState() => _CirclerState();
 }
 
-/// 我的内容
+/// 我的内容（新闻列表）
 class _CirclerState extends State<CirclerPage> with CommonNavigator, SingleTickerProviderStateMixin {
 
 	/// TAB菜单
@@ -66,9 +66,9 @@ class _CirclerState extends State<CirclerPage> with CommonNavigator, SingleTicke
 				)
 			),
 			body: BlocProvider(
-				bloc: BlocGalleryList(),
+				bloc: CirclerBlocNewsList(),
 				child: TabBarView(
-				controller: this._tabController,
+					controller: this._tabController,
 					children: this._tabsView,
 				),
 			),

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_travel/pages/modules/circler/models/CirclerModelsNewsList.dart';
 
 /// 持续改进提示
 class CircleImproving extends StatefulWidget {
-	CircleImproving({Key key}) : super(key: key);
+	CircleImproving(AsyncSnapshot<CirclerModelsNewsList> snapshot, {Key key}) : super(key: key);
 
 	_CircleImprovingState createState() => _CircleImprovingState();
 }

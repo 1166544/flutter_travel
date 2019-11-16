@@ -25,6 +25,10 @@ class ConfigDefault {
 			key: API_ENUM.CN_NODE,
 			serverUrl: 'https://cnodejs.org/'
 		));
+		this.serverUrlList.add(ApiConfigVO(
+			key: API_ENUM.BAIDU,
+			serverUrl: 'https://news.baidu.com/'
+		));
 	}
 
 	/// 获取服务器URL

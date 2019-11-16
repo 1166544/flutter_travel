@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_travel/pages/modules/circler/models/CirclerModelsNewsList.dart';
 
 /// 横向滚动内容
 class CirclerScroll extends StatelessWidget {
+
+	CirclerScroll(AsyncSnapshot<CirclerModelsNewsList> snapshot, {Key key}): super(key: key);
 
 	@override
 	Widget build(BuildContext context) {

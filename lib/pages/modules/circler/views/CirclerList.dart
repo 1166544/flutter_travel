@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_travel/pages/modules/circler/models/CirclerModelsNewsList.dart';
 
 /// 列表结构
 class CirclerList extends StatelessWidget {
-  	const CirclerList({Key key}) : super(key: key);
+  	const CirclerList(AsyncSnapshot<CirclerModelsNewsList> snapshot, {Key key}) : super(key: key);
 
 	@override
 	Widget build(BuildContext context) {

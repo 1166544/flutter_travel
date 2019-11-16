@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter_travel/core/bloc/BlocBase.dart';
-import 'package:flutter_travel/pages/modules/search/models/ModelGallery.dart';
+import 'package:flutter_travel/pages/modules/search/models/SearchModelGallery.dart';
 import 'package:flutter_travel/services/ServiceJsonPlaceHolder.dart';
 
 /// 列表数据

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_travel/pages/modules/circler/models/CirclerModelsNewsList.dart';
 
 /// 搜索条
 class CirclerSearchBar extends StatefulWidget {
-	CirclerSearchBar({Key key}) : super(key: key);
+	CirclerSearchBar(AsyncSnapshot<CirclerModelsNewsList> snapshot, {Key key}) : super(key: key);
 
 	_CirclerSearchBarState createState() => _CirclerSearchBarState();
 }
