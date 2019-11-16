@@ -110,9 +110,9 @@ class CirclerScroll extends StatelessWidget {
 										bottomRight: Radius.circular(7.0),
 							)),
 						),
-						SizedBox(width: 15.0),
+						SizedBox(width: 10.0),
 						Container(
-							width: 210.0,
+							width: 220.0,
 							height: 40.0,
 							child: Text(titleDesc,
 								maxLines: 2,
