@@ -35,6 +35,13 @@ class HttpServiceCore {
 		this.dio.interceptors.add(InterceptorsWrapper(
 			onRequest:(RequestOptions options){
 				// 在请求被发送之前做一些事情
+				options.headers = {
+					'Content-Type': 'application/x-www-form-urlencoded',
+					'Origin': 'https://news.baidu.com',
+					'Referer': 'https://news.baidu.com/news',
+					'Sec-Fetch-Mode': 'cors',
+					'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1'
+				};
 				return options; //continue
 				// 如果你想完成请求并返回一些自定义数据，可以返回一个`Response`对象或返回`dio.resolve(data)`。
 				// 这样请求将会被终止，上层then会被调用，then中返回的数据将是你的自定义数据data.

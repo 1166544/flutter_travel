@@ -74,7 +74,9 @@ class _CirclerDisplayPageState extends State<CirclerDisplayPage> with CommonTrav
 			CirclerModelNewsItem item = snapshotList.removeLast(); 
 
 			if (coverList.length < 5) {
-				coverList.add(item);
+				if (item.imageurls.length >= 1) {
+					coverList.add(item);
+				}
 			} else {
 				if (experienceList.length < 10) {
 					experienceList.add(item);

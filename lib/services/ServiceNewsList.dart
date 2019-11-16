@@ -32,14 +32,17 @@ class ServiceNewsList extends HttpServiceCore {
 	/// form=news_webapp&pd=webapp&os=iphone&category_name=%E5%9B%BE%E7%89%87&category_id=&action=1&display_time=0&mid=64769EF67AA38671B4907BA2602B1746%3AFG%3D1
 	Future<Response<dynamic>> getNewsList() async {
 		FormData formData = new FormData.fromMap({
+			'loc': 0,
 			'form': 'news_webapp',
 			'pd': 'webapp',
 			'os': 'iphone',
+			'ver': 6,
 			'category_name': '图片',
-			'category_id': '',
+			'category_id': 102,
 			'action': 1,
 			'display_time': 0,
-			'mid': '64769EF67AA38671B4907BA2602B1746:FG=1'
+			'wf': 0,
+			'mid': 'DC3DAE25021A944C55E30CD420BAAB8A:FG=1'
 		});
 		return await this.post('sn/api/feed_channellist', data: formData);
 	}

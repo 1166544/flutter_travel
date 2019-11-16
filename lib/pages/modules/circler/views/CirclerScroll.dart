@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_travel/pages/modules/circler/models/CirclerModelImage.dart';
 import 'package:flutter_travel/pages/modules/circler/models/CirclerModelNewsItem.dart';
 
 /// 横向滚动内容
@@ -18,36 +19,55 @@ class CirclerScroll extends StatelessWidget {
 				width: MediaQuery.of(context).size.width,
 				height: 220.0,
 				child: ListView(
-				scrollDirection: Axis.horizontal,
-				children: <Widget>[
-					this.buildScrollImageItem(
-						'assets/road.jpg',
-						'assets/chris.jpg',
-						'Madrid in Summer'),
-					SizedBox(width: 15.0),
-					this.buildScrollImageItem(
-						'assets/p5.jpg',
-						'assets/beach5.jpg',
-						'Barcelona withe Drone'),
-					SizedBox(width: 15.0),
-					this.buildScrollImageItem(
-						'assets/p6.jpg',
-						'assets/p2.jpg',
-						'Sanfrisco travel details'),
-				],
+					scrollDirection: Axis.horizontal,
+					children: this.buildCoverIamge(),
 				),
 		);
+	}
+
+	/// 构建封面
+	List<Widget> buildCoverIamge() {
+		List<Widget> lsitWidget = [];
+		int count = this._list.length;
+		var cover2 = 'https://gss0.bdstatic.com/5foIcy0a2gI2n2jgoY3K/n/nvn/static/news/imgs/bg-news-logo_344ce44.png';
+		for (var i = 0; i < count; i++) {
+			CirclerModelNewsItem item = this._list[i];
+
+			List<CirclerModelImage> imageurls = item.imageurls;
+			var cover1 = '';
+
+			if (imageurls.length > 0) {
+				cover1 = imageurls[0].urlWebp;
+			}
+
+			if (imageurls.length > 1) {
+				cover2 = imageurls[1].urlWebp;
+			}
+
+			lsitWidget.add(
+				this.buildScrollImageItem(
+						cover1,
+						cover2,
+						item.title)
+			);
+
+			if (i % 2 != 0) {
+				lsitWidget.add(SizedBox(width: 15.0));
+			}
+		}
+
+		return lsitWidget;
 	}
 	
 	/// 滚动图片
 	Widget buildScrollImageItem(
 		String coverUrl, String avataUrl, String titleDesc) {
-
+			
 			return Container(
 				width: 290.0,
 				height: 180.0,
 				decoration: BoxDecoration(
-					image: DecorationImage(image: AssetImage(coverUrl), fit: BoxFit.cover),
+					image: DecorationImage(image: NetworkImage(coverUrl), fit: BoxFit.cover),
 					borderRadius: BorderRadius.only(
 						topLeft: Radius.circular(10.0),
 						topRight: Radius.circular(10.0),
@@ -84,7 +104,7 @@ class CirclerScroll extends StatelessWidget {
 								height: 40.0,
 								decoration: BoxDecoration(
 								image: DecorationImage(
-										image:AssetImage(avataUrl), fit: BoxFit.cover),
+										image: NetworkImage(avataUrl), fit: BoxFit.cover),
 										borderRadius: BorderRadius.only(
 											topLeft: Radius.circular(7.0),
 											topRight: Radius.circular(7.0),
