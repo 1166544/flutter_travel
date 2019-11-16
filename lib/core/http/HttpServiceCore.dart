@@ -36,10 +36,19 @@ class HttpServiceCore {
 			onRequest:(RequestOptions options){
 				// 在请求被发送之前做一些事情
 				options.headers = {
+					'Sec-Fetch-Mode': 'cors',
+					'Sec-Fetch-Site': 'same-origin',
+					'Host': 'news.baidu.com',
+					'Accept': 'application/json, text/plain, */*',
+					'Accept-Encoding': 'gzip, deflate, br',
+					'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8',
+					'Connection': 'keep-alive',
+					'Content-Length': 139,
 					'Content-Type': 'application/x-www-form-urlencoded',
 					'Origin': 'https://news.baidu.com',
 					'Referer': 'https://news.baidu.com/news',
 					'Sec-Fetch-Mode': 'cors',
+					'Cookie': 'BAIDUID=E2095773EB96BCA7B6F5962E2AA144D9:FG=1; Hm_lvt_0c8070895132126fa3ba3bb7df1ac58e=1573906706; Hm_lpvt_0c8070895132126fa3ba3bb7df1ac58e=1573906706; PMS_JT=%28%7B%22s%22%3A1573906772684%2C%22r%22%3A%22https%3A//news.baidu.com/news%22%7D%29',
 					'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1'
 				};
 				return options; //continue

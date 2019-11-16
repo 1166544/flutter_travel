@@ -50,7 +50,7 @@ class CirclerList extends StatelessWidget {
 				cover1,
 				cover1,
 				cover1,
-				item.pulltime,
+				item.ts,
 				item.site,
 				item.title,
 				item.abs
@@ -81,7 +81,7 @@ class CirclerList extends StatelessWidget {
 				children: <Widget>[
 					Container(
 						width: 120.0,
-						height: 90.0,
+						height: 105.0,
 						decoration: BoxDecoration(
 						image: DecorationImage(
 							image:NetworkImage(avataUrl), 
@@ -115,7 +115,7 @@ class CirclerList extends StatelessWidget {
 							),
 							SizedBox(height: 5.0),
 							Container(
-								width: MediaQuery.of(context).size.width - 160,
+								width: MediaQuery.of(context).size.width - 175,
 								child: Row(
 								children: <Widget>[
 										Container(
@@ -128,9 +128,11 @@ class CirclerList extends StatelessWidget {
 											),
 										),
 										SizedBox(width: 10.0),
-										Text(chatNum.toString(),
+										Text(chatNum,
 											style: TextStyle(color: Colors.grey, fontSize: 12.0)),
 										Spacer(),
+										Text('[$favNum]',
+											style: TextStyle(color: Colors.black.withOpacity(0.8), fontSize: 12.0)),
 									],
 								),
 							)
