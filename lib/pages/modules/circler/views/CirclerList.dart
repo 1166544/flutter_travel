@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_travel/pages/modules/circler/models/CirclerModelImage.dart';
 import 'package:flutter_travel/pages/modules/circler/models/CirclerModelNewsItem.dart';
 
 /// 列表结构
@@ -22,41 +23,44 @@ class CirclerList extends StatelessWidget {
 						TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontFamily: 'Montserrat')),
 				SizedBox(height: 20.0),
 				Column(
-					children: <Widget>[
-					this.buildExperienceItem(
-						context,
-						'assets/chris.jpg',
-						'assets/p1.jpg',
-						'assets/p2.jpg',
-						124,
-						12,
-						'Hiking in San Diego',
-						'The key is the childAspectRatio. This value is use to determine the layout in GridView. In order to get the desired aspect you have to set it to the (itemWidth / itemHeight). The solution would be this:'),
-					SizedBox(height: 30.0),
-					this.buildExperienceItem(
-						context,
-						'assets/p1.jpg',
-						'assets/p3.jpg',
-						'assets/p2.jpg',
-						80,
-						22,
-						'How to offset a scaffold widget in Flutter?',
-						"I did the first 3 steps. I have problems with the fourth one. I set an Offset state variable and placed my scaffold widget within a Positioned widget. I set the 'left' of the Positioned class to Offset.dx."),
-					SizedBox(height: 30.0),
-					this.buildExperienceItem(
-						context,
-						'assets/p5.jpg',
-						'assets/p6.jpg',
-						'assets/p2.jpg',
-						468,
-						85,
-						'The 2019 Stack Overflow Developer Survey Results Are In',
-						'So after some research, I found this wonderful video on youtube. Very informative and exactly solves my problem.'),
-					],
+					children: this.generateLayoutList(context),
 				)
 				],
 			),
 		);
+	}
+
+	/// 生成渲染列表
+	List<Widget> generateLayoutList(BuildContext context) {
+		List<Widget> lsitWidget = [];
+		int count = this._list.length;
+
+		for (var i = 0; i < count; i++) {
+			CirclerModelNewsItem item = this._list[i];
+
+			List<CirclerModelImage> imageurls = item.imageurls;
+			var cover1 = '';
+
+			if (imageurls.length > 0) {
+				cover1 = imageurls[0].urlWebp;
+			}
+			lsitWidget.add(
+				this.buildExperienceItem(
+				context,
+				cover1,
+				cover1,
+				cover1,
+				item.pulltime,
+				item.site,
+				item.title,
+				item.abs
+			));
+			lsitWidget.add(
+				SizedBox(height: 30.0)
+			);
+		}
+
+		return lsitWidget;
 	}
 
 	/// 构建留言区
@@ -65,8 +69,8 @@ class CirclerList extends StatelessWidget {
 		String avataUrl,
 		String chapter1Url,
 		String chapter2Url,
-		int chatNum,
-		int favNum,
+		dynamic chatNum,
+		dynamic favNum,
 		String chatTitle,
 		String chatDesc) {
 		return Column(
@@ -80,7 +84,7 @@ class CirclerList extends StatelessWidget {
 						height: 90.0,
 						decoration: BoxDecoration(
 						image: DecorationImage(
-							image:AssetImage(avataUrl), 
+							image:NetworkImage(avataUrl), 
 							fit: BoxFit.cover),
 							borderRadius: BorderRadius.all(Radius.circular(7.0))
 						)
