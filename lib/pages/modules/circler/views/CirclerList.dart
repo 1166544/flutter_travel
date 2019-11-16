@@ -67,106 +67,67 @@ class CirclerList extends StatelessWidget {
 		children: <Widget>[
 			// 第1行 标题
 			Row(
-			crossAxisAlignment: CrossAxisAlignment.start,
-			children: <Widget>[
-				CircleAvatar(
-				backgroundImage: AssetImage(avataUrl),
-				radius: 25.0,
-				),
-				SizedBox(width: 15.0),
-				Column(
+				crossAxisAlignment: CrossAxisAlignment.start,
 				children: <Widget>[
 					Container(
-					width: MediaQuery.of(context).size.width - 100,
-					child: Text(chatTitle,
-						maxLines: 2,
-						softWrap: true,
-						style: TextStyle(
-							fontSize: 16.0,
-							color: Colors.black87.withOpacity(0.5),
-							fontWeight: FontWeight.bold)),
+						width: 120.0,
+						height: 90.0,
+						decoration: BoxDecoration(
+						image: DecorationImage(
+							image:AssetImage(avataUrl), 
+							fit: BoxFit.cover),
+							borderRadius: BorderRadius.all(Radius.circular(7.0))
+						)
 					),
-					SizedBox(height: 5.0),
-					Container(
-					width: MediaQuery.of(context).size.width - 100,
-					child: Text(chatDesc,
-						maxLines: 5,
-						softWrap: true,
-						style: TextStyle(fontSize: 12.0)),
-					),
-				],
-				)
-			],
-			),
-
-			// 第2行 分隔线
-			Padding(
-			padding: EdgeInsets.fromLTRB(20.0, 25.0, 20.0, 0.0),
-			child: Container(
-				width: MediaQuery.of(context).size.width,
-				height: 1.0,
-				decoration: BoxDecoration(
-					color: Colors.grey.withOpacity(0.3), shape: BoxShape.rectangle),
-			),
-			),
-
-			// 第3行点赞区
-			Padding(
-			padding: EdgeInsets.fromLTRB(18.0, 15.0, 27.0, 40.0),
-			child: Row(
-				children: <Widget>[
-				Container(
-					width: 30.0,
-					height: 30.0,
-					decoration: BoxDecoration(
-					image: DecorationImage(
-						image: AssetImage('assets/speechbubble.png'),
-						fit: BoxFit.cover),
-					),
-				),
-				SizedBox(width: 10.0),
-				Text(chatNum.toString(),
-					style: TextStyle(color: Colors.grey, fontSize: 18.0)),
-				Spacer(),
-				CircleAvatar(
-					backgroundImage: AssetImage(chapter1Url),
-					radius: 20.0,
-				),
-				SizedBox(width: 7.0),
-				CircleAvatar(
-					backgroundImage: AssetImage(chapter2Url),
-					radius: 20.0,
-				),
-				SizedBox(width: 7.0),
-				Container(
-					width: 40.0,
-					height: 40.0,
-					decoration: BoxDecoration(
-						color: Colors.blueAccent,
-						borderRadius: BorderRadius.circular(50.0),
-						gradient: RadialGradient(
-							center: Alignment(0.4, 0.3),
-							radius: 0.7,
-							colors: [
-							Colors.blueAccent.withOpacity(0.5),
-							Colors.blue
-							],
-							stops: [
-							0.0,
-							0.99
-							]),
-						shape: BoxShape.rectangle),
-					child: Center(
-					child: Text(favNum.toString(),
-						style: TextStyle(
-							fontSize: 18.0,
-							fontWeight: FontWeight.bold,
-							color: Colors.white)),
-					),
-				)
+					SizedBox(width: 15.0),
+					Column(
+						children: <Widget>[
+							Container(
+								width: MediaQuery.of(context).size.width - 160,
+								child: Text(chatTitle,
+									maxLines: 2,
+									softWrap: true,
+									style: TextStyle(
+										fontSize: 16.0,
+										color: Colors.black87,
+										fontWeight: FontWeight.bold)),
+							),
+							SizedBox(height: 5.0),
+							Container(
+								width: MediaQuery.of(context).size.width - 160,
+								child: Text(chatDesc,
+									maxLines: 2,
+									softWrap: true,
+									style: TextStyle(
+										fontSize: 13.0,
+										color: Colors.black87.withOpacity(0.5)
+									)),
+							),
+							SizedBox(height: 5.0),
+							Container(
+								width: MediaQuery.of(context).size.width - 160,
+								child: Row(
+								children: <Widget>[
+										Container(
+											width: 10.0,
+											height: 10.0,
+											decoration: BoxDecoration(
+											image: DecorationImage(
+												image: AssetImage('assets/speechbubble.png'),
+												fit: BoxFit.cover),
+											),
+										),
+										SizedBox(width: 10.0),
+										Text(chatNum.toString(),
+											style: TextStyle(color: Colors.grey, fontSize: 12.0)),
+										Spacer(),
+									],
+								),
+							)
+						],
+					)
 				],
 			),
-			)
 		],
 		);
 	}
