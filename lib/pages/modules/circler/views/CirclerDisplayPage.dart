@@ -3,6 +3,7 @@ import 'package:flutter_travel/core/bloc/BlocProvider.dart';
 import 'package:flutter_travel/pages/common/CommonLoading.dart';
 import 'package:flutter_travel/pages/common/CommonTravelItem.dart';
 import 'package:flutter_travel/pages/modules/circler/blocs/CirclerBlocNewsList.dart';
+import 'package:flutter_travel/pages/modules/circler/models/CirclerModelNewsItem.dart';
 import 'package:flutter_travel/pages/modules/circler/models/CirclerModelsNewsList.dart';
 import 'package:flutter_travel/pages/modules/circler/views/CiclerImproving.dart';
 import 'package:flutter_travel/pages/modules/circler/views/CircleTitle.dart';
@@ -63,6 +64,26 @@ class _CirclerDisplayPageState extends State<CirclerDisplayPage> with CommonTrav
 
 	/// 构建外观
 	Widget buildLayout(AsyncSnapshot<CirclerModelsNewsList> snapshot) {
+		List<CirclerModelNewsItem> snapshotList = snapshot.data.news;
+		List<CirclerModelNewsItem> coverList = [];
+		List<CirclerModelNewsItem> experienceList = [];
+		List<CirclerModelNewsItem> newsLetter = [];
+		
+		// 数据分层
+		while (snapshotList.length != 0) {
+			CirclerModelNewsItem item = snapshotList.removeLast(); 
+
+			if (coverList.length < 5) {
+				coverList.add(item);
+			} else {
+				if (experienceList.length < 10) {
+					experienceList.add(item);
+				} else {
+					newsLetter.add(item);
+				}
+			}
+		}
+
 		return ListView(
 			padding: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
 			children: <Widget>[
@@ -79,13 +100,13 @@ class _CirclerDisplayPageState extends State<CirclerDisplayPage> with CommonTrav
 			CircleTitle(snapshot),
 
 			// 第2行 横向滚动列表
-			CirclerScroll(snapshot),
+			CirclerScroll(coverList),
 
 			// 第3行
-			CirclerList(snapshot),
+			CirclerList(experienceList),
 
 			// 第四行
-			CirclerGrid(snapshot),
+			CirclerGrid(newsLetter),
 			
 			],
 		);
