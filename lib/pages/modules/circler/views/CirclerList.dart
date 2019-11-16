@@ -63,6 +63,14 @@ class CirclerList extends StatelessWidget {
 		return lsitWidget;
 	}
 
+	/// 返回时间截
+	String getDateText(String dateNum) {
+		var dateNo = int.parse(dateNum);
+		var date = new DateTime.fromMillisecondsSinceEpoch(dateNo);
+		var dateStr = date.year.toString() + '/' + date.month.toString() + '/' + date.day.toString();
+		return dateStr;
+	}
+
 	/// 构建留言区
 	Widget buildExperienceItem(
 		BuildContext context,
@@ -118,7 +126,7 @@ class CirclerList extends StatelessWidget {
 							),
 							SizedBox(height: 5.0),
 							Container(
-								width: MediaQuery.of(context).size.width - 175,
+								width: MediaQuery.of(context).size.width - 160,
 								child: Row(
 								children: <Widget>[
 										Container(
@@ -131,7 +139,7 @@ class CirclerList extends StatelessWidget {
 											),
 										),
 										SizedBox(width: 10.0),
-										Text(chatNum,
+										Text(this.getDateText(chatNum),
 											style: TextStyle(color: Colors.grey, fontSize: 12.0)),
 										Spacer(),
 										Text('[$favNum]',
