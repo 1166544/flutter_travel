@@ -86,6 +86,9 @@ class CirclerList extends StatelessWidget {
 						image: DecorationImage(
 							image:NetworkImage(avataUrl), 
 							fit: BoxFit.cover),
+							border: Border.all(
+								color: Colors.grey.withOpacity(0.5), width: 0.5
+							),
 							borderRadius: BorderRadius.all(Radius.circular(7.0))
 						)
 					),
@@ -132,7 +135,11 @@ class CirclerList extends StatelessWidget {
 											style: TextStyle(color: Colors.grey, fontSize: 12.0)),
 										Spacer(),
 										Text('[$favNum]',
-											style: TextStyle(color: Colors.black.withOpacity(0.8), fontSize: 12.0)),
+											overflow: TextOverflow.ellipsis,
+											style: TextStyle(
+												color: Colors.black.withOpacity(0.8), 
+												fontSize: 12.0,
+											)),
 									],
 								),
 							)
