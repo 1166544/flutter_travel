@@ -65,13 +65,14 @@ class _CirclerDisplayPageState extends State<CirclerDisplayPage> with CommonTrav
 	/// 构建外观
 	Widget buildLayout(AsyncSnapshot<CirclerModelsNewsList> snapshot) {
 		List<CirclerModelNewsItem> snapshotList = snapshot.data.news;
+		int count = snapshotList.length;
 		List<CirclerModelNewsItem> coverList = [];
 		List<CirclerModelNewsItem> experienceList = [];
 		List<CirclerModelNewsItem> newsLetter = [];
 		
 		// 数据分层
-		while (snapshotList.length != 0) {
-			CirclerModelNewsItem item = snapshotList.removeLast(); 
+		for (var i = 0; i < count; i++) {
+			CirclerModelNewsItem item = snapshotList[i]; 
 
 			if (coverList.length < 5) {
 				if (item.imageurls.length >= 1) {
