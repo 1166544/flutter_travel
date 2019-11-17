@@ -29,4 +29,9 @@ class ConfigDev extends ConfigDefault {
 		));
 	}
 
+	/// proxy服务器地址，只有开发环境走proxy
+	String getProxyUrl() {
+		return '127.0.0.1:8888';
+	}
+
 }

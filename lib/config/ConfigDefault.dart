@@ -43,4 +43,9 @@ class ConfigDefault {
 		return serverUrl;
 	}
 
+	/// proxy服务器地址，默认不走proxy
+	String getProxyUrl() {
+		return '';
+	}
+
 }

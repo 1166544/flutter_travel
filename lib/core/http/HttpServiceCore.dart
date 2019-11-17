@@ -1,7 +1,10 @@
 import 'dart:async';
+import 'dart:io';
 
 // import 'package:cookie_jar/cookie_jar.dart';
+import 'package:dio/adapter.dart';
 import 'package:flutter_travel/core/api/ApiEnum.dart';
+import 'package:flutter_travel/core/api/ApiEnviroment.dart';
 import 'package:flutter_travel/core/http/HttpTransformerCore.dart';
 import 'package:flutter_travel/services/ServiceEnviroment.dart';
 import 'package:dio/dio.dart';
@@ -79,16 +82,16 @@ class HttpServiceCore {
 		this.dio.transformer = new HttpTransformerCore();
 
 		// 开发环境抓包请求
-		// if (ServiceEnviroment.instance.env == ENVIROMENT.DEVELOPEMENT) {
-		// 	(dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
-		// 		(HttpClient client) {
-		// 		client.findProxy = (uri) {
-		// 			// proxy all request to localhost:8888
-		// 			return "PROXY localhost:8888";
-		// 		};
-		// 		client.badCertificateCallback = (X509Certificate cert, String host, int port) => true;
-		// 	};
-		// }
+		if (ServiceEnviroment.instance.env == ENVIROMENT.DEVELOPEMENT) {
+			(dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
+				(HttpClient client) {
+				client.findProxy = (uri) {
+					// proxy all request to localhost:8888
+					return "PROXY ${ServiceEnviroment.instance.getEnv().getProxyUrl()}";
+				};
+				client.badCertificateCallback = (X509Certificate cert, String host, int port) => true;
+			};
+		}
 	}
 
 	/// 处理GET请求
