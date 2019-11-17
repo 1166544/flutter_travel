@@ -11,6 +11,7 @@ class CirclerBlocNewsList implements BlocBase {
 	CirclerModelsNewsList _gallery;
 	ServiceNewsList _serviceNewsList;
 	ServiceToken _serviceToken;
+	dynamic _requestParams = '';
 
 	/// 数据流处理器对象
 	StreamController<CirclerModelsNewsList> _galleryController;
@@ -25,7 +26,6 @@ class CirclerBlocNewsList implements BlocBase {
 		this._galleryController = StreamController<CirclerModelsNewsList>.broadcast();
 		this._serviceNewsList = new ServiceNewsList();
 		this._serviceToken = new ServiceToken();
-		this.init();
 	}
 
 	/// 初始化
@@ -34,7 +34,7 @@ class CirclerBlocNewsList implements BlocBase {
 		await this._serviceToken.getToken();
 
 		// 初始化时调用service列表数据 
-		dynamic result = await this._serviceNewsList.getNewsList();
+		dynamic result = await this._serviceNewsList.getNewsList(this._requestParams);
 
 		// 返回数据列表更新数据源
 		this._gallery = new CirclerModelsNewsList();
@@ -42,6 +42,12 @@ class CirclerBlocNewsList implements BlocBase {
 
 		// 触发数据更新
 		this._inGallery.add(this._gallery);
+	}
+
+	/// 更新请求参数
+	void updateParams(dynamic requestParams) {
+		this._requestParams = requestParams;
+		this.init();
 	}
 
 	Future<Null> update() async {

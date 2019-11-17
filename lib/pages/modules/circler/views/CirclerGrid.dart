@@ -13,7 +13,7 @@ class CirclerGrid extends StatelessWidget {
 	@override
 	Widget build(BuildContext context) {
 	return Padding(
-          padding: EdgeInsets.fromLTRB(15.0, 55.0, 0.0, 0.0),
+          padding: EdgeInsets.fromLTRB(15.0, 25.0, 0.0, 0.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -66,7 +66,7 @@ class CirclerGrid extends StatelessWidget {
 				border: Border.all(color: Colors.grey.withOpacity(0.4), width: 0.5)
 			),
 			child: Padding(
-				padding: EdgeInsets.all(8.0),
+				padding: EdgeInsets.fromLTRB(0, 8.0, 8.0, 0),
 				child: Column(
 					crossAxisAlignment: CrossAxisAlignment.start,
 					children: <Widget>[

@@ -14,20 +14,31 @@ import 'package:flutter_travel/pages/modules/circler/views/CirclerSearchBar.dart
 
 /// 资讯显示列表
 class CirclerDisplayPage extends StatefulWidget {
-  CirclerDisplayPage({Key key}) : super(key: key);
+	
+	dynamic _requestParams;
 
-  _CirclerDisplayPageState createState() => _CirclerDisplayPageState();
+	CirclerDisplayPage({Key key, dynamic requestParams = ''}) : super(key: key) {
+		this._requestParams = requestParams;
+	}
+
+	_CirclerDisplayPageState createState() => _CirclerDisplayPageState(this._requestParams);
 }
 
 class _CirclerDisplayPageState extends State<CirclerDisplayPage> with CommonTravelItem {
   
 	CirclerBlocNewsList blocGalleryList;
 	GlobalKey<RefreshIndicatorState> refreshKey = GlobalKey<RefreshIndicatorState>();
+	dynamic _requestParms;
+
+	_CirclerDisplayPageState(dynamic requestParams): super() {
+		this._requestParms = requestParams;
+	}
 
 	@override
 	Widget build(BuildContext context) {
 		// 连接数据源
 		this.blocGalleryList = BlocProvider.of<CirclerBlocNewsList>(context);
+		this.blocGalleryList.updateParams(this._requestParms);
 
 		// 连接视图，下拉刷新
 		return RefreshIndicator(
@@ -73,23 +84,16 @@ class _CirclerDisplayPageState extends State<CirclerDisplayPage> with CommonTrav
 		// 数据分层
 		for (var i = 0; i < count; i++) {
 			CirclerModelNewsItem item = snapshotList[i]; 
-
-			if (coverList.length < 5) {
-				if (item.imageurls.length >= 1) {
-					coverList.add(item);
-				}
+			if (item.imageurls.length > 0 && experienceList.length < 10) {
+				experienceList.add(item);
+			} else if (item.imageurls.length >= 1 && coverList.length < 5) {
+				coverList.add(item);
 			} else {
-				if (experienceList.length < 10) {
-					experienceList.add(item);
-				} else {
-					newsLetter.add(item);
-				}
+				newsLetter.add(item);
 			}
 		}
 
-		return ListView(
-			padding: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
-			children: <Widget>[
+		List<Widget> renderList = [
 			// 封面
 			// CirclerCover(),
 
@@ -98,20 +102,27 @@ class _CirclerDisplayPageState extends State<CirclerDisplayPage> with CommonTrav
 
 			// 改进提示
 			CircleImproving(snapshot),
+		];
 
-			// 第1行
-			CircleTitle(snapshot),
+		// 第2行 横向滚动列表
+		if (coverList.length > 0) {
+			renderList.add(CircleTitle(snapshot));
+			renderList.add(CirclerScroll(coverList));
+		}
 
-			// 第2行 横向滚动列表
-			CirclerScroll(coverList),
+		// 第3行
+		if (experienceList.length > 0) {
+			renderList.add(CirclerList(experienceList));
+		}
 
-			// 第3行
-			CirclerList(experienceList),
+		// 第四行
+		if (newsLetter.length > 0) {
+			renderList.add(CirclerGrid(newsLetter));
+		}
 
-			// 第四行
-			CirclerGrid(newsLetter),
-			
-			],
+		return ListView(
+			padding: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
+			children: renderList,
 		);
 	}
 }

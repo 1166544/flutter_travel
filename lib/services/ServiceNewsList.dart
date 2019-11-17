@@ -50,9 +50,9 @@ class ServiceNewsList extends HttpServiceCore {
 	/// form 格式
 	/// url https://news.baidu.com/sn/api/feed_channellist
 	/// form=news_webapp&pd=webapp&os=iphone&category_name=%E5%9B%BE%E7%89%87&category_id=&action=1&display_time=0&mid=64769EF67AA38671B4907BA2602B1746%3AFG%3D1
-	Future<Response<dynamic>> getNewsList() async {
-
-		FormData formData = new FormData.fromMap({
+	Future<Response<dynamic>> getNewsList(dynamic params) async {
+		// 默认参数
+		dynamic requestParams = {
 			'form': 'news_webapp',
 			'pd': 'webapp',
 			'os': 'iphone',
@@ -61,7 +61,16 @@ class ServiceNewsList extends HttpServiceCore {
 			'action': 0,
 			'display_time': new DateTime.now().millisecondsSinceEpoch,
 			'mid': this.enviroment.getEnv().getToken().token
-		});
+		};
+
+		// 接收自定义传入参数
+		if (params != '') {
+			requestParams = params;
+			requestParams['display_time'] = new DateTime.now().millisecondsSinceEpoch;
+			requestParams['mid'] = this.enviroment.getEnv().getToken().token;
+		}
+
+		FormData formData = new FormData.fromMap(requestParams);
 
 		return await this.post('sn/api/feed_channellist', data: formData);
 	}
