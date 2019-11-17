@@ -74,4 +74,32 @@ class ServiceNewsList extends HttpServiceCore {
 
 		return await this.post('sn/api/feed_channellist', data: formData);
 	}
+
+	// 文章内容
+	// https://news.baidu.com/news?tn=bdapibaiyue&t=recommendinfo
+	// cuid: 
+	// nids: 9647858107215092637
+	// wf: 1
+	// remote_device_type: 1
+	// os_type: 2
+	// screen_size_width: 414
+	// screen_size_height: 736
+
+	// 评论数量
+	// https://news.baidu.com/news?tn=bdapibaiyue&t=getcommentcount&act=get
+	// nid: 9647858107215092637
+	// from: info
+	// pd: webapp
+	// ver: 5
+
+	// 评论列表
+	// https://news.baidu.com/news?tn=bdapibaiyue&t=getcomments&act=get
+	// nid: 9647858107215092637
+	// from: info
+	// pd: webapp
+	// comment_id: 0
+	// order: time
+	// ver: 3
+	// pn: 10
+	// ts: 0
 }

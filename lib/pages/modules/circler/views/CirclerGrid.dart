@@ -66,7 +66,7 @@ class CirclerGrid extends StatelessWidget {
 				border: Border.all(color: Colors.grey.withOpacity(0.4), width: 0.5)
 			),
 			child: Padding(
-				padding: EdgeInsets.fromLTRB(0, 8.0, 8.0, 0),
+				padding: EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 0),
 				child: Column(
 					crossAxisAlignment: CrossAxisAlignment.start,
 					children: <Widget>[
