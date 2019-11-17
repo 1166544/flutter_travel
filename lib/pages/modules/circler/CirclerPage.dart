@@ -4,7 +4,10 @@ import 'package:flutter_travel/core/bloc/BlocProvider.dart';
 import 'package:flutter_travel/pages/common/CommonNavigator.dart';
 import 'package:flutter_travel/pages/modules/circler/blocs/CirclerBlocNewsList.dart';
 import 'package:flutter_travel/pages/modules/circler/views/CircleLocalPage.dart';
+import 'package:flutter_travel/pages/modules/circler/views/CircleMilitaryPage.dart';
 import 'package:flutter_travel/pages/modules/circler/views/CirclerDisplayPage.dart';
+import 'package:flutter_travel/pages/modules/circler/views/CirclerGlobalPage.dart';
+import 'package:flutter_travel/pages/modules/circler/views/CirclerSocialityPage.dart';
 import 'package:flutter_travel/redux/states/StateGlobal.dart';
 
 /// 资讯内容页面
@@ -23,17 +26,18 @@ class _CirclerState extends State<CirclerPage> with CommonNavigator, SingleTicke
 	final List<Tab> _tabsData = <Tab>[
 		Tab(text: '头条'),
 		Tab(text: '本地'),
-		// Tab(text: '军事'),
-		// Tab(text: '科技'),
+		Tab(text: '军事'),
+		Tab(text: '社会'),
+		Tab(text: '国际'),
 	];
 
 	/// TAB视图
 	final List<Widget> _tabsView = <Widget>[
 		CirclerDisplayPage(),
 		CircleLocalPage(),
-		// CircleLocalPage(),
-		// CirclerDisplayPage(),
-		// CirclerDisplayPage(),
+		CircleMilitaryPage(),
+		CirclerSocialityPage(),
+		CirclerGlobalPage(),
 	];
 
 	TabController _tabController;
