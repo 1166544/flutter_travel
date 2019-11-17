@@ -25,7 +25,7 @@ class _CirclerState extends State<CirclerPage> with CommonNavigator, SingleTicke
 	/// TAB菜单
 	final List<Tab> _tabsData = <Tab>[
 		Tab(text: '头条'),
-		Tab(text: '本地'),
+		Tab(text: '时尚'),
 		Tab(text: '军事'),
 		Tab(text: '社会'),
 		Tab(text: '国际'),

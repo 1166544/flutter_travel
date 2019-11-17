@@ -2,17 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_travel/pages/modules/circler/views/CirclerDisplayPage.dart';
 
 /// 本地频道页
-class CircleLocalPage extends CirclerDisplayPage {
+class CircleFashionPage extends CirclerDisplayPage {
 
-	CircleLocalPage({Key key}) : super(key: key, requestParams: {
-			'loc': 0,
-			'from': 'news_webapp',
+	CircleFashionPage({Key key}) : super(key: key, requestParams: {
+			'form': 'news_webapp',
 			'pd': 'webapp',
 			'os': 'iphone',
 			'ver': 6,
-			'category_id': 102,
-			'action': 1,
-			'wf': 0,
+			'category_name': '时尚',
+			'category_id': '',
+			'action': 0
 		}
 	);
 }
