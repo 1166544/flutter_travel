@@ -26,6 +26,26 @@ class ServiceNewsList extends HttpServiceCore {
 		super.init();
 	}
 
+	/// 重写生成自定义头部
+	Map<String, dynamic> generateRequestHeaders() {
+		return {
+			'Sec-Fetch-Mode': 'cors',
+			'Sec-Fetch-Site': 'same-origin',
+			'Host': 'news.baidu.com',
+			'Accept': 'application/json, text/plain, */*',
+			'Accept-Encoding': 'gzip, deflate, br',
+			'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8',
+			'Connection': 'keep-alive',
+			'Content-Length': 139,
+			'Content-Type': 'application/x-www-form-urlencoded',
+			'Origin': 'https://news.baidu.com',
+			'Referer': 'https://news.baidu.com/news',
+			'Sec-Fetch-Mode': 'cors',
+			'Cookie': this.enviroment.getEnv().getToken().cookie,
+			'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1'
+		};
+	}
+
 	/// 返回typecode列表
 	/// form 格式
 	/// url https://news.baidu.com/sn/api/feed_channellist
@@ -33,17 +53,6 @@ class ServiceNewsList extends HttpServiceCore {
 	Future<Response<dynamic>> getNewsList() async {
 
 		FormData formData = new FormData.fromMap({
-			// 'loc': 0,
-			// 'form': 'news_webapp',
-			// 'pd': 'webapp',
-			// 'os': 'iphone',
-			// 'ver': 6,
-			// // 'category_name': '娱乐',
-			// 'category_id': 101,
-			// 'action': 0,
-			// 'display_time': new DateTime.now(),
-			// 'wf': 0,
-			// 'mid': 'DC3DAE25021A944C55E30CD420BAAB8A:FG=1'
 			'form': 'news_webapp',
 			'pd': 'webapp',
 			'os': 'iphone',
@@ -51,8 +60,9 @@ class ServiceNewsList extends HttpServiceCore {
 			'category_id': '',
 			'action': 0,
 			'display_time': new DateTime.now().millisecondsSinceEpoch,
-			'mid': 'CD309BA5F7D4CD91B67E193C06BE56D5:FG=1'
+			'mid': this.enviroment.getEnv().getToken().token
 		});
+
 		return await this.post('sn/api/feed_channellist', data: formData);
 	}
 }

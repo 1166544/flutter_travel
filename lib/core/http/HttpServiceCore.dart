@@ -38,22 +38,7 @@ class HttpServiceCore {
 		this.dio.interceptors.add(InterceptorsWrapper(
 			onRequest:(RequestOptions options){
 				// 在请求被发送之前做一些事情
-				options.headers = {
-					'Sec-Fetch-Mode': 'cors',
-					'Sec-Fetch-Site': 'same-origin',
-					'Host': 'news.baidu.com',
-					'Accept': 'application/json, text/plain, */*',
-					'Accept-Encoding': 'gzip, deflate, br',
-					'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8',
-					'Connection': 'keep-alive',
-					'Content-Length': 139,
-					'Content-Type': 'application/x-www-form-urlencoded',
-					'Origin': 'https://news.baidu.com',
-					'Referer': 'https://news.baidu.com/news',
-					'Sec-Fetch-Mode': 'cors',
-					'Cookie': 'BAIDUID=CD309BA5F7D4CD91B67E193C06BE56D5:FG=1; Hm_lvt_0c8070895132126fa3ba3bb7df1ac58e=1573913046; Hm_lpvt_0c8070895132126fa3ba3bb7df1ac58e=1573913046',
-					'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1'
-				};
+				options.headers = this.generateRequestHeaders();
 				return options; //continue
 				// 如果你想完成请求并返回一些自定义数据，可以返回一个`Response`对象或返回`dio.resolve(data)`。
 				// 这样请求将会被终止，上层then会被调用，then中返回的数据将是你的自定义数据data.
@@ -93,7 +78,7 @@ class HttpServiceCore {
 			};
 		}
 	}
-
+				
 	/// 处理GET请求
 	///  * [String path] 请求地址
 	///  * [Map<String, dynamic> queryParameters] 请求参数
@@ -143,10 +128,19 @@ class HttpServiceCore {
 	/// 处理patch
 	Future<Response<dynamic>> patch(String path, {data, Options options, CancelToken cancelToken}) async {
 		return await this.dio.patch(path, data: data, options: options, cancelToken: cancelToken);
-	} 
+	}
 
 	/// 处理download
 	// Future<Response<dynamic>> download(String urlPath, String savePath, {OnDownloadProgress onProgress, data, bool flush: false, Options options,CancelToken cancelToken}) async {
 	// 	return await this.dio.download(urlPath, savePath, onProgress: onProgress, data: data, flush: flush, options: options, cancelToken: cancelToken);
 	// }
+
+	/// 生成自定义头部
+	Map<String, dynamic> generateRequestHeaders() {
+		return {
+			'Accept': 'application/json, text/plain, */*',
+			'Connection': 'keep-alive',
+			'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1'
+		};
+	}
 }

@@ -1,11 +1,13 @@
 import 'package:flutter_travel/core/api/ApiConfigVO.dart';
 import 'package:flutter_travel/core/api/ApiEnum.dart';
+import 'package:flutter_travel/core/api/ApiToken.dart';
 
 /// 默认配置
 class ConfigDefault {
 
 	/// 调用服务器API列表配置
 	List<ApiConfigVO> serverUrlList = [];
+	ApiToken _apiToken;
 
 	ConfigDefault() {
 		/// 服务器默认URL配置(各环境在构造函数中重写)
@@ -46,6 +48,16 @@ class ConfigDefault {
 	/// proxy服务器地址，默认不走proxy
 	String getProxyUrl() {
 		return '';
+	}
+
+	/// 更新TOKEN
+	void updateToken(ApiToken val) {
+		this._apiToken = val;
+	}
+
+	/// token
+	ApiToken getToken() {
+		return this._apiToken;
 	}
 
 }

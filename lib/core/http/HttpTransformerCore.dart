@@ -21,7 +21,7 @@ class HttpTransformerCore extends DefaultTransformer {
 	/// and [Response] with `response.request.extra["cookies"]`.
 	@override
 	Future transformResponse(RequestOptions options, ResponseBody response) async {
-		options.extra["self"] = 'XX';
+		// options.extra["self"] = 'XX';
 		return super.transformResponse(options, response);
 	}
 }
