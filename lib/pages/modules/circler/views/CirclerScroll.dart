@@ -5,11 +5,9 @@ import 'package:flutter_travel/pages/modules/circler/models/CirclerModelNewsItem
 /// 横向滚动内容
 class CirclerScroll extends StatelessWidget {
 
-	List<CirclerModelNewsItem> _list;
+	final List<CirclerModelNewsItem> list;
 
-	CirclerScroll(List<CirclerModelNewsItem> list, {Key key}): super(key: key) {
-		this._list = list;
-	}
+	CirclerScroll(this.list, {Key key}): super(key: key);
 
 	@override
 	Widget build(BuildContext context) {
@@ -28,10 +26,10 @@ class CirclerScroll extends StatelessWidget {
 	/// 构建封面
 	List<Widget> buildCoverIamge() {
 		List<Widget> lsitWidget = [];
-		int count = this._list.length;
+		int count = this.list.length;
 		var cover2 = 'https://gss0.bdstatic.com/5foIcy0a2gI2n2jgoY3K/n/nvn/static/news/imgs/bg-news-logo_344ce44.png';
 		for (var i = 0; i < count; i++) {
-			CirclerModelNewsItem item = this._list[i];
+			CirclerModelNewsItem item = this.list[i];
 
 			List<CirclerModelImage> imageurls = item.imageurls;
 			var cover1 = '';

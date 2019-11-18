@@ -33,7 +33,7 @@ class _CirclerState extends State<CirclerPage> with CommonNavigator, SingleTicke
 
 	/// TAB视图
 	final List<Widget> _tabsView = <Widget>[
-		CirclerDisplayPage(),
+		CirclerDisplayPage(requestParams: ''),
 		CircleFashionPage(),
 		CircleMilitaryPage(),
 		CirclerSocialityPage(),

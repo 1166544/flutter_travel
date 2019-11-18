@@ -4,11 +4,9 @@ import 'package:flutter_travel/pages/modules/circler/models/CirclerModelNewsItem
 /// 九宫格内容
 class CirclerGrid extends StatelessWidget {
 
-	List<CirclerModelNewsItem> _list;
+	final List<CirclerModelNewsItem> list;
 
-	CirclerGrid(List<CirclerModelNewsItem> list, {Key key}) : super(key: key) {
-		this._list = list;
-	}
+	CirclerGrid(this.list, {Key key}) : super(key: key);
 
 	@override
 	Widget build(BuildContext context) {
@@ -37,9 +35,9 @@ class CirclerGrid extends StatelessWidget {
 
 	List<Widget> generateBuildList(BuildContext context) {
 		List<Widget> lsitWidget = [];
-		int count = this._list.length;
+		int count = this.list.length;
 		for (var i = 0; i < count; i++) {
-			CirclerModelNewsItem item = this._list[i];
+			CirclerModelNewsItem item = this.list[i];
 
 			lsitWidget.add(
 				this.buildNewsLetterView(

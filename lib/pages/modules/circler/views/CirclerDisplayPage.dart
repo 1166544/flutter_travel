@@ -15,13 +15,11 @@ import 'package:flutter_travel/pages/modules/circler/views/CirclerSearchBar.dart
 /// 资讯显示列表
 class CirclerDisplayPage extends StatefulWidget {
 	
-	dynamic _requestParams;
+	final dynamic requestParams;
 
-	CirclerDisplayPage({Key key, dynamic requestParams = ''}) : super(key: key) {
-		this._requestParams = requestParams;
-	}
+  	CirclerDisplayPage({ Key key, @required this.requestParams}) : super(key: key);
 
-	_CirclerDisplayPageState createState() => _CirclerDisplayPageState(this._requestParams);
+	_CirclerDisplayPageState createState() => _CirclerDisplayPageState(this.requestParams);
 }
 
 class _CirclerDisplayPageState extends State<CirclerDisplayPage> with CommonTravelItem {

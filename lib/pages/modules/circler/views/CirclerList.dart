@@ -5,11 +5,9 @@ import 'package:flutter_travel/pages/modules/circler/models/CirclerModelNewsItem
 /// 列表结构
 class CirclerList extends StatelessWidget {
 
-	List<CirclerModelNewsItem> _list;
+	final List<CirclerModelNewsItem> list;
 
-  	CirclerList(List<CirclerModelNewsItem> list, {Key key}) : super(key: key) {
-		this._list = list;
-	}
+  	CirclerList(this.list, {Key key}) : super(key: key);
 
 	@override
 	Widget build(BuildContext context) {
@@ -33,10 +31,10 @@ class CirclerList extends StatelessWidget {
 	/// 生成渲染列表
 	List<Widget> generateLayoutList(BuildContext context) {
 		List<Widget> lsitWidget = [];
-		int count = this._list.length;
+		int count = this.list.length;
 
 		for (var i = 0; i < count; i++) {
-			CirclerModelNewsItem item = this._list[i];
+			CirclerModelNewsItem item = this.list[i];
 
 			List<CirclerModelImage> imageurls = item.imageurls;
 			var cover1 = '';
