@@ -37,8 +37,10 @@ class _CircleDetailPageState extends State<CircleDetailPage> {
 					fontSize: 15.0
 					)
 				),
+				brightness: Brightness.light,
+				centerTitle: true,
 				elevation: 0.0,
-				backgroundColor: Colors.white,
+				backgroundColor: Colors.grey.withOpacity(0.2)
 			),
 			body: BlocProvider(
 				bloc: CirclerBlocDetail(),
@@ -60,7 +62,6 @@ class CirclerDetailContentPage extends StatefulWidget {
 class _CirclerDetailContentPageState extends State<CirclerDetailContentPage> with CommonTravelItem, CommonTimeFormate {
   
 	CirclerBlocDetail blocDetailInfo;
-	GlobalKey<RefreshIndicatorState> refreshKey = GlobalKey<RefreshIndicatorState>();
 	dynamic _requestParms;
 
 	_CirclerDetailContentPageState(dynamic requestParams): super() {
@@ -74,16 +75,7 @@ class _CirclerDetailContentPageState extends State<CirclerDetailContentPage> wit
 		this.blocDetailInfo.updateParams(this._requestParms);
 
 		// 连接视图，下拉刷新
-		return RefreshIndicator(
-			key: this.refreshKey,
-			color: Colors.grey.withOpacity(0.5),
-			child: this.getStreamBuilder(context),
-			onRefresh: this.refreshData,
-		);
-	}
-
-	Future<Null> refreshData() async {
-		await this.blocDetailInfo.update();
+		return this.getStreamBuilder(context);
 	}
 
 	/// 连接stream数据源
@@ -140,7 +132,7 @@ class _CirclerDetailContentPageState extends State<CirclerDetailContentPage> wit
 		// Text('test');
 
 		return ListView(
-			padding: EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
+			padding: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 0.0),
 			children: renderList,
 		);
 	}
@@ -185,7 +177,7 @@ class _CirclerDetailContentPageState extends State<CirclerDetailContentPage> wit
 		if (item.type == 'text') {
 			// 渲染文本
 			return Padding(
-				padding: EdgeInsets.fromLTRB(0, 5.0, 0, 15.0),
+				padding: EdgeInsets.fromLTRB(0, 8.0, 0, 18.0),
 				child: Text(item.data.text, style: TextStyle(fontSize: 14.0)),
 			);
 		} else {
