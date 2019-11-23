@@ -3,11 +3,11 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_travel/core/bloc/BlocProvider.dart';
 import 'package:flutter_travel/pages/common/CommonNavigator.dart';
 import 'package:flutter_travel/pages/modules/circler/blocs/CirclerBlocNewsList.dart';
-import 'package:flutter_travel/pages/modules/circler/views/CircleFashionPage.dart';
-import 'package:flutter_travel/pages/modules/circler/views/CircleMilitaryPage.dart';
-import 'package:flutter_travel/pages/modules/circler/views/CirclerDisplayPage.dart';
-import 'package:flutter_travel/pages/modules/circler/views/CirclerGlobalPage.dart';
-import 'package:flutter_travel/pages/modules/circler/views/CirclerSocialityPage.dart';
+import 'package:flutter_travel/pages/modules/circler/views/pages/CircleFashionPage.dart';
+import 'package:flutter_travel/pages/modules/circler/views/pages/CircleMilitaryPage.dart';
+import 'package:flutter_travel/pages/modules/circler/views/pages/CirclerDisplayPage.dart';
+import 'package:flutter_travel/pages/modules/circler/views/pages/CirclerGlobalPage.dart';
+import 'package:flutter_travel/pages/modules/circler/views/pages/CirclerSocialityPage.dart';
 import 'package:flutter_travel/redux/states/StateGlobal.dart';
 
 /// 资讯内容页面

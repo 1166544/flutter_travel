@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_travel/pages/modules/circler/views/CirclerDisplayPage.dart';
+import 'package:flutter_travel/pages/modules/circler/views/pages/CirclerDisplayPage.dart';
 
 /// 本地频道页
 class CircleFashionPage extends CirclerDisplayPage {

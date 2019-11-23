@@ -7,6 +7,7 @@ import 'package:flutter_travel/pages/modules/circler/models/CirclerModelFeedBack
 import 'package:flutter_travel/pages/modules/circler/models/CirclerModelImage.dart';
 import 'package:flutter_travel/pages/modules/circler/models/CirclerModelTags.dart';
 
+/// 新闻详情内容
 class CirclerModelNewsItem {
 	List<CirclerModelContent> content;
 	CirclerModelContentType contentType;

@@ -5,12 +5,12 @@ import 'package:flutter_travel/pages/common/CommonTravelItem.dart';
 import 'package:flutter_travel/pages/modules/circler/blocs/CirclerBlocNewsList.dart';
 import 'package:flutter_travel/pages/modules/circler/models/CirclerModelNewsItem.dart';
 import 'package:flutter_travel/pages/modules/circler/models/CirclerModelsNewsList.dart';
-import 'package:flutter_travel/pages/modules/circler/views/CiclerImproving.dart';
-import 'package:flutter_travel/pages/modules/circler/views/CircleTitle.dart';
-import 'package:flutter_travel/pages/modules/circler/views/CirclerGrid.dart';
-import 'package:flutter_travel/pages/modules/circler/views/CirclerList.dart';
-import 'package:flutter_travel/pages/modules/circler/views/CirclerScroll.dart';
-import 'package:flutter_travel/pages/modules/circler/views/CirclerSearchBar.dart';
+import 'package:flutter_travel/pages/modules/circler/views/compnents/CiclerImproving.dart';
+import 'package:flutter_travel/pages/modules/circler/views/compnents/CircleTitle.dart';
+import 'package:flutter_travel/pages/modules/circler/views/compnents/CirclerGrid.dart';
+import 'package:flutter_travel/pages/modules/circler/views/compnents/CirclerList.dart';
+import 'package:flutter_travel/pages/modules/circler/views/compnents/CirclerScroll.dart';
+import 'package:flutter_travel/pages/modules/circler/views/compnents/CirclerSearchBar.dart';
 
 /// 资讯显示列表
 class CirclerDisplayPage extends StatefulWidget {
