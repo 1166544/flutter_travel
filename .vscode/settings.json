@@ -3,6 +3,7 @@
     "prettier.tabWidth": 4,
     "vetur.format.options.tabSize": 4,
     "editor.autoIndent": false,
-    "editor.wrappingIndent": "indent"
+    "editor.wrappingIndent": "indent",
+    "terminal.integrated.fontSize": 14
 
 }

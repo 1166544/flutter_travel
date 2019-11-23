@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_travel/core/bloc/BlocProvider.dart';
 import 'package:flutter_travel/pages/common/CommonLoading.dart';
+import 'package:flutter_travel/pages/common/CommonTimeFormate.dart';
 import 'package:flutter_travel/pages/common/CommonTravelItem.dart';
 import 'package:flutter_travel/pages/modules/circler/blocs/CirclerBlocDetail.dart';
+import 'package:flutter_travel/pages/modules/circler/models/CirclerModelContent.dart';
 import 'package:flutter_travel/pages/modules/circler/models/CirclerModelDetail.dart';
 import 'package:flutter_travel/pages/modules/circler/models/CirclerModelNewsItem.dart';
-import 'package:flutter_travel/redux/states/StateGlobal.dart';
 
 /// 资讯详情页
 class CircleDetailPage extends StatefulWidget {
@@ -30,7 +30,13 @@ class _CircleDetailPageState extends State<CircleDetailPage> {
 
 		return Scaffold(
 			appBar: AppBar(
-				title: Center(child: this.getSearchTitle()),
+				title: Text('新闻详情',
+					style: TextStyle(
+					color: Colors.black,
+					fontWeight: FontWeight.bold,
+					fontSize: 15.0
+					)
+				),
 				elevation: 0.0,
 				backgroundColor: Colors.white,
 			),
@@ -38,22 +44,6 @@ class _CircleDetailPageState extends State<CircleDetailPage> {
 				bloc: CirclerBlocDetail(),
 				child: CirclerDetailContentPage(requestParams: this._requestParms),
 			),
-		);
-	}
-
-	/// Redux数据调用: 绑定全局动态标题
-	Widget getSearchTitle() {
-		return StoreConnector<StateGlobal, int>(
-			converter: (store) => store.state.count,
-			builder: (context, count) {
-				return Text('Materials - 60 Minutes ${count.toString()}',
-					style: TextStyle(
-					color: Colors.black,
-					fontWeight: FontWeight.bold,
-					fontSize: 20.0
-					)
-				);
-			}
 		);
 	}
 }
@@ -67,7 +57,7 @@ class CirclerDetailContentPage extends StatefulWidget {
 	_CirclerDetailContentPageState createState() => _CirclerDetailContentPageState(this.requestParams);
 }
 
-class _CirclerDetailContentPageState extends State<CirclerDetailContentPage> with CommonTravelItem {
+class _CirclerDetailContentPageState extends State<CirclerDetailContentPage> with CommonTravelItem, CommonTimeFormate {
   
 	CirclerBlocDetail blocDetailInfo;
 	GlobalKey<RefreshIndicatorState> refreshKey = GlobalKey<RefreshIndicatorState>();
@@ -119,22 +109,88 @@ class _CirclerDetailContentPageState extends State<CirclerDetailContentPage> wit
 	/// 构建外观
 	Widget buildLayout(AsyncSnapshot<CirclerModelDetail> snapshot) {
 		List<CirclerModelNewsItem> snapshotList = snapshot.data.news;
-		int count = snapshotList.length;
-		List<CirclerModelNewsItem> coverList = [];
-		List<CirclerModelNewsItem> experienceList = [];
-		List<CirclerModelNewsItem> newsLetter = [];
+
+		if (snapshotList.length == 0) {
+			return this.buildEmptyLayout(null);
+		}
+
+		CirclerModelNewsItem contentItem = snapshotList[0];
+		List<CirclerModelContent> contentList = contentItem.content;
+		int count = contentList.length;
 
 		List<Widget> renderList = [
-			// 封面
-			// CirclerCover(),
+			// 标题
+			this.getCircleTitle(contentItem),
+			
+			SizedBox(height: 7.0),
 
-			// 搜索条
-			Text('test'),
+			// 副标题
+			this.getCircleSubTitle(contentItem),
+			
+			SizedBox(height: 23.0),
 		];
 
+		// 内容
+		for (var i = 0; i < count; i++) {
+			CirclerModelContent item = contentList[i];
+			renderList.add(this.getCircleContent(item));
+		}
+
+		// 留言
+		// Text('test');
+
 		return ListView(
-			padding: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
+			padding: EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
 			children: renderList,
 		);
+	}
+
+	/// 标题
+	Widget getCircleTitle(CirclerModelNewsItem contentItem) {
+		return Text(
+			contentItem.title, 
+			style: TextStyle(
+				fontSize: 20.0, 
+				color: Colors.black, 
+				fontWeight: FontWeight.bold
+			)
+		);
+	}
+
+	/// 副标题
+	Widget getCircleSubTitle(CirclerModelNewsItem contentItem) {
+		return Row(
+			children: <Widget>[
+				Text(
+					contentItem.site, 
+					style: TextStyle(
+						fontSize: 11.0,
+						color: Colors.grey,
+					)
+				),
+				SizedBox(width: 7.0),
+				Text(
+					this.getFullTime(contentItem.ts), 
+					style: TextStyle(
+						fontSize: 10.0,
+						color: Colors.grey,
+					)
+				)
+			],
+		);
+	}
+
+	/// 内容块
+	Widget getCircleContent(CirclerModelContent item) {
+		if (item.type == 'text') {
+			// 渲染文本
+			return Padding(
+				padding: EdgeInsets.fromLTRB(0, 5.0, 0, 15.0),
+				child: Text(item.data.text, style: TextStyle(fontSize: 14.0)),
+			);
+		} else {
+			// 渲染图片
+			return Image.network(item.data.original.url);
+		}
 	}
 }

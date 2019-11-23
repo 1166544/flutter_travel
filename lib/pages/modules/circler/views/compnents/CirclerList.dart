@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_travel/pages/common/CommonTimeFormate.dart';
 import 'package:flutter_travel/pages/modules/circler/models/CirclerModelImage.dart';
 import 'package:flutter_travel/pages/modules/circler/models/CirclerModelNewsItem.dart';
 
 /// 列表结构
-class CirclerList extends StatelessWidget {
+class CirclerList extends StatelessWidget with CommonTimeFormate {
 
 	final List<CirclerModelNewsItem> list;
 
@@ -59,14 +60,6 @@ class CirclerList extends StatelessWidget {
 		}
 
 		return lsitWidget;
-	}
-
-	/// 返回时间截
-	String getDateText(String dateNum) {
-		var dateNo = int.parse(dateNum);
-		var date = new DateTime.fromMillisecondsSinceEpoch(dateNo);
-		var dateStr = date.year.toString() + '/' + date.month.toString() + '/' + date.day.toString();
-		return dateStr;
 	}
 
 	/// 构建留言区
