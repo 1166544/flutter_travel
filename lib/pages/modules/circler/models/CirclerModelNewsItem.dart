@@ -46,12 +46,16 @@ class CirclerModelNewsItem {
 	}
 
 	void update(dynamic data) {
+
+		// 内容
 		this.content = new List<CirclerModelContent>();
 		var content = data['content'];
-		for(Map item in content) {
-			CirclerModelContent itemData = new CirclerModelContent();
-			itemData.update(item);
-			this.content.add(itemData);
+		if (content != null) {
+			for(Map item in content) {
+				CirclerModelContent itemData = new CirclerModelContent();
+				itemData.update(item);
+				this.content.add(itemData);
+			}
 		}
 
 		this.contentType = new CirclerModelContentType();
@@ -60,23 +64,29 @@ class CirclerModelNewsItem {
 		this.ctag = new CirclerModelCtag();
 		this.ctag.update(data['ctag']);
 		
+		// 标签
 		this.feedbackTag = new List<CirclerModelFeedBackTag>();
 		var feedbackTag = data['feedback_tag'];
-		for(Map item in feedbackTag) {
-			CirclerModelFeedBackTag itemData = new CirclerModelFeedBackTag();
-			itemData.update(item);
-			this.feedbackTag.add(itemData);
+		if (feedbackTag != null) {
+			for(Map item in feedbackTag) {
+				CirclerModelFeedBackTag itemData = new CirclerModelFeedBackTag();
+				itemData.update(item);
+				this.feedbackTag.add(itemData);
+			}
 		}
 
 		this.ext = new CirclerModelExt();
 		this.ext.update(data['ext']);
 
+		// 图片
 		this.imageurls = new List<CirclerModelImage>();
 		var imageUrls = data['imageurls'];
-		for(Map item in imageUrls) {
-			CirclerModelImage itemData = new CirclerModelImage();
-			itemData.update(item);
-			this.imageurls.add(itemData);
+		if (imageUrls != null) {
+			for(Map item in imageUrls) {
+				CirclerModelImage itemData = new CirclerModelImage();
+				itemData.update(item);
+				this.imageurls.add(itemData);
+			}
 		}
 
 		this.tags = new CirclerModelTags();

@@ -3,7 +3,9 @@ class CirclerModelCtag {
 	int rimShow;
 
 	void update(dynamic resultData) {
-		this.name = resultData['name'];
-		this.rimShow = resultData['rim_show'];
+		if (resultData != null) {
+			this.name = resultData['name'];
+			this.rimShow = resultData['rim_show'];
+		}
 	}
 }

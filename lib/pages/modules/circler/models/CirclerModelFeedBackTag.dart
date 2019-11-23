@@ -4,8 +4,10 @@ class CirclerModelFeedBackTag {
 	int type;
 
 	void update(dynamic resultData) {
-		this.id = resultData['id'];
-		this.name = resultData['name'];
-		this.type = resultData['type'];
+		if (resultData != null) {
+			this.id = resultData['id'];
+			this.name = resultData['name'];
+			this.type = resultData['type'];
+		}
 	}
 }

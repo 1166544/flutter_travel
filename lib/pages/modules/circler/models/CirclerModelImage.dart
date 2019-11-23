@@ -5,9 +5,11 @@ class CirclerModelImage {
 	int width;
 
 	void update(dynamic resultData) {
-		this.height = resultData['height'];
-		this.url = resultData['url'];
-		this.urlWebp = resultData['url_webp'];
-		this.width = resultData['width'];
+		if (resultData != null) {
+			this.height = resultData['height'];
+			this.url = resultData['url'];
+			this.urlWebp = resultData['url_webp'];
+			this.width = resultData['width'];
+		}
 	}
 }

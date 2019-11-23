@@ -7,12 +7,14 @@ class CirclerModelTags {
 	List<dynamic> tag;
 
 	void update(dynamic resultData) {
-		for(Map item in resultData['own']) {
-			CirclerModelTagsOwn itemData = new CirclerModelTagsOwn();
-			itemData.update(item);
-			this.own.add(itemData);
-		}
+		if (resultData != null) {
+			for(Map item in resultData['own']) {
+				CirclerModelTagsOwn itemData = new CirclerModelTagsOwn();
+				itemData.update(item);
+				this.own.add(itemData);
+			}
 
-		this.tag = resultData['tag'];
+			this.tag = resultData['tag'];
+		}
 	}
 }

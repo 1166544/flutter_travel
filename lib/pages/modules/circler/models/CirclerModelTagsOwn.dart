@@ -3,7 +3,9 @@ class CirclerModelTagsOwn {
 	String name;
 
 	void update(dynamic resultData) {
-		this.type = resultData['type'];
-		this.name = resultData['name'];
+		if (resultData != null) {
+			this.type = resultData['type'];
+			this.name = resultData['name'];
+		}
 	}
 }
