@@ -102,11 +102,24 @@ class ServiceNewsList extends HttpServiceCore {
 	}
 
 	// 评论数量
-	// https://news.baidu.com/news?tn=bdapibaiyue&t=getcommentcount&act=get
+	// https://news.baidu.com/news?tn=bdapibaiyue&t=getbodyinfo&act=get
 	// nid: 9647858107215092637
 	// from: info
 	// pd: webapp
 	// ver: 5
+	Future<Response<dynamic>> getCommentCount(String nids) async {
+		// 默认参数
+		dynamic requestParams = {
+			'from': 'info',
+			'nid': nids,
+			'pd': 'webapp',
+			'ver': 5
+		};
+
+		FormData formData = new FormData.fromMap(requestParams);
+
+		return await this.post('news?tn=bdapibaiyue&t=getbodyinfo&act=get', data: formData);
+	}
 
 	// 评论列表
 	// https://news.baidu.com/news?tn=bdapibaiyue&t=getcomments&act=get

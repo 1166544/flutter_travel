@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_travel/core/bloc/BlocProvider.dart';
 import 'package:flutter_travel/pages/common/CommonLoading.dart';
+import 'package:flutter_travel/pages/common/CommonNavigator.dart';
 import 'package:flutter_travel/pages/common/CommonTimeFormate.dart';
 import 'package:flutter_travel/pages/common/CommonTravelItem.dart';
 import 'package:flutter_travel/pages/modules/circler/blocs/CirclerBlocDetail.dart';
+import 'package:flutter_travel/pages/modules/circler/models/CirclerModelCommentCount.dart';
 import 'package:flutter_travel/pages/modules/circler/models/CirclerModelContent.dart';
-import 'package:flutter_travel/pages/modules/circler/models/CirclerModelDetail.dart';
 import 'package:flutter_travel/pages/modules/circler/models/CirclerModelNewsItem.dart';
+import 'package:flutter_travel/pages/modules/circler/models/CirclerModelPageData.dart';
 
 /// 资讯详情页
 class CircleDetailPage extends StatefulWidget {
@@ -17,7 +19,7 @@ class CircleDetailPage extends StatefulWidget {
 	_CircleDetailPageState createState() => _CircleDetailPageState(this.requestParams);
 }
 
-class _CircleDetailPageState extends State<CircleDetailPage> {
+class _CircleDetailPageState extends State<CircleDetailPage> with CommonNavigator {
   
 	dynamic _requestParms;
 
@@ -34,8 +36,15 @@ class _CircleDetailPageState extends State<CircleDetailPage> {
 					style: TextStyle(
 					color: Colors.black,
 					fontWeight: FontWeight.bold,
-					fontSize: 15.0
+					fontSize: 18.0
 					)
+				),
+				leading: IconButton(
+					icon: Icon(Icons.arrow_back_ios),
+					color: Colors.black.withOpacity(0.8),
+					onPressed: (){
+						this.navigateBack(context);
+					},
 				),
 				brightness: Brightness.light,
 				centerTitle: true,
@@ -80,7 +89,7 @@ class _CirclerDetailContentPageState extends State<CirclerDetailContentPage> wit
 
 	/// 连接stream数据源
 	Widget getStreamBuilder(BuildContext context) {
-		return StreamBuilder<CirclerModelDetail>(
+		return StreamBuilder<CirclerModelPageData>(
 			stream: this.blocDetailInfo.outStream,
 			builder: (context, snapshot) {
 				// 数据源到位时渲染列表
@@ -99,8 +108,9 @@ class _CirclerDetailContentPageState extends State<CirclerDetailContentPage> wit
 	}
 
 	/// 构建外观
-	Widget buildLayout(AsyncSnapshot<CirclerModelDetail> snapshot) {
-		List<CirclerModelNewsItem> snapshotList = snapshot.data.news;
+	Widget buildLayout(AsyncSnapshot<CirclerModelPageData> snapshot) {
+		List<CirclerModelNewsItem> snapshotList = snapshot.data.detailInfo.news;
+		CirclerModelCommentCount snapshotComment = snapshot.data.commentInfo;
 
 		if (snapshotList.length == 0) {
 			return this.buildEmptyLayout(null);
@@ -129,7 +139,9 @@ class _CirclerDetailContentPageState extends State<CirclerDetailContentPage> wit
 		}
 
 		// 留言
-		// Text('test');
+		renderList.add(
+			this.getCircleCommentBar(snapshotComment)
+		);
 
 		return ListView(
 			padding: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 0.0),
@@ -142,7 +154,7 @@ class _CirclerDetailContentPageState extends State<CirclerDetailContentPage> wit
 		return Text(
 			contentItem.title, 
 			style: TextStyle(
-				fontSize: 20.0, 
+				fontSize: 21.0, 
 				color: Colors.black, 
 				fontWeight: FontWeight.bold
 			)
@@ -185,4 +197,50 @@ class _CirclerDetailContentPageState extends State<CirclerDetailContentPage> wit
 			return Image.network(item.data.original.url);
 		}
 	}
+
+	/// 留言数量条
+	Widget getCircleCommentBar(CirclerModelCommentCount snapshotComment) {
+		return Padding(
+				padding: EdgeInsets.fromLTRB(10.0, 25.0, 10.0, 3.0),
+				child: Row(
+					children: <Widget>[
+						Expanded(
+							flex: 8,
+							child: TextField(
+								textAlign: TextAlign.left,
+								style: TextStyle(fontSize: 12.0, color: Colors.black),
+								decoration: InputDecoration(
+									fillColor: Color(0xFFe4e9f5),
+									filled: true,
+									labelText: '共有 ${snapshotComment.data.comment} 条留言',
+									labelStyle: TextStyle(color: Colors.grey, fontSize: 15.0),
+									prefixIcon: Container(
+										child: Icon(Icons.comment, color: Colors.black.withOpacity(0.6), size: 26.0),
+									),
+									suffixText: 'Enter comment words',
+									border: InputBorder.none,
+								),
+								onChanged: (text) {
+									print('change $text');
+								},
+								onSubmitted: (text) {
+									print('submit $text');
+								}
+							)
+						),
+						Expanded(
+							child: IconButton(
+								icon:Icon(Icons.airplay),
+								color: Colors.black,
+								iconSize: 30.0,
+								onPressed: (){
+									// hole
+								}
+							),
+						),
+				],
+			),
+		);
+	}
+	
 }
