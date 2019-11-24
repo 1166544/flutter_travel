@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_travel/pages/common/CommonNavigator.dart';
 import 'package:flutter_travel/pages/common/CommonTimeFormate.dart';
 import 'package:flutter_travel/pages/modules/circler/models/CirclerModelImage.dart';
 import 'package:flutter_travel/pages/modules/circler/models/CirclerModelNewsItem.dart';
+import 'package:flutter_travel/pages/modules/circler/views/pages/CircleDetailPage.dart';
 
 /// 列表结构
-class CirclerList extends StatelessWidget with CommonTimeFormate {
+class CirclerList extends StatelessWidget with CommonTimeFormate, CommonNavigator {
 
 	final List<CirclerModelNewsItem> list;
 
@@ -47,12 +49,7 @@ class CirclerList extends StatelessWidget with CommonTimeFormate {
 				this.buildExperienceItem(
 				context,
 				cover1,
-				cover1,
-				cover1,
-				item.ts,
-				item.site,
-				item.title,
-				item.abs
+				item
 			));
 			lsitWidget.add(
 				SizedBox(height: 30.0)
@@ -62,8 +59,41 @@ class CirclerList extends StatelessWidget with CommonTimeFormate {
 		return lsitWidget;
 	}
 
-	/// 构建留言区
+	/// 构建列表区
 	Widget buildExperienceItem(
+		BuildContext context,
+		String avataUrl,
+		CirclerModelNewsItem item
+		) {
+
+			String chapter1Url = avataUrl;
+			String chapter2Url = avataUrl;
+			dynamic chatNum = item.ts;
+			dynamic favNum = item.site;
+			String chatTitle = item.title;
+			String chatDesc = item.abs;
+		
+		return GestureDetector(
+			behavior: HitTestBehavior.opaque,
+			child: this.getCircleListArea(context,
+				avataUrl,
+				chapter1Url,
+				chapter2Url,
+				chatNum,
+				favNum,
+				chatTitle,
+				chatDesc),
+			onTap: () => {
+				this.navigateTo(
+					context, 
+					CircleDetailPage(requestParams: { 'nids': item.nid }
+				))
+			},
+		);
+	}
+
+	/// 列表结构视图
+	Widget getCircleListArea(
 		BuildContext context,
 		String avataUrl,
 		String chapter1Url,
@@ -72,85 +102,80 @@ class CirclerList extends StatelessWidget with CommonTimeFormate {
 		dynamic favNum,
 		String chatTitle,
 		String chatDesc) {
-		return Column(
-		children: <Widget>[
-			// 第1行 标题
-			Row(
-				crossAxisAlignment: CrossAxisAlignment.start,
-				children: <Widget>[
-					Container(
-						width: 120.0,
-						height: 105.0,
-						decoration: BoxDecoration(
-						image: DecorationImage(
-							image:NetworkImage(avataUrl), 
-							fit: BoxFit.cover),
-							border: Border.all(
-								color: Colors.grey.withOpacity(0.5), width: 0.5
-							),
-							borderRadius: BorderRadius.all(Radius.circular(7.0))
-						)
-					),
-					SizedBox(width: 15.0),
-					Column(
-						children: <Widget>[
-							Container(
-								width: MediaQuery.of(context).size.width - 160,
-								child: Text(chatTitle,
-									maxLines: 2,
-									softWrap: true,
-									style: TextStyle(
-										fontSize: 16.0,
-										color: Colors.black87,
-										fontWeight: FontWeight.bold)),
-							),
-							SizedBox(height: 5.0),
-							Container(
-								width: MediaQuery.of(context).size.width - 160,
-								child: Text(chatDesc,
-									maxLines: 2,
-									softWrap: true,
-									style: TextStyle(
-										fontSize: 13.0,
-										color: Colors.black87.withOpacity(0.5)
-									)),
-							),
-							SizedBox(height: 5.0),
-							Container(
-								width: MediaQuery.of(context).size.width - 170,
-								child: Row(
-								children: <Widget>[
-										Container(
-											width: 10.0,
-											height: 10.0,
-											decoration: BoxDecoration(
-											image: DecorationImage(
-												image: AssetImage('assets/speechbubble.png'),
-												fit: BoxFit.cover),
-											),
-										),
-										SizedBox(width: 10.0),
-										Text(this.getDateText(chatNum),
-											style: TextStyle(color: Colors.grey, fontSize: 12.0)),
-										Spacer(),
-										Container(
-											width: 80.0,
-											child: Text('[$favNum]',
-											textAlign: TextAlign.right,
-											overflow: TextOverflow.ellipsis,
-											style: TextStyle(
-												color: Colors.black.withOpacity(0.8), 
-												fontSize: 12.0,
-											))
-										)
-									],
-								),
-							)
-						],
+		return Row(
+			crossAxisAlignment: CrossAxisAlignment.start,
+			children: <Widget>[
+				Container(
+					width: 120.0,
+					height: 105.0,
+					decoration: BoxDecoration(
+					image: DecorationImage(
+						image:NetworkImage(avataUrl), 
+						fit: BoxFit.cover),
+						border: Border.all(
+							color: Colors.grey.withOpacity(0.5), width: 0.5
+						),
+						borderRadius: BorderRadius.all(Radius.circular(7.0))
 					)
-				],
-			),
-		],
+				),
+				SizedBox(width: 15.0),
+				Column(
+					children: <Widget>[
+						Container(
+							width: MediaQuery.of(context).size.width - 160,
+							child: Text(chatTitle,
+								maxLines: 2,
+								softWrap: true,
+								style: TextStyle(
+									fontSize: 16.0,
+									color: Colors.black87,
+									fontWeight: FontWeight.bold)),
+						),
+						SizedBox(height: 5.0),
+						Container(
+							width: MediaQuery.of(context).size.width - 160,
+							child: Text(chatDesc,
+								maxLines: 2,
+								softWrap: true,
+								style: TextStyle(
+									fontSize: 13.0,
+									color: Colors.black87.withOpacity(0.5)
+								)),
+						),
+						SizedBox(height: 5.0),
+						Container(
+							width: MediaQuery.of(context).size.width - 170,
+							child: Row(
+							children: <Widget>[
+									Container(
+										width: 10.0,
+										height: 10.0,
+										decoration: BoxDecoration(
+										image: DecorationImage(
+											image: AssetImage('assets/speechbubble.png'),
+											fit: BoxFit.cover),
+										),
+									),
+									SizedBox(width: 10.0),
+									Text(this.getDateText(chatNum),
+										style: TextStyle(color: Colors.grey, fontSize: 12.0)),
+									Spacer(),
+									Container(
+										width: 80.0,
+										child: Text('[$favNum]',
+										textAlign: TextAlign.right,
+										overflow: TextOverflow.ellipsis,
+										style: TextStyle(
+											color: Colors.black.withOpacity(0.8), 
+											fontSize: 12.0,
+										))
+									)
+								],
+							),
+						)
+					],
+				)
+			],
 		);
 	}
 }

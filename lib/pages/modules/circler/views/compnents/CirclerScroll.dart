@@ -95,6 +95,8 @@ class CirclerScroll extends StatelessWidget with CommonNavigator {
 					)
 					),
 					child: GestureDetector(
+						// 透明区域响应点击
+						behavior: HitTestBehavior.opaque,
 						onTap: () => {
 							this.navigateTo(context, CircleDetailPage(requestParams: {
 								'nids': item.nid
