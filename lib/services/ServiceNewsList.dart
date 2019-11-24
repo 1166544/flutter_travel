@@ -135,4 +135,25 @@ class ServiceNewsList extends HttpServiceCore {
 	// ver: 3
 	// pn: 10
 	// ts: 0
+	Future<Response<dynamic>> getCommentInfo(String nids) async {
+		// test Start÷,
+		nids = '10708585149717629205';
+		// test end 
+		
+		// 默认参数
+		dynamic requestParams = {
+			'from': 'info',
+			'nid': nids,
+			'pd': 'webapp',
+			'ver': 3,
+			'comment_id': 0,
+			'order': 'time',
+			'pn': 10,
+			'ts': new DateTime.now().millisecondsSinceEpoch
+		};
+
+		FormData formData = new FormData.fromMap(requestParams);
+
+		return await this.post('news?tn=bdapibaiyue&t=getcomments&act=get', data: formData);
+	}
 }

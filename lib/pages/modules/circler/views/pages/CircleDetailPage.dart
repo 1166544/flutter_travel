@@ -9,6 +9,7 @@ import 'package:flutter_travel/pages/modules/circler/models/CirclerModelCommentC
 import 'package:flutter_travel/pages/modules/circler/models/CirclerModelContent.dart';
 import 'package:flutter_travel/pages/modules/circler/models/CirclerModelNewsItem.dart';
 import 'package:flutter_travel/pages/modules/circler/models/CirclerModelPageData.dart';
+import 'package:flutter_travel/pages/modules/comments/CommentsPage.dart';
 
 /// 资讯详情页
 class CircleDetailPage extends StatefulWidget {
@@ -68,11 +69,11 @@ class CirclerDetailContentPage extends StatefulWidget {
 	_CirclerDetailContentPageState createState() => _CirclerDetailContentPageState(this.requestParams);
 }
 
-class _CirclerDetailContentPageState extends State<CirclerDetailContentPage> with CommonTravelItem, CommonTimeFormate {
+class _CirclerDetailContentPageState extends State<CirclerDetailContentPage> with CommonTravelItem, CommonTimeFormate, CommonNavigator {
   
 	CirclerBlocDetail blocDetailInfo;
 	dynamic _requestParms;
-
+ 
 	_CirclerDetailContentPageState(dynamic requestParams): super() {
 		this._requestParms = requestParams;
 	}
@@ -201,7 +202,7 @@ class _CirclerDetailContentPageState extends State<CirclerDetailContentPage> wit
 	/// 留言数量条
 	Widget getCircleCommentBar(CirclerModelCommentCount snapshotComment) {
 		return Padding(
-				padding: EdgeInsets.fromLTRB(10.0, 25.0, 10.0, 3.0),
+				padding: EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 20.0),
 				child: Row(
 					children: <Widget>[
 						Expanded(
@@ -228,17 +229,22 @@ class _CirclerDetailContentPageState extends State<CirclerDetailContentPage> wit
 								}
 							)
 						),
-						Expanded(
-							child: IconButton(
-								icon:Icon(Icons.airplay),
-								color: Colors.black,
-								iconSize: 30.0,
-								onPressed: (){
-									// hole
-								}
-							),
-						),
+						this.getJumpToNextButton(),
 				],
+			),
+		);
+	}
+
+	/// 跳转到留言页
+	Widget getJumpToNextButton() {
+		return Expanded(
+			child: IconButton(
+				icon:Icon(Icons.airplay),
+				color: Colors.black,
+				iconSize: 30.0,
+				onPressed: (){
+					this.navigateTo(context, new CommentsPage(requestParams: this._requestParms));
+				}
 			),
 		);
 	}

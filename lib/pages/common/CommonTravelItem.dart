@@ -3,7 +3,6 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_travel/pages/common/CommonGalleryItem.dart';
 import 'package:flutter_travel/pages/common/CommonPhotoViewer.dart';
-import 'package:flutter_travel/pages/modules/comments/CommentsPage.dart';
 import 'package:flutter_travel/pages/modules/order/OrderPageView.dart';
 import 'package:flutter_travel/pages/modules/profile/ProfilePage.dart';
 
@@ -169,10 +168,10 @@ class CommonTravelItem {
                   inkHeight: 20.0,
                   picUrl: 'assets/chatbubble.png',
                   onCallBack: () {
-					  Navigator.push(
-						context,
-						MaterialPageRoute(builder: (context) => CommentsPage())
-					  );
+					//   Navigator.push(
+					// 	context,
+					// 	MaterialPageRoute(builder: (context) => CommentsPage())
+					//   );
 				  }),
               SizedBox(width: 12.0),
               this.inkWellButton(

@@ -8,7 +8,7 @@ import 'package:flutter_travel/pages/modules/circler/views/pages/CircleDetailPag
 class CirclerScroll extends StatelessWidget with CommonNavigator {
 
 	final List<CirclerModelNewsItem> list;
-	String cover2 = 'https://gss0.bdstatic.com/5foIcy0a2gI2n2jgoY3K/n/nvn/static/news/imgs/bg-news-logo_344ce44.png';
+	final String cover2 = 'https://gss0.bdstatic.com/5foIcy0a2gI2n2jgoY3K/n/nvn/static/news/imgs/bg-news-logo_344ce44.png';
 
 	CirclerScroll(this.list, {Key key}): super(key: key);
 
@@ -50,8 +50,9 @@ class CirclerScroll extends StatelessWidget with CommonNavigator {
 			cover1 = imageurls[0].urlWebp;
 		}
 
+		var coverCopy = this.cover2;
 		if (imageurls.length > 1) {
-			this.cover2 = imageurls[1].urlWebp;
+			coverCopy = imageurls[1].urlWebp;
 		}
 			
 		return Container(
@@ -108,7 +109,7 @@ class CirclerScroll extends StatelessWidget with CommonNavigator {
 									height: 40.0,
 									decoration: BoxDecoration(
 									image: DecorationImage(
-											image: NetworkImage(this.cover2), fit: BoxFit.cover),
+											image: NetworkImage(coverCopy), fit: BoxFit.cover),
 											borderRadius: BorderRadius.only(
 												topLeft: Radius.circular(7.0),
 												topRight: Radius.circular(7.0),
