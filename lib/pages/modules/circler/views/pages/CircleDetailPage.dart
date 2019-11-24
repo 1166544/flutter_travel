@@ -229,21 +229,23 @@ class _CirclerDetailContentPageState extends State<CirclerDetailContentPage> wit
 								}
 							)
 						),
-						this.getJumpToNextButton(),
+						this.getJumpToNextButton(snapshotComment.data.comment),
 				],
 			),
 		);
 	}
 
 	/// 跳转到留言页
-	Widget getJumpToNextButton() {
+	Widget getJumpToNextButton(int commentLength) {
 		return Expanded(
 			child: IconButton(
 				icon:Icon(Icons.airplay),
 				color: Colors.black,
 				iconSize: 30.0,
 				onPressed: (){
-					this.navigateTo(context, new CommentsPage(requestParams: this._requestParms));
+					if (commentLength > 0) {
+						this.navigateTo(context, new CommentsPage(requestParams: this._requestParms));
+					}
 				}
 			),
 		);

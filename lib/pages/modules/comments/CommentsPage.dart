@@ -7,7 +7,6 @@ import 'package:flutter_travel/pages/common/CommonTimeFormate.dart';
 import 'package:flutter_travel/pages/common/CommonTravelItem.dart';
 import 'package:flutter_travel/pages/modules/circler/blocs/CirclerBlocComment.dart';
 import 'package:flutter_travel/pages/modules/circler/models/CirclerModelCommentData.dart';
-import 'package:flutter_travel/pages/modules/comments/CommentsPageVO.dart';
 
 /// 留言区
 class CommentsPage extends StatefulWidget {
@@ -82,9 +81,9 @@ class _CommentPageContentState extends State<CommentPageContent> with CommonTrav
 		return ListView(
 			children: <Widget>[
 				// 蓝色图片区
-				this.buildBlueImageArea(),
+				this.buildBlueImageArea(snapshot),
 				// 留言列表
-				this.buildCommentListArear()
+				this.buildCommentListArear(snapshot)
 			],
 		);
 	}
@@ -95,38 +94,54 @@ class _CommentPageContentState extends State<CommentPageContent> with CommonTrav
 	}
 
 	/// 蓝色图片区
-	Widget buildBlueImageArea() {
+	Widget buildBlueImageArea(AsyncSnapshot<CirclerModelCommentData> snapshot) {
+
+		// 选择第1条数据
+		CirclerModelComments firstItem;
+		if (snapshot.data.comments.length > 0) {
+			firstItem = snapshot.data.comments[0];
+		} else {
+			return Container();
+		}
+
 		return Container(
 			width: MediaQuery.of(this.context).size.width,
 			height: 180.0,
-			decoration:
-				BoxDecoration(color: Color(0xFF108aee), shape: BoxShape.rectangle),
+			decoration: BoxDecoration(
+				color: Color(0xFF5474e8),
+				borderRadius: BorderRadius.circular(8.0),
+				gradient: RadialGradient(
+					center: Alignment(-0.9, 3),
+					radius: 3.7,
+					colors: [Color(0xFF5474e8), Color(0xFFcac0f8), Color(0xFFfeabb5)],
+					stops: [0.3, 0.7, 1.5])
+			),
 			child: Padding(
 			padding: EdgeInsets.fromLTRB(25.0, 25.0, 25.0, 0.0),
 			child: Column(
 				crossAxisAlignment: CrossAxisAlignment.start,
 				children: <Widget>[
-					Text('CUSTOMER', style: TextStyle(color: Color(0xFFa2d1f8), fontSize: 10.0)),
+					Text('CUSTOMER', style: TextStyle(color: Colors.black, fontSize: 10.0)),
 					SizedBox(height: 10.0),
-					Text('Eric Hoffman', style: TextStyle(color: Colors.white, fontSize: 15.0, fontWeight: FontWeight.bold)),
+					Text('The king of sofa!', style: TextStyle(color: Colors.white, fontSize: 15.0, fontWeight: FontWeight.bold)),
 					SizedBox(height: 10.0),
 					Row(
 						children: <Widget>[
 							CircleAvatar(
-								backgroundImage: AssetImage('assets/chris.jpg'),
-								radius: 16.0,
+								backgroundImage: NetworkImage(firstItem.userPic),
+								radius: 25.0,
 							),
 							SizedBox(width: 12.0),
-							Text('Sure thing!', style: TextStyle(color: Color(0xFFc5e2fa), fontSize: 13.0)),
+							Text(firstItem.userName, style: TextStyle(color: Color(0xFFc5e2fa), fontSize: 15.0)),
 							Icon(Icons.favorite_border, color: Color(0xFFa2d1f8), size: 15.0,)
 						],
 					),
 					SizedBox(height: 27.0),
 					Row(
 						children: <Widget>[
-							Text('Henry, Bryce, Eric, Berin, +3', style: TextStyle(color: Color(0xFF90c8f7), fontSize: 12.0)),
+							Text('Henry, Bryce, ${firstItem.isReply}, +3', style: TextStyle(color: Color(0xFF374ca1), fontSize: 12.0)),
 							Spacer(),
-							Text('7:32 am', style: TextStyle(color: Color(0xFF90c8f7), fontSize: 12.0)),
+							Text(this.getFullTime(firstItem.ts.toString()), style: TextStyle(color: Color(0xFF374ca1), fontSize: 12.0)),
 						],
 					),
 				],
@@ -136,12 +151,12 @@ class _CommentPageContentState extends State<CommentPageContent> with CommonTrav
 	}
 
 	/// 留言列表`
-	Widget buildCommentListArear() {
+	Widget buildCommentListArear(AsyncSnapshot<CirclerModelCommentData> snapshot) {
 		// 使用测试数据
-		List<CommentsPageVO> commentsListData = new CommentsPageVO().getTestData();
+		List<CirclerModelComments> commentsListData = snapshot.data.comments;
 		List<Widget> commentList = [];
 
-		for (CommentsPageVO item in commentsListData) {
+		for (CirclerModelComments item in commentsListData) {
 			commentList.add(
 				Column(
 					crossAxisAlignment: CrossAxisAlignment.start,
@@ -172,25 +187,25 @@ class _CommentPageContentState extends State<CommentPageContent> with CommonTrav
 
 	/// 标题
 	/// * [PageCommentsVO item] 标题数据源
-	Widget getTitle(CommentsPageVO item) {
+	Widget getTitle(CirclerModelComments item) {
 		return Padding(
 			padding: EdgeInsets.fromLTRB(26.0, 5.0, 26.0, 0.0),
 			child: Container(
 				width: MediaQuery.of(this.context).size.width - 80.0,
-				child: Text(item.title, maxLines: 2, overflow: TextOverflow.ellipsis, style: TextStyle(fontFamily: 'Montserrat', color: Color(0xff5b6774), fontSize: 15, fontWeight: FontWeight.bold)),
+				child: Text('${item.userName}', maxLines: 2, overflow: TextOverflow.ellipsis, style: TextStyle(fontFamily: 'Montserrat', color: Color(0xff5b6774), fontSize: 15, fontWeight: FontWeight.bold)),
 			)
 		);
 	}
 
 	/// 副标题
-	Widget getSubTitle(CommentsPageVO item) {
+	Widget getSubTitle(CirclerModelComments item) {
 		return Padding(
 			padding: EdgeInsets.fromLTRB(26.0, 20.0, 26.0, 0.0),
 			child: Row(
 				children: <Widget>[
-					Text(item.postTitle, style: TextStyle(color: Color(0xFFaeb2bc), fontSize: 10)),
+					Text('一介草根 ${item.from}', style: TextStyle(color: Color(0xFFaeb2bc), fontSize: 10)),
 					Spacer(),
-					this.getSubTitleNum(item.postTitleNum)
+					this.getSubTitleNum(0)
 				],
 			),
 		);
@@ -235,7 +250,7 @@ class _CommentPageContentState extends State<CommentPageContent> with CommonTrav
 
 	/// 描述文本
 	/// * [PageCommentsVO item] 描述数据列表
-	Widget getDescriptionArea(CommentsPageVO item) {
+	Widget getDescriptionArea(CirclerModelComments item) {
 		double containerWidth = MediaQuery.of(this.context).size.width - 50.0;
 		double textWidth = containerWidth - 40;
 
@@ -247,19 +262,19 @@ class _CommentPageContentState extends State<CommentPageContent> with CommonTrav
 					crossAxisAlignment: CrossAxisAlignment.start,
 					children: <Widget>[
 						CircleAvatar(
-							backgroundImage: AssetImage(item.avataUrl),
+							backgroundImage: NetworkImage(item.userPic),
 							radius: 15.0,
 						),
 						SizedBox(width: 10.0),
 						Container(
 							width: textWidth,
 							child: Text(
-							item.description,
+							item.text,
 							maxLines: 8,
 							softWrap: true,
 							overflow: TextOverflow.ellipsis,
 							style: TextStyle(
-								color: Color(0xFF808d9a),
+								color: Colors.black,
 								fontSize: 12,
 								fontWeight: FontWeight.normal
 								)
@@ -273,10 +288,10 @@ class _CommentPageContentState extends State<CommentPageContent> with CommonTrav
 
 	/// 图片区
 	/// * [PageCommentsVO item] 图片数据项
-	Widget getThumbilsArea(CommentsPageVO item) {
+	Widget getThumbilsArea(CirclerModelComments  item) {
 		List<Widget> thumbilsList = [];
 		int index = 0;
-		for (CommonGalleryItem itemVO in item.commentsImageList) {
+		for (CommonGalleryItem itemVO in item.thumbList) {
 		thumbilsList.add(
 			InkWell(
 				onTap: () {
@@ -300,7 +315,7 @@ class _CommentPageContentState extends State<CommentPageContent> with CommonTrav
 		index++;
 		}
 
-		return item.commentsImageList.length > 0 ?
+		return item.thumbList.length > 0 ?
 		Container(
 			margin: EdgeInsets.fromLTRB(26.0, 10.0, 0.0, 0.0),
 			width: MediaQuery.of(this.context).size.width,
@@ -316,22 +331,22 @@ class _CommentPageContentState extends State<CommentPageContent> with CommonTrav
 
 	/// 留言数量区
 	/// * [PageCommentsVO item] 留言数据
-	Widget getCommentsNumArea(CommentsPageVO item) {
+	Widget getCommentsNumArea(CirclerModelComments item) {
 		return Padding(
 			padding: EdgeInsets.fromLTRB(26.0, 25.0, 20.0, 30.0),
 			child: Row(
 				children: <Widget>[
 					Text(
-						item.commentDate,
+						this.getFullTime(item.ts.toString()),
 						style: TextStyle(
 							color: Color(0xFF5f6f7f).withOpacity(0.5),
 							fontSize: 10
 						)
 					),
 					Spacer(),
-					this.buildCommentIcon(Icons.favorite_border, item.likeNum),
+					this.buildCommentIcon(Icons.favorite_border, int.parse(item.supportCount)),
 					SizedBox(width: 20.0),
-					this.buildCommentIcon(Icons.comment, item.commentsNum)
+					this.buildCommentIcon(Icons.comment, int.parse(item.isReply))
 				],
 			),
 		);

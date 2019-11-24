@@ -109,7 +109,7 @@ class ServiceNewsList extends HttpServiceCore {
 	// ver: 5
 	Future<Response<dynamic>> getCommentCount(String nids) async {
 		// test Start÷,
-		nids = '10708585149717629205';
+		// nids = '10708585149717629205';
 		// test end 
 		
 		// 默认参数
@@ -137,7 +137,7 @@ class ServiceNewsList extends HttpServiceCore {
 	// ts: 0
 	Future<Response<dynamic>> getCommentInfo(String nids) async {
 		// test Start÷,
-		nids = '10708585149717629205';
+		// nids = '10708585149717629205';
 		// test end 
 		
 		// 默认参数
