@@ -212,7 +212,7 @@ class _CirclerDetailContentPageState extends State<CirclerDetailContentPage> wit
 								decoration: InputDecoration(
 									fillColor: Color(0xFFe4e9f5),
 									filled: true,
-									labelText: '共有 ${snapshotComment.data.comment} 条留言',
+									labelText: snapshotComment.data.comment > 0 ? '共有 ${snapshotComment.data.comment} 条留言' : '',
 									labelStyle: TextStyle(color: Colors.grey, fontSize: 15.0),
 									prefixIcon: Container(
 										child: Icon(Icons.comment, color: Colors.black.withOpacity(0.6), size: 26.0),

@@ -108,6 +108,10 @@ class ServiceNewsList extends HttpServiceCore {
 	// pd: webapp
 	// ver: 5
 	Future<Response<dynamic>> getCommentCount(String nids) async {
+		// test Start÷,
+		nids = '10708585149717629205';
+		// test end 
+		
 		// 默认参数
 		dynamic requestParams = {
 			'from': 'info',
