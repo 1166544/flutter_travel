@@ -86,7 +86,7 @@ class _CirclerState extends State<CirclerPage> with CommonNavigator, SingleTicke
 		return StoreConnector<StateGlobal, int>(
 			converter: (store) => store.state.count,
 			builder: (context, count) {
-				return Text('Materials - 60 Minutes ${count.toString()}',
+				return Text('Materials - 60 分钟杂志 ${count.toString()}',
 					style: TextStyle(
 					color: Colors.black,
 					fontWeight: FontWeight.bold,
