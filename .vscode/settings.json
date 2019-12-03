@@ -4,6 +4,7 @@
     "vetur.format.options.tabSize": 4,
     "editor.autoIndent": false,
     "editor.wrappingIndent": "indent",
-    "terminal.integrated.fontSize": 14
+    "terminal.integrated.fontSize": 14,
+    "editor.fontFamily": "San Francisco, Menlo, Monaco, 'Courier New', monospace"
 
 }
