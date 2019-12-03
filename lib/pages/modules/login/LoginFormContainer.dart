@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:flutter_travel/core/presentation/PresentationPlatformAdaptive.dart';
+import 'package:flutter_travel/core/presentation/PresentationPlatformAdaptiveButton.dart';
 import 'package:flutter_travel/models/ModelAppState.dart';
 import 'package:flutter_travel/redux/actions/ActionAuth.dart';
 import 'package:redux/redux.dart';

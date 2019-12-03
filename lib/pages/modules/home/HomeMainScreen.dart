@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_travel/core/presentation/PresentationPlatformAdaptive.dart';
+import 'package:flutter_travel/core/presentation/PresentationPlatformAdaptiveBottomBar.dart';
 import 'package:flutter_travel/pages/modules/home/HomeMainDrawer.dart';
 import 'package:flutter_travel/pages/modules/home/tabs/HomeDiscover.dart';
 import 'package:flutter_travel/pages/modules/home/tabs/HomeNews.dart';
