@@ -5,6 +5,8 @@
     "editor.autoIndent": false,
     "editor.wrappingIndent": "indent",
     "terminal.integrated.fontSize": 14,
-    "editor.fontFamily": "San Francisco, Menlo, Monaco, 'Courier New', monospace"
+    "editor.fontFamily": "San Francisco, Menlo, Monaco, 'Courier New', monospace",
+    "powermode.enabled": true,
+    "powermode.backgroundMode": "mask"
 
 }
