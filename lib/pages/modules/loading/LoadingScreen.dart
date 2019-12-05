@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_travel/styles/StyleColors.dart';
 
+/// 加载中动画
 class LoadingScreen extends StatelessWidget {
     
     LoadingScreen({Key key}): super(key: key);

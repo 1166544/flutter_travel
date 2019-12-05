@@ -7,6 +7,5 @@
     "terminal.integrated.fontSize": 14,
     "editor.fontFamily": "San Francisco, Menlo, Monaco, 'Courier New', monospace",
     "powermode.enabled": true,
-    "powermode.backgroundMode": "mask"
-
+    "powermode.enableShake": false,
 }
