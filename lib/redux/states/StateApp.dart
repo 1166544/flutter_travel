@@ -1,11 +1,15 @@
 import 'package:flutter_travel/redux/states/StateAuth.dart';
+import 'package:flutter_travel/redux/states/StatePage.dart';
 import 'package:meta/meta.dart';
 
 @immutable
 class AppState {
     final AuthState auth;
+	final StatePage page;
 
-    AppState({AuthState auth}): auth = auth ?? AuthState();
+    AppState({AuthState auth, StatePage page}): 
+		auth = auth ?? AuthState(), 
+		page = page ?? StatePage();
 
 	/// 将登录信息从本地缓存反序列化
     static AppState rehydrationJSON(dynamic json) => AppState(

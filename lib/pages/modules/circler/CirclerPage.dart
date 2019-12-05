@@ -46,6 +46,13 @@ class _CirclerState extends State<CirclerPage> with CommonNavigator, SingleTicke
 	void initState() {
 		super.initState();
 		this._tabController = new TabController(vsync: this, length: this._tabsData.length);
+		this._tabController.addListener(() {
+			print(this._tabController.toString());
+			print(this._tabController.index);
+			print(this._tabController.length);
+			print(this._tabController.previousIndex);
+			print(this._tabsData[this._tabController.index].text);
+		});
 	}
 
 	@override
