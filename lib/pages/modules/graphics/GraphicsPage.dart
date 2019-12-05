@@ -3,8 +3,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:flutter_travel/redux/actions/ActionGlobal.dart';
-import 'package:flutter_travel/redux/states/StateGlobal.dart';
+import 'package:flutter_travel/redux/states/StateApp.dart';
 
 /// 摄影
 class GraphicsPage extends StatefulWidget {
@@ -277,32 +276,36 @@ class _GraphicsPageState extends State<GraphicsPage> {
 
 	/// 包装收藏点击按钮
 	Widget buildFavoriteButtonAction() {
-		return StoreConnector<StateGlobal, VoidCallback>(
-			converter: (store) {
-				return () => store.dispatch(ActionGlobal.decrement);
-			},
-			builder: (context, callback) {
-				return InkWell(
-					child: this.buildFavoriteButton('Add favorite', Colors.white, Colors.black),
-					onTap: callback,
-				);
-			},
-		);
+		// return StoreConnector<AppState, VoidCallback>(
+		// 	// converter: (store) {
+		// 	// 	// return () => store.dispatch(UserLoginSuccess);
+		// 	// },
+		// 	builder: (context, callback) {
+		// 		return InkWell(
+		// 			child: this.buildFavoriteButton('Add favorite', Colors.white, Colors.black),
+		// 			onTap: callback,
+		// 		);
+		// 	},
+		// );
+		
+		// test
+		return Text('test');
 	}
 
 	/// 包装购买点击按钮
 	Widget buildBuyButtonAction() {
-		return StoreConnector<StateGlobal, VoidCallback>(
-			converter: (store) {
-				return () => store.dispatch(ActionGlobal.increment);
-			},
-			builder: (context, callback) {
-				return InkWell(
-					child: this.buildFavoriteButton('Buy tickets', Colors.deepPurple, Colors.white),
-					onTap: callback,
-				);
-			},
-		);
+		// return StoreConnector<AppState, VoidCallback>(
+		// 	converter: (store) {
+		// 		return () => store.dispatch(ActionGlobal.increment);
+		// 	},
+		// 	builder: (context, callback) {
+		// 		return InkWell(
+		// 			child: this.buildFavoriteButton('Buy tickets', Colors.deepPurple, Colors.white),
+		// 			onTap: callback,
+		// 		);
+		// 	},
+		// );
+		return Text('test');
 	}
 
   /// 构建圆形按钮
@@ -384,10 +387,10 @@ class _GraphicsPageState extends State<GraphicsPage> {
 						borderRadius: BorderRadius.circular(10.0),
 					),
 					child: Center(
-						child: StoreConnector<StateGlobal, int>(
-							converter: (store) => store.state.count,
-							builder: (context, count) {
-								return Text('+${count.toString()}', style: TextStyle(fontSize: 25.0, color: Colors.white));
+						child: StoreConnector<AppState, dynamic>(
+							converter: (store) => store.state.auth,
+							builder: (context, auth) {
+								return Text('+${auth.toString()}', style: TextStyle(fontSize: 25.0, color: Colors.white));
 							}
 						),
 					),

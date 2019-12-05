@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_travel/core/navigation/NavigationTabCore.dart';
-import 'package:flutter_travel/redux/states/StateGlobal.dart';
+import 'package:flutter_travel/redux/states/StateApp.dart';
 import 'package:redux/redux.dart';
 
 class LoginPage extends StatefulWidget {
-	final Store<StateGlobal> store;
+	final Store<AppState> store;
 
 	LoginPage({Key key, this.store}) : super(key: key);
 
@@ -14,15 +14,15 @@ class LoginPage extends StatefulWidget {
 
 /// 登录页面，无APPBAR
 class _LoginPageState extends State<LoginPage> {
-	final Store<StateGlobal> store;
-	_LoginPageState(Store<StateGlobal> store) : store = store;
+	final Store<AppState> store;
+	_LoginPageState(Store<AppState> store) : store = store;
 
 	TextEditingController userNameController = TextEditingController();
 	//   TextEditingController passwordController = TextEditingController();
 
 	@override
 	Widget build(BuildContext context) {
-		return StoreProvider<StateGlobal>(
+		return StoreProvider<AppState>(
 			store: this.store,
 			child: this.getLoginEntrance(context)
 		);
@@ -116,8 +116,8 @@ class _LoginPageState extends State<LoginPage> {
 
 	/// 动态绑定数据源使用
 	Widget getUpdatedLabel() {
-		return StoreConnector<StateGlobal, int>(
-			converter: (store) => store.state.count,
+		return StoreConnector<AppState, dynamic>(
+			converter: (store) => store.state.auth,
 			builder: (context, count) {
 				return Text(
 					'UN   ICN_PART ${count.toString()}',
@@ -203,7 +203,7 @@ class _LoginPageState extends State<LoginPage> {
 					  // 跳转至主页面
 					  Navigator.push(context, MaterialPageRoute(
 						  builder: (context) {
-							  return NavigationTabCore(store: this.store);
+							  return NavigationTabCore();
 						  }
 					  ));
 				  },

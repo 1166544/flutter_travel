@@ -3,7 +3,7 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_travel/core/bloc/BlocProvider.dart';
 import 'package:flutter_travel/pages/modules/search/blocs/SearchBlocGalleryList.dart';
 import 'package:flutter_travel/pages/modules/search/views/SearchContentView.dart';
-import 'package:flutter_travel/redux/states/StateGlobal.dart';
+import 'package:flutter_travel/redux/states/StateApp.dart';
 
 /// 搜索页
 class SearchPage extends StatefulWidget {
@@ -36,10 +36,10 @@ class _SearchPageState extends State<SearchPage> {
 
   /// Redux数据调用: 绑定全局动态标题
   Widget getSearchTitle() {
-    return StoreConnector<StateGlobal, int>(
-        converter: (store) => store.state.count,
-        builder: (context, count) {
-          	return Text('Maldives - 12 Days ${count.toString()}',
+    return StoreConnector<AppState, dynamic>(
+        converter: (store) => store.state.auth,
+        builder: (context, auth) {
+          	return Text('Maldives - 12 Days ${auth.toString()}',
               	style: TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.bold,

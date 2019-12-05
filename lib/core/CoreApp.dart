@@ -2,8 +2,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_travel/core/middleware/MiddlewarePersistor.dart';
+import 'package:flutter_travel/core/navigation/NavigationTabCore.dart';
 import 'package:flutter_travel/core/presentation/PresentationPlatformAdaptive.dart';
-import 'package:flutter_travel/pages/modules/home/HomeMainScreen.dart';
 import 'package:flutter_travel/pages/modules/loading/LoadingScreen.dart';
 import 'package:flutter_travel/pages/modules/login/LoginScreen.dart';
 import 'package:flutter_travel/redux/states/StateApp.dart';
@@ -43,10 +43,10 @@ class CoreApp extends StatelessWidget {
 					routes: <String, WidgetBuilder>{
 						'/': (BuildContext context) => StoreConnector<AppState, dynamic>( 
 							converter: (store) => store.state.auth.isAuthenticated, 
-							builder: (BuildContext context, isAuthenticated) => isAuthenticated ? MainScreen() : LoginScreen()
+							builder: (BuildContext context, isAuthenticated) => isAuthenticated ? NavigationTabCore() : LoginScreen()
 						),
 						'/login': (BuildContext context) => LoginScreen(),
-						'/main': (BuildContext context) => MainScreen()
+						'/main': (BuildContext context) => NavigationTabCore()
 					}
 				)
 			),

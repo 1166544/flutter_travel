@@ -8,7 +8,7 @@ import 'package:flutter_travel/pages/modules/circler/views/pages/CircleMilitaryP
 import 'package:flutter_travel/pages/modules/circler/views/pages/CirclerDisplayPage.dart';
 import 'package:flutter_travel/pages/modules/circler/views/pages/CirclerGlobalPage.dart';
 import 'package:flutter_travel/pages/modules/circler/views/pages/CirclerSocialityPage.dart';
-import 'package:flutter_travel/redux/states/StateGlobal.dart';
+import 'package:flutter_travel/redux/states/StateApp.dart';
 
 /// 资讯内容页面
 class CirclerPage extends StatefulWidget {
@@ -83,10 +83,11 @@ class _CirclerState extends State<CirclerPage> with CommonNavigator, SingleTicke
 
 	/// Redux数据调用: 绑定全局动态标题
 	Widget getSearchTitle() {
-		return StoreConnector<StateGlobal, int>(
-			converter: (store) => store.state.count,
-			builder: (context, count) {
-				return Text('Materials - 60 分钟杂志 ${count.toString()}',
+		return StoreConnector<AppState, dynamic>(
+			converter: (store) => store.state.auth.toString(),
+			builder: (context, auth) {
+				// return Text('Materials - 60 分钟杂志 ${auth.toString()}',
+				return Text('Materials - 60 Minute Manaze',
 					style: TextStyle(
 					color: Colors.black,
 					fontWeight: FontWeight.bold,

@@ -1,18 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_travel/core/navigation/NavigationTabCore.dart';
 import 'package:flutter_travel/core/navigation/NavigationTabItem.dart';
 import 'package:flutter_travel/pages/modules/circler/CirclerPage.dart';
 import 'package:flutter_travel/pages/modules/graphics/GraphicsPage.dart';
 import 'package:flutter_travel/pages/modules/home/HomePage.dart';
 import 'package:flutter_travel/pages/modules/search/SearchPage.dart';
-import 'package:flutter_travel/redux/states/StateGlobal.dart';
-import 'package:redux/redux.dart';
 
 /// TAB VIEW STATE入口类
 class NavigationTabCoreState extends State<NavigationTabCore> {
-	final Store<StateGlobal> store;
-	NavigationTabCoreState(Store<StateGlobal> store) : store = store;
+	NavigationTabCoreState();
 	Map<NavigationTabItem, Widget> mapPageList = new Map<NavigationTabItem, Widget>();
 	NavigationTabItem currentItem = NavigationTabItem.Home;
 
@@ -84,10 +80,7 @@ class NavigationTabCoreState extends State<NavigationTabCore> {
 
 	/// 构建界面
 	Widget _buildBody() {
-		return StoreProvider<StateGlobal>(
-			store: this.store,
-			child: this.getMapPage(currentItem)
-		);
+		return this.getMapPage(currentItem);
 	}
 
 	/// 底部TAB按钮

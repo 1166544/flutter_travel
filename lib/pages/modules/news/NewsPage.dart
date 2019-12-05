@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_travel/pages/common/CommonNavigator.dart';
 import 'package:flutter_travel/pages/modules/news/NewsList.dart';
-import 'package:flutter_travel/redux/states/StateGlobal.dart';
+import 'package:flutter_travel/redux/states/StateApp.dart';
 import 'package:redux/redux.dart';
 
 /// 资讯模块
 class NewsPage extends StatefulWidget {
-	final Store<StateGlobal> store;
+	final Store<AppState> store;
 
 	NewsPage({Key key, this.store}) : super(key: key);
 
@@ -16,8 +16,8 @@ class NewsPage extends StatefulWidget {
 
 /// 资讯页面，无APPBAR
 class _NewsPageState extends State<NewsPage> with CommonNavigator, SingleTickerProviderStateMixin {
-	final Store<StateGlobal> store;
-	_NewsPageState(Store<StateGlobal> store) : store = store;
+	final Store<AppState> store;
+	_NewsPageState(Store<AppState> store) : store = store;
 
 	final List<Tab> tabsData = <Tab>[
 		Tab(text: 'LEFT'),
@@ -40,7 +40,7 @@ class _NewsPageState extends State<NewsPage> with CommonNavigator, SingleTickerP
 	
 	@override
 	Widget build(BuildContext context) {
-		return StoreProvider<StateGlobal>(
+		return StoreProvider<AppState>(
 			store: this.store,
 			child: this.getPageEntrance(context)
 		);
