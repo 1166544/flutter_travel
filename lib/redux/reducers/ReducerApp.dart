@@ -3,7 +3,7 @@ import 'package:flutter_travel/redux/states/StateApp.dart';
 import 'package:redux_persist/redux_persist.dart';
 
 AppState appReducer(AppState state, action){
-    //print(action);
+    // print(action);
     if (action is PersistLoadedAction<AppState>) {
         return action.state ?? state;
     } else {

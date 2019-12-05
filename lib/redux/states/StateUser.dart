@@ -1,3 +1,4 @@
+/// 用户信息
 class User {
     final String token;
     final String id;
