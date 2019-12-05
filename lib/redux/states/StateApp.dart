@@ -1,4 +1,4 @@
-import 'package:flutter_travel/models/ModelAuthState.dart';
+import 'package:flutter_travel/redux/states/StateAuth.dart';
 import 'package:meta/meta.dart';
 
 @immutable

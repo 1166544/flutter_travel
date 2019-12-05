@@ -1,4 +1,4 @@
-import 'package:flutter_travel/models/ModelAppState.dart';
+import 'package:flutter_travel/redux/states/StateApp.dart';
 import 'package:redux/redux.dart';
 import 'package:redux_thunk/redux_thunk.dart';
 import 'package:redux_logging/redux_logging.dart';

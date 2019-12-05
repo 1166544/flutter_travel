@@ -1,5 +1,5 @@
-import 'package:flutter_travel/models/ModelAuthState.dart';
 import 'package:flutter_travel/redux/actions/ActionAuth.dart';
+import 'package:flutter_travel/redux/states/StateAuth.dart';
 import 'package:redux/redux.dart';
 
 Reducer<AuthState> authReducer = combineReducers([
