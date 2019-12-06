@@ -2,6 +2,6 @@
 enum NavigationTabItem {
 	Home,
 	Search,
-	Graphics,
 	Circler,
+	Graphics,
 }

@@ -3,9 +3,12 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:flutter_travel/core/bloc/BlocProvider.dart';
+import 'package:flutter_travel/pages/modules/graphics/blocs/GraphicsBlocMyInfo.dart';
+import 'package:flutter_travel/pages/modules/graphics/views/GraphicsBlocContentView.dart';
 import 'package:flutter_travel/redux/states/StateApp.dart';
 
-/// 摄影
+/// 我的模块
 class GraphicsPage extends StatefulWidget {
   final Widget child;
 
@@ -14,60 +17,78 @@ class GraphicsPage extends StatefulWidget {
   _GraphicsPageState createState() => _GraphicsPageState();
 }
 
-/// 摄影状态
 class _GraphicsPageState extends State<GraphicsPage> {
 
-	List<String> bgList = [
-	'assets/road.jpg',
-	'assets/bg1.jpg',
-	'assets/bg2.jpg'
-	];
+	// List<String> bgList = [
+	// 'assets/road.jpg',
+	// 'assets/bg1.jpg',
+	// 'assets/bg2.jpg'
+	// ];
 
   @override
   Widget build(BuildContext context) {
-	return Scaffold(
-		body: Container(
-			// 背景装饰图片
-			decoration: BoxDecoration(
-				image: DecorationImage(
-					image: AssetImage(this.buildRandomBackground()),
-					fit: BoxFit.cover,
-				),
-			),
-			child: Container(
-				// 背景图片上的渐变效果
-				decoration: BoxDecoration(
-					gradient: LinearGradient(
-					begin: Alignment.topCenter,
-					end: Alignment.bottomCenter,
-					stops: [0.0, 0.5, 0.65, 0.9],
-					colors: [
-						Colors.white.withOpacity(0.0),
-						Colors.white.withOpacity(0.25),
-						Colors.white.withOpacity(0.95),
-						Colors.white,
-					],
-					)
-				),
-				child: ListView(
-					children: <Widget>[
-						// 页面列表内容
-						this.buildTopChildren(),
-					],
-				),
-			),
-		),
-	);
+
+	  return Scaffold(
+		  appBar: AppBar(
+			  title: Center(
+				  child: Text('Personal Information', style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20.0
+				)),
+			  ),
+			  elevation: 0.0,
+			  backgroundColor: Color(0xffebeff8),
+		  ),
+		  body: BlocProvider(
+			  bloc: GraphicsBlocMyInfo(),
+			  child: GraphicsBlocContentView(),
+		  )
+	  );
+
+	// return Scaffold(
+	// 	body: Container(
+	// 		// 背景装饰图片
+	// 		decoration: BoxDecoration(
+	// 			image: DecorationImage(
+	// 				image: AssetImage(this.buildRandomBackground()),
+	// 				fit: BoxFit.cover,
+	// 			),
+	// 		),
+	// 		child: Container(
+	// 			// 背景图片上的渐变效果
+	// 			decoration: BoxDecoration(
+	// 				gradient: LinearGradient(
+	// 				begin: Alignment.topCenter,
+	// 				end: Alignment.bottomCenter,
+	// 				stops: [0.0, 0.5, 0.65, 0.9],
+	// 				colors: [
+	// 					Colors.white.withOpacity(0.0),
+	// 					Colors.white.withOpacity(0.25),
+	// 					Colors.white.withOpacity(0.95),
+	// 					Colors.white,
+	// 				],
+	// 				)
+	// 			),
+	// 			child: ListView(
+	// 				children: <Widget>[
+	// 					// 页面列表内容
+	// 					this.buildTopChildren(),
+	// 				],
+	// 			),
+	// 		),
+	// 	),
+	// );
   }
 
   /// 随机背景
-  String buildRandomBackground() {
-	int min = 0;
-	int max = 3;
-	int selection = min + (Random().nextInt(max-min));
+//   String buildRandomBackground() {
+// 	int min = 0;
+// 	int max = 3;
+// 	int selection = min + (Random().nextInt(max-min));
 
-	return this.bgList[selection];
-  }
+// 	return this.bgList[selection];
+//   }
 
   /// 顶部内容
   Widget buildTopChildren() {
