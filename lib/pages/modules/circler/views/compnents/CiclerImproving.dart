@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_travel/pages/modules/circler/models/CirclerModelsNewsList.dart';
+import 'package:flutter_travel/redux/states/StateApp.dart';
 
 /// 持续改进提示
 class CircleImproving extends StatefulWidget {
@@ -64,17 +66,30 @@ class _CircleImprovingState extends State<CircleImproving> {
 								spreadRadius: 1.8)
 							],
 						),
-						child: Center(
-							child: Text(startCount,
-								style: TextStyle(
-									fontSize: 20.0,
-									color: Colors.white,
-									fontWeight: FontWeight.bold)),
-					),
+						child: this.getImproveTitle(),
 					),
 				],
 				),
 			),
+		);
+	}
+
+	/// Redux数据调用: 绑定全局动态标题
+	Widget getImproveTitle() {
+		return StoreConnector<AppState, dynamic>(
+			converter: (store) => store.state.page.title,
+			builder: (BuildContext context, title) {
+				// return Text('Materials - 60 分钟杂志 ${auth.toString()}',
+				return Center(
+					child: Text(
+						title,
+						style: TextStyle(
+							fontSize: 20.0,
+							color: Colors.white,
+							fontWeight: FontWeight.bold)
+					),
+				);
+			}
 		);
 	}
 }

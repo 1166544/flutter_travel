@@ -8,7 +8,9 @@ import 'package:flutter_travel/pages/modules/circler/views/pages/CircleMilitaryP
 import 'package:flutter_travel/pages/modules/circler/views/pages/CirclerDisplayPage.dart';
 import 'package:flutter_travel/pages/modules/circler/views/pages/CirclerGlobalPage.dart';
 import 'package:flutter_travel/pages/modules/circler/views/pages/CirclerSocialityPage.dart';
+import 'package:flutter_travel/redux/actions/ActionPage.dart';
 import 'package:flutter_travel/redux/states/StateApp.dart';
+import 'package:redux/redux.dart';
 
 /// 资讯内容页面
 class CirclerPage extends StatefulWidget {
@@ -41,25 +43,25 @@ class _CirclerState extends State<CirclerPage> with CommonNavigator, SingleTicke
 	];
 
 	TabController _tabController;
+	Store<AppState> store;
 
 	@override
 	void initState() {
 		super.initState();
 		this._tabController = new TabController(vsync: this, length: this._tabsData.length);
-		this._tabController.addListener(() {
-			print(this._tabController.toString());
-			print(this._tabController.index);
-			print(this._tabController.length);
-			print(this._tabController.previousIndex);
-			print(this._tabsData[this._tabController.index].text);
-		});
+		this._tabController.addListener(this.onTapUpdate);
 	}
 
-	@override
-	void dispose() {
-		this._tabController.dispose();
-		super.dispose();
-	}
+	/// TAB更新
+	void onTapUpdate() {
+		// print(this._tabController.toString());
+		// print(this._tabController.index);
+		// print(this._tabController.length);
+		// print(this._tabController.previousIndex);
+		// print(this._tabsData[this._tabController.index].text);
+		// 更新选中标题
+		this._updateTitle(this._tabsData[this._tabController.index].text);
+	} 
 
 	@override
 	Widget build(BuildContext context) {
@@ -88,10 +90,30 @@ class _CirclerState extends State<CirclerPage> with CommonNavigator, SingleTicke
 		);
 	}
 
+	/// 更新标题
+	void _updateTitle(String title) {
+		if (this.store != null) {
+			this.store.dispatch(ActionPageUpdate(title));
+		}
+	}
+
+	@override
+	void dispose() {
+		this._tabController.dispose();
+		super.dispose();
+	}
+
 	/// Redux数据调用: 绑定全局动态标题
 	Widget getSearchTitle() {
 		return StoreConnector<AppState, dynamic>(
-			converter: (store) => store.state.auth.toString(),
+			converter: (store) {
+				if (this.store == null) {
+					// 更新第1个标题
+					this.store = store;
+					this._updateTitle(this._tabsData[0].text);
+				}
+				return store.state.auth.toString();
+			},
 			builder: (context, auth) {
 				// return Text('Materials - 60 分钟杂志 ${auth.toString()}',
 				return Text('Materials - 60 Minute Manaze',

@@ -6,7 +6,7 @@ class StatePage {
 	final String title;
 
 	StatePage({
-		this.title = ''
+		this.title = '100%'
 	});
 
 	// 返回副本,允许复制之前的AuthState参数时修改这些参数
