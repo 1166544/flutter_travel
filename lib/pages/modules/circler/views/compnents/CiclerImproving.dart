@@ -27,6 +27,7 @@ class _CircleImprovingState extends State<CircleImproving> {
 	/// 构建圆角横条
 	Widget buidCircleIconBar(
 		String startCount, String hotelName, Color colorValue, Color colorCenter, Color shapeColor) {
+		
 		return Container(
 			// RadialGridient圆形渐变效果
 			decoration: BoxDecoration(
@@ -48,7 +49,21 @@ class _CircleImprovingState extends State<CircleImproving> {
 						crossAxisAlignment: CrossAxisAlignment.start,
 						children: <Widget>[
 							Text(hotelName, style: TextStyle(fontSize: 18.0, color: Colors.white, fontFamily: 'Montserrat', fontWeight: FontWeight.bold)),
-							Text('You are current score', style: TextStyle(fontSize: 13.0, color: Colors.white, fontFamily: 'Montserrat')),
+							Container(
+								padding: EdgeInsets.fromLTRB(0.0, 5.0, 0, 0),
+								child: Text(
+									"No one will pay for your future. You either try to climb up or rot in the mud at the bottom of society. That's life.", 
+									style: TextStyle(
+										fontSize: 9.0, 
+										color: Colors.white, 
+										fontFamily: 'Montserrat',
+									),
+									maxLines: 3,
+									softWrap: true,
+									overflow: TextOverflow.ellipsis,
+								),
+								width: 220,
+							),
 						],
 					),
 					Spacer(),
