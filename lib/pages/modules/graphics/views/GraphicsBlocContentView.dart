@@ -49,11 +49,12 @@ class _GraphicsBlocContentViewState extends State<GraphicsBlocContentView> with 
 			stream: this.blocGalleryList.outGallery,
 			builder: (context, snapshot) {
 				// 数据源到位时渲染列表
-				if (snapshot.hasData) {
-					return this.buildSearchLayout(snapshot);
-				} else {
-					return this.buildEmptyLayout(context);
-				}
+				return this.buildSearchLayout(snapshot);
+				// if (snapshot.hasData) {
+				// 	return this.buildSearchLayout(snapshot);
+				// } else {
+				// 	return this.buildEmptyLayout(context);
+				// }
 			},
 		);
 	}
