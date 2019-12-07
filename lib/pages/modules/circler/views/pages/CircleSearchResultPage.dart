@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_travel/core/bloc/BlocProvider.dart';
+import 'package:flutter_travel/pages/modules/circler/blocs/CirclerBlocSearch.dart';
 import 'package:flutter_travel/pages/modules/circler/views/compnents/CirclerSearchContent.dart';
 import 'package:flutter_travel/pages/modules/graphics/blocs/GraphicsBlocMyInfo.dart';
 
@@ -37,7 +38,7 @@ class _CircleSearchResultPageState extends State<CircleSearchResultPage> {
 				backgroundColor: Color(0xffebeff8),
 			),
 			body: BlocProvider(
-				bloc: GraphicsBlocMyInfo(),
+				bloc: CirclerBlocSearch(),
 				child: CirclerSearchContent(searchContent: this._searchContent),
 			),
 		);

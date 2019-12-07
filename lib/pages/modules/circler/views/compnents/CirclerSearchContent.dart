@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_travel/core/bloc/BlocProvider.dart';
 import 'package:flutter_travel/pages/common/CommonLoading.dart';
 import 'package:flutter_travel/pages/common/CommonTravelItem.dart';
+import 'package:flutter_travel/pages/modules/circler/blocs/CirclerBlocSearch.dart';
 import 'package:flutter_travel/pages/modules/circler/views/compnents/CirclerSearchBar.dart';
-import 'package:flutter_travel/pages/modules/graphics/blocs/GraphicsBlocMyInfo.dart';
 import 'package:flutter_travel/pages/modules/graphics/models/GraphicsBlocModel.dart';
 import 'package:flutter_travel/pages/modules/notices/NoticePageVO.dart';
 import 'package:flutter_travel/pages/modules/notices/NoticeReadVO.dart';
@@ -18,7 +18,7 @@ class CirclerSearchContent extends StatefulWidget {
 
 class _CirclerSearchContentState extends State<CirclerSearchContent> with CommonTravelItem {
 	String _searchContent;
-	GraphicsBlocMyInfo blocGalleryList;
+	CirclerBlocSearch blocGalleryList;
 	final formKey = GlobalKey<FormState>();
 
 	_CirclerSearchContentState(String searchContent) {
@@ -28,7 +28,7 @@ class _CirclerSearchContentState extends State<CirclerSearchContent> with Common
 	@override
 	Widget build(BuildContext context) {
 		// 连接数据源
-		this.blocGalleryList = BlocProvider.of<GraphicsBlocMyInfo>(context);
+		this.blocGalleryList = BlocProvider.of<CirclerBlocSearch>(context);
 		// this.blocGalleryList.updateParams(this._searchContent);
 
 		return this.getStreamBuilder(context);
