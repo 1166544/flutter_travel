@@ -1,5 +1,6 @@
 import 'package:flutter_travel/core/api/ApiConfigVO.dart';
 import 'package:flutter_travel/core/api/ApiEnum.dart';
+import 'package:flutter_travel/core/api/ApiLibInfo.dart';
 import 'package:flutter_travel/core/api/ApiToken.dart';
 
 /// 默认配置
@@ -8,6 +9,7 @@ class ConfigDefault {
 	/// 调用服务器API列表配置
 	List<ApiConfigVO> serverUrlList = [];
 	ApiToken _apiToken;
+	ApiLibInfo _apiLibInfo;
 
 	ConfigDefault() {
 		/// 服务器默认URL配置(各环境在构造函数中重写)
@@ -28,8 +30,12 @@ class ConfigDefault {
 			serverUrl: 'https://cnodejs.org/'
 		));
 		this.serverUrlList.add(ApiConfigVO(
-			key: API_ENUM.BAIDU,
+			key: API_ENUM.NEWS_BAIDU,
 			serverUrl: 'https://news.baidu.com/'
+		));
+		this.serverUrlList.add(ApiConfigVO(
+			key: API_ENUM.MOBILE_BAIDU,
+			serverUrl: 'https://m.baidu.com/'
 		));
 	}
 
@@ -55,9 +61,19 @@ class ConfigDefault {
 		this._apiToken = val;
 	}
 
+	/// 更新LIBINFO
+	void updateLibInfo(ApiLibInfo val) {
+		this._apiLibInfo = val;
+	}
+
 	/// token
 	ApiToken getToken() {
 		return this._apiToken;
+	}
+
+	/// libid
+	ApiLibInfo getLibInfo() {
+		return this._apiLibInfo;
 	}
 
 }

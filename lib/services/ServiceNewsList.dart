@@ -19,7 +19,7 @@ class ServiceNewsList extends HttpServiceCore {
 
 	ServiceNewsList._internal(): super() {
 		// 初始化
-		this.apiKey = API_ENUM.BAIDU;
+		this.apiKey = API_ENUM.NEWS_BAIDU;
 		this.enviroment = ServiceEnviroment.instance;
 		this.baseUrl = this.enviroment.getEnv().getServerUrl(this.apiKey);
 

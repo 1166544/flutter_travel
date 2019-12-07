@@ -3,6 +3,7 @@ import 'package:flutter_travel/core/bloc/BlocProvider.dart';
 import 'package:flutter_travel/pages/common/CommonLoading.dart';
 import 'package:flutter_travel/pages/common/CommonTravelItem.dart';
 import 'package:flutter_travel/pages/modules/circler/blocs/CirclerBlocSearch.dart';
+import 'package:flutter_travel/pages/modules/circler/models/CirclerModelsNewsList.dart';
 import 'package:flutter_travel/pages/modules/circler/views/compnents/CirclerSearchBar.dart';
 import 'package:flutter_travel/pages/modules/graphics/models/GraphicsBlocModel.dart';
 import 'package:flutter_travel/pages/modules/notices/NoticePageVO.dart';
@@ -29,7 +30,7 @@ class _CirclerSearchContentState extends State<CirclerSearchContent> with Common
 	Widget build(BuildContext context) {
 		// 连接数据源
 		this.blocGalleryList = BlocProvider.of<CirclerBlocSearch>(context);
-		// this.blocGalleryList.updateParams(this._searchContent);
+		this.blocGalleryList.updateParams(this._searchContent);
 
 		return this.getStreamBuilder(context);
 	}
@@ -41,10 +42,10 @@ class _CirclerSearchContentState extends State<CirclerSearchContent> with Common
 
 	/// 连接stream数据源
 	Widget getStreamBuilder(BuildContext context) {
-		return StreamBuilder<GraphicsBlocModel>(
+		return StreamBuilder<CirclerModelsNewsList>(
 			stream: this.blocGalleryList.outGallery,
 			builder: (context, snapshot) {
-				return this.buildSearchLayout(snapshot);
+				return this.buildSearchLayout();
 
 				// 数据源到位时渲染列表
 				// if (snapshot.hasData) {
@@ -62,7 +63,7 @@ class _CirclerSearchContentState extends State<CirclerSearchContent> with Common
 	}
 
 	/// 基础页面结构
-	Widget buildSearchLayout(AsyncSnapshot<GraphicsBlocModel> snapshot) {
+	Widget buildSearchLayout({ AsyncSnapshot<GraphicsBlocModel> snapshot }) {
 		return Container(
 			child: Column(
 				children: <Widget>[

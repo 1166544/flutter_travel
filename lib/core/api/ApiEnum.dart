@@ -2,7 +2,9 @@
 enum API_ENUM {
 	API_OPEN,
 
-	BAIDU,
+	NEWS_BAIDU,
+
+	MOBILE_BAIDU,
 	
 	SINA,
 	

@@ -24,8 +24,12 @@ class ConfigGrey extends ConfigDefault {
 			serverUrl: 'https://cnodejs.org/'
 		));
 		this.serverUrlList.add(ApiConfigVO(
-			key: API_ENUM.BAIDU,
+			key: API_ENUM.NEWS_BAIDU,
 			serverUrl: 'https://news.baidu.com/'
+		));
+		this.serverUrlList.add(ApiConfigVO(
+			key: API_ENUM.MOBILE_BAIDU,
+			serverUrl: 'https://m.baidu.com/'
 		));
 	}
 
