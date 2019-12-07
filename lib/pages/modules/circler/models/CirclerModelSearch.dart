@@ -1,57 +1,108 @@
-import 'dart:async';
-
-import 'package:flutter_travel/core/bloc/BlocBase.dart';
-import 'package:flutter_travel/pages/modules/graphics/models/GraphicsBlocModel.dart';
-import 'package:flutter_travel/services/ServiceJsonPlaceHolder.dart';
 
 /// 搜索结果页数据
-class CirclerModelSearch implements BlocBase {
+class CirclerModelSearch {
+	List<dynamic> ecData;	
+	String query;
+	String lid;
+	bool hasMoreResult;
+	bool isNewTpl;
+	bool isNewDisp;
+	List<CircleModelSearchItem> list = [];
+	dynamic recommendSwitch;
+	dynamic queryInsertIndex;
+	bool lTxtRImg;
+	bool hasMore;
 
-	GraphicsBlocModel _gallery;
-	ServiceJsonPlaceHolder _serviceJsonPlaceHolder;
+	CirclerModelSearch();
 
-	/// 数据流处理器对象
-	StreamController<GraphicsBlocModel> _galleryController;
+	/// 更新数据
+	void update(dynamic resultData) {
+		dynamic result = resultData.data;
 
-	/// 流入流
-	Sink<GraphicsBlocModel> get _inGallery => _galleryController.sink;
+		if (result != null) {
+			dynamic resultSubData = result['data'];
 
-	/// 流出流
-	Stream<GraphicsBlocModel> get outGallery => _galleryController.stream;
+			this.ecData = resultSubData['ecData'];	
+			this.query = resultSubData['query'];
+			this.lid = resultSubData['lid'];
+			this.hasMoreResult = resultSubData['hasMoreResult'];
+			this.isNewTpl = resultSubData['isNewTpl'];
+			this.isNewDisp = resultSubData['isNewDisp'];
+			this.recommendSwitch = resultSubData['recommendSwitch'];
+			this.queryInsertIndex = resultSubData['queryInsertIndex'];
+			this.lTxtRImg = resultSubData['lTxtRImg'];
+			this.hasMore = resultSubData['hasMore'];
 
-	CirclerModelSearch() {
-		this._galleryController = StreamController<GraphicsBlocModel>.broadcast();
-		this._serviceJsonPlaceHolder = new ServiceJsonPlaceHolder();
-		this.init();
+			dynamic list = resultSubData['list'];
+			for(Map item in list) {
+				CircleModelSearchItem itemData = new CircleModelSearchItem();
+				itemData.update(item);
+				this.list.add(itemData);
+			}
+		}
 	}
+}
 
-	/// 初始化
-	Future<Null> init() async {
-		// 初始化时调用service列表数据 
-		dynamic result = await this._serviceJsonPlaceHolder.getPostsData();
+class CircleModelSearchItem {
+	int index;
+	String size;
+	String title;
+	int isDispAbstract;
+	String posttime;
+	String subsitename;
+	String subsitenameNew;
+	String avatar;
+	String avatarUrl;
+	String abstractValue;
+	String site;
+	String threadId;
+	String pd;
+	String titleurl;
+	int isSf;
+	int urlType;
+	String type;
+	dynamic isPicExp;
+	List<String> img = [];
+	String imgsrcurl;
+	String isEnd;
+	String url;
+	String tcUrl;
+	dynamic params;
+	int comments;
 
-		// 返回数据列表更新数据源
-		this._gallery = new GraphicsBlocModel();
-		this._gallery.update(result);
+	CircleModelSearchItem();
 
-		// 触发数据更新
-		this._inGallery.add(this._gallery);
+	void update(dynamic data) {
+		this.index = data['index'];
+		this.size = data['size'];
+		this.title = data['title'];
+		this.isDispAbstract = data['is_disp_abstract'];
+		this.posttime = data['posttime'];
+		this.subsitename = data['subsitename'];
+		this.subsitenameNew = data['subsitename_new'];
+		this.avatar = data['avatar'];
+		this.avatarUrl = data['avatarUrl'];
+		this.abstractValue = data['abstract'];
+		this.site = data['site'];
+		this.threadId = data['thread_id'];
+		this.pd = data['pd'];
+		this.titleurl = data['titleurl'];
+		this.isSf = data['is_sf'];
+		this.urlType = data['url_type'];
+		this.type = data['type'];
+		this.isPicExp = data['is_pic_exp'];
+		this.imgsrcurl = data['imgsrcurl'];
+		this.isEnd = data['is_end'];
+		this.url = data['url'];
+		this.tcUrl = data['tcUrl'];
+		this.params = data['params'];
+		this.comments = data['comments'];
+		var img = data['img'];
+
+		if (img != null) {
+			for (var i = 0; i < img.length; i++) {
+				this.img.add(img[i]);
+			}
+		}
 	}
-
-	Future<Null> update() async {
-		await this.init();
-	}
-
-	@override
-	void dispose() {
-		this._galleryController.close();
-	}
-
-	/// 更新数据源操作
-	/// * [GraphicsBlocModel gallery] 数据源
-	void updateGallery(GraphicsBlocModel gallery) {
-		this._gallery = gallery;
-		this._inGallery.add(this._gallery);
-	}
-
 }

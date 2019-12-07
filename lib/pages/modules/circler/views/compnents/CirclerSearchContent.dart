@@ -3,7 +3,7 @@ import 'package:flutter_travel/core/bloc/BlocProvider.dart';
 import 'package:flutter_travel/pages/common/CommonLoading.dart';
 import 'package:flutter_travel/pages/common/CommonTravelItem.dart';
 import 'package:flutter_travel/pages/modules/circler/blocs/CirclerBlocSearch.dart';
-import 'package:flutter_travel/pages/modules/circler/models/CirclerModelsNewsList.dart';
+import 'package:flutter_travel/pages/modules/circler/models/CirclerModelSearch.dart';
 import 'package:flutter_travel/pages/modules/circler/views/compnents/CirclerSearchBar.dart';
 import 'package:flutter_travel/pages/modules/graphics/models/GraphicsBlocModel.dart';
 import 'package:flutter_travel/pages/modules/notices/NoticePageVO.dart';
@@ -42,7 +42,7 @@ class _CirclerSearchContentState extends State<CirclerSearchContent> with Common
 
 	/// 连接stream数据源
 	Widget getStreamBuilder(BuildContext context) {
-		return StreamBuilder<CirclerModelsNewsList>(
+		return StreamBuilder<CirclerModelSearch>(
 			stream: this.blocGalleryList.outGallery,
 			builder: (context, snapshot) {
 				return this.buildSearchLayout();
