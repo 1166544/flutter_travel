@@ -10,23 +10,37 @@ class CirclerSearchBar extends StatefulWidget {
 	_CirclerSearchBarState createState() => _CirclerSearchBarState();
 }
 
-class _CirclerSearchBarState extends State<CirclerSearchBar> with CommonNavigator {
-	final formKey = GlobalKey<FormState>();
-
-	String _searchContent;
-
+class _CirclerSearchBarState extends State<CirclerSearchBar> with CommonNavigator, CirclerSearchForm {
 	/// 提交搜索内容,路由跳转至子页
-	void _submit() {
+	@override
+	void submit() {
 		final form = formKey.currentState;
 
 		if (form.validate()) {
 			form.save();
-			this.navigateTo(context, CircleSearchResultPage(searchContent: this._searchContent));
+			this.navigateTo(context, CircleSearchResultPage(searchContent: this.searchContent));
 		}
 	}
 
 	@override
 	Widget build(BuildContext context) {
+		return this.getSearchBarForm();
+	}
+}
+
+/// 搜索条表单
+class CirclerSearchForm {
+	final formKey = GlobalKey<FormState>();
+
+	String searchContent;
+
+	/// 提交搜索内容,路由跳转至子页
+	void submit() {
+		// hole
+	}
+
+	/// 返回搜索条结构
+	Widget getSearchBarForm({String title}) {
 		return Form(
 			key: formKey,
 			child: Padding(
@@ -39,6 +53,9 @@ class _CirclerSearchBarState extends State<CirclerSearchBar> with CommonNavigato
 								textAlign: TextAlign.left,
 								style: TextStyle(fontSize: 12.0, color: Colors.black),
 								keyboardType: TextInputType.text,
+								controller: TextEditingController.fromValue(
+									TextEditingValue(text: '${title == null ? "" : title}')
+								),
 								decoration: InputDecoration(
 									fillColor: Color(0xFFe4e9f5),
 									filled: true,
@@ -50,7 +67,7 @@ class _CirclerSearchBarState extends State<CirclerSearchBar> with CommonNavigato
 									border: InputBorder.none,
 								),
 								validator: (val) => val.isEmpty ? 'Please enter keywords.' : null,
-								onSaved: (val) => this._searchContent = val,
+								onSaved: (val) => this.searchContent = val,
 							)
 						),
 						Expanded(
@@ -59,7 +76,7 @@ class _CirclerSearchBarState extends State<CirclerSearchBar> with CommonNavigato
 								color: Colors.black,
 								iconSize: 30.0,
 								onPressed: (){
-									this._submit();
+									this.submit();
 								}
 							),
 						),

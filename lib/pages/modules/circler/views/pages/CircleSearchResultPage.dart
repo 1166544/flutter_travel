@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_travel/core/bloc/BlocProvider.dart';
+import 'package:flutter_travel/pages/modules/circler/views/compnents/CirclerSearchContent.dart';
+import 'package:flutter_travel/pages/modules/graphics/blocs/GraphicsBlocMyInfo.dart';
 
 /// 搜索结果页
 class CircleSearchResultPage extends StatefulWidget {
@@ -20,8 +23,23 @@ class _CircleSearchResultPageState extends State<CircleSearchResultPage> {
 
 	@override
 	Widget build(BuildContext context) {
-		return Container(
-			child: Text(this._searchContent),
+		return Scaffold(
+			appBar: AppBar(
+				title: Center(
+					child: Text('Search Result', style: TextStyle(
+						color: Colors.black,
+						fontWeight: FontWeight.bold,
+						fontSize: 20.0
+					))
+				),
+				elevation: 0.0,
+				centerTitle: true,
+				backgroundColor: Color(0xffebeff8),
+			),
+			body: BlocProvider(
+				bloc: GraphicsBlocMyInfo(),
+				child: CirclerSearchContent(searchContent: this._searchContent),
+			),
 		);
 	}
 }
