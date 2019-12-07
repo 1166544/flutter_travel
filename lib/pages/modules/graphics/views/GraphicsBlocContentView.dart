@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_travel/core/bloc/BlocProvider.dart';
 import 'package:flutter_travel/pages/common/CommonLoading.dart';
 import 'package:flutter_travel/pages/common/CommonTravelItem.dart';
@@ -8,6 +9,8 @@ import 'package:flutter_travel/pages/modules/graphics/views/GraphicsPresciption.
 import 'package:flutter_travel/pages/modules/graphics/views/GraphicsTopStructs.dart';
 import 'package:flutter_travel/pages/modules/graphics/views/GraphicsVisitors.dart';
 import 'package:flutter_travel/pages/modules/graphics/views/GriaphicsMiddleReport.dart';
+import 'package:flutter_travel/redux/actions/ActionAuth.dart';
+import 'package:flutter_travel/redux/states/StateApp.dart';
 
 /// 我的信息模块视图
 class GraphicsBlocContentView extends StatefulWidget {
@@ -104,29 +107,31 @@ class _GraphicsBlocContentViewState extends State<GraphicsBlocContentView> with 
 	
 	/// 底部按钮
 	Widget buildButtonStucts(AsyncSnapshot<GraphicsBlocModel> snapshot) {
-		// return Text('test');
-		return Container(
-			padding: EdgeInsets.fromLTRB(20.0, 25.0, 20.0, 40.0),
-			child: GestureDetector(
-				onTap: () {
-					// hole
-				},
-				child: Container(
-					decoration: BoxDecoration(
-						color: Color(0xFF5e82f5),
-						borderRadius: BorderRadius.circular(9.0)
-					),
-					padding: EdgeInsets.all(10.0),
-					child: Center(
-						child: Text(
-							'Logout system here',
-							style: TextStyle(
-								fontSize: 19.0,
-								fontWeight: FontWeight.bold,
-								color: Colors.white
-							)
+		return StoreConnector<AppState, dynamic>(
+			converter: (store) => (BuildContext context) {
+				store.dispatch(logout(context));
+			},
+			builder: (BuildContext context, logout) => Container(
+				padding: EdgeInsets.fromLTRB(20.0, 25.0, 20.0, 40.0),
+				child: GestureDetector(
+					onTap: () => logout(context),
+					child: Container(
+						decoration: BoxDecoration(
+							color: Color(0xFF5e82f5),
+							borderRadius: BorderRadius.circular(9.0)
 						),
-					),
+						padding: EdgeInsets.all(10.0),
+						child: Center(
+							child: Text(
+								'Logout system here',
+								style: TextStyle(
+									fontSize: 19.0,
+									fontWeight: FontWeight.bold,
+									color: Colors.white
+								)
+							),
+						),
+					)
 				)
 			)
 		);
