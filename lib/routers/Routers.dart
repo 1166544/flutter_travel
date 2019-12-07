@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_travel/core/navigation/NavigationTabCore.dart';
+import 'package:flutter_travel/pages/modules/circler/views/pages/CircleSearchResultPage.dart';
 import 'package:flutter_travel/pages/modules/login/LoginPage.dart';
 import 'package:flutter_travel/redux/states/StateApp.dart';
 import 'package:redux/redux.dart';
@@ -16,6 +17,7 @@ class Routers {
 	static String homePage = '/';
 	static String loginPage = '/login';
 	static String mainPage = '/main';
+	static String searchPage = '/search';
 
 	/// 初始化路由
 	Map<String, WidgetBuilder> init() {
@@ -30,7 +32,10 @@ class Routers {
 			Routers.loginPage: (BuildContext context) => LoginPage(),
 
 			// 主页
-			Routers.mainPage: (BuildContext context) => NavigationTabCore()
+			Routers.mainPage: (BuildContext context) => NavigationTabCore(),
+
+			// 搜索结果页
+			Routers.searchPage: (BuildContext context) => CircleSearchResultPage()
 		};
 	}
 }
