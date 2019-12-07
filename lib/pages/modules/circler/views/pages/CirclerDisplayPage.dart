@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_travel/core/bloc/BlocProvider.dart';
 import 'package:flutter_travel/pages/common/CommonLoading.dart';
+import 'package:flutter_travel/pages/common/CommonNavigator.dart';
 import 'package:flutter_travel/pages/common/CommonTravelItem.dart';
 import 'package:flutter_travel/pages/modules/circler/blocs/CirclerBlocNewsList.dart';
 import 'package:flutter_travel/pages/modules/circler/models/CirclerModelNewsItem.dart';
@@ -11,6 +12,7 @@ import 'package:flutter_travel/pages/modules/circler/views/compnents/CirclerGrid
 import 'package:flutter_travel/pages/modules/circler/views/compnents/CirclerList.dart';
 import 'package:flutter_travel/pages/modules/circler/views/compnents/CirclerScroll.dart';
 import 'package:flutter_travel/pages/modules/circler/views/compnents/CirclerSearchBar.dart';
+import 'package:flutter_travel/pages/modules/circler/views/pages/CircleSearchResultPage.dart';
 
 /// 资讯显示列表
 class CirclerDisplayPage extends StatefulWidget {
@@ -22,7 +24,7 @@ class CirclerDisplayPage extends StatefulWidget {
 	_CirclerDisplayPageState createState() => _CirclerDisplayPageState(this.requestParams);
 }
 
-class _CirclerDisplayPageState extends State<CirclerDisplayPage> with CommonTravelItem {
+class _CirclerDisplayPageState extends State<CirclerDisplayPage> with CommonTravelItem, CommonNavigator {
   
 	CirclerBlocNewsList blocGalleryList;
 	GlobalKey<RefreshIndicatorState> refreshKey = GlobalKey<RefreshIndicatorState>();
@@ -96,7 +98,9 @@ class _CirclerDisplayPageState extends State<CirclerDisplayPage> with CommonTrav
 			// CirclerCover(),
 
 			// 搜索条
-			CirclerSearchBar(snapshot),
+			CirclerSearchBar(callBack: (val) => {
+				this.navigateTo(context, CircleSearchResultPage(searchContent: val))
+			}),
 
 			// 改进提示
 			CircleImproving(snapshot),

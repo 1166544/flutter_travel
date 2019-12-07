@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_travel/core/bloc/BlocProvider.dart';
 import 'package:flutter_travel/pages/common/CommonLoading.dart';
 import 'package:flutter_travel/pages/common/CommonTravelItem.dart';
+import 'package:flutter_travel/pages/modules/circler/views/compnents/CirclerSearchBar.dart';
 import 'package:flutter_travel/pages/modules/graphics/blocs/GraphicsBlocMyInfo.dart';
 import 'package:flutter_travel/pages/modules/graphics/models/GraphicsBlocModel.dart';
 
@@ -63,56 +64,15 @@ class _CirclerSearchContentState extends State<CirclerSearchContent> with Common
 		return Container(
 			child: Column(
 				children: <Widget>[
-					this.getSearchBarForm(title: this._searchContent)
+					// 搜索条
+					CirclerSearchBar(content: this._searchContent, callBack: (val) => {
+						print(val)
+					}),
+					// 搜索结果列表
+
 				],
 			),
 		);
 	}
 
-	/// 返回搜索条结构
-	Widget getSearchBarForm({String title}) {
-		return Form(
-			key: formKey,
-			child: Padding(
-				padding: EdgeInsets.fromLTRB(10.0, 25.0, 10.0, 3.0),
-				child: Row(
-					children: <Widget>[
-						Expanded(
-							flex: 8,
-							child: TextFormField(
-								textAlign: TextAlign.left,
-								style: TextStyle(fontSize: 12.0, color: Colors.black),
-								keyboardType: TextInputType.text,
-								controller: TextEditingController.fromValue(
-									TextEditingValue(text: '${title == null ? "" : title}')
-								),
-								decoration: InputDecoration(
-									fillColor: Color(0xFFe4e9f5),
-									filled: true,
-									labelText: 'Search',
-									labelStyle: TextStyle(color: Colors.grey, fontSize: 15.0),
-									prefixIcon: Container(
-										child: Icon(Icons.search, color: Colors.black.withOpacity(0.6), size: 26.0),
-									),
-									border: InputBorder.none,
-								),
-								validator: (val) => val.isEmpty ? 'Please enter keywords.' : null,
-								onSaved: (val) => this._searchContent = val,
-							)
-						),
-						Expanded(
-							child: IconButton(
-								icon:Icon(Icons.airplay),
-								color: Colors.black,
-								iconSize: 30.0,
-								onPressed: (){
-									this.submit();
-								}
-							),
-						),
-				],
-			),
-		),
-		);
-	}
 }
