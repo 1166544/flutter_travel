@@ -36,30 +36,59 @@ class _LoginFormState extends State<LoginForm> {
                     key: formKey,
                     child: Column(
                         children: [
-                            TextFormField(
-                                decoration: InputDecoration(labelText: 'Username'),
-                                validator: (val) =>
-                                    val.isEmpty ? 'Please enter your username.' : null,
-                                onSaved: (val) => _username = val,
-                            ),
-                            TextFormField(
-                                decoration: InputDecoration(labelText: 'Password'),
-                                validator: (val) =>
-                                    val.isEmpty ? 'Please enter your password.' : null,
-                                onSaved: (val) => _password = val,
-                                obscureText: true,
-                            ),
-                            Padding(
-                                padding: EdgeInsets.only(top: 20.0),
-                                child: PlatformAdaptiveButton(
-                                    onPressed:() {
-                                        _submit();
+                            Container(
+								width: MediaQuery.of(context).size.width,
+								decoration: BoxDecoration(
+									color: Colors.white
+								),
+								padding: EdgeInsets.fromLTRB(40.0, 10.0, 0.0, 25.0),
+								child: Column(
+									children: <Widget>[
+										TextFormField(
+											style: TextStyle(fontWeight: FontWeight.bold),
+											decoration: InputDecoration(labelText: 'Username'),
+											validator: (val) =>
+												val.isEmpty ? 'Please enter your username.' : null,
+											onSaved: (val) => _username = val,
+										),
+										TextFormField(
+											style: TextStyle(fontWeight: FontWeight.bold,),
+											keyboardType: TextInputType.visiblePassword,
+											decoration: InputDecoration(labelText: 'Password'),
+											validator: (val) =>
+												val.isEmpty ? 'Please enter your password.' : null,
+											onSaved: (val) => _password = val,
+											obscureText: true,
+										),
+									],
+								),
+							),
+							Container(
+								padding: EdgeInsets.fromLTRB(40.0, 25.0, 40.0, 40.0),
+								child: GestureDetector(
+									onTap: () {
+										this._submit();
                                         loginAction(context, _username, _password);
-                                    },
-                                    icon: Icon(Icons.done),
-                                    child: Text('Log In'),
-                                ),
-                            )
+									},
+									child: Container(
+										decoration: BoxDecoration(
+											color: Color(0xFF5e82f5),
+											borderRadius: BorderRadius.circular(9.0)
+										),
+										padding: EdgeInsets.all(10.0),
+										child: Center(
+											child: Text(
+												'Login',
+												style: TextStyle(
+													fontSize: 19.0,
+													fontWeight: FontWeight.bold,
+													color: Colors.white
+												)
+											),
+										),
+									)
+								)
+							)
                         ],
                     ),
                 );
