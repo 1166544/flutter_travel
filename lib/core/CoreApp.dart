@@ -2,12 +2,11 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_travel/core/middleware/MiddlewarePersistor.dart';
-import 'package:flutter_travel/core/navigation/NavigationTabCore.dart';
 import 'package:flutter_travel/core/presentation/PresentationPlatformAdaptive.dart';
 import 'package:flutter_travel/pages/modules/loading/LoadingScreen.dart';
-import 'package:flutter_travel/pages/modules/login/LoginScreen.dart';
 import 'package:flutter_travel/redux/states/StateApp.dart';
 import 'package:flutter_travel/redux/store/StoreApp.dart';
+import 'package:flutter_travel/routers/Routers.dart';
 import 'package:flutter_travel/services/ServiceEnviroment.dart';
 
 import 'package:flutter_travel/core/api/ApiEnviroment.dart';
@@ -40,14 +39,7 @@ class CoreApp extends StatelessWidget {
 					theme: defaultTargetPlatform == TargetPlatform.iOS
                         ? kIOSTheme
                         : kDefaultTheme,
-					routes: <String, WidgetBuilder>{
-						'/': (BuildContext context) => StoreConnector<AppState, dynamic>( 
-							converter: (store) => store.state.auth.isAuthenticated, 
-							builder: (BuildContext context, isAuthenticated) => isAuthenticated ? NavigationTabCore() : LoginScreen()
-						),
-						'/login': (BuildContext context) => LoginScreen(),
-						'/main': (BuildContext context) => NavigationTabCore()
-					}
+					routes: Routers(store: store).init()
 				)
 			),
 		);

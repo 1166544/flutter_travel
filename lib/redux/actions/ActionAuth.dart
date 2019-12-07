@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_travel/redux/states/StateApp.dart';
 import 'package:flutter_travel/redux/states/StateUser.dart';
+import 'package:flutter_travel/routers/Routers.dart';
 import 'package:redux/redux.dart';
 
 /// 用户登录请求
@@ -31,7 +32,7 @@ final Function login = (BuildContext context, String username, String password) 
 		// 模拟登录
         if (username == 'james' && password == 'liauw') {
             store.dispatch(UserLoginSuccess(User('placeholder_token', 'placeholder_id')));
-            Navigator.of(context).pushNamedAndRemoveUntil('/main', (_) => false);
+            Navigator.of(context).pushNamedAndRemoveUntil(Routers.mainPage, (_) => false);
         } else {
             store.dispatch(UserLoginFailure('Username or password were incorrect.'));
         }
@@ -42,6 +43,6 @@ final Function login = (BuildContext context, String username, String password) 
 final Function logout = (BuildContext context) {
     return (Store<AppState> store) {
         store.dispatch(UserLogout());
-        Navigator.of(context).pushNamedAndRemoveUntil('/login', (_) => false);
+        Navigator.of(context).pushNamedAndRemoveUntil(Routers.loginPage, (_) => false);
     };
 };
