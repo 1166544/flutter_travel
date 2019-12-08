@@ -136,7 +136,7 @@ class HttpServiceCore {
 	// }
 
 	/// 生成自定义头部
-	Map<String, dynamic> generateRequestHeaders() {
+	Map<String, String> generateRequestHeaders() {
 		return {
 			'Accept': 'application/json, text/plain, */*',
 			'Connection': 'keep-alive',

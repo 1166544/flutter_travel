@@ -1,7 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_travel/core/http/HttpServiceCore.dart';
 
 /// 基础功能类封装
 class CommonNavigator {
+
+	Map<String, String> crossHeaders;
+
+	/// 跨域请求头
+	Map<String, String> getCrossHeaders() {
+		if (this.crossHeaders == null) {
+			this.crossHeaders = new HttpServiceCore().generateRequestHeaders();
+		}
+		return this.crossHeaders;
+	}
 
 	/// 页面跳转
 	///  * [BuildContext context] 原始页面对像

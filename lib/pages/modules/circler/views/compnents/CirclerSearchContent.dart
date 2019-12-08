@@ -34,8 +34,9 @@ class _CirclerSearchContentState extends State<CirclerSearchContent> with Common
 	}
 
 	/// 提交搜索内容刷新本页
-	void submit() {
-		// hole
+	void submit(String val) {
+		this._searchContent = val;
+		this.blocGalleryList.updateParams(this._searchContent);
 	}
 
 	/// 连接stream数据源
@@ -61,12 +62,11 @@ class _CirclerSearchContentState extends State<CirclerSearchContent> with Common
 	/// 基础页面结构
 	Widget buildSearchLayout({ AsyncSnapshot<CirclerModelSearch> snapshot }) {
 		return Container(
-			padding: EdgeInsets.fromLTRB(15.0, 0.0, 15.0, 10.0),
 			child: ListView(
 				children: <Widget>[
 					// 搜索条
 					CirclerSearchBar(content: this._searchContent, callBack: (val) => {
-						print(val)
+						this.submit(val)
 					}),
 					// 搜索结果列表
 					this.buildNotifcationList(snapshot: snapshot)

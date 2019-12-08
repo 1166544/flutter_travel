@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_travel/pages/common/CommonNavigator.dart';
 import 'package:flutter_travel/pages/modules/circler/models/CirclerModelSearch.dart';
 import 'package:flutter_travel/pages/modules/notices/NoticePageVO.dart';
 import 'package:flutter_travel/pages/modules/notices/NoticeReadVO.dart';
@@ -12,7 +13,7 @@ class CircleSearchRender extends StatefulWidget {
 	_CircleSearchRenderState createState() => _CircleSearchRenderState(this.snapData);
 }
 
-class _CircleSearchRenderState extends State<CircleSearchRender> {
+class _CircleSearchRenderState extends State<CircleSearchRender> with CommonNavigator {
 
 	CircleModelSearchItem snapData;
 
@@ -25,42 +26,47 @@ class _CircleSearchRenderState extends State<CircleSearchRender> {
 		
 		// 无图模式
 		if (this.snapData.img.length == 0) {
-			return this.buildNoneImageLayout();
+			return this.buildNoneImageLayout(MediaQuery.of(context).size.width);
 		}
 
 		// 1张图模式
 		if (this.snapData.img.length == 1) {
-			return this.buildSingleImageLayout();
+			return this.buildSingleImageLayout(this.snapData.img[0]);
 		}
 
 		// 2张以上图模式
 		if (this.snapData.img.length >= 3) {
 			return this.buildMultiImageLayout();
 		}
+		if (this.snapData.imgsrcurl != null) {
+			return this.buildSingleImageLayout(this.snapData.imgsrcurl);
+		}
 
 		return Text('');
 	}
 
 	/// 无图模式
-	Widget buildNoneImageLayout() {
+	Widget buildNoneImageLayout(double displayWidth) {
 		return Container(
-			width: MediaQuery.of(context).size.width,
-			padding: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 20.0),
+			width: displayWidth,
+			padding: EdgeInsets.fromLTRB(10.0, 25.0, 10.0, 10.0),
 			child: Column(
 				children: <Widget>[
 					Text(
 						this.snapData.abstractValue,
 						style: TextStyle(color: Colors.black, fontSize: 18.0)
 					),
+					SizedBox(height: 5),
 					Row(
 						children: <Widget>[
 							Text(
 								this.snapData.subsitename,
-								style: TextStyle(color: Colors.grey, fontSize: 12.0)
+								style: TextStyle(color: Colors.grey, fontSize: 13.0)
 							),
+							SizedBox(width: 10.0),
 							Text(
 								this.snapData.posttime,
-								style: TextStyle(color: Colors.grey, fontSize: 12.0)
+								style: TextStyle(color: Colors.grey, fontSize: 13.0)
 							)
 						],
 					)
@@ -70,43 +76,74 @@ class _CircleSearchRenderState extends State<CircleSearchRender> {
 	}
 
 	/// 1张图模式
-	Widget buildSingleImageLayout() {
-		return Row(
-			children: <Widget>[
-				this.buildNoneImageLayout(),
-				this.buildImage(this.snapData.img[0])
-			],
+	Widget buildSingleImageLayout(String url) {
+		return Container(
+			width: MediaQuery.of(context).size.width,
+			padding: EdgeInsets.fromLTRB(0.0, 10.0, 10.0, 10.0),
+			child: Row(
+				children: <Widget>[
+					this.buildNoneImageLayout(MediaQuery.of(context).size.width * 0.70),
+					Container(
+						width: 90.0,
+						height: 120.0,
+						decoration: BoxDecoration(
+							image: DecorationImage(
+								image: NetworkImage(url, headers: this.getCrossHeaders()),
+								fit: BoxFit.cover
+							),
+							border: Border.all(
+								color: Colors.grey.withOpacity(0.5),
+								width: 0.5
+							),
+							borderRadius: BorderRadius.all(Radius.circular(7.0))
+						),
+					)
+				],
+			),
 		);
 	}
 
 	/// 2张以上图模式
 	Widget buildMultiImageLayout() {
-		return Column(
-			children: <Widget>[
-				Text(
-					this.snapData.abstractValue,
-					style: TextStyle(color: Colors.grey, fontSize: 12.0)
-				),
-				Row(
-					children: <Widget>[
-						this.buildImage(this.snapData.img[0]),
-						this.buildImage(this.snapData.img[1]),
-						this.buildImage(this.snapData.img[2]),
-					],
-				),
-				Row(
-					children: <Widget>[
-						Text(
-							this.snapData.subsitename,
-							style: TextStyle(color: Colors.grey, fontSize: 12.0)
+		return Container(
+			padding: EdgeInsets.fromLTRB(10.0, 25.0, 10.0, 10.0),
+			child: Column(
+				children: <Widget>[
+					Text(
+						this.snapData.abstractValue,
+						style: TextStyle(color: Colors.black, fontSize: 18.0)
+					),
+					Container(
+						padding: EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 0.0),
+						width: MediaQuery.of(context).size.width,
+						height: 100.0,
+						child: ListView(
+							scrollDirection: Axis.horizontal,
+							children: <Widget>[
+								this.buildImage(this.snapData.img[0]),
+								SizedBox(width: 10.0),
+								this.buildImage(this.snapData.img[1]),
+								SizedBox(width: 10.0),
+								this.buildImage(this.snapData.img[2]),
+							],
 						),
-						Text(
-							this.snapData.posttime,
-							style: TextStyle(color: Colors.grey, fontSize: 12.0)
-						)
-					],
-				)
-			],
+					),
+					SizedBox(height: 5),
+					Row(
+						children: <Widget>[
+							Text(
+								this.snapData.subsitename,
+								style: TextStyle(color: Colors.grey, fontSize: 13.0)
+							),
+							SizedBox(width: 10.0),
+							Text(
+								this.snapData.posttime,
+								style: TextStyle(color: Colors.grey, fontSize: 13.0)
+							)
+						],
+					)
+				],
+			)
 		);
 	}
 
@@ -114,10 +151,10 @@ class _CircleSearchRenderState extends State<CircleSearchRender> {
 	Widget buildImage(String url) {
 		return Container(
 			width: 120.0,
-			height: 105.0,
+			height: 90.0,
 			decoration: BoxDecoration(
 				image: DecorationImage(
-					image: NetworkImage(url),
+					image: NetworkImage(url, headers: this.getCrossHeaders()),
 					fit: BoxFit.cover
 				),
 				border: Border.all(

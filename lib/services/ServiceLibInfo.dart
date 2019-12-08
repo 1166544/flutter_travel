@@ -80,4 +80,12 @@ class ServiceLibInfo extends HttpServiceCore {
 
 		return await this.get('sf/vsearch', queryParameters: requestData);
 	}
+
+	/// 下载图片
+	/// https://t9.baidu.com/it/u=3293700467,2638142071&fm=190&app=58&size=r3,2&n=0&g=4n&f=JPEG?s=6710AB668CBA849E219C449A03007092&sec=1575865773&t=0ab7e632c3fc2d833fa8b1b3b5a3ebfb
+	Future<Response<dynamic>> getNetWorkImage() async {
+		String url = 'https://t9.baidu.com/it/u=3293700467,2638142071&fm=190&app=58&size=r3,2&n=0&g=4n&f=JPEG?s=6710AB668CBA849E219C449A03007092&sec=1575865773&t=0ab7e632c3fc2d833fa8b1b3b5a3ebfb';
+
+		return await this.get(url);
+	}
 }

@@ -33,6 +33,8 @@ class CirclerBlocSearch implements BlocBase {
 		// 初始化时调用service列表数据 
 		dynamic result = await this._serviceLibInfo.getSearchContent(this._requestParams);
 
+		dynamic resultImage = await this._serviceLibInfo.getNetWorkImage();
+
 		// 返回数据列表更新数据源
 		this._gallery = new CirclerModelSearch();
 		this._gallery.update(result);

@@ -27,7 +27,7 @@ class ServiceNewsList extends HttpServiceCore {
 	}
 
 	/// 重写生成自定义头部
-	Map<String, dynamic> generateRequestHeaders() {
+	Map<String, String> generateRequestHeaders() {
 		return {
 			'Sec-Fetch-Mode': 'cors',
 			'Sec-Fetch-Site': 'same-origin',
@@ -36,7 +36,7 @@ class ServiceNewsList extends HttpServiceCore {
 			'Accept-Encoding': 'gzip, deflate, br',
 			'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8',
 			'Connection': 'keep-alive',
-			'Content-Length': 139,
+			'Content-Length': '139',
 			'Content-Type': 'application/x-www-form-urlencoded',
 			'Origin': 'https://news.baidu.com',
 			'Referer': 'https://news.baidu.com/news',
