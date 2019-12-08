@@ -5,7 +5,6 @@ import 'package:flutter_travel/pages/common/CommonTravelItem.dart';
 import 'package:flutter_travel/pages/modules/circler/blocs/CirclerBlocSearch.dart';
 import 'package:flutter_travel/pages/modules/circler/models/CirclerModelSearch.dart';
 import 'package:flutter_travel/pages/modules/circler/views/compnents/CircleSearchRender.dart';
-import 'package:flutter_travel/pages/modules/circler/views/compnents/CirclerSearchBar.dart';
 
 /// 搜索强结果视图
 class CirclerSearchContent extends StatefulWidget {
@@ -19,16 +18,45 @@ class _CirclerSearchContentState extends State<CirclerSearchContent> with Common
 	String _searchContent;
 	CirclerBlocSearch blocGalleryList;
 	final formKey = GlobalKey<FormState>();
+	ScrollController _controller = new ScrollController();
+	List<CircleModelSearchItem> renderListData = [];
+	bool hasMore = false;
 
 	_CirclerSearchContentState(String searchContent) {
 		this._searchContent = searchContent;
 	}
 
 	@override
-	Widget build(BuildContext context) {
-		// 连接数据源
-		this.blocGalleryList = BlocProvider.of<CirclerBlocSearch>(context);
+	void initState() {
+		super.initState();
+
+		// 给_controller添加监听
+		this._controller.addListener((){
+			// 判断是否滑动到了页面的最底部
+			if(_controller.position.pixels == _controller.position.maxScrollExtent){
+				// 如果不是最后一页数据，则生成新的数据添加到list里面
+				if(this.hasMore) {
+					this._retrieveData();
+				}
+			}
+		});
+	}
+
+	@override
+	void dispose() {
+		// 移除监听，防止内存泄漏
+		this._controller.dispose();
+		super.dispose();
+	}
+
+	void _retrieveData() {
 		this.blocGalleryList.updateParams(this._searchContent);
+	}
+
+	@override
+	Widget build(BuildContext context) {
+		this.blocGalleryList = BlocProvider.of<CirclerBlocSearch>(context);
+		this._retrieveData();
 
 		return this.getStreamBuilder(context);
 	}
@@ -61,38 +89,57 @@ class _CirclerSearchContentState extends State<CirclerSearchContent> with Common
 
 	/// 基础页面结构
 	Widget buildSearchLayout({ AsyncSnapshot<CirclerModelSearch> snapshot }) {
-		return Container(
-			padding: EdgeInsets.fromLTRB(0, 0, 0, 30.0),
-			child: ListView(
-				children: <Widget>[
-					// 搜索条
-					CirclerSearchBar(content: this._searchContent, callBack: (val) => {
-						this.submit(val)
-					}),
-					// 搜索结果列表
-					this.buildNotifcationList(snapshot: snapshot)
-				],
-			),
-		);
+		// return Container(
+		// 	padding: EdgeInsets.fromLTRB(0, 0, 0, 30.0),
+		// 	child: ListView(
+		// 		children: <Widget>[
+		// 			// 搜索条
+		// 			CirclerSearchBar(content: this._searchContent, callBack: (val) => {
+		// 				this.submit(val)
+		// 			}),
+		// 			// 搜索结果列表
+		// 			this.buildNotifcationList(snapshot: snapshot)
+		// 		],
+		// 	),
+		// );
+		return buildNotifcationList(snapshot: snapshot);
 	}
 
 	/// 通知列表
 	Widget buildNotifcationList({ AsyncSnapshot<CirclerModelSearch> snapshot }) {
 
 		List<CircleModelSearchItem> list = snapshot.data.list;
-		List<CircleSearchRender> renderList = [];
-
 		for (var i = 0; i < list.length; i++) {
-			CircleSearchRender render = new CircleSearchRender(snapData: list[i]);
-			renderList.add(render);
+			this.renderListData.insert(i, list[i]);
 		}
 
-		if (!snapshot.data.hasMore) {
-			renderList.add(CircleSearchRender(snapData: null));
-		}
+		// 是否为最后一页
+		this.hasMore = snapshot.data.hasMore;
 
-		return Column(
-			children: renderList,
+		return ListView.separated(
+			controller: this._controller,
+            physics: BouncingScrollPhysics(),
+			shrinkWrap: true,
+			itemBuilder: (context, index) {
+				// 判断是否构建到了最后一条item
+				if(index == this.renderListData.length){
+					// 判断是不是最后一页
+					if(this.hasMore){
+						// 不是最后一页，返回一个loading窗
+						return this.getLoadingItem();
+					} else {
+						// 是最后一页，显示我是有底线的
+						return this.getNoMoreItem();
+					}
+				} else {
+					return CircleSearchRender(snapData: this.renderListData[index]);
+				}
+			},
+			// 分割线构造器
+			separatorBuilder: (context,index){
+				return new Divider(color: Colors.grey.withOpacity(0.3),);
+			},
+			itemCount: this.renderListData.length + 1,
 		);
 	}
 

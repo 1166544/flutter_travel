@@ -8,9 +8,23 @@ import 'package:flutter_travel/pages/modules/profile/ProfilePage.dart';
 
 class CommonTravelItem {
 
+	/// 返回加载中圆圈
+	Widget getLoadingItem() {
+		return new Container(
+			padding: EdgeInsets.all(16.0),
+			alignment: Alignment.center,
+			child: SizedBox(
+				width: 24.0,
+				height: 24.0,
+				child: CircularProgressIndicator(strokeWidth: 2.0,),
+			),
+		);
+	}
+
 	/// 返回没有更多提示
 	Widget getNoMoreItem() {
 		return Container(
+			padding: EdgeInsets.fromLTRB(0, 5.0, 0, 5.0),
 			decoration: BoxDecoration(
 				color: Colors.grey.withOpacity(0.3)
 			),

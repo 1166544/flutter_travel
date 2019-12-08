@@ -25,7 +25,7 @@ class _CircleSearchResultPageState extends State<CircleSearchResultPage> {
 	Widget build(BuildContext context) {
 		return Scaffold(
 			appBar: AppBar(
-				title: Text('Search Result', style: TextStyle(
+				title: Text('Search Keywords: ${this._searchContent}', style: TextStyle(
 					color: Colors.black,
 					fontWeight: FontWeight.bold,
 					fontSize: 20.0
