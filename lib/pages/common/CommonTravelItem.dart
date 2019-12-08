@@ -7,6 +7,22 @@ import 'package:flutter_travel/pages/modules/order/OrderPageView.dart';
 import 'package:flutter_travel/pages/modules/profile/ProfilePage.dart';
 
 class CommonTravelItem {
+
+	/// 返回没有更多提示
+	Widget getNoMoreItem() {
+		return Container(
+			decoration: BoxDecoration(
+				color: Colors.grey.withOpacity(0.3)
+			),
+			child: Center(
+				child: Text(
+					'没有更多了~',
+					style: TextStyle(color: Colors.black)
+				),
+			),
+		);
+	}
+
   /// 构建图片网格
   Widget buildImageGrid(BuildContext context, List<CommonGalleryItem> imageList, {double paddingTop = 25.0}) {
     return Padding(

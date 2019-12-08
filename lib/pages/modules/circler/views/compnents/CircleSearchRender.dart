@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_travel/pages/common/CommonNavigator.dart';
+import 'package:flutter_travel/pages/common/CommonTravelItem.dart';
 import 'package:flutter_travel/pages/modules/circler/models/CirclerModelSearch.dart';
 
 /// 搜索结果渲染条
@@ -12,7 +13,7 @@ class CircleSearchRender extends StatefulWidget {
 	_CircleSearchRenderState createState() => _CircleSearchRenderState(this.snapData);
 }
 
-class _CircleSearchRenderState extends State<CircleSearchRender> with CommonNavigator {
+class _CircleSearchRenderState extends State<CircleSearchRender> with CommonNavigator, CommonTravelItem {
 
 	CircleModelSearchItem snapData;
 
@@ -22,6 +23,10 @@ class _CircleSearchRenderState extends State<CircleSearchRender> with CommonNavi
 
 	@override
 	Widget build(BuildContext context) {
+
+		if (this.snapData == null) {
+			return this.getNoMoreItem();
+		}
 		
 		// 无图模式
 		if (this.snapData.img.length == 0) {
@@ -51,19 +56,7 @@ class _CircleSearchRenderState extends State<CircleSearchRender> with CommonNavi
 			padding: EdgeInsets.fromLTRB(10.0, 25.0, 10.0, 10.0),
 			child: Column(
 				children: <Widget>[
-					Html(
-						data: this.snapData.abstractValue,
-						useRichText: true,
-						defaultTextStyle: TextStyle(color: Colors.black, fontSize: 18.0),
-						customTextStyle: (dynamic node, TextStyle baseStyle) {
-							TextStyle newStyle;
-							if (node.localName == 'em') {
-          						newStyle = baseStyle.merge(TextStyle(color: Colors.red, fontWeight: FontWeight.bold));
-							}
-
-							return newStyle;
-						}
-					),
+					this.getHtmlTitle(this.snapData.abstractValue),
 					SizedBox(height: 5),
 					Row(
 						children: <Widget>[
@@ -131,19 +124,7 @@ class _CircleSearchRenderState extends State<CircleSearchRender> with CommonNavi
 			padding: EdgeInsets.fromLTRB(10.0, 25.0, 10.0, 10.0),
 			child: Column(
 				children: <Widget>[
-					Html(
-						data: this.snapData.abstractValue,
-						useRichText: true,
-						defaultTextStyle: TextStyle(color: Colors.black, fontSize: 18.0),
-						customTextStyle: (dynamic node, TextStyle baseStyle) {
-							TextStyle newStyle;
-							if (node.localName == 'em') {
-          						newStyle = baseStyle.merge(TextStyle(color: Colors.red, fontWeight: FontWeight.bold));
-							}
-
-							return newStyle;
-						}
-					),
+					this.getHtmlTitle(this.snapData.abstractValue),
 					Container(
 						padding: EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 0.0),
 						width: MediaQuery.of(context).size.width,
@@ -189,6 +170,23 @@ class _CircleSearchRenderState extends State<CircleSearchRender> with CommonNavi
 					)
 				],
 			)
+		);
+	}
+
+	/// 渲染HTML类标题
+	Widget getHtmlTitle(String title) {
+		return Html(
+			data: title,
+			useRichText: true,
+			defaultTextStyle: TextStyle(color: Colors.black, fontSize: 18.0),
+			customTextStyle: (dynamic node, TextStyle baseStyle) {
+				TextStyle newStyle;
+				if (node.localName == 'em') {
+					newStyle = baseStyle.merge(TextStyle(color: Colors.red, fontWeight: FontWeight.bold));
+				}
+
+				return newStyle;
+			}
 		);
 	}
 

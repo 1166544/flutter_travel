@@ -87,6 +87,10 @@ class _CirclerSearchContentState extends State<CirclerSearchContent> with Common
 			renderList.add(render);
 		}
 
+		if (!snapshot.data.hasMore) {
+			renderList.add(CircleSearchRender(snapData: null));
+		}
+
 		return Column(
 			children: renderList,
 		);
