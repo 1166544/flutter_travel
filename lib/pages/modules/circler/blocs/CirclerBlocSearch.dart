@@ -7,7 +7,6 @@ import 'package:flutter_travel/services/ServiceLibInfo.dart';
 /// 搜索列表数据
 class CirclerBlocSearch implements BlocBase {
 
-	CirclerModelSearch _gallery;
 	ServiceLibInfo _serviceLibInfo;
 	dynamic _requestParams = '';
 
@@ -33,14 +32,12 @@ class CirclerBlocSearch implements BlocBase {
 		// 初始化时调用service列表数据 
 		dynamic result = await this._serviceLibInfo.getSearchContent(this._requestParams);
 
-		dynamic resultImage = await this._serviceLibInfo.getNetWorkImage();
-
 		// 返回数据列表更新数据源
-		this._gallery = new CirclerModelSearch();
-		this._gallery.update(result);
+		CirclerModelSearch gallery = new CirclerModelSearch();
+		gallery.update(result);
 
 		// 触发数据更新
-		this._inGallery.add(this._gallery);
+		this.updateGallery(gallery);
 	}
 
 	/// 更新请求参数
@@ -59,10 +56,9 @@ class CirclerBlocSearch implements BlocBase {
 	}
 
 	/// 更新数据源操作
-	/// * [CirclerModelsNewsList gallery] 数据源
+	/// * [CirclerModelSearch gallery] 数据源
 	void updateGallery(CirclerModelSearch gallery) {
-		this._gallery = gallery;
-		this._inGallery.add(this._gallery);
+		this._inGallery.add(gallery);
 	}
 
 }

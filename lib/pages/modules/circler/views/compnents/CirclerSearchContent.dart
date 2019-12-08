@@ -46,17 +46,18 @@ class _CirclerSearchContentState extends State<CirclerSearchContent> with Common
 	void dispose() {
 		// 移除监听，防止内存泄漏
 		this._controller.dispose();
+		this.blocGalleryList.dispose();
 		super.dispose();
 	}
 
 	void _retrieveData() {
-		this.blocGalleryList.updateParams(this._searchContent);
+		this.blocGalleryList.update();
 	}
 
 	@override
 	Widget build(BuildContext context) {
 		this.blocGalleryList = BlocProvider.of<CirclerBlocSearch>(context);
-		this._retrieveData();
+		this.blocGalleryList.updateParams(this._searchContent);
 
 		return this.getStreamBuilder(context);
 	}
@@ -110,7 +111,7 @@ class _CirclerSearchContentState extends State<CirclerSearchContent> with Common
 
 		List<CircleModelSearchItem> list = snapshot.data.list;
 		for (var i = 0; i < list.length; i++) {
-			this.renderListData.insert(i, list[i]);
+			this.renderListData.add(list[i]);
 		}
 
 		// 是否为最后一页
