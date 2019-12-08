@@ -62,6 +62,7 @@ class _CirclerSearchContentState extends State<CirclerSearchContent> with Common
 	/// 基础页面结构
 	Widget buildSearchLayout({ AsyncSnapshot<CirclerModelSearch> snapshot }) {
 		return Container(
+			padding: EdgeInsets.fromLTRB(0, 0, 0, 30.0),
 			child: ListView(
 				children: <Widget>[
 					// 搜索条

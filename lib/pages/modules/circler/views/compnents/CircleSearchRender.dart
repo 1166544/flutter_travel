@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_travel/pages/common/CommonNavigator.dart';
 import 'package:flutter_travel/pages/modules/circler/models/CirclerModelSearch.dart';
 
@@ -50,9 +51,18 @@ class _CircleSearchRenderState extends State<CircleSearchRender> with CommonNavi
 			padding: EdgeInsets.fromLTRB(10.0, 25.0, 10.0, 10.0),
 			child: Column(
 				children: <Widget>[
-					Text(
-						this.snapData.abstractValue,
-						style: TextStyle(color: Colors.black, fontSize: 18.0)
+					Html(
+						data: this.snapData.abstractValue,
+						useRichText: true,
+						defaultTextStyle: TextStyle(color: Colors.black, fontSize: 18.0),
+						customTextStyle: (dynamic node, TextStyle baseStyle) {
+							TextStyle newStyle;
+							if (node.localName == 'em') {
+          						newStyle = baseStyle.merge(TextStyle(color: Colors.red, fontWeight: FontWeight.bold));
+							}
+
+							return newStyle;
+						}
 					),
 					SizedBox(height: 5),
 					Row(
@@ -121,9 +131,18 @@ class _CircleSearchRenderState extends State<CircleSearchRender> with CommonNavi
 			padding: EdgeInsets.fromLTRB(10.0, 25.0, 10.0, 10.0),
 			child: Column(
 				children: <Widget>[
-					Text(
-						this.snapData.abstractValue,
-						style: TextStyle(color: Colors.black, fontSize: 18.0)
+					Html(
+						data: this.snapData.abstractValue,
+						useRichText: true,
+						defaultTextStyle: TextStyle(color: Colors.black, fontSize: 18.0),
+						customTextStyle: (dynamic node, TextStyle baseStyle) {
+							TextStyle newStyle;
+							if (node.localName == 'em') {
+          						newStyle = baseStyle.merge(TextStyle(color: Colors.red, fontWeight: FontWeight.bold));
+							}
+
+							return newStyle;
+						}
 					),
 					Container(
 						padding: EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 0.0),
