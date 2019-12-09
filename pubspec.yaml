@@ -29,6 +29,7 @@ dependencies:
   redux_persist_flutter: ^0.6.0-rc.1 
   redux_persist: ^0.7.0-rc.2
   flutter_html: ^0.9.8
+  webview_flutter: ^0.3.17
 
 dev_dependencies:
   flutter_test:
