@@ -17,16 +17,12 @@ class CircleDetailPage extends StatefulWidget {
 	final dynamic requestParams;
   	CircleDetailPage({ Key key, @required this.requestParams}) : super(key: key);
 
-	_CircleDetailPageState createState() => _CircleDetailPageState(this.requestParams);
+	_CircleDetailPageState createState() => _CircleDetailPageState();
 }
 
 class _CircleDetailPageState extends State<CircleDetailPage> with CommonNavigator {
-  
-	dynamic _requestParms;
 
-	_CircleDetailPageState(dynamic requestParams): super() {
-		this._requestParms = requestParams;
-	}
+	_CircleDetailPageState(): super();
 
 	@override
 	Widget build(BuildContext context) {
@@ -54,7 +50,7 @@ class _CircleDetailPageState extends State<CircleDetailPage> with CommonNavigato
 			),
 			body: BlocProvider(
 				bloc: CirclerBlocDetail(),
-				child: CirclerDetailContentPage(requestParams: this._requestParms),
+				child: CirclerDetailContentPage(requestParams: widget.requestParams),
 			),
 		);
 	}
@@ -66,23 +62,20 @@ class CirclerDetailContentPage extends StatefulWidget {
 	final dynamic requestParams;
   	CirclerDetailContentPage({ Key key, @required this.requestParams}) : super(key: key);
 
-	_CirclerDetailContentPageState createState() => _CirclerDetailContentPageState(this.requestParams);
+	_CirclerDetailContentPageState createState() => _CirclerDetailContentPageState();
 }
 
 class _CirclerDetailContentPageState extends State<CirclerDetailContentPage> with CommonTravelItem, CommonTimeFormate, CommonNavigator {
   
 	CirclerBlocDetail blocDetailInfo;
-	dynamic _requestParms;
  
-	_CirclerDetailContentPageState(dynamic requestParams): super() {
-		this._requestParms = requestParams;
-	}
+	_CirclerDetailContentPageState(): super();
 
 	@override
 	Widget build(BuildContext context) {
 		// 连接数据源
 		this.blocDetailInfo = BlocProvider.of<CirclerBlocDetail>(context);
-		this.blocDetailInfo.updateParams(this._requestParms);
+		this.blocDetailInfo.updateParams(widget.requestParams);
 
 		// 连接视图，下拉刷新
 		return this.getStreamBuilder(context);
@@ -244,7 +237,7 @@ class _CirclerDetailContentPageState extends State<CirclerDetailContentPage> wit
 				iconSize: 30.0,
 				onPressed: (){
 					if (commentLength > 0) {
-						this.navigateTo(context, new CommentsPage(requestParams: this._requestParms));
+						this.navigateTo(context, new CommentsPage(requestParams: widget.requestParams));
 					}
 				}
 			),

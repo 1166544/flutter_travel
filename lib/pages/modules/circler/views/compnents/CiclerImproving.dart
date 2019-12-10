@@ -13,14 +13,14 @@ class CircleImproving extends StatefulWidget {
 class _CircleImprovingState extends State<CircleImproving> {
 	@override
 	Widget build(BuildContext context) {
-	return Padding(
-		padding: EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0),
-		child: this.buidCircleIconBar('98%',
-			'Keep improving!',
-			Color(0xFF5474e8),
-			Color(0xFFcac0f8),
-			Color(0xFFfeabb5)
-		)
+		return Padding(
+			padding: EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0),
+			child: this.buidCircleIconBar('98%',
+				'Keep improving!',
+				Color(0xFF5474e8),
+				Color(0xFFcac0f8),
+				Color(0xFFfeabb5)
+			)
 		);
 	}
 

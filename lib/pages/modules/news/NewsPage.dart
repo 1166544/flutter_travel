@@ -11,13 +11,11 @@ class NewsPage extends StatefulWidget {
 
 	NewsPage({Key key, this.store}) : super(key: key);
 
-	_NewsPageState createState() => _NewsPageState(this.store);
+	_NewsPageState createState() => _NewsPageState();
 }
 
 /// 资讯页面，无APPBAR
 class _NewsPageState extends State<NewsPage> with CommonNavigator, SingleTickerProviderStateMixin {
-	final Store<AppState> store;
-	_NewsPageState(Store<AppState> store) : store = store;
 
 	final List<Tab> tabsData = <Tab>[
 		Tab(text: 'LEFT'),
@@ -41,7 +39,7 @@ class _NewsPageState extends State<NewsPage> with CommonNavigator, SingleTickerP
 	@override
 	Widget build(BuildContext context) {
 		return StoreProvider<AppState>(
-			store: this.store,
+			store: widget.store,
 			child: this.getPageEntrance(context)
 		);
 	}

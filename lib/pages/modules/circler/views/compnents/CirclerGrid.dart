@@ -12,26 +12,26 @@ class CirclerGrid extends StatelessWidget with CommonNavigator {
 
 	@override
 	Widget build(BuildContext context) {
-	return Padding(
-          padding: EdgeInsets.fromLTRB(15.0, 25.0, 0.0, 0.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              // 标题
-              Text('My Newsleeters', style:TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontFamily: 'Montserrat')),
+		return Padding(
+			padding: EdgeInsets.fromLTRB(15.0, 25.0, 0.0, 0.0),
+			child: Column(
+				crossAxisAlignment: CrossAxisAlignment.start,
+				children: <Widget>[
+				// 标题
+				Text('My Newsleeters', style:TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontFamily: 'Montserrat')),
 
-              SizedBox(height: 10.0),
+				SizedBox(height: 10.0),
 
-              Container(
-                width: MediaQuery.of(context).size.width - 30,
-                child: Column(
-					mainAxisAlignment: MainAxisAlignment.start,
-					crossAxisAlignment: CrossAxisAlignment.start,
-					children: this.generateBuildList(context),
-				),
-              )
-            ],
-          ),
+				Container(
+					width: MediaQuery.of(context).size.width - 30,
+					child: Column(
+						mainAxisAlignment: MainAxisAlignment.start,
+						crossAxisAlignment: CrossAxisAlignment.start,
+						children: this.generateBuildList(context),
+					),
+				)
+				],
+			),
         );
 	}
 

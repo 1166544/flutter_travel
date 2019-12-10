@@ -10,22 +10,18 @@ class CircleSearchResultPage extends StatefulWidget {
 
 	CircleSearchResultPage({Key key, this.searchContent}) : super(key: key);
 
-  	_CircleSearchResultPageState createState() => _CircleSearchResultPageState(this.searchContent);
+  	_CircleSearchResultPageState createState() => _CircleSearchResultPageState();
 }
 
 class _CircleSearchResultPageState extends State<CircleSearchResultPage> {
 
-	String _searchContent;
-
-	_CircleSearchResultPageState(String searchContent): super() {
-		this._searchContent = searchContent;
-	}
+	_CircleSearchResultPageState(): super();
 
 	@override
 	Widget build(BuildContext context) {
 		return Scaffold(
 			appBar: AppBar(
-				title: Text('Search Keywords: ${this._searchContent}', style: TextStyle(
+				title: Text('Search Keywords: ${widget.searchContent}', style: TextStyle(
 					color: Colors.black,
 					fontWeight: FontWeight.bold,
 					fontSize: 20.0
@@ -36,7 +32,7 @@ class _CircleSearchResultPageState extends State<CircleSearchResultPage> {
 			),
 			body: BlocProvider(
 				bloc: CirclerBlocSearch(),
-				child: CirclerSearchContent(searchContent: this._searchContent),
+				child: CirclerSearchContent(searchContent: widget.searchContent),
 			),
 		);
 	}

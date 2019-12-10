@@ -15,13 +15,10 @@ class CommentsPage extends StatefulWidget {
 	CommentsPage({ Key key, @required this.requestParams}): super(key: key);
 
 	@override
-	_CommentsPageState createState() => _CommentsPageState(this.requestParams);
+	_CommentsPageState createState() => _CommentsPageState();
 }
 
 class _CommentsPageState extends State<CommentsPage> with CommonNavigator {
-	final dynamic requestParams;
-
-	_CommentsPageState(this.requestParams): super();
 	
 	@override
 	Widget build(BuildContext context) {
@@ -29,7 +26,7 @@ class _CommentsPageState extends State<CommentsPage> with CommonNavigator {
 			appBar: this.getAppBar(context, '精选留言'),
 			body: BlocProvider(
 				bloc: CirclerBlocComment(),
-				child: CommentPageContent(requestParams: this.requestParams)
+				child: CommentPageContent(requestParams: widget.requestParams)
 			)
 		);
 	}
@@ -42,22 +39,19 @@ class CommentPageContent extends StatefulWidget {
 	final dynamic requestParams;
   	CommentPageContent({ Key key, @required this.requestParams}) : super(key: key);
 
-	_CommentPageContentState createState() => _CommentPageContentState(this.requestParams);
+	_CommentPageContentState createState() => _CommentPageContentState();
 }
 
 class _CommentPageContentState extends State<CommentPageContent> with CommonTravelItem, CommonTimeFormate, CommonNavigator {
 	
 	CirclerBlocComment blocCommentInfo;
-	dynamic _requestParms;
  
-	_CommentPageContentState(dynamic requestParams): super() {
-		this._requestParms = requestParams;
-	}
+	_CommentPageContentState(): super();
 
 	@override
 	Widget build(BuildContext context) {
 		this.blocCommentInfo = BlocProvider.of<CirclerBlocComment>(context);
-		this.blocCommentInfo.updateParams(this._requestParms);
+		this.blocCommentInfo.updateParams(widget.requestParams);
 
 		return this.getStreamBuilder(context);
 	}

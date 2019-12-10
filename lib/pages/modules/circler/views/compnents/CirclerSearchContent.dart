@@ -6,7 +6,7 @@ import 'package:flutter_travel/pages/modules/circler/blocs/CirclerBlocSearch.dar
 import 'package:flutter_travel/pages/modules/circler/models/CirclerModelSearch.dart';
 import 'package:flutter_travel/pages/modules/circler/views/compnents/CircleSearchRender.dart';
 
-/// 搜索强结果视图
+/// 搜索结果视图
 class CirclerSearchContent extends StatefulWidget {
 	final String searchContent;
   	CirclerSearchContent({Key key, this.searchContent}) : super(key: key);

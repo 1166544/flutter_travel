@@ -15,35 +15,31 @@ class CircleSearchRender extends StatefulWidget {
 
 class _CircleSearchRenderState extends State<CircleSearchRender> with CommonNavigator, CommonTravelItem {
 
-	CircleModelSearchItem snapData;
-
-	_CircleSearchRenderState(CircleModelSearchItem snapData) : super() {
-		this.snapData = snapData;
-	}
+	_CircleSearchRenderState(CircleModelSearchItem snapData) : super();
 
 	@override
 	Widget build(BuildContext context) {
 
-		if (this.snapData == null) {
+		if (widget.snapData == null) {
 			return this.getNoMoreItem();
 		}
 		
 		// 无图模式
-		if (this.snapData.img.length == 0) {
+		if (widget.snapData.img.length == 0) {
 			return this.buildNoneImageLayout(MediaQuery.of(context).size.width);
 		}
 
 		// 1张图模式
-		if (this.snapData.img.length == 1) {
-			return this.buildSingleImageLayout(this.snapData.img[0]);
+		if (widget.snapData.img.length == 1) {
+			return this.buildSingleImageLayout(widget.snapData.img[0]);
 		}
 
 		// 2张以上图模式
-		if (this.snapData.img.length >= 3) {
+		if (widget.snapData.img.length >= 3) {
 			return this.buildMultiImageLayout();
 		}
-		if (this.snapData.imgsrcurl != null) {
-			return this.buildSingleImageLayout(this.snapData.imgsrcurl);
+		if (widget.snapData.imgsrcurl != null) {
+			return this.buildSingleImageLayout(widget.snapData.imgsrcurl);
 		}
 
 		return Text('');
@@ -56,7 +52,7 @@ class _CircleSearchRenderState extends State<CircleSearchRender> with CommonNavi
 			padding: EdgeInsets.fromLTRB(10.0, 25.0, 10.0, 10.0),
 			child: Column(
 				children: <Widget>[
-					this.getHtmlTitle(this.snapData.abstractValue),
+					this.getHtmlTitle(widget.snapData.abstractValue),
 					SizedBox(height: 5),
 					Row(
 						children: <Widget>[
@@ -70,7 +66,7 @@ class _CircleSearchRenderState extends State<CircleSearchRender> with CommonNavi
 									borderRadius: BorderRadius.circular(2.0)
 								),
 								child: Center(
-									child: Text(this.snapData.subsitename, style: TextStyle(
+									child: Text(widget.snapData.subsitename, style: TextStyle(
 												fontSize: 12.0,
 												color: Colors.black
 									)),
@@ -80,7 +76,7 @@ class _CircleSearchRenderState extends State<CircleSearchRender> with CommonNavi
 							Icon(Icons.check_circle_outline, size: 20.0, color: Colors.blue),
 							SizedBox(width: 10.0),
 							Text(
-								this.snapData.posttime,
+								widget.snapData.posttime,
 								style: TextStyle(color: Colors.black.withOpacity(0.7), fontSize: 13.0)
 							)
 						],
@@ -124,7 +120,7 @@ class _CircleSearchRenderState extends State<CircleSearchRender> with CommonNavi
 			padding: EdgeInsets.fromLTRB(10.0, 25.0, 10.0, 10.0),
 			child: Column(
 				children: <Widget>[
-					this.getHtmlTitle(this.snapData.abstractValue),
+					this.getHtmlTitle(widget.snapData.abstractValue),
 					Container(
 						padding: EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 0.0),
 						width: MediaQuery.of(context).size.width,
@@ -132,11 +128,11 @@ class _CircleSearchRenderState extends State<CircleSearchRender> with CommonNavi
 						child: ListView(
 							scrollDirection: Axis.horizontal,
 							children: <Widget>[
-								this.buildImage(this.snapData.img[0]),
+								this.buildImage(widget.snapData.img[0]),
 								SizedBox(width: 10.0),
-								this.buildImage(this.snapData.img[1]),
+								this.buildImage(widget.snapData.img[1]),
 								SizedBox(width: 10.0),
-								this.buildImage(this.snapData.img[2]),
+								this.buildImage(widget.snapData.img[2]),
 							],
 						),
 					),
@@ -153,7 +149,7 @@ class _CircleSearchRenderState extends State<CircleSearchRender> with CommonNavi
 									borderRadius: BorderRadius.circular(2.0)
 								),
 								child: Center(
-									child: Text(this.snapData.subsitename, style: TextStyle(
+									child: Text(widget.snapData.subsitename, style: TextStyle(
 												fontSize: 12.0,
 												color: Colors.black
 									)),
@@ -163,7 +159,7 @@ class _CircleSearchRenderState extends State<CircleSearchRender> with CommonNavi
 							Icon(Icons.check_circle_outline, size: 20.0, color: Colors.blue),
 							SizedBox(width: 10.0),
 							Text(
-								this.snapData.posttime,
+								widget.snapData.posttime,
 								style: TextStyle(color: Colors.black.withOpacity(0.7), fontSize: 13.0)
 							)
 						],

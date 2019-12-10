@@ -21,24 +21,21 @@ class CirclerDisplayPage extends StatefulWidget {
 
   	CirclerDisplayPage({ Key key, @required this.requestParams}) : super(key: key);
 
-	_CirclerDisplayPageState createState() => _CirclerDisplayPageState(this.requestParams);
+	_CirclerDisplayPageState createState() => _CirclerDisplayPageState();
 }
 
 class _CirclerDisplayPageState extends State<CirclerDisplayPage> with CommonTravelItem, CommonNavigator {
   
 	CirclerBlocNewsList blocGalleryList;
 	GlobalKey<RefreshIndicatorState> refreshKey = GlobalKey<RefreshIndicatorState>();
-	dynamic _requestParms;
 
-	_CirclerDisplayPageState(dynamic requestParams): super() {
-		this._requestParms = requestParams;
-	}
+	_CirclerDisplayPageState(): super();
 
 	@override
 	Widget build(BuildContext context) {
 		// 连接数据源
 		this.blocGalleryList = BlocProvider.of<CirclerBlocNewsList>(context);
-		this.blocGalleryList.updateParams(this._requestParms);
+		this.blocGalleryList.updateParams(widget.requestParams);
 
 		// 连接视图，下拉刷新
 		return RefreshIndicator(

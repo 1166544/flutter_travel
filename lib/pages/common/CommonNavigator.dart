@@ -4,13 +4,10 @@ import 'package:flutter_travel/core/http/HttpServiceCore.dart';
 /// 基础功能类封装
 class CommonNavigator {
 
-	Map<String, String> crossHeaders;
+	final Map<String, String> crossHeaders = new HttpServiceCore().generateRequestHeaders();
 
 	/// 跨域请求头
 	Map<String, String> getCrossHeaders() {
-		if (this.crossHeaders == null) {
-			this.crossHeaders = new HttpServiceCore().generateRequestHeaders();
-		}
 		return this.crossHeaders;
 	}
 
