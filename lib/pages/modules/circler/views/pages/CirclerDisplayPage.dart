@@ -46,6 +46,12 @@ class _CirclerDisplayPageState extends State<CirclerDisplayPage> with CommonTrav
 		);
 	}
 
+	@override
+	void dispose() {
+		super.dispose();
+		this.blocGalleryList.dispose();
+	}
+
 	Future<Null> refreshData() async {
 		await this.blocGalleryList.update();
 	}

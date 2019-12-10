@@ -30,7 +30,6 @@ class _CommentsPageState extends State<CommentsPage> with CommonNavigator {
 			)
 		);
 	}
-	
 }
 
 /// 留言区详情页显示内容
@@ -54,6 +53,12 @@ class _CommentPageContentState extends State<CommentPageContent> with CommonTrav
 		this.blocCommentInfo.updateParams(widget.requestParams);
 
 		return this.getStreamBuilder(context);
+	}
+
+	@override
+	void dispose() {
+		super.dispose();
+		this.blocCommentInfo.dispose();
 	}
 
 	/// 连接stream数据源

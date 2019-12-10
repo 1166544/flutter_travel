@@ -81,6 +81,12 @@ class _CirclerDetailContentPageState extends State<CirclerDetailContentPage> wit
 		return this.getStreamBuilder(context);
 	}
 
+	@override
+	void dispose() {
+		super.dispose();
+		this.blocDetailInfo.dispose();
+	}
+
 	/// 连接stream数据源
 	Widget getStreamBuilder(BuildContext context) {
 		return StreamBuilder<CirclerModelPageData>(

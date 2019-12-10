@@ -38,6 +38,12 @@ class _GraphicsBlocContentViewState extends State<GraphicsBlocContentView> with 
 		);
 	}
 
+	@override
+	void dispose() {
+		super.dispose();
+		this.blocGalleryList.dispose();
+	}
+
 	/// 更新视图
 	Future<Null> refreshData() async {
 		await this.blocGalleryList.update();
