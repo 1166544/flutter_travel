@@ -4,6 +4,8 @@ import 'package:flutter_travel/pages/common/CommonNavigator.dart';
 import 'package:flutter_travel/pages/common/CommonTravelItem.dart';
 import 'package:flutter_travel/pages/modules/circler/models/CirclerModelSearch.dart';
 
+import '../pages/CirclerSearchDetailPage.dart';
+
 /// 搜索结果渲染条
 class CircleSearchRender extends StatefulWidget {
 	final CircleModelSearchItem snapData;
@@ -24,25 +26,33 @@ class _CircleSearchRenderState extends State<CircleSearchRender> with CommonNavi
 			return this.getNoMoreItem();
 		}
 		
+		var renderView;
 		// 无图模式
 		if (widget.snapData.img.length == 0) {
-			return this.buildNoneImageLayout(MediaQuery.of(context).size.width);
+			renderView = this.buildNoneImageLayout(MediaQuery.of(context).size.width);
 		}
 
 		// 1张图模式
 		if (widget.snapData.img.length == 1) {
-			return this.buildSingleImageLayout(widget.snapData.img[0]);
+			renderView = this.buildSingleImageLayout(widget.snapData.img[0]);
 		}
 
 		// 2张以上图模式
 		if (widget.snapData.img.length >= 3) {
-			return this.buildMultiImageLayout();
+			renderView = this.buildMultiImageLayout();
 		}
 		if (widget.snapData.imgsrcurl != null) {
-			return this.buildSingleImageLayout(widget.snapData.imgsrcurl);
+			renderView = this.buildSingleImageLayout(widget.snapData.imgsrcurl);
 		}
-
-		return Text('');
+		
+		return GestureDetector(
+			// 透明区域响应点击
+			behavior: HitTestBehavior.opaque,
+			onTap: () {
+				this.navigateTo(context, CirclerSearchDetailPage(url: widget.snapData.url));
+			},
+			child: renderView,
+		);
 	}
 
 	/// 无图模式
