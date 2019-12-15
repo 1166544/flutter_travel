@@ -72,3 +72,4 @@ build/
 key.jks
 android/key.properties
 .flutter-plugins-dependencies
+ios/Flutter/flutter_export_environment.sh
