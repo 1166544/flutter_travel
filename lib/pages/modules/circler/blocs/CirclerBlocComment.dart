@@ -56,6 +56,6 @@ class CirclerBlocComment implements BlocBase {
 
 	@override
 	void dispose() {
-		this._commentController.close();
+		// this._commentController.close();
 	}
 }

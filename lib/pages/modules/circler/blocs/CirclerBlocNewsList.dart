@@ -56,7 +56,7 @@ class CirclerBlocNewsList implements BlocBase {
 
 	@override
 	void dispose() {
-		this._galleryController.close();
+		// this._galleryController.close();
 	}
 
 	/// 更新数据源操作

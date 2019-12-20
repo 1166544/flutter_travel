@@ -68,7 +68,7 @@ class CirclerBlocDetail implements BlocBase {
 
 	@override
 	void dispose() {
-		this._detailController.close();
+		// this._detailController.close();
 	}
 
 }
