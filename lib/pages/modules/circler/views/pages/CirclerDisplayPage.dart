@@ -35,7 +35,16 @@ class _CirclerDisplayPageState extends State<CirclerDisplayPage> with CommonTrav
 	Widget build(BuildContext context) {
 		// 连接数据源
 		this.blocGalleryList = BlocProvider.of<CirclerBlocNewsList>(context);
-		this.blocGalleryList.updateParams(widget.requestParams);
+		// 连接本地数据
+		this.blocGalleryList.updateParams({
+			'from': 'news_webapp',
+			'pd': 'webapp',
+			'os': 'iphone',
+			'ver': 6,
+			'category_id': 101,
+			'action': 0,
+			'wf': 0
+		});
 
 		// 连接视图，下拉刷新
 		return RefreshIndicator(

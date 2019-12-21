@@ -55,7 +55,7 @@ class _ViewSearchContentState extends State<ViewSearchContent> with CommonTravel
 	Widget build(BuildContext context) {
 		// 连接数据源
 		this.blocGalleryList = BlocProvider.of<CirclerBlocNewsList>(context);
-		this.blocGalleryList.updateParams({
+		this.blocGalleryList.updateParamsByReset({
 			'form': 'news_webapp',
 			'pd': 'webapp',
 			'os': 'iphone',

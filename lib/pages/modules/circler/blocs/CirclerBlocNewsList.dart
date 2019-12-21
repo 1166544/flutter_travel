@@ -44,10 +44,31 @@ class CirclerBlocNewsList implements BlocBase {
 		this._inGallery.add(this._gallery);
 	}
 
+	Future<Null> invoke() async {
+		// 检测TOKEN有效性
+		await this._serviceToken.getToken();
+
+		// 初始化时调用service列表数据 
+		dynamic result = await this._serviceNewsList.getNewsListByRest(this._requestParams);
+
+		// 返回数据列表更新数据源
+		this._gallery = new CirclerModelsNewsList();
+		this._gallery.update(result);
+
+		// 触发数据更新
+		this._inGallery.add(this._gallery);
+	}
+
 	/// 更新请求参数
 	void updateParams(dynamic requestParams) {
 		this._requestParams = requestParams;
 		this.init();
+	}
+
+	/// 更新请求参数(重置方式)
+	void updateParamsByReset(dynamic requestParams) {
+		this._requestParams = requestParams;
+		this.invoke();
 	}
 
 	Future<Null> update() async {
