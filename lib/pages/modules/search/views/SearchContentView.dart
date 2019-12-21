@@ -104,7 +104,10 @@ class _ViewSearchContentState extends State<ViewSearchContent> with CommonTravel
 
 		List<CirclerModelNewsItem> list = snapshot.data.news;
 		for (var i = 0; i < list.length; i++) {
-			this.renderListData.add(list[i]);
+
+			if (list[i].imageurls != null && list[i].imageurls.length >= 3) {
+				this.renderListData.add(list[i]);
+			}
 		}
 
 		// 是否为最后一页
