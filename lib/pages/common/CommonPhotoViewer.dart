@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_travel/pages/common/CommonGalleryItem.dart';
+import 'package:flutter_travel/pages/common/CommonNavigator.dart';
+import 'package:flutter_travel/pages/modules/circler/models/CirclerModelImage.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
 
@@ -20,7 +21,7 @@ class CommonPhotoViewer extends StatefulWidget {
 	final dynamic maxScale;
 	final int initialIndex;
 	final PageController pageController;
-	final List<CommonGalleryItem> galleryItems;
+	final List<CirclerModelImage> galleryItems;
 
 	@override
 	State<StatefulWidget> createState() {
@@ -28,14 +29,14 @@ class CommonPhotoViewer extends StatefulWidget {
 	}
 }
 
-class _CommonPhotoViewerState extends State<CommonPhotoViewer> {
+class _CommonPhotoViewerState extends State<CommonPhotoViewer> with CommonNavigator {
 	int currentIndex;
 	String imageTitle;
 
 	@override
 	void initState() {
 		currentIndex = widget.initialIndex;
-		imageTitle = widget.galleryItems[widget.initialIndex].description.toString();
+		imageTitle = widget.galleryItems[widget.initialIndex].url;
 		super.initState();
 	}
 
@@ -44,7 +45,7 @@ class _CommonPhotoViewerState extends State<CommonPhotoViewer> {
 	void onPageChanged(int index) {
 		setState(() {
 			currentIndex = index;
-			imageTitle = widget.galleryItems[currentIndex].description.toString();
+			imageTitle = widget.galleryItems[currentIndex].url;
 		});
 	}
 
@@ -76,7 +77,7 @@ class _CommonPhotoViewerState extends State<CommonPhotoViewer> {
 					scrollPhysics: const BouncingScrollPhysics(),
 					builder: (BuildContext context, int index) {
 						return PhotoViewGalleryPageOptions(
-						imageProvider: AssetImage(widget.galleryItems[index].image),
+						imageProvider: NetworkImage(widget.galleryItems[index].urlWebp, headers: this.getCrossHeaders()),
 						initialScale: PhotoViewComputedScale.contained * 0.95,
 						minScale: PhotoViewComputedScale.contained * 0.95,
 						maxScale: PhotoViewComputedScale.covered * 1.1,

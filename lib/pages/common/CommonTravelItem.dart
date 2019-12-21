@@ -1,12 +1,16 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_travel/pages/common/CommonGalleryItem.dart';
+import 'package:flutter_travel/pages/common/CommonNavigator.dart';
 import 'package:flutter_travel/pages/common/CommonPhotoViewer.dart';
+import 'package:flutter_travel/pages/modules/circler/models/CirclerModelImage.dart';
+import 'package:flutter_travel/pages/modules/circler/models/CirclerModelNewsItem.dart';
 import 'package:flutter_travel/pages/modules/order/OrderPageView.dart';
 import 'package:flutter_travel/pages/modules/profile/ProfilePage.dart';
 
 class CommonTravelItem {
+
+	CommonNavigator navigatorData = new CommonNavigator();
 
 	/// 返回加载中圆圈
 	Widget getLoadingItem() {
@@ -38,7 +42,7 @@ class CommonTravelItem {
 	}
 
   /// 构建图片网格
-  Widget buildImageGrid(BuildContext context, List<CommonGalleryItem> imageList, {double paddingTop = 25.0}) {
+  Widget buildImageGrid(BuildContext context, CirclerModelNewsItem item, {double paddingTop = 25.0}) {
     return Padding(
       padding: EdgeInsets.only(top: paddingTop, left: 15.0, right: 15.0),
       child: Container(
@@ -47,7 +51,7 @@ class CommonTravelItem {
           children: <Widget>[
             Container(
               height: 225.0,
-              child: this.buildComumnImage(context, imageList),
+              child: this.buildComumnImage(context, item.imageurls),
             )
           ],
         ),
@@ -56,7 +60,7 @@ class CommonTravelItem {
   }
 
   /// 点击后显示图片
-  void showPhoto(BuildContext context, List<CommonGalleryItem> list, int index) {
+  void showPhoto(BuildContext context, List<CirclerModelImage> list, int index) {
 
 	  Navigator.push(
 		  context,
@@ -73,7 +77,7 @@ class CommonTravelItem {
   }
 
   /// 构建封面图片(左边大图，右边上下小图结构)
-  Widget buildComumnImage(BuildContext context, List<CommonGalleryItem> imageList) {
+  Widget buildComumnImage(BuildContext context, List<CirclerModelImage> imageList) {
 
     return Row(
       children: <Widget>[
@@ -82,7 +86,7 @@ class CommonTravelItem {
 				this.showPhoto(context, imageList, 0);
 			},
 			// 左部大图
-			child: this.buildLeftBigImage(context, imageList[0].image)
+			child: this.buildLeftBigImage(context, imageList[0].url)
 		),
         SizedBox(width: 2.0),
         Column(
@@ -93,7 +97,7 @@ class CommonTravelItem {
 				onTap: () {
 					this.showPhoto(context, imageList, 1);
 				},
-				child: this.buildRightTopSmallImage(context, imageList[1].image),
+				child: this.buildRightTopSmallImage(context, imageList[1].url),
 			),
             SizedBox(height: 2.0),
             // 右下小图
@@ -101,7 +105,7 @@ class CommonTravelItem {
 				onTap: () {
 					this.showPhoto(context, imageList, 2);
 				},
-				child: this.buildRightBottomSmallImage(context, imageList[2].image),
+				child: this.buildRightBottomSmallImage(context, imageList[2].url),
 			)
           ],
         ),
@@ -118,7 +122,7 @@ class CommonTravelItem {
 			borderRadius:
 				BorderRadius.only(bottomRight: Radius.circular(15.0)),
 			image: DecorationImage(
-				image: AssetImage(assistantImage2Url),
+				image: this.getDisplayImage(assistantImage2Url),
 				fit: BoxFit.cover)),
 	);
   }
@@ -132,9 +136,19 @@ class CommonTravelItem {
 			borderRadius:
 				BorderRadius.only(topRight: Radius.circular(15.0)),
 			image: DecorationImage(
-				image: AssetImage(assistantImage1Url),
+				image: this.getDisplayImage(assistantImage1Url),
 				fit: BoxFit.cover)),
 		);
+  }
+
+	/// 图片显示
+  dynamic getDisplayImage(String url) {
+	//   assets/
+	if (url.indexOf('assets/') != -1) {
+		return AssetImage(url);
+	} else {
+		return NetworkImage(url, headers: this.navigatorData.getCrossHeaders());
+	}
   }
 
   /// 左部大图
@@ -144,7 +158,7 @@ class CommonTravelItem {
 		width: MediaQuery.of(context).size.width / 2 + 40.0,
 		decoration: BoxDecoration(
 			borderRadius: BorderRadius.only(topLeft: Radius.circular(15.0), bottomLeft: Radius.circular(15.0)),
-			image: DecorationImage(image: AssetImage(leftImageUrl), fit: BoxFit.cover)
+			image: DecorationImage(image: this.getDisplayImage(leftImageUrl), fit: BoxFit.cover)
 		)
 	);
   }

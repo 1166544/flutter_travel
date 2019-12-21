@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_travel/pages/common/CommonGalleryItem.dart';
 import 'package:flutter_travel/pages/common/CommonNavigator.dart';
 import 'package:flutter_travel/pages/modules/all/AllPageView.dart';
 import 'package:flutter_travel/pages/modules/notices/NoticePage.dart';
@@ -22,25 +21,25 @@ class _HomePageState extends State<HomePage> with CommonTravelItem, CommonNaviga
 
   @override
   Widget build(BuildContext context) {
-	  List<CommonGalleryItem> list1 = [
-		  CommonGalleryItem(id: 0.toString(), image: 'assets/beach1.jpg', description: 'A drink in beach'),
-		  CommonGalleryItem(id: 1.toString(), image: 'assets/beach2.jpg', description: 'A shoes in under the sun'),
-		  CommonGalleryItem(id: 2.toString(), image: 'assets/beach3.jpg', description: 'Cross the bridge.'),
-	  ];
+	//   List<CommonGalleryItem> list1 = [
+	// 	  CommonGalleryItem(id: 0.toString(), image: 'assets/beach1.jpg', description: 'A drink in beach'),
+	// 	  CommonGalleryItem(id: 1.toString(), image: 'assets/beach2.jpg', description: 'A shoes in under the sun'),
+	// 	  CommonGalleryItem(id: 2.toString(), image: 'assets/beach3.jpg', description: 'Cross the bridge.'),
+	//   ];
 
-	  List<CommonGalleryItem> list2 = [
-		  CommonGalleryItem(id: 0.toString(), image: 'assets/beach5.jpg', description: 'The Sunset'),
-		  CommonGalleryItem(id: 1.toString(), image: 'assets/beach4.jpg', description: 'Sunset house view'),
-		  CommonGalleryItem(id: 2.toString(), image: 'assets/beach6.jpg', description: 'Beach unberlas.'),
-	  ];
+	//   List<CommonGalleryItem> list2 = [
+	// 	  CommonGalleryItem(id: 0.toString(), image: 'assets/beach5.jpg', description: 'The Sunset'),
+	// 	  CommonGalleryItem(id: 1.toString(), image: 'assets/beach4.jpg', description: 'Sunset house view'),
+	// 	  CommonGalleryItem(id: 2.toString(), image: 'assets/beach6.jpg', description: 'Beach unberlas.'),
+	//   ];
 	return ListView(
 		children: <Widget>[
 			this._buildTravelogram(),
 			this._buildCircle(),
 			this._buildCommunity(),
-			this.buildImageGrid(context, list1),
+			// this.buildImageGrid(context, list1),
 			this.buildImgGalleryDetail(context, 'Maui Summer 2019', 'Teresa Soto added 52 Photos', '2h ago'),
-			this.buildImageGrid(context, list2),
+			// this.buildImageGrid(context, list2),
 			this.buildImgGalleryDetail(context, 'Maldives- 12 Days', 'Teresa Soto . 3 Videos', '5h ago'),
 		]
 	);

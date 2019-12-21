@@ -33,7 +33,7 @@ class _CirclerSearchContentState extends State<CirclerSearchContent> with Common
 		// 给_controller添加监听
 		this._controller.addListener((){
 			// 判断是否滑动到了页面的最底部
-			if(_controller.position.pixels == _controller.position.maxScrollExtent){
+			if(_controller.position.pixels == this._controller.position.maxScrollExtent){
 				// 如果不是最后一页数据，则生成新的数据添加到list里面
 				if(this.hasMore) {
 					this._retrieveData();

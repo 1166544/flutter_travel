@@ -1,14 +1,12 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_travel/core/bloc/BlocProvider.dart';
-import 'package:flutter_travel/pages/common/CommonGalleryItem.dart';
 import 'package:flutter_travel/pages/common/CommonLoading.dart';
 import 'package:flutter_travel/pages/common/CommonTravelItem.dart';
 import 'package:flutter_travel/pages/modules/circler/blocs/CirclerBlocNewsList.dart';
+import 'package:flutter_travel/pages/modules/circler/models/CirclerModelImage.dart';
 import 'package:flutter_travel/pages/modules/circler/models/CirclerModelNewsItem.dart';
 import 'package:flutter_travel/pages/modules/circler/models/CirclerModelsNewsList.dart';
-import 'package:flutter_travel/pages/utils/Utils.dart';
+import 'package:flutter_travel/pages/modules/search/views/SearchContentRender.dart';
 
 /// 搜索模块视图
 class ViewSearchContent extends StatefulWidget {
@@ -21,6 +19,37 @@ class _ViewSearchContentState extends State<ViewSearchContent> with CommonTravel
 
 	CirclerBlocNewsList blocGalleryList;
 	GlobalKey<RefreshIndicatorState> refreshKey = GlobalKey<RefreshIndicatorState>();
+	final formKey = GlobalKey<FormState>();
+	ScrollController _controller = new ScrollController();
+	List<CirclerModelNewsItem> renderListData = [];
+	bool hasMore = false;
+
+	@override
+	void initState() {
+		super.initState();
+
+		// 添加监听
+		this._controller.addListener(() {
+			if (this._controller.position.pixels == this._controller.position.maxScrollExtent) {
+				// 最后一页数据位置生成新的数据添加到LIST列表里
+				if (this.hasMore) {
+					this._retriveData();
+				}
+			}
+		});
+	}
+
+	@override
+	void dispose() {
+		// 移除监听，防止内存泄漏
+		this._controller.dispose();
+		this.blocGalleryList.dispose();
+		super.dispose();
+	}
+
+	void _retriveData() {
+		this.blocGalleryList.update();
+	}
 
 	@override
 	Widget build(BuildContext context) {
@@ -43,12 +72,6 @@ class _ViewSearchContentState extends State<ViewSearchContent> with CommonTravel
 			child: this.getStreamBuilder(context),
 			onRefresh: refreshData,
 		);
-	}
-
-	@override
-	void dispose() {
-		super.dispose();
-		this.blocGalleryList.dispose();
 	}
 
 	/// 更新视图
@@ -78,141 +101,82 @@ class _ViewSearchContentState extends State<ViewSearchContent> with CommonTravel
 
 	/// 基础页面结构
 	Widget buildLayout(AsyncSnapshot<CirclerModelsNewsList> snapshot) {
-		return ListView.builder(
-			itemCount: snapshot.data.news.length,
-			itemBuilder: (context, i) {
-				return this.buildListItem(
-					snapshot.data.news[i],
-					i,
-					snapshot.data.news.length
-				);
+
+		List<CirclerModelNewsItem> list = snapshot.data.news;
+		for (var i = 0; i < list.length; i++) {
+			this.renderListData.add(list[i]);
+		}
+
+		// 是否为最后一页
+		this.hasMore = snapshot.data.hasmore;
+
+		return ListView.separated(
+			controller: this._controller,
+			physics: BouncingScrollPhysics(),
+			shrinkWrap: true,
+			itemBuilder: (context, index) {
+				if (index == this.renderListData.length) {
+					if (this.hasMore) {
+						return this.getLoadingItem();
+					} else {
+						return this.getNoMoreItem();
+					}
+				} else {
+					var item = this.rebuildImageUrls(this.renderListData[index]);
+
+					return SearchContentRender(snapData: item, renderIndex: index);
+				}
 			},
+			separatorBuilder: (context, index) {
+				return this.buildTravelSep();
+			},
+			itemCount: this.renderListData.length + 1,
 		);
 	}
 
-	/// 创建动态泻染列表
-	/// * [ModelGalleryItem item] 单项数据源
-	/// * [int index] 列表顺序
-	/// * [int total] 列表总长度
-	Widget buildListItem(CirclerModelNewsItem item, int index, int total) {
+	// 补足缺失图片
+	CirclerModelNewsItem rebuildImageUrls(CirclerModelNewsItem item) {
+		var url1 = 'assets/beach1.jpg';
+		var url2 = 'assets/beach2.jpg';
+		var url3 = 'assets/beach3.jpg';
+		if (item.imageurls == null || item.imageurls.length == 0) {
+			CirclerModelImage subItem1 = new CirclerModelImage();
+			CirclerModelImage subItem2 = new CirclerModelImage();
+			CirclerModelImage subItem3 = new CirclerModelImage();
 
-		// Mock data in real world it will be replaced.
-		List<CommonGalleryItem> list1 = [
-		CommonGalleryItem(
-			id: 0.toString(), image: 'assets/p1.jpg', description: 'Sun Bath'),
-		CommonGalleryItem(
-			id: 1.toString(),
-			image: 'assets/beach5.jpg',
-			description: 'Blue oceans'),
-		CommonGalleryItem(
-			id: 2.toString(),
-			image: 'assets/p2.jpg',
-			description: 'Mihiri Island.'),
-		];
+			subItem1.url = url1;
+			subItem2.url = url2;
+			subItem3.url = url3;
 
-		List<CommonGalleryItem> list2 = [
-		CommonGalleryItem(
-			id: 0.toString(),
-			image: 'assets/p3.jpg',
-			description: 'The Sun Raise'),
-		CommonGalleryItem(
-			id: 1.toString(),
-			image: 'assets/p5.jpg',
-			description: 'Tiland buject'),
-		CommonGalleryItem(
-			id: 2.toString(),
-			image: 'assets/p6.jpg',
-			description: 'Beach Baros.'),
-		];
+			item.imageurls = [
+				subItem1,
+				subItem2,
+				subItem3,
+			];
+		}
+		if (item.imageurls != null && item.imageurls.length == 1) {
+			CirclerModelImage subItem1 = new CirclerModelImage();
+			CirclerModelImage subItem2 = new CirclerModelImage();
 
-		int min = 1;
-		int max = 10;
-		var rnd = new Random();
-		var rndNum = min + rnd.nextInt(max - min);
-		var ranTitle = item.title;
-		var ranTitleLength = ranTitle.length < 10 ? ranTitle.length : 10;
-		var ranPreTitle = ranTitle.substring(rndNum, rndNum + ranTitleLength);
+			subItem1.url = url1;
+			subItem2.url = url2;
 
-		ranPreTitle = Utils.toUppercase(ranPreTitle);
-		ranTitleLength = ranTitle.length < rndNum ? ranTitle.length : rndNum;
+			item.imageurls = [
+				subItem1,
+				subItem2,
+			];
+		}
+		if (item.imageurls != null && item.imageurls.length == 2) {
+			CirclerModelImage subItem1 = new CirclerModelImage();
 
-		var ranNextTitle = ranTitle.substring(0, ranTitleLength);
-		var imageList = rndNum > 5 ? list2 : list1;
-		// print('print list:::::::${item.keys} ${item.values}');
-		// flutter: print list:::::::(userId, id, title, body)
-		// (10, 100, at nam consequatur ea labore ea harum, cupiditate quo est a modi nesciunt soluta
+			subItem1.url = url1;
 
-		List<Widget> displayList = [];
-
-		// 开始部份
-		if (index == 0) {
-			displayList.add(
-				this.buildMarkTitle()
-			);
-			displayList.add(
-				this.buildStartIcon())
-			;
+			item.imageurls = [
+				subItem1,
+			];
 		}
 
-		// 中间部份
-		displayList.add(
-			this.buildTravelDate(Utils.toUppercase(item.title))
-		);
-		displayList.add(
-			this.buildTravelSep()
-		);
-		displayList.add(
-			this.buildImageGrid(context, imageList, paddingTop: 0.0)
-		);
-		displayList.add(
-			this.buildImgGalleryDetail(context, '$ranPreTitle - $ranNextTitle', Utils.toUppercase(ranTitle), '')
-		);
-
-		// 尾部
-		bool hideSepBar = index == total;
-		if (!hideSepBar) {
-			displayList.add(SizedBox(height: 45.0));
-		}
-
-		return Container(
-			width: MediaQuery.of(context).size.width,
-			color: Colors.white,
-			child: Column(
-				children: displayList,
-			)
-		);
-	}
-
-	/// 顶部标题
-	Widget buildMarkTitle() {
-		return Container(
-			width: MediaQuery.of(context).size.width,
-			child: Text(
-			'Mark, 4 Others',
-			textAlign: TextAlign.center,
-			style: TextStyle(
-					fontSize: 17.0,
-					color: Colors.black.withOpacity(0.7)
-				),
-			)
-		);
-	}
-
-	/// 构建START图标
-	Widget buildStartIcon() {
-		return Padding(
-			padding: EdgeInsets.all(7.0),
-			child: Image.asset('assets/start.png', width: 150.0, height: 150.0)
-		);
-	}
-
-	/// 旅行日志时间
-	Widget buildTravelDate(String travelTitle) {
-		return Text(
-			travelTitle,
-			textAlign: TextAlign.center,
-			style: TextStyle(color: Colors.black.withOpacity(0.8))
-		);
+		return item;
 	}
 
 	/// 旅行日志分隔
