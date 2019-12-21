@@ -119,6 +119,7 @@ class CommonTravelItem {
 		height: 111.5,
 		width: MediaQuery.of(context).size.width / 2 - 72.0,
 		decoration: BoxDecoration(
+			border: Border.all(color: Colors.black.withOpacity(0.3), width: 0.5),
 			borderRadius:
 				BorderRadius.only(bottomRight: Radius.circular(15.0)),
 			image: DecorationImage(
@@ -133,6 +134,7 @@ class CommonTravelItem {
 		height: 111.5,
 		width: MediaQuery.of(context).size.width / 2 - 72.0,
 		decoration: BoxDecoration(
+			border: Border.all(color: Colors.black.withOpacity(0.3), width: 0.5),
 			borderRadius:
 				BorderRadius.only(topRight: Radius.circular(15.0)),
 			image: DecorationImage(
@@ -157,6 +159,7 @@ class CommonTravelItem {
 		height: 225.0,
 		width: MediaQuery.of(context).size.width / 2 + 40.0,
 		decoration: BoxDecoration(
+			border: Border.all(color: Colors.black.withOpacity(0.3), width: 0.5),
 			borderRadius: BorderRadius.only(topLeft: Radius.circular(15.0), bottomLeft: Radius.circular(15.0)),
 			image: DecorationImage(image: this.getDisplayImage(leftImageUrl), fit: BoxFit.cover)
 		)
@@ -165,7 +168,7 @@ class CommonTravelItem {
 
   /// 图片详情
   Widget buildImgGalleryDetail(BuildContext context, String mainTitle,
-      String subTitle, String timeTitle) {
+      String subTitle, String commentTitle) {
     return Padding(
       padding: EdgeInsets.only(left: 25.0, right: 15.0, top: 15.0),
       child: Row(
@@ -177,7 +180,7 @@ class CommonTravelItem {
 					mainAxisAlignment: MainAxisAlignment.start,
 					children: <Widget>[
 					Container(
-						width: 200,
+						width: MediaQuery.of(context).size.width - 86,
 						child: Text(
 							mainTitle,
 							overflow: TextOverflow.ellipsis,
@@ -188,7 +191,7 @@ class CommonTravelItem {
 								fontSize: 15.0)),
 					),
 					SizedBox(height: 4.0),
-					this.buildSubTravelItem(subTitle, timeTitle),
+					this.buildSubTravelItem(subTitle, commentTitle, context),
 					],
 				),
 				onTap: () {
@@ -196,36 +199,25 @@ class CommonTravelItem {
                 }
 		  ),
           Spacer(),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              this.inkWellButton(
-                  inkWidth: 20.0,
-                  inkHeight: 20.0,
-                  picUrl: 'assets/navarrow.png',
-                  onCallBack: () {
-                    this.navigateToSubPage(context);
-				  }),
-              SizedBox(width: 12.0),
-              this.inkWellButton(
-                  inkWidth: 20.0,
-                  inkHeight: 20.0,
-                  picUrl: 'assets/chatbubble.png',
-                  onCallBack: () {
+			Column(
+				children: <Widget>[
+					this.inkWellButton(
+				inkWidth: 20.0,
+				inkHeight: 20.0,
+				picUrl: 'assets/chatbubble.png',
+				onCallBack: () {
 					//   Navigator.push(
 					// 	context,
 					// 	MaterialPageRoute(builder: (context) => CommentsPage())
 					//   );
-				  }),
-              SizedBox(width: 12.0),
-              this.inkWellButton(
-                  inkWidth: 20.0,
-                  inkHeight: 20.0,
-                  picUrl: 'assets/fav.png',
-                  onCallBack: () {}),
-            ],
-          )
-        ],
+				}),
+				Text(commentTitle, style: TextStyle(
+				fontSize: 13.0,
+				color: Colors.black,
+			),)
+			],
+		)
+	]
       ),
     );
   }
@@ -239,11 +231,11 @@ class CommonTravelItem {
 	}));
   }
 
-  Widget buildSubTravelItem(String subTitle, String timeTitle) {
+  Widget buildSubTravelItem(String subTitle, String timeTitle, BuildContext context) {
 	  return Row(
 		children: <Widget>[
 			Container(
-			width: 200,
+			width: MediaQuery.of(context).size.width - 100,
 			child: Text(subTitle,
 				softWrap: false,
 				overflow: TextOverflow.ellipsis,
@@ -252,18 +244,18 @@ class CommonTravelItem {
 					fontFamily: 'Montserrat',
 					fontSize: 11.0)),
 			),
-			timeTitle.isNotEmpty
-				? SizedBox(width: 4.0)
-				: SizedBox(width: 0.0),
-			timeTitle.isNotEmpty
-				? Icon(Icons.timer, size: 12.0, color: Colors.black)
-				: SizedBox(width: 0.0),
-			SizedBox(width: 4.0),
-			Text(timeTitle,
-				style: TextStyle(
-					color: Colors.grey.shade500,
-					fontFamily: 'Montserrat',
-					fontSize: 11.0))
+			// timeTitle.isNotEmpty
+			// 	? SizedBox(width: 4.0)
+			// 	: SizedBox(width: 0.0),
+			// timeTitle.isNotEmpty
+			// 	? Icon(Icons.timer, size: 12.0, color: Colors.black)
+			// 	: SizedBox(width: 0.0),
+			// SizedBox(width: 4.0),
+			// Text(timeTitle,
+			// 	style: TextStyle(
+			// 		color: Colors.grey.shade500,
+			// 		fontFamily: 'Montserrat',
+			// 		fontSize: 11.0))
 		],
 	);
   }

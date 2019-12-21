@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_travel/pages/common/CommonTravelItem.dart';
 import 'package:flutter_travel/pages/modules/circler/models/CirclerModelNewsItem.dart';
-import 'package:flutter_travel/pages/utils/Utils.dart';
 
 class SearchContentRender extends StatefulWidget {
 	final CirclerModelNewsItem snapData;
@@ -34,17 +33,27 @@ class _SearchContentRenderState extends State<SearchContentRender> with CommonTr
 			displayList.add(
 				this.buildStartIcon())
 			;
+			displayList.add(
+				Image.asset(
+					'assets/dot.png',
+					width: 10.0,
+					height: 80.0
+				)
+			);
 		}
 
 		// 中间部份
 		displayList.add(
-			this.buildTravelDate(Utils.toUppercase(item.title))
+			this.buildTravelDate(item.site)
+		);
+		displayList.add(
+			SizedBox(height: 10)
 		);
 		displayList.add(
 			this.buildImageGrid(context, item, paddingTop: 0.0)
 		);
 		displayList.add(
-			this.buildImgGalleryDetail(context, '$item.title - $item.title', Utils.toUppercase(item.title), '')
+			this.buildImgGalleryDetail(context, item.title, item.abs, item.commentCount)
 		);
 
 		return Column(

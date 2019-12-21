@@ -2,7 +2,7 @@
 class CommonTimeFormate {
 
 	/// 返回时间截 2019/11/22 格式
-	String getDateText(String dateNum) {
+	String getDateText(dynamic dateNum) {
 		var dateNo = int.parse(dateNum);
 		var date = new DateTime.fromMillisecondsSinceEpoch(dateNo);
 		var dateStr = date.year.toString() + '/' + date.month.toString() + '/' + date.day.toString();
