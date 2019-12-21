@@ -5,8 +5,9 @@ import 'package:flutter_travel/core/bloc/BlocProvider.dart';
 import 'package:flutter_travel/pages/common/CommonGalleryItem.dart';
 import 'package:flutter_travel/pages/common/CommonLoading.dart';
 import 'package:flutter_travel/pages/common/CommonTravelItem.dart';
-import 'package:flutter_travel/pages/modules/search/blocs/SearchBlocGalleryList.dart';
-import 'package:flutter_travel/pages/modules/search/models/SearchModelGallery.dart';
+import 'package:flutter_travel/pages/modules/circler/blocs/CirclerBlocNewsList.dart';
+import 'package:flutter_travel/pages/modules/circler/models/CirclerModelNewsItem.dart';
+import 'package:flutter_travel/pages/modules/circler/models/CirclerModelsNewsList.dart';
 import 'package:flutter_travel/pages/utils/Utils.dart';
 
 /// 搜索模块视图
@@ -18,13 +19,22 @@ class ViewSearchContent extends StatefulWidget {
 
 class _ViewSearchContentState extends State<ViewSearchContent> with CommonTravelItem {
 
-	BlocGalleryList blocGalleryList;
+	CirclerBlocNewsList blocGalleryList;
 	GlobalKey<RefreshIndicatorState> refreshKey = GlobalKey<RefreshIndicatorState>();
 
 	@override
 	Widget build(BuildContext context) {
 		// 连接数据源
-		this.blocGalleryList = BlocProvider.of<BlocGalleryList>(context);
+		this.blocGalleryList = BlocProvider.of<CirclerBlocNewsList>(context);
+		this.blocGalleryList.updateParams({
+			'form': 'news_webapp',
+			'pd': 'webapp',
+			'os': 'iphone',
+			'ver': 6,
+			'category_name': '时尚',
+			'category_id': '',
+			'action': 0
+		});
 
 		// 连接视图, 加上下拉刷新
 		return RefreshIndicator(
@@ -35,6 +45,12 @@ class _ViewSearchContentState extends State<ViewSearchContent> with CommonTravel
 		);
 	}
 
+	@override
+	void dispose() {
+		super.dispose();
+		this.blocGalleryList.dispose();
+	}
+
 	/// 更新视图
 	Future<Null> refreshData() async {
 		await this.blocGalleryList.update();
@@ -42,12 +58,12 @@ class _ViewSearchContentState extends State<ViewSearchContent> with CommonTravel
 
 	/// 连接stream数据源
 	Widget getStreamBuilder(BuildContext context) {
-		return StreamBuilder<ModelGallery>(
+		return StreamBuilder<CirclerModelsNewsList>(
 			stream: this.blocGalleryList.outGallery,
 			builder: (context, snapshot) {
 				// 数据源到位时渲染列表
 				if (snapshot.hasData) {
-					return this.buildSearchLayout(snapshot);
+					return this.buildLayout(snapshot);
 				} else {
 					return this.buildEmptyLayout(context);
 				}
@@ -61,14 +77,14 @@ class _ViewSearchContentState extends State<ViewSearchContent> with CommonTravel
 	}
 
 	/// 基础页面结构
-	Widget buildSearchLayout(AsyncSnapshot<ModelGallery> snapshot) {
+	Widget buildLayout(AsyncSnapshot<CirclerModelsNewsList> snapshot) {
 		return ListView.builder(
-			itemCount: snapshot.data.list.length,
+			itemCount: snapshot.data.news.length,
 			itemBuilder: (context, i) {
 				return this.buildListItem(
-					snapshot.data.list[i],
+					snapshot.data.news[i],
 					i,
-					snapshot.data.list.length
+					snapshot.data.news.length
 				);
 			},
 		);
@@ -78,7 +94,7 @@ class _ViewSearchContentState extends State<ViewSearchContent> with CommonTravel
 	/// * [ModelGalleryItem item] 单项数据源
 	/// * [int index] 列表顺序
 	/// * [int total] 列表总长度
-	Widget buildListItem(ModelGalleryItem item, int index, int total) {
+	Widget buildListItem(CirclerModelNewsItem item, int index, int total) {
 
 		// Mock data in real world it will be replaced.
 		List<CommonGalleryItem> list1 = [
@@ -113,7 +129,7 @@ class _ViewSearchContentState extends State<ViewSearchContent> with CommonTravel
 		int max = 10;
 		var rnd = new Random();
 		var rndNum = min + rnd.nextInt(max - min);
-		var ranTitle = item.body;
+		var ranTitle = item.title;
 		var ranTitleLength = ranTitle.length < 10 ? ranTitle.length : 10;
 		var ranPreTitle = ranTitle.substring(rndNum, rndNum + ranTitleLength);
 
