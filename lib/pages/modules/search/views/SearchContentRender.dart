@@ -38,7 +38,7 @@ class _SearchContentRenderState extends State<SearchContentRender> with CommonTr
 				Image.asset(
 					'assets/dot.png',
 					width: 10.0,
-					height: 80.0
+					height: 60.0
 				)
 			);
 		}
@@ -80,7 +80,7 @@ class _SearchContentRenderState extends State<SearchContentRender> with CommonTr
 	/// 构建START图标
 	Widget buildStartIcon() {
 		return Padding(
-			padding: EdgeInsets.all(7.0),
+			padding: EdgeInsets.fromLTRB(7.0, 7.0, 7.0, 0.0),
 			child: Image.asset('assets/start.png', width: 150.0, height: 150.0)
 		);
 	}
@@ -90,7 +90,7 @@ class _SearchContentRenderState extends State<SearchContentRender> with CommonTr
 		return Text(
 			travelTitle,
 			textAlign: TextAlign.center,
-			style: TextStyle(color: Colors.black.withOpacity(0.8))
+			style: TextStyle(color: Colors.black.withOpacity(0.4))
 		);
 	}
 }

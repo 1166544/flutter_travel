@@ -51,7 +51,7 @@ class CommonTravelItem {
           children: <Widget>[
             Container(
               height: 225.0,
-              child: this.buildComumnImage(context, item.imageurls),
+              child: this.buildComumnImage(context, item),
             )
           ],
         ),
@@ -60,14 +60,14 @@ class CommonTravelItem {
   }
 
   /// 点击后显示图片
-  void showPhoto(BuildContext context, List<CirclerModelImage> list, int index) {
+  void showPhoto(BuildContext context, CirclerModelNewsItem item, int index) {
 
 	  Navigator.push(
 		  context,
 		  MaterialPageRoute<void>(
 			 builder: (BuildContext context) {
 				 return CommonPhotoViewer(
-						galleryItems: list,
+						galleryItems: item,
 						initialIndex: index,
 						backgroundDecoration: BoxDecoration(color: Colors.black)
 					);
@@ -77,13 +77,13 @@ class CommonTravelItem {
   }
 
   /// 构建封面图片(左边大图，右边上下小图结构)
-  Widget buildComumnImage(BuildContext context, List<CirclerModelImage> imageList) {
-
+  Widget buildComumnImage(BuildContext context, CirclerModelNewsItem item) {
+	   List<CirclerModelImage> imageList = item.imageurls;
     return Row(
       children: <Widget>[
 		  GestureDetector(
 			onTap: () {
-				this.showPhoto(context, imageList, 0);
+				this.showPhoto(context, item, 0);
 			},
 			// 左部大图
 			child: this.buildLeftBigImage(context, imageList[0].url)
@@ -95,7 +95,7 @@ class CommonTravelItem {
 			// 右上小图
             GestureDetector(
 				onTap: () {
-					this.showPhoto(context, imageList, 1);
+					this.showPhoto(context, item, 1);
 				},
 				child: this.buildRightTopSmallImage(context, imageList[1].url),
 			),
@@ -103,7 +103,7 @@ class CommonTravelItem {
             // 右下小图
 			GestureDetector(
 				onTap: () {
-					this.showPhoto(context, imageList, 2);
+					this.showPhoto(context, item, 2);
 				},
 				child: this.buildRightBottomSmallImage(context, imageList[2].url),
 			)
