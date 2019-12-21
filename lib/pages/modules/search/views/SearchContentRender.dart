@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_travel/pages/common/CommonTimeFormate.dart';
 import 'package:flutter_travel/pages/common/CommonTravelItem.dart';
 import 'package:flutter_travel/pages/modules/circler/models/CirclerModelNewsItem.dart';
 
@@ -11,7 +12,7 @@ class SearchContentRender extends StatefulWidget {
 	_SearchContentRenderState createState() => _SearchContentRenderState();
 }
 
-class _SearchContentRenderState extends State<SearchContentRender> with CommonTravelItem {
+class _SearchContentRenderState extends State<SearchContentRender> with CommonTravelItem, CommonTimeFormate {
 	@override
 	Widget build(BuildContext context) {
 		return this.buildListItem(widget.snapData, widget.renderIndex);
@@ -66,7 +67,7 @@ class _SearchContentRenderState extends State<SearchContentRender> with CommonTr
 		return Container(
 			width: MediaQuery.of(context).size.width,
 			child: Text(
-			'Mark, 4 Others',
+			'James, touris ' + this.getNormalTime(),
 			textAlign: TextAlign.center,
 			style: TextStyle(
 					fontSize: 17.0,

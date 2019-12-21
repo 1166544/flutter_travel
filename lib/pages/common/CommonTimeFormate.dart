@@ -10,6 +10,14 @@ class CommonTimeFormate {
 		return dateStr;
 	}
 
+	/// 返回当年年份时间
+	String getNormalTime() {
+		var leftStr = DateTime.now().toLocal().toString();
+		var leftStrArr = leftStr.split(" ");
+
+		return leftStrArr[0];
+	}
+
 	/// (字符串传入) 返回年月日 时分秒格式 2019/11/22 22:22
 	String getFullTime(String dateNum) {
 		var dateNo = int.parse(dateNum);
