@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_travel/pages/common/CommonNavigator.dart';
 import 'package:flutter_travel/pages/modules/circler/models/CirclerModelContent.dart';
 import 'package:flutter_travel/pages/modules/circler/models/CirclerModelNewsItem.dart';
@@ -135,16 +136,36 @@ class _CommonPhotoViewerState extends State<CommonPhotoViewer> with CommonNaviga
 							onPageChanged: onPageChanged,
 						),
 						Container(
-							padding: const EdgeInsets.all(20.0),
+							padding: const EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 20.0),
+							constraints: BoxConstraints(
+								maxHeight: 250,
+								minHeight: 100
+							),
+							decoration: BoxDecoration(
+								color: Colors.black.withOpacity(0.5)
+							),
 							child: Column(
 								crossAxisAlignment: CrossAxisAlignment.start,
-								mainAxisAlignment: MainAxisAlignment.end,
+								mainAxisAlignment: MainAxisAlignment.start,
 								children: <Widget>[
-									Text(
-										this.list[this.currentIndex].desc, style: TextStyle(color: Colors.white, fontSize: 17.0, decoration: null),
+									Html(
+										data: this.list[this.currentIndex].desc,
+										useRichText: true,
+										defaultTextStyle: TextStyle(color: Colors.white, fontSize: 14.0),
+										customTextStyle: (dynamic node, TextStyle baseStyle) {
+											TextStyle newStyle;
+											if (node.localName == 'em') {
+												newStyle = baseStyle.merge(TextStyle(color: Colors.red, fontWeight: FontWeight.bold));
+											}
+
+											return newStyle;
+										}
 									),
-									Text(
-										"${currentIndex + 1} / ${this.list.length}", style: TextStyle(color: Colors.white, fontSize: 17.0, decoration: null),
+									Spacer(),
+									Center(
+										child: Text(
+											"${currentIndex + 1} / ${this.list.length}", style: TextStyle(color: Colors.white, fontSize: 17.0, decoration: null),
+										),
 									)
 								],
 							),
@@ -157,8 +178,16 @@ class _CommonPhotoViewerState extends State<CommonPhotoViewer> with CommonNaviga
 }
 
 class CommentPhotoViewerData {
-	final String url;
-	final String desc;
+	String url;
+	String desc;
 
-	CommentPhotoViewerData(this.url, this.desc);
+	CommentPhotoViewerData(String url, String desc) {
+		this.url = url;
+
+		// if (desc.length > 60) {
+		// 	this.desc = desc.substring(0, 60) + '...';
+		// } else {
+			this.desc = desc;
+		// }
+	}
 }
