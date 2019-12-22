@@ -18,7 +18,19 @@ class _NoticePageState extends State<NoticePage> with CommonNavigator {
   @override
   Widget build(BuildContext context) {
 	return Scaffold(
-		appBar: this.getAppBar(context, 'Notifications'),
+		appBar: AppBar(
+			title: Center(
+			child: Text('SIENCE TECHNOLOGY',
+				style: TextStyle(
+					color: Colors.black,
+					fontWeight: FontWeight.bold,
+					fontSize: 20.0
+				)
+			),
+			),
+			elevation: 0.0,
+			backgroundColor: Colors.white
+		),
 		body: BlocProvider(
 			bloc: CirclerBlocNewsList(),
 			child: NoticeContentView(),

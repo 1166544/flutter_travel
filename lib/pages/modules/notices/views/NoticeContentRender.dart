@@ -1,17 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_travel/pages/common/CommonNavigator.dart';
+import 'package:flutter_travel/pages/common/CommonTimeFormate.dart';
 import 'package:flutter_travel/pages/common/CommonTravelItem.dart';
 import 'package:flutter_travel/pages/modules/circler/models/CirclerModelNewsItem.dart';
+import 'package:flutter_travel/pages/modules/circler/views/pages/CircleDetailPage.dart';
 
 class NoticeContentRender extends StatefulWidget {
 	final CirclerModelNewsItem snapData;
 	final int index;
+	final String coverImage;
 
-	NoticeContentRender({Key key, this.snapData, this.index}) : super(key: key);
+	NoticeContentRender({Key key, this.snapData, this.index, this.coverImage}) : super(key: key);
 
 	_NoticeContentRenderState createState() => _NoticeContentRenderState();
 }
 
-class _NoticeContentRenderState extends State<NoticeContentRender> with CommonTravelItem {
+class _NoticeContentRenderState extends State<NoticeContentRender> with CommonTravelItem, CommonNavigator {
+
+	final CommonTimeFormate timeFormate = new CommonTimeFormate();
+
 	@override
 	Widget build(BuildContext context) {
 
@@ -39,14 +46,25 @@ class _NoticeContentRenderState extends State<NoticeContentRender> with CommonTr
 
 	/// 封面图片
 	Widget buildCoverImage() {
+		DecorationImage decorationImage;
+
+		if (widget.coverImage != null) {
+			decorationImage = DecorationImage(
+				image: NetworkImage(widget.coverImage, headers: this.getCrossHeaders()),
+				fit: BoxFit.cover
+			);
+		} else {
+			decorationImage = DecorationImage(
+				image: AssetImage('assets/road.jpg'),
+				fit: BoxFit.cover
+			);
+		}
+
 		return Container(
 			width: MediaQuery.of(this.context).size.width,
 			height: 180,
 			decoration: BoxDecoration(
-				image: DecorationImage(
-					image: AssetImage('assets/road.jpg'),
-					fit: BoxFit.cover
-				)
+				image: decorationImage
 			),
 			child: Padding(
 				padding: EdgeInsets.fromLTRB(30.0, 50.0, 30.0, 20.0),
@@ -144,12 +162,19 @@ class _NoticeContentRenderState extends State<NoticeContentRender> with CommonTr
 							style: TextStyle(
 								fontSize: 12.0,
 								fontWeight: FontWeight.bold,
+								color: Colors.grey.withOpacity(0.7)
 							),
 						),
 					),
-					Column(
-						crossAxisAlignment: CrossAxisAlignment.start,
-						children: readSubRenderList
+					GestureDetector(
+						behavior: HitTestBehavior.opaque,
+						onTap: () => {
+							this.navigateTo(context, CircleDetailPage(requestParams: { 'nids': widget.snapData.nid }))
+						},
+						child: Column(
+							crossAxisAlignment: CrossAxisAlignment.start,
+							children: readSubRenderList
+						),
 					)
 				],
 			)
@@ -175,9 +200,8 @@ class _NoticeContentRenderState extends State<NoticeContentRender> with CommonTr
 									widget.snapData.title,
 									overflow: TextOverflow.ellipsis,
 									style: TextStyle(
-										fontFamily: 'Montserrat',
 										fontWeight: FontWeight.bold,
-										color: Colors.black87.withOpacity(0.6)
+										fontSize: 14.0
 									)
 								)
 							)
@@ -200,33 +224,67 @@ class _NoticeContentRenderState extends State<NoticeContentRender> with CommonTr
 							),
 							SizedBox(width: 22.0),
 							// 描述文本区
-							Column(
-								crossAxisAlignment: CrossAxisAlignment.end,
-								mainAxisAlignment: MainAxisAlignment.start,
-								children: <Widget>[
-									SizedBox(height: 8.0),
-									// 描述文本
-									Container(
-										width: 230.0,
-										child: Text(
-											widget.snapData.abs,
-											softWrap: true,
-											overflow: TextOverflow.ellipsis,
-											maxLines: 10,
-											style: TextStyle(
-												color: Colors.black.withOpacity(0.8),
-												fontSize: 12.0
-											),
-										)
-									),
-									SizedBox(height: 60.0),
-									// 操作按钮
-									this.buildOperationButton(),
-								],
-							)
+							this.buildDescribeArea()
 						]
 					)
 			],
+		);
+	}
+
+	/// 描述文本区
+	Widget buildDescribeArea() {
+
+		List<Widget> renderList= [
+			SizedBox(height: 8.0),
+			// 描述文本
+			Container(
+				width: 230.0,
+				child: Text(
+					widget.snapData.abs,
+					softWrap: true,
+					overflow: TextOverflow.ellipsis,
+					maxLines: 10,
+					style: TextStyle(
+						color: Colors.black.withOpacity(0.8),
+						fontSize: 13.0
+					),
+				)
+			),
+			SizedBox(height: 10.0)
+		];
+
+		// 添加图片
+		if (widget.snapData.imageurls != null && widget.snapData.imageurls.length > 0) {
+			renderList.add(this.buildImage(widget.snapData.imageurls[0].url));
+		}
+
+		// 按钮结构
+		renderList.add(SizedBox(height: 7.0));
+		renderList.add(this.buildOperationButton());
+
+		return Column(
+			crossAxisAlignment: CrossAxisAlignment.end,
+			mainAxisAlignment: MainAxisAlignment.start,
+			children: renderList,
+		);
+	}
+
+	/// 显示图片
+	Widget buildImage(String url) {
+		return Container(
+			width: 230.0,
+			height: 80.0,
+			decoration: BoxDecoration(
+			image: DecorationImage(
+					image: NetworkImage(url, headers: this.getCrossHeaders()), fit: BoxFit.cover),
+					borderRadius: BorderRadius.only(
+						topLeft: Radius.circular(3.0),
+						topRight: Radius.circular(3.0),
+						bottomLeft: Radius.circular(3.0),
+						bottomRight: Radius.circular(3.0),
+					),
+					border: Border.all(color: Colors.grey.withOpacity(0.5))
+			),
 		);
 	}
 
@@ -248,7 +306,7 @@ class _NoticeContentRenderState extends State<NoticeContentRender> with CommonTr
 								borderRadius: BorderRadius.circular(2.0)
 							),
 							child: Center(
-								child: Text('Make readed', style: TextStyle(
+								child: Text('M- ${this.timeFormate.getDateText(widget.snapData.pulltime)}', style: TextStyle(
 											fontFamily: 'Montserrat',
 											fontSize: 12.0,
 											color: Colors.black
@@ -271,7 +329,7 @@ class _NoticeContentRenderState extends State<NoticeContentRender> with CommonTr
 							),
 							// 描述删除按钮
 							child: Center(
-								child: Text('DELETE', style: TextStyle(
+								child: Text('DEL / ${widget.snapData.commentCount}', style: TextStyle(
 											fontFamily: 'Montserrat',
 											fontSize: 12.0,
 											color: Colors.black

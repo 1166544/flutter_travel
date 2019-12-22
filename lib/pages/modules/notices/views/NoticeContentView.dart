@@ -99,7 +99,14 @@ class _NoticeContentViewState extends State<NoticeContentView> with CommonTravel
 	Widget buildLayout(AsyncSnapshot<CirclerModelsNewsList> snapshot) {
 		
 		List<CirclerModelNewsItem> list = snapshot.data.news;
+		String coverImage;
 		for (var i = 0; i < list.length; i++) {
+			CirclerModelNewsItem item = list[i];
+
+			// 计算首页面图片
+			if (coverImage == null && item.imageurls != null && item.imageurls.length > 1) {
+				coverImage = item.imageurls[0].url;
+			}
 			this.renderListData.add(list[i]);
 		}
 
@@ -118,7 +125,11 @@ class _NoticeContentViewState extends State<NoticeContentView> with CommonTravel
 						return this.getNoMoreItem();
 					}
 				} else {
-					return NoticeContentRender(snapData: this.renderListData[index], index: index);
+					return NoticeContentRender(
+						snapData: this.renderListData[index], 
+						index: index, 
+						coverImage: coverImage
+					);
 				}
 			},
 			// 分割线
