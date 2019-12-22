@@ -3,7 +3,7 @@ import 'package:flutter_travel/core/navigation/NavigationTabCore.dart';
 import 'package:flutter_travel/core/navigation/NavigationTabItem.dart';
 import 'package:flutter_travel/pages/modules/circler/CirclerPage.dart';
 import 'package:flutter_travel/pages/modules/graphics/GraphicsPage.dart';
-import 'package:flutter_travel/pages/modules/home/HomePage.dart';
+import 'package:flutter_travel/pages/modules/notices/NoticePage.dart';
 import 'package:flutter_travel/pages/modules/search/SearchPage.dart';
 
 /// TAB VIEW STATE入口类
@@ -63,7 +63,7 @@ class NavigationTabCoreState extends State<NavigationTabCore> {
 				break;
 			case NavigationTabItem.Search:
 				// Home模块
-				this.mapPageList[tabItem] = HomePage();
+				this.mapPageList[tabItem] = NoticePage();
 				break;
 			case NavigationTabItem.Circler:
 				// Search模块
