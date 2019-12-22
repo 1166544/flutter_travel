@@ -256,6 +256,8 @@ class _NoticeContentRenderState extends State<NoticeContentRender> with CommonTr
 		// 添加图片
 		if (widget.snapData.imageurls != null && widget.snapData.imageurls.length > 0) {
 			renderList.add(this.buildImage(widget.snapData.imageurls[0].url));
+		} else {
+			renderList.add(SizedBox(height: 80));
 		}
 
 		// 按钮结构
