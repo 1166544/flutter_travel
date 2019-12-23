@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_travel/core/bloc/BlocProvider.dart';
 import 'package:flutter_travel/pages/common/CommonLoading.dart';
 import 'package:flutter_travel/pages/common/CommonNavigator.dart';
@@ -187,45 +188,21 @@ class _CirclerDetailContentPageState extends State<CirclerDetailContentPage> wit
 	/// 内容块
 	Widget getCircleContent(CirclerModelContent item) {
 		if (item.type == 'text') {
-			var replaceContent = this.replaceContentWords(item.data.text);
+			var replaceContent = '<div>${item.data.text}</div>';
 
 			// 渲染文本
 			return Padding(
 				padding: EdgeInsets.fromLTRB(0, 8.0, 0, 18.0),
-				child: Text(replaceContent, style: TextStyle(fontSize: 14.0)),
+				child: Html(
+					data: replaceContent,
+					useRichText: true,
+					defaultTextStyle: TextStyle(color: Colors.black, fontSize: 13.0),
+				),
 			);
 		} else {
 			// 渲染图片
 			return Image.network(item.data.original.url);
 		}
-	}
-
-	/// 去除HTML结构
-	String replaceContentWords(String content) {
-		
-		// 非HTML结构
-		if (content.indexOf('</') == -1) {
-			return content;
-		}
-
-		// HTML结构处理 - 分割后部
-		var splitContent;
-		var backContent = content.split('</');
-
-		if (backContent.length > 0) {
-			// 分割前部
-			var frontContent = backContent[0].split('>');
-
-			if (frontContent.length >= 1) {
-				splitContent = frontContent[1];
-			}
-		}
-
-		if (splitContent == null) {
-			splitContent = content;
-		}
-
-		return splitContent;
 	}
 
 	/// 留言数量条
