@@ -17,8 +17,9 @@ class UserLoginSuccess {
 /// 用登录失败
 class UserLoginFailure {
     final String error;
+	final User user;
 
-    UserLoginFailure(this.error);
+    UserLoginFailure(this.error, this.user);
 }
 
 /// 用户退出
@@ -34,8 +35,15 @@ final Function login = (BuildContext context, String username, String password) 
             store.dispatch(UserLoginSuccess(User('placeholder_token', 'placeholder_id')));
             Navigator.of(context).pushNamedAndRemoveUntil(Routers.mainPage, (_) => false);
         } else {
-            store.dispatch(UserLoginFailure('Username or password were incorrect.'));
+            store.dispatch(UserLoginFailure('Username or password were incorrect.', User('', '')));
         }
+    };
+};
+
+/// 清除上次输入内容
+final Function clear = (BuildContext context) {
+    return (Store<AppState> store) {
+        store.dispatch(UserLoginFailure('', User('', '')));
     };
 };
 

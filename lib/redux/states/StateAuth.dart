@@ -43,7 +43,7 @@ class AuthState {
     factory AuthState.fromJSON(Map<String, dynamic> json) => AuthState(
         isAuthenticated: json['isAuthenticated'],
         isAuthenticating: json['isAuthenticating'],
-        error: json['error'],
+        error: '',	// 反系列化时上次记录的登录错误信息不需要记录
         user: json['user'] == null ? null : User.fromJSON(json['user']),
     );
 
@@ -52,7 +52,7 @@ class AuthState {
         'isAuthenticated': this.isAuthenticated,
         'isAuthenticating': this.isAuthenticating,
         'user': this.user == null ? null : this.user.toJSON(),
-        'error': this.error,
+        'error': '', // 系列化时上次记录的登录错误信息不需要记录
     };
 
     @override

@@ -14,6 +14,7 @@ class _LoginFormState extends State<LoginForm> {
 
     String _username;
     String _password;
+	Store<AppState> store;
 
     void _submit() {
         final form = formKey.currentState;
@@ -27,6 +28,8 @@ class _LoginFormState extends State<LoginForm> {
     Widget build(BuildContext context) {
         return StoreConnector<AppState, dynamic>(
             converter: (Store<AppState> store) {
+				this.store = store;
+
                 return (BuildContext context, String username, String password) => 
                     store.dispatch(login(context, username, password));
             },
@@ -49,6 +52,9 @@ class _LoginFormState extends State<LoginForm> {
 											validator: (val) =>
 												val.isEmpty ? 'Please enter your username.' : null,
 											onSaved: (val) => _username = val,
+											onChanged: (value) {
+												store.dispatch(clear(context));
+											}
 										),
 										TextFormField(
 											style: TextStyle(fontWeight: FontWeight.bold,),
@@ -58,6 +64,9 @@ class _LoginFormState extends State<LoginForm> {
 												val.isEmpty ? 'Please enter your password.' : null,
 											onSaved: (val) => _password = val,
 											obscureText: true,
+											onChanged: (value) {
+												store.dispatch(clear(context));
+											}
 										),
 									],
 								),

@@ -32,7 +32,8 @@ AuthState userLoginFailureReducer(AuthState auth, UserLoginFailure action) {
     return auth.copyWith(
         isAuthenticated: false,
         isAuthenticating: false,
-        error: action.error
+        error: action.error,
+		user: action.user
     );
 }
 
