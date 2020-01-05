@@ -15,8 +15,7 @@ class LoginPage extends StatelessWidget {
 				),
                 child: Padding(
                     padding: EdgeInsets.fromLTRB(0.0, MediaQuery.of(context).padding.top + 32.0, 0.0, 32.0),
-                    child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
+                    child: ListView(
                         children: <Widget>[
                             LoginWelcome(),
 							LoginLogo(),

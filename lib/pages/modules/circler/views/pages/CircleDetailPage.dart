@@ -30,7 +30,7 @@ class _CircleDetailPageState extends State<CircleDetailPage> with CommonNavigato
 
 		return Scaffold(
 			appBar: AppBar(
-				title: Text('新闻详情',
+				title: Text('NEWS DETAIL',
 					style: TextStyle(
 					color: Colors.black,
 					fontWeight: FontWeight.bold,
