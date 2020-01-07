@@ -49,7 +49,7 @@ class CirclerBlocDetail implements BlocBase {
 		CirclerModelCommentCount commentInfo = new CirclerModelCommentCount();
 		commentInfo.update(resultCommentCount);
 
-		// 构造数据结构
+		// 加载留言列表数据
 		dynamic commentList = await this._serviceNewsList.getCommentInfo(nids);
 		CirclerModelCommentData commentListData = new CirclerModelCommentData();
 		commentListData.update(commentList);

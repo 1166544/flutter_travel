@@ -151,7 +151,6 @@ class _CommentPageContentState extends State<CommentPageContent> with CommonTrav
 
 	/// 留言列表`
 	Widget buildCommentListArear(AsyncSnapshot<CirclerModelCommentData> snapshot) {
-		// 使用测试数据
 		List<CirclerModelComments> commentsListData = snapshot.data.comments;
 		List<Widget> commentList = [];
 
