@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter_travel/core/bloc/BlocBase.dart';
 import 'package:flutter_travel/pages/modules/circler/models/CirclerModelCommentCount.dart';
+import 'package:flutter_travel/pages/modules/circler/models/CirclerModelCommentData.dart';
 import 'package:flutter_travel/pages/modules/circler/models/CirclerModelDetail.dart';
 import 'package:flutter_travel/pages/modules/circler/models/CirclerModelPageData.dart';
 import 'package:flutter_travel/services/ServiceNewsList.dart';
@@ -36,21 +37,26 @@ class CirclerBlocDetail implements BlocBase {
 		await this._serviceToken.getToken();
 		
 		// 初始化时调用service列表数据 
-		var nids = this._requestParams['nids'];
-		dynamic resultDetail = await this._serviceNewsList.getDetail(nids);
-		dynamic resultCommentCount = await this._serviceNewsList.getCommentCount(nids);
-
-		// 留言数量数据
-		var commentInfo = new CirclerModelCommentCount();
-		commentInfo.update(resultCommentCount);
+		String nids = this._requestParams['nids'];
 
 		// 页面详情数据
-		var detailInfo = new CirclerModelDetail();
+		dynamic resultDetail = await this._serviceNewsList.getDetail(nids);
+		CirclerModelDetail detailInfo = new CirclerModelDetail();
 		detailInfo.update(resultDetail);
 
+		// 加载留言数量数据
+		dynamic resultCommentCount = await this._serviceNewsList.getCommentCount(nids);
+		CirclerModelCommentCount commentInfo = new CirclerModelCommentCount();
+		commentInfo.update(resultCommentCount);
+
 		// 构造数据结构
+		dynamic commentList = await this._serviceNewsList.getCommentInfo(nids);
+		CirclerModelCommentData commentListData = new CirclerModelCommentData();
+		commentListData.update(commentList);
+
+		// 构造页面展示所需要数据结构
 		this._detailInfo = new CirclerModelPageData();
-		this._detailInfo.update(detailInfo, commentInfo);
+		this._detailInfo.update(detailInfo, commentInfo, commentListData);
 		
 		// 触发数据更新
 		this._inStream.add(this._detailInfo);
