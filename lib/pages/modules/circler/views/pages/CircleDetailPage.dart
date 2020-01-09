@@ -10,6 +10,7 @@ import 'package:flutter_travel/pages/modules/circler/blocs/CirclerBlocDetail.dar
 import 'package:flutter_travel/pages/modules/circler/models/CirclerModelCommentCount.dart';
 import 'package:flutter_travel/pages/modules/circler/models/CirclerModelCommentData.dart';
 import 'package:flutter_travel/pages/modules/circler/models/CirclerModelContent.dart';
+import 'package:flutter_travel/pages/modules/circler/models/CirclerModelImage.dart';
 import 'package:flutter_travel/pages/modules/circler/models/CirclerModelNewsItem.dart';
 import 'package:flutter_travel/pages/modules/circler/models/CirclerModelPageData.dart';
 import 'package:flutter_travel/pages/modules/comments/CommentsPage.dart';
@@ -230,7 +231,22 @@ class _CirclerDetailContentPageState extends State<CirclerDetailContentPage> wit
 			);
 		} else {
 			// 渲染图片
-			return Image.network(item.data.original.url);
+			return GestureDetector(
+				onTap: () {
+					CirclerModelNewsItem photoItem = new CirclerModelNewsItem();
+					photoItem.imageurls = [];
+					CirclerModelImage photoModel = CirclerModelImage();
+					photoModel.url = item.data.original.url;
+					photoModel.urlWebp = photoModel.url;
+					photoModel.width = item.data.original.width;
+					photoModel.height = item.data.original.height;
+					photoItem.imageurls.add(photoModel);
+					photoItem.title = 'NEWS PHOTO';
+					photoItem.content = [];
+					this.showPhoto(this.context, photoItem, 0);
+				},
+				child: Image.network(item.data.original.url),
+			);
 		}
 	}
 
