@@ -27,7 +27,7 @@ class CommonPhotoViewer extends StatefulWidget {
 
 	@override
 	State<StatefulWidget> createState() {
-	return _CommonPhotoViewerState();
+		return _CommonPhotoViewerState();
 	}
 }
 
@@ -122,10 +122,15 @@ class _CommonPhotoViewerState extends State<CommonPhotoViewer> with CommonNaviga
 							scrollPhysics: const BouncingScrollPhysics(),
 							builder: (BuildContext context, int index) {
 								return PhotoViewGalleryPageOptions(
+									tightMode: true,
 									imageProvider: NetworkImage(this.list[index].url, headers: this.getCrossHeaders()),
 									initialScale: PhotoViewComputedScale.contained * 0.95,
 									minScale: PhotoViewComputedScale.contained * 0.95,
 									maxScale: PhotoViewComputedScale.covered * 1.1,
+									onTapUp: (BuildContext context, TapUpDetails details, PhotoViewControllerValue controllerValue) {
+										// 单击屏幕退出
+										this.navigateBack(this.context);
+									}
 									// heroTag: widget.galleryItems[index].id,
 								);
 							},
