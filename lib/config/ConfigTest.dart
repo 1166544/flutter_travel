@@ -7,7 +7,7 @@ class ConfigTest extends ConfigDefault {
 
 	ConfigTest(): super() {
 		// 测试服务器URL配置
-		this.serverUrlList.add(ApiConfigVO(
+		this.serverUrlList.add(ApiConfigVO( 
 			key: API_ENUM.API_OPEN,
 			serverUrl: 'https://www.apiopen.top/'
 		));
