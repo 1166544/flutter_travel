@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_travel/core/bloc/BlocProvider.dart';
-import 'package:flutter_travel/pages/common/CommonLoading.dart';
 import 'package:flutter_travel/pages/common/CommonNavigator.dart';
 import 'package:flutter_travel/pages/common/CommonTravelItem.dart';
 import 'package:flutter_travel/pages/modules/home/blocs/BlocNewsList.dart';
@@ -28,6 +27,7 @@ class _PageDisplayState extends State<PageDisplay> with CommonTravelItem, Common
   
 	BlocNewsList blocGalleryList;
 	bool _isInited = false;
+	bool _isPullup = false;
 	GlobalKey<RefreshIndicatorState> refreshKey = GlobalKey<RefreshIndicatorState>();
 
 	_PageDisplayState(): super();
@@ -86,13 +86,11 @@ class _PageDisplayState extends State<PageDisplay> with CommonTravelItem, Common
 		);
 	}
 
-	/// 空数据结构提示
-	Widget buildEmptyLayout(BuildContext context) {
-		return new CommonLoading();
-	}
-
 	/// 构建外观
 	Widget buildLayout(AsyncSnapshot<ModelsNewsList> snapshot) {
+
+		// 上拉增加，下拉刷新
+
 		List<ModelNewsItem> snapshotList = snapshot.data.news;
 		int count = snapshotList.length;
 		List<ModelNewsItem> coverList = [];

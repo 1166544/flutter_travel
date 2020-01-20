@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_travel/pages/common/CommonLoading.dart';
 import 'package:flutter_travel/pages/common/CommonNavigator.dart';
 import 'package:flutter_travel/pages/common/CommonPhotoViewer.dart';
 import 'package:flutter_travel/pages/modules/detail/DetailPage.dart';
@@ -8,6 +9,11 @@ import 'package:flutter_travel/pages/modules/home/models/ModelNewsItem.dart';
 class CommonTravelItem {
 
 	CommonNavigator navigatorData = new CommonNavigator();
+
+	/// 空数据结构提示
+	Widget buildEmptyLayout(BuildContext context) {
+		return new CommonLoading();
+	}
 
 	/// 返回加载中圆圈
 	Widget getLoadingItem() {

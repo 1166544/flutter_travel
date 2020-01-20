@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_travel/core/bloc/BlocProvider.dart';
 import 'package:flutter_travel/pages/common/CommonGalleryItem.dart';
-import 'package:flutter_travel/pages/common/CommonLoading.dart';
 import 'package:flutter_travel/pages/common/CommonNavigator.dart';
 import 'package:flutter_travel/pages/common/CommonTimeFormate.dart';
 import 'package:flutter_travel/pages/common/CommonTravelItem.dart';
@@ -104,11 +103,6 @@ class _PageDetailContentState extends State<PageDetailContent> with CommonTravel
 				}
 			}
 		);
-	}
-
-	/// 空数据结构提示
-	Widget buildEmptyLayout(BuildContext context) {
-		return new CommonLoading();
 	}
 
 	/// 构建外观

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_travel/core/bloc/BlocProvider.dart';
-import 'package:flutter_travel/pages/common/CommonLoading.dart';
 import 'package:flutter_travel/pages/common/CommonTravelItem.dart';
 import 'package:flutter_travel/pages/modules/home/blocs/BlocSearch.dart';
 import 'package:flutter_travel/pages/modules/home/models/ModelSearch.dart';
@@ -81,11 +80,6 @@ class _ComponentSearchContentState extends State<ComponentSearchContent> with Co
 				}
 			},
 		);
-	}
-
-	/// 空数据结构提示
-	Widget buildEmptyLayout(BuildContext context) {
-		return new CommonLoading();
 	}
 
 	/// 基础页面结构

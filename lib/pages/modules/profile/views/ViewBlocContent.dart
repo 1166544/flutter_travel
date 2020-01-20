@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_travel/core/bloc/BlocProvider.dart';
-import 'package:flutter_travel/pages/common/CommonLoading.dart';
 import 'package:flutter_travel/pages/common/CommonTravelItem.dart';
 import 'package:flutter_travel/pages/modules/profile/blocs/BlocMyInfo.dart';
 import 'package:flutter_travel/pages/modules/profile/models/ModelProfile.dart';
@@ -63,11 +62,6 @@ class _ViewBlocContentState extends State<ViewBlocContent> with CommonTravelItem
 				// }
 			},
 		);
-	}
-
-	/// 空数据结构提示
-	Widget buildEmptyLayout(BuildContext context) {
-		return new CommonLoading();
 	}
 
 	/// 基础页面结构
