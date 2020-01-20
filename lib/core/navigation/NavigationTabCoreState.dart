@@ -22,10 +22,10 @@ class NavigationTabCoreState extends State<NavigationTabCore> {
 			this._updateCurrentItem(NavigationTabItem.Search);
 			break;
 		case 2:
-			this._updateCurrentItem(NavigationTabItem.Circler);
+			this._updateCurrentItem(NavigationTabItem.Discover);
 			break;
 		case 3:
-			this._updateCurrentItem(NavigationTabItem.Graphics);
+			this._updateCurrentItem(NavigationTabItem.Profile);
 			break;
 		}
 	}
@@ -65,11 +65,11 @@ class NavigationTabCoreState extends State<NavigationTabCore> {
 				// Home模块
 				this.mapPageList[tabItem] = NoticePage();
 				break;
-			case NavigationTabItem.Circler:
+			case NavigationTabItem.Discover:
 				// Search模块
 				this.mapPageList[tabItem] = SearchPage();
 				break;
-			case NavigationTabItem.Graphics:
+			case NavigationTabItem.Profile:
 				// Graphics模块
 				this.mapPageList[tabItem] = GraphicsPage();
 				break;
@@ -90,8 +90,8 @@ class NavigationTabCoreState extends State<NavigationTabCore> {
 			items: [
 				this._buildItem(icon: Icons.home, tabItem: NavigationTabItem.Home),
 				this._buildItem(icon: Icons.search, tabItem: NavigationTabItem.Search),
-				this._buildItem(icon: Icons.account_circle, tabItem: NavigationTabItem.Circler),
-				this._buildItem(icon: Icons.graphic_eq, tabItem: NavigationTabItem.Graphics),
+				this._buildItem(icon: Icons.graphic_eq, tabItem: NavigationTabItem.Discover),
+				this._buildItem(icon: Icons.account_circle, tabItem: NavigationTabItem.Profile),
 			],
 			onTap: this._onSelectTab,
 		);
@@ -121,10 +121,10 @@ class NavigationTabCoreState extends State<NavigationTabCore> {
 				return "Home";
 			case NavigationTabItem.Search:
 				return "Search";
-			case NavigationTabItem.Circler:
-				return "Circler";
-			case NavigationTabItem.Graphics:
-				return "Graphics";
+			case NavigationTabItem.Discover:
+				return "Discover";
+			case NavigationTabItem.Profile:
+				return "Profile";
 		}
 		return null;
 	}
