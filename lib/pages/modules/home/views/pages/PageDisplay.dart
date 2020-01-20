@@ -26,18 +26,49 @@ class PageDisplay extends StatefulWidget {
 class _PageDisplayState extends State<PageDisplay> with CommonTravelItem, CommonNavigator {
   
 	BlocNewsList blocGalleryList;
-	bool _isInited = false;
-	bool _isPullup = false;
+	bool isInited = false;
+	bool hasMore = false;
+	bool isPullup = false;
+
 	GlobalKey<RefreshIndicatorState> refreshKey = GlobalKey<RefreshIndicatorState>();
 
+	/// 渲染列表
+	List<ModelNewsItem> renderListData = [];
+	List<ModelNewsItem> coverList = [];
+	List<ModelNewsItem> experienceList = [];
+
+	ScrollController _controller = new ScrollController();
+
 	_PageDisplayState(): super();
+	
+	@override
+	void initState() {
+		super.initState();
+
+		// 添加监听
+		this._controller.addListener(() {
+			if (this._controller.position.pixels == this._controller.position.maxScrollExtent) {
+				// 最后一页数据位置生成新的数据添加到LIST列表里
+				if (this.hasMore) {
+					this._retriveData();
+				}
+			}
+		});
+	}
+
+	@override
+	void dispose() {
+		this._controller.dispose();
+		this.blocGalleryList.dispose();
+		super.dispose();
+	}
 
 	@override
 	Widget build(BuildContext context) {
 		this.blocGalleryList = BlocProvider.of<BlocNewsList>(context);
 
 		// 连接数据源
-		if (!this._isInited) {
+		if (!this.isInited) {
 			this.blocGalleryList.updateParams({
 				'from': 'news_webapp',
 				'pd': 'webapp',
@@ -49,9 +80,6 @@ class _PageDisplayState extends State<PageDisplay> with CommonTravelItem, Common
 			});
 		}
 
-		// 已初始化标记
-		this._isInited = true;
-
 		// 连接视图，下拉刷新
 		return RefreshIndicator(
 			key: this.refreshKey,
@@ -61,14 +89,16 @@ class _PageDisplayState extends State<PageDisplay> with CommonTravelItem, Common
 		);
 	}
 
-	@override
-	void dispose() {
-		super.dispose();
-		this.blocGalleryList.dispose();
+	/// 下拉刷新调用
+	Future<Null> refreshData() async {
+		this.isPullup = false;
+		await this.blocGalleryList.update();
 	}
 
-	Future<Null> refreshData() async {
-		await this.blocGalleryList.update();
+	/// 上拉刷新调用
+	Future<Null> _retriveData() async {
+		this.isPullup = true;
+		await this.refreshData();
 	}
 
 	/// 连接stream数据源
@@ -78,6 +108,8 @@ class _PageDisplayState extends State<PageDisplay> with CommonTravelItem, Common
 			builder: (context, snapshot) {
 				// 数据源到位时渲染列表
 				if (snapshot.hasData) {
+					// 已初始化标记,在第1次收到数据之后设置
+					this.isInited = true;
 					return this.buildLayout(snapshot);
 				} else {
 					return this.buildEmptyLayout(context);
@@ -89,23 +121,28 @@ class _PageDisplayState extends State<PageDisplay> with CommonTravelItem, Common
 	/// 构建外观
 	Widget buildLayout(AsyncSnapshot<ModelsNewsList> snapshot) {
 
-		// 上拉增加，下拉刷新
+		// 是否为最后一页
+		this.hasMore = snapshot.data.hasmore;
+
+		// 区别上拉增加，下拉刷新时清除原有数据
+		if (!this.isPullup) {
+			this.experienceList = [];
+			this.coverList = [];
+			this.renderListData = [];
+		}
 
 		List<ModelNewsItem> snapshotList = snapshot.data.news;
-		int count = snapshotList.length;
-		List<ModelNewsItem> coverList = [];
-		List<ModelNewsItem> experienceList = [];
-		List<ModelNewsItem> newsLetter = [];
+		int count = snapshot.data.news.length;
 		
 		// 数据分层
 		for (var i = 0; i < count; i++) {
 			ModelNewsItem item = snapshotList[i]; 
-			if (item.imageurls.length > 0 && experienceList.length < 10) {
-				experienceList.add(item);
-			} else if (item.imageurls.length >= 1 && coverList.length < 5) {
-				coverList.add(item);
+			if (item.imageurls.length > 0 && this.experienceList.length < 10) {
+				this.experienceList.add(item);
+			} else if (item.imageurls.length >= 1 && this.coverList.length < 5) {
+				this.coverList.add(item);
 			} else {
-				newsLetter.add(item);
+				this.renderListData.add(item);
 			}
 		}
 
@@ -130,14 +167,38 @@ class _PageDisplayState extends State<PageDisplay> with CommonTravelItem, Common
 			renderList.add(ComponentList(experienceList));
 		}
 
-		// 第四行
-		if (newsLetter.length > 0) {
-			renderList.add(ComponentGrid(newsLetter));
-		}
+		// 第四行(动态增长)// 标题
+		renderList.add(Text('My Newsleeters', style:TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontFamily: 'Montserrat')));
+		renderList.add(SizedBox(height: 10.0));
+		renderList.add(this.getDynamicList(snapshotList));
 
 		return ListView(
+			controller: this._controller,
 			padding: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
 			children: renderList,
+		);
+	}
+
+	/// 动态增长列表
+	Widget getDynamicList(List<ModelNewsItem> snapshotList) {
+		return ListView.separated(
+			physics: NeverScrollableScrollPhysics(),	// 禁用滑动事件
+			shrinkWrap: true,							// 无限高度兼容
+			itemBuilder: (context, index) {
+				if (index == this.renderListData.length) {
+					if (this.hasMore) {
+						return this.getLoadingItem();
+					} else {
+						return this.getNoMoreItem();
+					}
+				} else {
+					return ComponentGrid(this.renderListData[index]);
+				}
+			},
+			separatorBuilder: (context, index) {
+				return SizedBox(height: 5.0);
+			},
+			itemCount: this.renderListData.length + 1,
 		);
 	}
 }
