@@ -112,9 +112,6 @@ class _PageDisplayState extends State<PageDisplay> with CommonTravelItem, Common
 		}
 
 		List<Widget> renderList = [
-			// 封面
-			// CirclerCover(),
-
 			// 搜索条
 			ComponentSearchBar(callBack: (val) => {
 				this.navigateTo(context, PageSearchResult(searchContent: val))
