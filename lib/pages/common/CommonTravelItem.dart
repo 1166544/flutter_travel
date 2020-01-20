@@ -3,8 +3,8 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_travel/pages/common/CommonNavigator.dart';
 import 'package:flutter_travel/pages/common/CommonPhotoViewer.dart';
-import 'package:flutter_travel/pages/modules/circler/models/CirclerModelImage.dart';
-import 'package:flutter_travel/pages/modules/circler/models/CirclerModelNewsItem.dart';
+import 'package:flutter_travel/pages/modules/home/models/ModelImage.dart';
+import 'package:flutter_travel/pages/modules/home/models/ModelNewsItem.dart';
 import 'package:flutter_travel/pages/modules/order/OrderPageView.dart';
 import 'package:flutter_travel/pages/modules/profile/ProfilePage.dart';
 
@@ -42,7 +42,7 @@ class CommonTravelItem {
 	}
 
   /// 构建图片网格
-  Widget buildImageGrid(BuildContext context, CirclerModelNewsItem item, {double paddingTop = 25.0}) {
+  Widget buildImageGrid(BuildContext context, ModelNewsItem item, {double paddingTop = 25.0}) {
     return Padding(
       padding: EdgeInsets.only(top: paddingTop, left: 15.0, right: 15.0),
       child: Container(
@@ -60,7 +60,7 @@ class CommonTravelItem {
   }
 
   /// 点击后显示图片
-  void showPhoto(BuildContext context, CirclerModelNewsItem item, int index) {
+  void showPhoto(BuildContext context, ModelNewsItem item, int index) {
 
 	  Navigator.push(
 		  context,
@@ -77,8 +77,8 @@ class CommonTravelItem {
   }
 
   /// 构建封面图片(左边大图，右边上下小图结构)
-  Widget buildComumnImage(BuildContext context, CirclerModelNewsItem item) {
-	   List<CirclerModelImage> imageList = item.imageurls;
+  Widget buildComumnImage(BuildContext context, ModelNewsItem item) {
+	   List<ModelImage> imageList = item.imageurls;
     return Row(
       children: <Widget>[
 		  GestureDetector(

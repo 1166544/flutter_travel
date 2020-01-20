@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_travel/pages/common/CommonNavigator.dart';
 import 'package:flutter_travel/pages/common/CommonTimeFormate.dart';
 import 'package:flutter_travel/pages/common/CommonTravelItem.dart';
-import 'package:flutter_travel/pages/modules/circler/models/CirclerModelNewsItem.dart';
-import 'package:flutter_travel/pages/modules/circler/views/pages/CircleDetailPage.dart';
+import 'package:flutter_travel/pages/modules/home/models/ModelNewsItem.dart';
+import 'package:flutter_travel/pages/modules/home/views/pages/PageDetail.dart';
 
 class NoticeContentRender extends StatefulWidget {
-	final CirclerModelNewsItem snapData;
+	final ModelNewsItem snapData;
 	final int index;
 	final String coverImage;
 
@@ -169,7 +169,7 @@ class _NoticeContentRenderState extends State<NoticeContentRender> with CommonTr
 					GestureDetector(
 						behavior: HitTestBehavior.opaque,
 						onTap: () => {
-							this.navigateTo(context, CircleDetailPage(requestParams: { 'nids': widget.snapData.nid }))
+							this.navigateTo(context, PageDetail(requestParams: { 'nids': widget.snapData.nid }))
 						},
 						child: Column(
 							crossAxisAlignment: CrossAxisAlignment.start,

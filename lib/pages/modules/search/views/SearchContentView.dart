@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_travel/core/bloc/BlocProvider.dart';
 import 'package:flutter_travel/pages/common/CommonLoading.dart';
 import 'package:flutter_travel/pages/common/CommonTravelItem.dart';
-import 'package:flutter_travel/pages/modules/circler/blocs/CirclerBlocNewsList.dart';
-import 'package:flutter_travel/pages/modules/circler/models/CirclerModelImage.dart';
-import 'package:flutter_travel/pages/modules/circler/models/CirclerModelNewsItem.dart';
-import 'package:flutter_travel/pages/modules/circler/models/CirclerModelsNewsList.dart';
+import 'package:flutter_travel/pages/modules/home/blocs/BlocNewsList.dart';
+import 'package:flutter_travel/pages/modules/home/models/ModelImage.dart';
+import 'package:flutter_travel/pages/modules/home/models/ModelNewsItem.dart';
+import 'package:flutter_travel/pages/modules/home/models/ModelsNewsList.dart';
 import 'package:flutter_travel/pages/modules/search/views/SearchContentRender.dart';
 
 /// 搜索模块视图
@@ -17,11 +17,11 @@ class ViewSearchContent extends StatefulWidget {
 
 class _ViewSearchContentState extends State<ViewSearchContent> with CommonTravelItem {
 
-	CirclerBlocNewsList blocGalleryList;
+	BlocNewsList blocGalleryList;
 	GlobalKey<RefreshIndicatorState> refreshKey = GlobalKey<RefreshIndicatorState>();
 	final formKey = GlobalKey<FormState>();
 	ScrollController _controller = new ScrollController();
-	List<CirclerModelNewsItem> renderListData = [];
+	List<ModelNewsItem> renderListData = [];
 	bool hasMore = false;
 
 	@override
@@ -54,7 +54,7 @@ class _ViewSearchContentState extends State<ViewSearchContent> with CommonTravel
 	@override
 	Widget build(BuildContext context) {
 		// 连接数据源
-		this.blocGalleryList = BlocProvider.of<CirclerBlocNewsList>(context);
+		this.blocGalleryList = BlocProvider.of<BlocNewsList>(context);
 		this.blocGalleryList.updateParamsByReset({
 			'form': 'news_webapp',
 			'pd': 'webapp',
@@ -81,7 +81,7 @@ class _ViewSearchContentState extends State<ViewSearchContent> with CommonTravel
 
 	/// 连接stream数据源
 	Widget getStreamBuilder(BuildContext context) {
-		return StreamBuilder<CirclerModelsNewsList>(
+		return StreamBuilder<ModelsNewsList>(
 			stream: this.blocGalleryList.outGallery,
 			builder: (context, snapshot) {
 				// 数据源到位时渲染列表
@@ -100,9 +100,9 @@ class _ViewSearchContentState extends State<ViewSearchContent> with CommonTravel
 	}
 
 	/// 基础页面结构
-	Widget buildLayout(AsyncSnapshot<CirclerModelsNewsList> snapshot) {
+	Widget buildLayout(AsyncSnapshot<ModelsNewsList> snapshot) {
 
-		List<CirclerModelNewsItem> list = snapshot.data.news;
+		List<ModelNewsItem> list = snapshot.data.news;
 		for (var i = 0; i < list.length; i++) {
 
 			if (list[i].imageurls != null && list[i].imageurls.length >= 3) {
@@ -138,14 +138,14 @@ class _ViewSearchContentState extends State<ViewSearchContent> with CommonTravel
 	}
 
 	// 补足缺失图片
-	CirclerModelNewsItem rebuildImageUrls(CirclerModelNewsItem item) {
+	ModelNewsItem rebuildImageUrls(ModelNewsItem item) {
 		var url1 = 'assets/beach1.jpg';
 		var url2 = 'assets/beach2.jpg';
 		var url3 = 'assets/beach3.jpg';
 		if (item.imageurls == null || item.imageurls.length == 0) {
-			CirclerModelImage subItem1 = new CirclerModelImage();
-			CirclerModelImage subItem2 = new CirclerModelImage();
-			CirclerModelImage subItem3 = new CirclerModelImage();
+			ModelImage subItem1 = new ModelImage();
+			ModelImage subItem2 = new ModelImage();
+			ModelImage subItem3 = new ModelImage();
 
 			subItem1.url = url1;
 			subItem2.url = url2;
@@ -158,8 +158,8 @@ class _ViewSearchContentState extends State<ViewSearchContent> with CommonTravel
 			];
 		}
 		if (item.imageurls != null && item.imageurls.length == 1) {
-			CirclerModelImage subItem1 = new CirclerModelImage();
-			CirclerModelImage subItem2 = new CirclerModelImage();
+			ModelImage subItem1 = new ModelImage();
+			ModelImage subItem2 = new ModelImage();
 
 			subItem1.url = url1;
 			subItem2.url = url2;
@@ -170,7 +170,7 @@ class _ViewSearchContentState extends State<ViewSearchContent> with CommonTravel
 			];
 		}
 		if (item.imageurls != null && item.imageurls.length == 2) {
-			CirclerModelImage subItem1 = new CirclerModelImage();
+			ModelImage subItem1 = new ModelImage();
 
 			subItem1.url = url1;
 

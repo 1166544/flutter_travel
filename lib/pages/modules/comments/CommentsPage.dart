@@ -5,8 +5,8 @@ import 'package:flutter_travel/pages/common/CommonLoading.dart';
 import 'package:flutter_travel/pages/common/CommonNavigator.dart';
 import 'package:flutter_travel/pages/common/CommonTimeFormate.dart';
 import 'package:flutter_travel/pages/common/CommonTravelItem.dart';
-import 'package:flutter_travel/pages/modules/circler/blocs/CirclerBlocComment.dart';
-import 'package:flutter_travel/pages/modules/circler/models/CirclerModelCommentData.dart';
+import 'package:flutter_travel/pages/modules/home/blocs/BlocComment.dart';
+import 'package:flutter_travel/pages/modules/home/models/ModelCommentData.dart';
 
 /// 留言区
 class CommentsPage extends StatefulWidget {
@@ -25,7 +25,7 @@ class _CommentsPageState extends State<CommentsPage> with CommonNavigator {
 		return Scaffold(
 			appBar: this.getAppBar(context, '精选留言'),
 			body: BlocProvider(
-				bloc: CirclerBlocComment(),
+				bloc: BlocComment(),
 				child: CommentPageContent(requestParams: widget.requestParams)
 			)
 		);
@@ -43,13 +43,13 @@ class CommentPageContent extends StatefulWidget {
 
 class _CommentPageContentState extends State<CommentPageContent> with CommonTravelItem, CommonTimeFormate, CommonNavigator {
 	
-	CirclerBlocComment blocCommentInfo;
+	BlocComment blocCommentInfo;
  
 	_CommentPageContentState(): super();
 
 	@override
 	Widget build(BuildContext context) {
-		this.blocCommentInfo = BlocProvider.of<CirclerBlocComment>(context);
+		this.blocCommentInfo = BlocProvider.of<BlocComment>(context);
 		this.blocCommentInfo.updateParams(widget.requestParams);
 
 		return this.getStreamBuilder(context);
@@ -63,7 +63,7 @@ class _CommentPageContentState extends State<CommentPageContent> with CommonTrav
 
 	/// 连接stream数据源
 	Widget getStreamBuilder(BuildContext context) {
-		return StreamBuilder<CirclerModelCommentData>(
+		return StreamBuilder<ModelCommentData>(
 			stream: this.blocCommentInfo.outStream,
 			builder: (context, snapshot) {
 				if (snapshot.hasData) {
@@ -76,7 +76,7 @@ class _CommentPageContentState extends State<CommentPageContent> with CommonTrav
 	}
 
 	/// 构建外观
-	Widget buildLayout(AsyncSnapshot<CirclerModelCommentData> snapshot) {
+	Widget buildLayout(AsyncSnapshot<ModelCommentData> snapshot) {
 		return ListView(
 			children: <Widget>[
 				// 蓝色图片区
@@ -93,10 +93,10 @@ class _CommentPageContentState extends State<CommentPageContent> with CommonTrav
 	}
 
 	/// 蓝色图片区
-	Widget buildBlueImageArea(AsyncSnapshot<CirclerModelCommentData> snapshot) {
+	Widget buildBlueImageArea(AsyncSnapshot<ModelCommentData> snapshot) {
 
 		// 选择第1条数据
-		CirclerModelComments firstItem;
+		ModelComments firstItem;
 		if (snapshot.data.comments.length > 0) {
 			firstItem = snapshot.data.comments[0];
 		} else {
@@ -150,11 +150,11 @@ class _CommentPageContentState extends State<CommentPageContent> with CommonTrav
 	}
 
 	/// 留言列表`
-	Widget buildCommentListArear(AsyncSnapshot<CirclerModelCommentData> snapshot) {
-		List<CirclerModelComments> commentsListData = snapshot.data.comments;
+	Widget buildCommentListArear(AsyncSnapshot<ModelCommentData> snapshot) {
+		List<ModelComments> commentsListData = snapshot.data.comments;
 		List<Widget> commentList = [];
 
-		for (CirclerModelComments item in commentsListData) {
+		for (ModelComments item in commentsListData) {
 			commentList.add(
 				Column(
 					crossAxisAlignment: CrossAxisAlignment.start,
@@ -185,7 +185,7 @@ class _CommentPageContentState extends State<CommentPageContent> with CommonTrav
 
 	/// 标题
 	/// * [PageCommentsVO item] 标题数据源
-	Widget getTitle(CirclerModelComments item) {
+	Widget getTitle(ModelComments item) {
 		return Padding(
 			padding: EdgeInsets.fromLTRB(26.0, 5.0, 26.0, 0.0),
 			child: Container(
@@ -196,7 +196,7 @@ class _CommentPageContentState extends State<CommentPageContent> with CommonTrav
 	}
 
 	/// 副标题
-	Widget getSubTitle(CirclerModelComments item) {
+	Widget getSubTitle(ModelComments item) {
 		return Padding(
 			padding: EdgeInsets.fromLTRB(26.0, 20.0, 26.0, 0.0),
 			child: Row(
@@ -248,7 +248,7 @@ class _CommentPageContentState extends State<CommentPageContent> with CommonTrav
 
 	/// 描述文本
 	/// * [PageCommentsVO item] 描述数据列表
-	Widget getDescriptionArea(CirclerModelComments item) {
+	Widget getDescriptionArea(ModelComments item) {
 		double containerWidth = MediaQuery.of(this.context).size.width - 50.0;
 		double textWidth = containerWidth - 40;
 
@@ -286,7 +286,7 @@ class _CommentPageContentState extends State<CommentPageContent> with CommonTrav
 
 	/// 图片区
 	/// * [PageCommentsVO item] 图片数据项
-	Widget getThumbilsArea(CirclerModelComments  item) {
+	Widget getThumbilsArea(ModelComments  item) {
 		List<Widget> thumbilsList = [];
 		int index = 0;
 		for (CommonGalleryItem itemVO in item.thumbList) {
@@ -329,7 +329,7 @@ class _CommentPageContentState extends State<CommentPageContent> with CommonTrav
 
 	/// 留言数量区
 	/// * [PageCommentsVO item] 留言数据
-	Widget getCommentsNumArea(CirclerModelComments item) {
+	Widget getCommentsNumArea(ModelComments item) {
 		return Padding(
 			padding: EdgeInsets.fromLTRB(26.0, 25.0, 20.0, 30.0),
 			child: Row(

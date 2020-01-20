@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_travel/core/bloc/BlocProvider.dart';
 import 'package:flutter_travel/pages/common/CommonLoading.dart';
 import 'package:flutter_travel/pages/common/CommonTravelItem.dart';
-import 'package:flutter_travel/pages/modules/circler/blocs/CirclerBlocNewsList.dart';
-import 'package:flutter_travel/pages/modules/circler/models/CirclerModelNewsItem.dart';
-import 'package:flutter_travel/pages/modules/circler/models/CirclerModelsNewsList.dart';
+import 'package:flutter_travel/pages/modules/home/blocs/BlocNewsList.dart';
+import 'package:flutter_travel/pages/modules/home/models/ModelNewsItem.dart';
+import 'package:flutter_travel/pages/modules/home/models/ModelsNewsList.dart';
 import 'package:flutter_travel/pages/modules/notices/views/NoticeContentRender.dart';
 
 class NoticeContentView extends StatefulWidget {
@@ -15,10 +15,10 @@ class NoticeContentView extends StatefulWidget {
 
 class _NoticeContentViewState extends State<NoticeContentView> with CommonTravelItem {
 	
-	CirclerBlocNewsList blocGalleryList;
+	BlocNewsList blocGalleryList;
 	GlobalKey<RefreshIndicatorState> refreshKey = GlobalKey<RefreshIndicatorState>();
 	ScrollController _controller = new ScrollController();
-	List<CirclerModelNewsItem> renderListData = [];
+	List<ModelNewsItem> renderListData = [];
 	bool hasMore = false;
 
 	@override
@@ -49,7 +49,7 @@ class _NoticeContentViewState extends State<NoticeContentView> with CommonTravel
 	@override
 	Widget build(BuildContext context) {
 		// 连接数据源
-		this.blocGalleryList = BlocProvider.of<CirclerBlocNewsList>(context);
+		this.blocGalleryList = BlocProvider.of<BlocNewsList>(context);
 		
 		// 接接本地数据
 		this.blocGalleryList.updateParams(
@@ -78,7 +78,7 @@ class _NoticeContentViewState extends State<NoticeContentView> with CommonTravel
 
 	/// 页面结构
 	Widget getStreamBuilder() {
-		return StreamBuilder<CirclerModelsNewsList>(
+		return StreamBuilder<ModelsNewsList>(
 			stream: this.blocGalleryList.outGallery,
 			builder: (context, snapshot) {
 				if (snapshot.hasData) {
@@ -96,12 +96,12 @@ class _NoticeContentViewState extends State<NoticeContentView> with CommonTravel
 	}
 
 	/// 构建外观
-	Widget buildLayout(AsyncSnapshot<CirclerModelsNewsList> snapshot) {
+	Widget buildLayout(AsyncSnapshot<ModelsNewsList> snapshot) {
 		
-		List<CirclerModelNewsItem> list = snapshot.data.news;
+		List<ModelNewsItem> list = snapshot.data.news;
 		String coverImage;
 		for (var i = 0; i < list.length; i++) {
-			CirclerModelNewsItem item = list[i];
+			ModelNewsItem item = list[i];
 
 			// 计算首页面图片
 			if (coverImage == null && item.imageurls != null && item.imageurls.length > 1) {

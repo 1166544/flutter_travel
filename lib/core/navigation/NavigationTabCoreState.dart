@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_travel/core/navigation/NavigationTabCore.dart';
 import 'package:flutter_travel/core/navigation/NavigationTabItem.dart';
-import 'package:flutter_travel/pages/modules/circler/CirclerPage.dart';
 import 'package:flutter_travel/pages/modules/graphics/GraphicsPage.dart';
+import 'package:flutter_travel/pages/modules/home/HomePage.dart';
 import 'package:flutter_travel/pages/modules/notices/NoticePage.dart';
 import 'package:flutter_travel/pages/modules/search/SearchPage.dart';
 
@@ -59,7 +59,7 @@ class NavigationTabCoreState extends State<NavigationTabCore> {
 		switch (tabItem) {
 			case NavigationTabItem.Home:
 				// Circler模块
-				this.mapPageList[tabItem] = CirclerPage();
+				this.mapPageList[tabItem] = HomePage();
 				break;
 			case NavigationTabItem.Search:
 				// Home模块

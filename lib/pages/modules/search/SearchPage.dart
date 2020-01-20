@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_travel/core/bloc/BlocProvider.dart';
-import 'package:flutter_travel/pages/modules/circler/blocs/CirclerBlocNewsList.dart';
+import 'package:flutter_travel/pages/modules/home/blocs/BlocNewsList.dart';
 import 'package:flutter_travel/pages/modules/search/views/SearchContentView.dart';
 import 'package:flutter_travel/redux/states/StateApp.dart';
 
@@ -28,7 +28,7 @@ class _SearchPageState extends State<SearchPage> {
 				backgroundColor: Colors.white
 			),
 			body: BlocProvider(
-				bloc: CirclerBlocNewsList(),
+				bloc: BlocNewsList(),
 				child: ViewSearchContent(),
 			)
 		);

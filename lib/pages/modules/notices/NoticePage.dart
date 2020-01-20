@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_travel/core/bloc/BlocProvider.dart';
 import 'package:flutter_travel/pages/common/CommonNavigator.dart';
-import 'package:flutter_travel/pages/modules/circler/blocs/CirclerBlocNewsList.dart';
+import 'package:flutter_travel/pages/modules/home/blocs/BlocNewsList.dart';
 import 'package:flutter_travel/pages/modules/notices/views/NoticeContentView.dart';
 
 /// 通知页
@@ -32,7 +32,7 @@ class _NoticePageState extends State<NoticePage> with CommonNavigator {
 			backgroundColor: Colors.white
 		),
 		body: BlocProvider(
-			bloc: CirclerBlocNewsList(),
+			bloc: BlocNewsList(),
 			child: NoticeContentView(),
 		),
 	);

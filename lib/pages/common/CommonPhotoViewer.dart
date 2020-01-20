@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_travel/pages/common/CommonNavigator.dart';
-import 'package:flutter_travel/pages/modules/circler/models/CirclerModelContent.dart';
-import 'package:flutter_travel/pages/modules/circler/models/CirclerModelNewsItem.dart';
+import 'package:flutter_travel/pages/modules/home/models/ModelContent.dart';
+import 'package:flutter_travel/pages/modules/home/models/ModelNewsItem.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
 
@@ -23,7 +23,7 @@ class CommonPhotoViewer extends StatefulWidget {
 	final dynamic maxScale;
 	final int initialIndex;
 	final PageController pageController;
-	final CirclerModelNewsItem galleryItems;
+	final ModelNewsItem galleryItems;
 
 	@override
 	State<StatefulWidget> createState() {
@@ -53,10 +53,10 @@ class _CommonPhotoViewerState extends State<CommonPhotoViewer> with CommonNaviga
 		}
 
 		// 添加内容插图
-		List<CirclerModelContent> contentList = [];
-		List<CirclerModelContent> imageList = [];
+		List<ModelContent> contentList = [];
+		List<ModelContent> imageList = [];
 		for (var i = 0; i < widget.galleryItems.content.length; i++) {
-			CirclerModelContent item = widget.galleryItems.content[i];
+			ModelContent item = widget.galleryItems.content[i];
 
 			if (item.type == 'text') {
 				contentList.add(item);
@@ -67,7 +67,7 @@ class _CommonPhotoViewerState extends State<CommonPhotoViewer> with CommonNaviga
 
 		// 合并插图
 		for (var i = 0; i < imageList.length; i++) {
-			CirclerModelContent item = imageList[i];
+			ModelContent item = imageList[i];
 
 			if (i < contentList.length) {
 				this.list.add(CommentPhotoViewerData(item.data.original.url, contentList[i].data.text));

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_travel/pages/common/CommonTimeFormate.dart';
 import 'package:flutter_travel/pages/common/CommonTravelItem.dart';
-import 'package:flutter_travel/pages/modules/circler/models/CirclerModelNewsItem.dart';
+import 'package:flutter_travel/pages/modules/home/models/ModelNewsItem.dart';
 
 class SearchContentRender extends StatefulWidget {
-	final CirclerModelNewsItem snapData;
+	final ModelNewsItem snapData;
 	final int renderIndex;
 
 	SearchContentRender({Key key, this.snapData, this.renderIndex}) : super(key: key);
@@ -22,7 +22,7 @@ class _SearchContentRenderState extends State<SearchContentRender> with CommonTr
 	/// * [ModelGalleryItem item] 单项数据源
 	/// * [int index] 列表顺序
 	/// * [int total] 列表总长度
-	Widget buildListItem(CirclerModelNewsItem item, int index) {
+	Widget buildListItem(ModelNewsItem item, int index) {
 
 		List<Widget> displayList = [];
 
