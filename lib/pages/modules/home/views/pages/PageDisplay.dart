@@ -27,24 +27,30 @@ class PageDisplay extends StatefulWidget {
 class _PageDisplayState extends State<PageDisplay> with CommonTravelItem, CommonNavigator {
   
 	BlocNewsList blocGalleryList;
+	bool _isInited = false;
 	GlobalKey<RefreshIndicatorState> refreshKey = GlobalKey<RefreshIndicatorState>();
 
 	_PageDisplayState(): super();
 
 	@override
 	Widget build(BuildContext context) {
-		// 连接数据源
 		this.blocGalleryList = BlocProvider.of<BlocNewsList>(context);
-		// 连接本地数据
-		this.blocGalleryList.updateParams({
-			'from': 'news_webapp',
-			'pd': 'webapp',
-			'os': 'iphone',
-			'ver': 6,
-			'category_id': 101,
-			'action': 0,
-			'wf': 0
-		});
+
+		// 连接数据源
+		if (!this._isInited) {
+			this.blocGalleryList.updateParams({
+				'from': 'news_webapp',
+				'pd': 'webapp',
+				'os': 'iphone',
+				'ver': 6,
+				'category_id': 101,
+				'action': 0,
+				'wf': 0
+			});
+		}
+
+		// 已初始化标记
+		this._isInited = true;
 
 		// 连接视图，下拉刷新
 		return RefreshIndicator(
