@@ -17,13 +17,16 @@ class CommonTravelItem {
 
 	/// 返回加载中圆圈
 	Widget getLoadingItem() {
-		return new Container(
-			padding: EdgeInsets.all(16.0),
-			alignment: Alignment.center,
-			child: SizedBox(
-				width: 24.0,
-				height: 24.0,
-				child: CircularProgressIndicator(strokeWidth: 2.0,),
+		return Container(
+			padding: EdgeInsets.fromLTRB(0, 5.0, 0, 5.0),
+			decoration: BoxDecoration(
+				color: Colors.grey.withOpacity(0.3)
+			),
+			child: Center(
+				child: Text(
+					'上拉加载更多~',
+					style: TextStyle(color: Colors.black)
+				),
 			),
 		);
 	}

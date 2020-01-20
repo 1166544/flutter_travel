@@ -167,7 +167,7 @@ class _PageDisplayState extends State<PageDisplay> with CommonTravelItem, Common
 			renderList.add(ComponentList(experienceList));
 		}
 
-		// 第四行(动态增长)// 标题
+		// 第四行(动态增长)标题
 		renderList.add(Text('My Newsleeters', style:TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontFamily: 'Montserrat')));
 		renderList.add(SizedBox(height: 10.0));
 		renderList.add(this.getDynamicList(snapshotList));
@@ -182,7 +182,7 @@ class _PageDisplayState extends State<PageDisplay> with CommonTravelItem, Common
 	/// 动态增长列表
 	Widget getDynamicList(List<ModelNewsItem> snapshotList) {
 		return ListView.separated(
-			physics: NeverScrollableScrollPhysics(),	// 禁用滑动事件
+			physics: BouncingScrollPhysics(),	// 禁用滑动事件
 			shrinkWrap: true,							// 无限高度兼容
 			itemBuilder: (context, index) {
 				if (index == this.renderListData.length) {
