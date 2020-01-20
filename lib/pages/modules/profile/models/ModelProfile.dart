@@ -1,12 +1,12 @@
 /// 我的信息 数据结构
-class GraphicsBlocModel {
+class ModelProfile {
 
 	String name;
 	List<ModelGalleryItem> list = [];
 
-	GraphicsBlocModel();
+	ModelProfile();
 
-	GraphicsBlocModel.empty() {
+	ModelProfile.empty() {
 		this.name = '';
 	}
 

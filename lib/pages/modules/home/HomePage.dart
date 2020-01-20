@@ -21,7 +21,7 @@ class HomePage extends StatefulWidget {
 	_HomePageState createState() => _HomePageState();
 }
 
-/// 我的内容（新闻列表）
+/// 首页
 class _HomePageState extends State<HomePage> with CommonNavigator, SingleTickerProviderStateMixin {
 
 	/// TAB菜单

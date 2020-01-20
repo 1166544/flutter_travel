@@ -3,16 +3,16 @@ import 'package:flutter_travel/pages/common/CommonTimeFormate.dart';
 import 'package:flutter_travel/pages/common/CommonTravelItem.dart';
 import 'package:flutter_travel/pages/modules/home/models/ModelNewsItem.dart';
 
-class SearchContentRender extends StatefulWidget {
+class ViewContentRender extends StatefulWidget {
 	final ModelNewsItem snapData;
 	final int renderIndex;
 
-	SearchContentRender({Key key, this.snapData, this.renderIndex}) : super(key: key);
+	ViewContentRender({Key key, this.snapData, this.renderIndex}) : super(key: key);
 
-	_SearchContentRenderState createState() => _SearchContentRenderState();
+	_ViewContentRenderState createState() => _ViewContentRenderState();
 }
 
-class _SearchContentRenderState extends State<SearchContentRender> with CommonTravelItem, CommonTimeFormate {
+class _ViewContentRenderState extends State<ViewContentRender> with CommonTravelItem, CommonTimeFormate {
 	@override
 	Widget build(BuildContext context) {
 		return this.buildListItem(widget.snapData, widget.renderIndex);

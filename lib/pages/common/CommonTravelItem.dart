@@ -1,12 +1,9 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_travel/pages/common/CommonNavigator.dart';
 import 'package:flutter_travel/pages/common/CommonPhotoViewer.dart';
+import 'package:flutter_travel/pages/modules/detail/DetailPage.dart';
 import 'package:flutter_travel/pages/modules/home/models/ModelImage.dart';
 import 'package:flutter_travel/pages/modules/home/models/ModelNewsItem.dart';
-import 'package:flutter_travel/pages/modules/order/OrderPageView.dart';
-import 'package:flutter_travel/pages/modules/profile/ProfilePage.dart';
 
 class CommonTravelItem {
 
@@ -226,8 +223,7 @@ class CommonTravelItem {
   void navigateToSubPage(BuildContext context) {
 	  Navigator.push(context,
 		MaterialPageRoute(builder: (context) {
-		var ran = Random().nextInt(100);
-		return ran < 50 ? OrderPageView() : ProfilePage();
+		return DetailPage();
 	}));
   }
 

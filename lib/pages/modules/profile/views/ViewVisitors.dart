@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_travel/pages/modules/graphics/models/GraphicsBlocModel.dart';
+import 'package:flutter_travel/pages/modules/profile/models/ModelProfile.dart';
 
 /// 中部访问信息
-class GraphicsVisitors extends StatefulWidget {
-  GraphicsVisitors({Key key, AsyncSnapshot<GraphicsBlocModel> snapshot}) : super(key: key);
+class ViewVisitors extends StatefulWidget {
+  ViewVisitors({Key key, AsyncSnapshot<ModelProfile> snapshot}) : super(key: key);
 
-  _GraphicsVisitorsState createState() => _GraphicsVisitorsState();
+  _ViewVisitorsState createState() => _ViewVisitorsState();
 }
 
-class _GraphicsVisitorsState extends State<GraphicsVisitors> {
+class _ViewVisitorsState extends State<ViewVisitors> {
 	@override
 	Widget build(BuildContext context) {
 		return Container(

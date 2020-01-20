@@ -3,6 +3,7 @@ import 'package:flutter_travel/pages/modules/login/views/LoginFormContainer.dart
 import 'package:flutter_travel/pages/modules/login/views/LoginLogo.dart';
 import 'package:flutter_travel/pages/modules/login/views/LoginWelcome.dart';
 
+/// 登录页
 class LoginPage extends StatelessWidget {
     LoginPage({Key key}) : super(key: key);
 

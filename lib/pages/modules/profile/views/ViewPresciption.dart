@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_travel/pages/modules/graphics/models/GraphicsBlocModel.dart';
-import 'package:flutter_travel/pages/modules/graphics/views/GraphicsCommentView.dart';
+import 'package:flutter_travel/pages/modules/profile/models/ModelProfile.dart';
+import 'package:flutter_travel/pages/modules/profile/views/ViewProfileComment.dart';
 
 /// 中实现信息
-class GraphicsPresciption extends StatefulWidget {
-  GraphicsPresciption({Key key, AsyncSnapshot<GraphicsBlocModel> snapshot}) : super(key: key);
+class ViewPresciption extends StatefulWidget {
+  ViewPresciption({Key key, AsyncSnapshot<ModelProfile> snapshot}) : super(key: key);
 
-  _GraphicsPresciptionState createState() => _GraphicsPresciptionState();
+  _ViewPresciptionState createState() => _ViewPresciptionState();
 }
 
-class _GraphicsPresciptionState extends State<GraphicsPresciption> with GraphicsCommentView {
+class _ViewPresciptionState extends State<ViewPresciption> with ViewProfileComment {
   @override
   Widget build(BuildContext context) {
 	return Container(

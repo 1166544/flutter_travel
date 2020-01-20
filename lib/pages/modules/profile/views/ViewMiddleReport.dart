@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_travel/pages/modules/graphics/models/GraphicsBlocModel.dart';
-import 'package:flutter_travel/pages/modules/graphics/views/GraphicsCommentView.dart';
+import 'package:flutter_travel/pages/modules/profile/models/ModelProfile.dart';
+import 'package:flutter_travel/pages/modules/profile/views/ViewProfileComment.dart';
 
 /// 中部报告信息
-class GraphicsMiddleReport extends StatefulWidget {
-  GraphicsMiddleReport({Key key, AsyncSnapshot<GraphicsBlocModel> snapshot}) : super(key: key);
+class ViewMiddleReport extends StatefulWidget {
+  ViewMiddleReport({Key key, AsyncSnapshot<ModelProfile> snapshot}) : super(key: key);
 
-  _GraphicsMiddleReportState createState() => _GraphicsMiddleReportState();
+  _ViewMiddleReportState createState() => _ViewMiddleReportState();
 }
 
-class _GraphicsMiddleReportState extends State<GraphicsMiddleReport> with GraphicsCommentView {
+class _ViewMiddleReportState extends State<ViewMiddleReport> with ViewProfileComment {
   @override
   Widget build(BuildContext context) {
 	return Container(

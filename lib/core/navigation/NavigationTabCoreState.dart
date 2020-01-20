@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_travel/core/navigation/NavigationTabCore.dart';
 import 'package:flutter_travel/core/navigation/NavigationTabItem.dart';
-import 'package:flutter_travel/pages/modules/graphics/GraphicsPage.dart';
+import 'package:flutter_travel/pages/modules/discover/DiscoverPage.dart';
+import 'package:flutter_travel/pages/modules/profile/ProfilePage.dart';
 import 'package:flutter_travel/pages/modules/home/HomePage.dart';
-import 'package:flutter_travel/pages/modules/notices/NoticePage.dart';
 import 'package:flutter_travel/pages/modules/search/SearchPage.dart';
 
 /// TAB VIEW STATE入口类
@@ -58,20 +58,20 @@ class NavigationTabCoreState extends State<NavigationTabCore> {
 
 		switch (tabItem) {
 			case NavigationTabItem.Home:
-				// Circler模块
+				// Home模块
 				this.mapPageList[tabItem] = HomePage();
 				break;
 			case NavigationTabItem.Search:
-				// Home模块
-				this.mapPageList[tabItem] = NoticePage();
-				break;
-			case NavigationTabItem.Discover:
-				// Search模块
+				// 搜索模块
 				this.mapPageList[tabItem] = SearchPage();
 				break;
+			case NavigationTabItem.Discover:
+				// Discover模块
+				this.mapPageList[tabItem] = DiscoverPage();
+				break;
 			case NavigationTabItem.Profile:
-				// Graphics模块
-				this.mapPageList[tabItem] = GraphicsPage();
+				// Profile模块
+				this.mapPageList[tabItem] = ProfilePage();
 				break;
 		}
 

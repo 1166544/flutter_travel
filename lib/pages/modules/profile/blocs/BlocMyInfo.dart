@@ -1,26 +1,26 @@
 import 'dart:async';
 
 import 'package:flutter_travel/core/bloc/BlocBase.dart';
-import 'package:flutter_travel/pages/modules/graphics/models/GraphicsBlocModel.dart';
+import 'package:flutter_travel/pages/modules/profile/models/ModelProfile.dart';
 import 'package:flutter_travel/services/ServiceJsonPlaceHolder.dart';
 
 /// 我的页面数据
-class GraphicsBlocMyInfo implements BlocBase {
+class BlocMyInfo implements BlocBase {
 
-	GraphicsBlocModel _gallery;
+	ModelProfile _gallery;
 	ServiceJsonPlaceHolder _serviceJsonPlaceHolder;
 
 	/// 数据流处理器对象
-	StreamController<GraphicsBlocModel> _galleryController;
+	StreamController<ModelProfile> _galleryController;
 
 	/// 流入流
-	Sink<GraphicsBlocModel> get _inGallery => _galleryController.sink;
+	Sink<ModelProfile> get _inGallery => _galleryController.sink;
 
 	/// 流出流
-	Stream<GraphicsBlocModel> get outGallery => _galleryController.stream;
+	Stream<ModelProfile> get outGallery => _galleryController.stream;
 
-	GraphicsBlocMyInfo() {
-		this._galleryController = StreamController<GraphicsBlocModel>.broadcast();
+	BlocMyInfo() {
+		this._galleryController = StreamController<ModelProfile>.broadcast();
 		this._serviceJsonPlaceHolder = new ServiceJsonPlaceHolder();
 		this.init();
 	}
@@ -31,7 +31,7 @@ class GraphicsBlocMyInfo implements BlocBase {
 		dynamic result = await this._serviceJsonPlaceHolder.getPostsData();
 
 		// 返回数据列表更新数据源
-		this._gallery = new GraphicsBlocModel();
+		this._gallery = new ModelProfile();
 		this._gallery.update(result);
 
 		// 触发数据更新
@@ -49,7 +49,7 @@ class GraphicsBlocMyInfo implements BlocBase {
 
 	/// 更新数据源操作
 	/// * [GraphicsBlocModel gallery] 数据源
-	void updateGallery(GraphicsBlocModel gallery) {
+	void updateGallery(ModelProfile gallery) {
 		this._gallery = gallery;
 		this._inGallery.add(this._gallery);
 	}

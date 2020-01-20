@@ -3,31 +3,31 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_travel/core/bloc/BlocProvider.dart';
 import 'package:flutter_travel/pages/common/CommonLoading.dart';
 import 'package:flutter_travel/pages/common/CommonTravelItem.dart';
-import 'package:flutter_travel/pages/modules/graphics/blocs/GraphicsBlocMyInfo.dart';
-import 'package:flutter_travel/pages/modules/graphics/models/GraphicsBlocModel.dart';
-import 'package:flutter_travel/pages/modules/graphics/views/GraphicsPresciption.dart';
-import 'package:flutter_travel/pages/modules/graphics/views/GraphicsTopStructs.dart';
-import 'package:flutter_travel/pages/modules/graphics/views/GraphicsVisitors.dart';
-import 'package:flutter_travel/pages/modules/graphics/views/GriaphicsMiddleReport.dart';
+import 'package:flutter_travel/pages/modules/profile/blocs/BlocMyInfo.dart';
+import 'package:flutter_travel/pages/modules/profile/models/ModelProfile.dart';
+import 'package:flutter_travel/pages/modules/profile/views/ViewMiddleReport.dart';
+import 'package:flutter_travel/pages/modules/profile/views/ViewPresciption.dart';
+import 'package:flutter_travel/pages/modules/profile/views/ViewTopStructs.dart';
+import 'package:flutter_travel/pages/modules/profile/views/ViewVisitors.dart';
 import 'package:flutter_travel/redux/actions/ActionAuth.dart';
 import 'package:flutter_travel/redux/states/StateApp.dart';
 
 /// 我的信息模块视图
-class GraphicsBlocContentView extends StatefulWidget {
-  GraphicsBlocContentView({Key key}) : super(key: key);
+class ViewBlocContent extends StatefulWidget {
+  ViewBlocContent({Key key}) : super(key: key);
 
-  _GraphicsBlocContentViewState createState() => _GraphicsBlocContentViewState();
+  _ViewBlocContentState createState() => _ViewBlocContentState();
 }
 
-class _GraphicsBlocContentViewState extends State<GraphicsBlocContentView> with CommonTravelItem {
+class _ViewBlocContentState extends State<ViewBlocContent> with CommonTravelItem {
 
-	GraphicsBlocMyInfo blocGalleryList;
+	BlocMyInfo blocGalleryList;
 	GlobalKey<RefreshIndicatorState> refreshKey = GlobalKey<RefreshIndicatorState>();
 
 	@override
 	Widget build(BuildContext context) {
 		// 连接数据源
-		this.blocGalleryList = BlocProvider.of<GraphicsBlocMyInfo>(context);
+		this.blocGalleryList = BlocProvider.of<BlocMyInfo>(context);
 
 		// 连接视图, 加上下拉刷新
 		return RefreshIndicator(
@@ -51,7 +51,7 @@ class _GraphicsBlocContentViewState extends State<GraphicsBlocContentView> with 
 
 	/// 连接stream数据源
 	Widget getStreamBuilder(BuildContext context) {
-		return StreamBuilder<GraphicsBlocModel>(
+		return StreamBuilder<ModelProfile>(
 			stream: this.blocGalleryList.outGallery,
 			builder: (context, snapshot) {
 				// 数据源到位时渲染列表
@@ -71,7 +71,7 @@ class _GraphicsBlocContentViewState extends State<GraphicsBlocContentView> with 
 	}
 
 	/// 基础页面结构
-	Widget buildSearchLayout(AsyncSnapshot<GraphicsBlocModel> snapshot) {
+	Widget buildSearchLayout(AsyncSnapshot<ModelProfile> snapshot) {
 		return ListView(
 			children: <Widget>[
 				// 顶部头像
@@ -93,27 +93,27 @@ class _GraphicsBlocContentViewState extends State<GraphicsBlocContentView> with 
 	}
 	
 	/// 顶部头像
-	Widget buildTopStucts(AsyncSnapshot<GraphicsBlocModel> snapshot) {
-		return GraphicsTopStructs(snapshot: snapshot);
+	Widget buildTopStucts(AsyncSnapshot<ModelProfile> snapshot) {
+		return ViewTopStructs(snapshot: snapshot);
 	}
 	
 	/// 中部报告信息
-	Widget buildMiddleReportStucts(AsyncSnapshot<GraphicsBlocModel> snapshot) {
-		return GraphicsMiddleReport(snapshot: snapshot);
+	Widget buildMiddleReportStucts(AsyncSnapshot<ModelProfile> snapshot) {
+		return ViewMiddleReport(snapshot: snapshot);
 	}
 	
 	/// 中部访问信息
-	Widget buildMiddleVisitorStucts(AsyncSnapshot<GraphicsBlocModel> snapshot) {
-		return GraphicsVisitors(snapshot: snapshot);
+	Widget buildMiddleVisitorStucts(AsyncSnapshot<ModelProfile> snapshot) {
+		return ViewVisitors(snapshot: snapshot);
 	}
 	
 	/// 中部实现信息
-	Widget buildMiddlePresciptionStucts(AsyncSnapshot<GraphicsBlocModel> snapshot) {
-		return GraphicsPresciption(snapshot: snapshot);
+	Widget buildMiddlePresciptionStucts(AsyncSnapshot<ModelProfile> snapshot) {
+		return ViewPresciption(snapshot: snapshot);
 	}
 	
 	/// 底部按钮
-	Widget buildButtonStucts(AsyncSnapshot<GraphicsBlocModel> snapshot) {
+	Widget buildButtonStucts(AsyncSnapshot<ModelProfile> snapshot) {
 		return StoreConnector<AppState, dynamic>(
 			converter: (store) => (BuildContext context) {
 				store.dispatch(logout(context));

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_travel/pages/modules/graphics/models/GraphicsBlocModel.dart';
+import 'package:flutter_travel/pages/modules/profile/models/ModelProfile.dart';
 
 /// 顶部头像结构
-class GraphicsTopStructs extends StatefulWidget {
-  GraphicsTopStructs({Key key, AsyncSnapshot<GraphicsBlocModel> snapshot}) : super(key: key);
+class ViewTopStructs extends StatefulWidget {
+  ViewTopStructs({Key key, AsyncSnapshot<ModelProfile> snapshot}) : super(key: key);
 
-  _GraphicsTopStructsState createState() => _GraphicsTopStructsState();
+  _ViewTopStructsState createState() => _ViewTopStructsState();
 }
 
-class _GraphicsTopStructsState extends State<GraphicsTopStructs> {
+class _ViewTopStructsState extends State<ViewTopStructs> {
   @override
   Widget build(BuildContext context) {
 	return Container(

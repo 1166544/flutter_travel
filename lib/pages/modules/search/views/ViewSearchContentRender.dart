@@ -5,17 +5,17 @@ import 'package:flutter_travel/pages/common/CommonTravelItem.dart';
 import 'package:flutter_travel/pages/modules/home/models/ModelNewsItem.dart';
 import 'package:flutter_travel/pages/modules/home/views/pages/PageDetail.dart';
 
-class NoticeContentRender extends StatefulWidget {
+class ViewSearchContentRender extends StatefulWidget {
 	final ModelNewsItem snapData;
 	final int index;
 	final String coverImage;
 
-	NoticeContentRender({Key key, this.snapData, this.index, this.coverImage}) : super(key: key);
+	ViewSearchContentRender({Key key, this.snapData, this.index, this.coverImage}) : super(key: key);
 
-	_NoticeContentRenderState createState() => _NoticeContentRenderState();
+	_ViewSearchContentRenderState createState() => _ViewSearchContentRenderState();
 }
 
-class _NoticeContentRenderState extends State<NoticeContentRender> with CommonTravelItem, CommonNavigator {
+class _ViewSearchContentRenderState extends State<ViewSearchContentRender> with CommonTravelItem, CommonNavigator {
 
 	final CommonTimeFormate timeFormate = new CommonTimeFormate();
 
