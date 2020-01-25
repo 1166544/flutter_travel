@@ -179,7 +179,7 @@ class _ViewDiscoverContentState extends State<ViewDiscoverContent> with CommonTr
 	/// 旅行日志分隔
 	Widget buildTravelSep() {
 		return Image.asset(
-			'assets/dot.png',
+			'assets/images/dot.png',
 			width: 10.0,
 			height: 80.0
 		);

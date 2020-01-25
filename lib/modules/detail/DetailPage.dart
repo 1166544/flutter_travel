@@ -177,7 +177,7 @@ class _DetailPageState extends State<DetailPage> {
 							  child: Container(
 								  height: 20.0,
 								  width: 20.0,
-								  child: Image.asset('assets/navarrow.png'),
+								  child: Image.asset('assets/images/navarrow.png'),
 							  ),
 						  ),
 						  SizedBox(width: 7.0),
@@ -186,7 +186,7 @@ class _DetailPageState extends State<DetailPage> {
 							  child: Container(
 								  height: 20.0,
 								  width: 20.0,
-								  child: Image.asset('assets/chatbubble.png'),
+								  child: Image.asset('assets/images/chatbubble.png'),
 							  ),
 						  ),
 						  SizedBox(width: 7.0),
@@ -195,7 +195,7 @@ class _DetailPageState extends State<DetailPage> {
 							  child: Container(
 								  height: 20.0,
 								  width: 20.0,
-								  child: Image.asset('assets/chatbubble.png'),
+								  child: Image.asset('assets/images/chatbubble.png'),
 							  ),
 						  ),
 					  ],

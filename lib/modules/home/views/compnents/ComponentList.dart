@@ -152,7 +152,7 @@ class ComponentList extends StatelessWidget with CommonTimeFormate, CommonNaviga
 										height: 10.0,
 										decoration: BoxDecoration(
 										image: DecorationImage(
-											image: AssetImage('assets/speechbubble.png'),
+											image: AssetImage('assets/images/speechbubble.png'),
 											fit: BoxFit.cover),
 										),
 									),

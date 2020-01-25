@@ -36,7 +36,7 @@ class _ViewContentRenderState extends State<ViewContentRender> with CommonTravel
 			;
 			displayList.add(
 				Image.asset(
-					'assets/dot.png',
+					'assets/images/dot.png',
 					width: 10.0,
 					height: 60.0
 				)
@@ -81,7 +81,7 @@ class _ViewContentRenderState extends State<ViewContentRender> with CommonTravel
 	Widget buildStartIcon() {
 		return Padding(
 			padding: EdgeInsets.fromLTRB(7.0, 7.0, 7.0, 0.0),
-			child: Image.asset('assets/start.png', width: 150.0, height: 150.0)
+			child: Image.asset('assets/images/start.png', width: 150.0, height: 150.0)
 		);
 	}
 

@@ -18,7 +18,7 @@ class LoginLogo extends StatelessWidget {
 							height: 167,
 							decoration: BoxDecoration(
 								image: DecorationImage(
-									image: AssetImage('assets/tran_logo.png'),
+									image: AssetImage('assets/images/tran_logo.png'),
 									fit: BoxFit.cover
 								)
 							),

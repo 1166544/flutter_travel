@@ -210,7 +210,7 @@ class CommonTravelItem {
 					this.inkWellButton(
 				inkWidth: 20.0,
 				inkHeight: 20.0,
-				picUrl: 'assets/chatbubble.png',
+				picUrl: 'assets/images/chatbubble.png',
 				onCallBack: () {
 					//   Navigator.push(
 					// 	context,

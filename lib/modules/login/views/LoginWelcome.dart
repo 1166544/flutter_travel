@@ -20,7 +20,7 @@ class LoginWelcome extends StatelessWidget {
 					height: 39.0,
 					decoration: BoxDecoration(
 						image: DecorationImage(
-							image: AssetImage('assets/cloud.png'),
+							image: AssetImage('assets/images/cloud.png'),
 							fit: BoxFit.cover
 						)
 					),
