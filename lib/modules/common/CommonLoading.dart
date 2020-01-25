@@ -1,3 +1,4 @@
+import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 
 class CommonLoading extends StatelessWidget {
@@ -5,20 +6,17 @@ class CommonLoading extends StatelessWidget {
 
 	@override
 	Widget build(BuildContext context) {
-	return Container(
-		child: Column(
-			mainAxisAlignment: MainAxisAlignment.center,
-			crossAxisAlignment: CrossAxisAlignment.center,
-			children: [
-				Container(
-					width: MediaQuery.of(context).size.width,
-					child: Text(
-						'loading...',
-						textAlign: TextAlign.center,
+		return Center(
+			child: Container(
+				width: 150,
+				height: 150,
+				child: FlareActor(
+						"assets/animations/flare_loading.flr", 
+						alignment:Alignment.center, 
+						fit:BoxFit.contain, 
+						animation:"Alarm"
 					),
-				)
-			],
-		),
-	);
+			)
+		);
 	}
 }
