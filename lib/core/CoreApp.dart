@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_travel/core/middleware/MiddlewarePersistor.dart';
 import 'package:flutter_travel/core/presentation/PresentationPlatformAdaptive.dart';
-import 'package:flutter_travel/pages/modules/loading/LoadingPage.dart';
+import 'package:flutter_travel/modules/loading/LoadingPage.dart';
 import 'package:flutter_travel/redux/states/StateApp.dart';
 import 'package:flutter_travel/redux/store/StoreApp.dart';
 import 'package:flutter_travel/routers/Routers.dart';

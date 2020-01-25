@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_travel/core/navigation/NavigationTabCore.dart';
-import 'package:flutter_travel/pages/modules/home/views/pages/PageSearchResult.dart';
-import 'package:flutter_travel/pages/modules/login/LoginPage.dart';
+import 'package:flutter_travel/modules/home/views/pages/PageSearchResult.dart';
+import 'package:flutter_travel/modules/login/LoginPage.dart';
 import 'package:flutter_travel/redux/states/StateApp.dart';
 import 'package:redux/redux.dart';
 

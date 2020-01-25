@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_travel/core/navigation/NavigationTabCore.dart';
 import 'package:flutter_travel/core/navigation/NavigationTabItem.dart';
-import 'package:flutter_travel/pages/modules/discover/DiscoverPage.dart';
-import 'package:flutter_travel/pages/modules/profile/ProfilePage.dart';
-import 'package:flutter_travel/pages/modules/home/HomePage.dart';
-import 'package:flutter_travel/pages/modules/search/SearchPage.dart';
+import 'package:flutter_travel/modules/discover/DiscoverPage.dart';
+import 'package:flutter_travel/modules/profile/ProfilePage.dart';
+import 'package:flutter_travel/modules/home/HomePage.dart';
+import 'package:flutter_travel/modules/search/SearchPage.dart';
 
 /// TAB VIEW STATE入口类
 class NavigationTabCoreState extends State<NavigationTabCore> {
