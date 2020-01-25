@@ -54,7 +54,6 @@ class BlocComment implements BlocBase {
 		await this.init();
 	}
 
-	@override
 	void dispose() {
 		// this._commentController.close();
 	}

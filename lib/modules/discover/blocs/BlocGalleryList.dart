@@ -1,11 +1,10 @@
 import 'dart:async';
 
-import 'package:flutter_travel/core/bloc/BlocBase.dart';
 import 'package:flutter_travel/modules/discover/models/ModelGallery.dart';
 import 'package:flutter_travel/services/ServiceJsonPlaceHolder.dart';
 
 /// 列表数据
-class BlocGalleryList implements BlocBase {
+class BlocGalleryList {
 
 	ModelGallery _gallery;
 	ServiceJsonPlaceHolder _serviceJsonPlaceHolder;
@@ -19,7 +18,11 @@ class BlocGalleryList implements BlocBase {
 	/// 流出流
 	Stream<ModelGallery> get outGallery => _galleryController.stream;
 
-	BlocGalleryList() {
+  BlocGalleryList(
+    this._gallery,
+    this._serviceJsonPlaceHolder,
+    this._galleryController,
+  ) {
 		this._galleryController = StreamController<ModelGallery>.broadcast();
 		this._serviceJsonPlaceHolder = new ServiceJsonPlaceHolder();
 		this.init();
@@ -42,7 +45,6 @@ class BlocGalleryList implements BlocBase {
 		await this.init();
 	}
 
-	@override
 	void dispose() {
 		// this._galleryController.close();
 	}
