@@ -4,6 +4,8 @@ enum API_ENUM {
 
 	NEWS_BAIDU,
 
+	BING,
+
 	MOBILE_BAIDU,
 	
 	SINA,

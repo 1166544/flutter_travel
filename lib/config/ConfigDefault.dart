@@ -37,6 +37,10 @@ class ConfigDefault {
 			key: API_ENUM.MOBILE_BAIDU,
 			serverUrl: 'https://m.baidu.com/'
 		));
+		this.serverUrlList.add(ApiConfigVO(
+			key: API_ENUM.BING,
+			serverUrl: 'https://cn.bing.com/'
+		));
 	}
 
 	/// 获取服务器URL

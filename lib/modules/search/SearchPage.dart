@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_travel/core/bloc/BlocProvider.dart';
 import 'package:flutter_travel/modules/common/CommonNavigator.dart';
 import 'package:flutter_travel/modules/home/blocs/BlocNewsList.dart';
-import 'package:flutter_travel/modules/search/views/ViewSearchContentView.dart';
+import 'package:flutter_travel/modules/search/views/ViewSearchContent.dart';
 
 /// 搜索页
 class SearchPage extends StatefulWidget {
@@ -33,7 +33,7 @@ class _SearchPageState extends State<SearchPage> with CommonNavigator {
 		),
 		body: BlocProvider(
 			bloc: BlocNewsList(),
-			child: ViewSearchContentView(),
+			child: ViewSearchContent(),
 		),
 	);
   }

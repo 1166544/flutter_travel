@@ -6,13 +6,13 @@ import 'package:flutter_travel/modules/home/models/ModelNewsItem.dart';
 import 'package:flutter_travel/modules/home/models/ModelsNewsList.dart';
 import 'package:flutter_travel/modules/search/views/ViewSearchContentRender.dart';
 
-class ViewSearchContentView extends StatefulWidget {
-  ViewSearchContentView({Key key}) : super(key: key);
+class ViewSearchContent extends StatefulWidget {
+  ViewSearchContent({Key key}) : super(key: key);
 
-  _ViewSearchContentViewState createState() => _ViewSearchContentViewState();
+  _ViewSearchContentState createState() => _ViewSearchContentState();
 }
 
-class _ViewSearchContentViewState extends State<ViewSearchContentView> with CommonTravelItem {
+class _ViewSearchContentState extends State<ViewSearchContent> with CommonTravelItem {
 	
 	BlocNewsList blocGalleryList;
 	GlobalKey<RefreshIndicatorState> refreshKey = GlobalKey<RefreshIndicatorState>();

@@ -3,6 +3,7 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_travel/core/navigation/NavigationTabCore.dart';
 import 'package:flutter_travel/modules/home/views/pages/PageSearchResult.dart';
 import 'package:flutter_travel/modules/login/LoginPage.dart';
+import 'package:flutter_travel/modules/splash/SplashPage.dart';
 import 'package:flutter_travel/redux/states/StateApp.dart';
 import 'package:redux/redux.dart';
 
@@ -25,7 +26,7 @@ class Routers {
 			// 首页
 			Routers.homePage: (BuildContext context) => StoreConnector<AppState, dynamic>( 
 				converter: (store) => store.state.auth.isAuthenticated, 
-				builder: (BuildContext context, isAuthenticated) => isAuthenticated ? NavigationTabCore() : LoginPage()
+				builder: (BuildContext context, isAuthenticated) => isAuthenticated ? SplashPage() : LoginPage()
 			),
 
 			// 登录页

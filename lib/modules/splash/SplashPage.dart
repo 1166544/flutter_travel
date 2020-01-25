@@ -1,26 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_travel/core/bloc/BlocProvider.dart';
+import 'package:flutter_travel/modules/splash/blocs/BlocSplashList.dart';
+import 'package:flutter_travel/modules/splash/views/ViewSplashContent.dart';
 
+/// 闪屏页
 class SplashPage extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() {
-    return new SplashPageState();
-  }
+  SplashPage({Key key}) : super(key: key);
+
+  _SplashPageState createState() => _SplashPageState();
 }
 
-class SplashPageState extends State<SplashPage> {
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
+class _SplashPageState extends State<SplashPage> {
   @override
   Widget build(BuildContext context) {
-    return Text('data');
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
+	return Scaffold(
+		body: BlocProvider(
+			bloc: BlocSplashList(),
+			child: ViewSplashContent(),
+		),
+	);
   }
 }
