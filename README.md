@@ -63,4 +63,7 @@ Could not determine the dependencies of task ':app:flutterBuildDebug' when start
 flutter clean
 然后
 flutter run
+
+生成JSON序列化文件.g.dart
+flutter packages pub run build_runner build
 ```

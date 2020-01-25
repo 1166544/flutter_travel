@@ -75,8 +75,11 @@ class ModelNewsItem {
 			}
 		}
 
-		this.ext = new ModelExt();
-		this.ext.update(data['ext']);
+		// this.ext = new ModelExt();
+		// this.ext.update(data['ext']);
+
+		// 使用自动反序列化
+		this.ext = ModelExt.fromJson(data['ext']);
 
 		// 图片
 		this.imageurls = new List<ModelImage>();
