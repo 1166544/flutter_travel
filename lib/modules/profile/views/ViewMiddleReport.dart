@@ -22,7 +22,7 @@ class _ViewMiddleReportState extends State<ViewMiddleReport> with ViewProfileCom
 				Text(
 					'2 tables away 6-7 hours nor more than 8 tables \nper day',
 					style: TextStyle(
-						fontSize: 12.0,
+						fontSize: 14.0,
 						color: Color(0xFF252949)
 					)
 				),

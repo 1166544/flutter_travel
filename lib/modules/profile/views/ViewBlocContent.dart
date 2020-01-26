@@ -6,6 +6,7 @@ import 'package:flutter_travel/modules/profile/blocs/BlocMyInfo.dart';
 import 'package:flutter_travel/modules/profile/models/ModelProfile.dart';
 import 'package:flutter_travel/modules/profile/views/ViewMiddleReport.dart';
 import 'package:flutter_travel/modules/profile/views/ViewPresciption.dart';
+import 'package:flutter_travel/modules/profile/views/ViewProfileChart.dart';
 import 'package:flutter_travel/modules/profile/views/ViewTopStructs.dart';
 import 'package:flutter_travel/modules/profile/views/ViewVisitors.dart';
 import 'package:flutter_travel/redux/actions/ActionAuth.dart';
@@ -74,6 +75,9 @@ class _ViewBlocContentState extends State<ViewBlocContent> with CommonTravelItem
 				// 中部报告信息
 				this.buildMiddleReportStucts(snapshot),
 
+				// 中部表格
+				this.buildMiddleChart(),
+
 				// 中部实现信息
 				this.buildMiddlePresciptionStucts(snapshot),
 
@@ -135,6 +139,14 @@ class _ViewBlocContentState extends State<ViewBlocContent> with CommonTravelItem
 					)
 				)
 			)
+		);
+	}
+
+	/// 中部表格
+  	Widget buildMiddleChart() {
+		return Container(
+			padding: EdgeInsets.fromLTRB(20.0, 30.0, 20.0, 0.0),
+			child: ViewProfileChart(),
 		);
 	}
 

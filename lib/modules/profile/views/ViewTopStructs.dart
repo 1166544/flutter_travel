@@ -35,7 +35,7 @@ class _ViewTopStructsState extends State<ViewTopStructs> {
 							borderRadius: BorderRadius.circular(62.5),
 							image: DecorationImage(
 								fit:BoxFit.cover,
-								image: AssetImage('assets/chris.jpg')
+								image: AssetImage('assets/images/chatbubble.png')
 							),
 							boxShadow: [
 								BoxShadow(

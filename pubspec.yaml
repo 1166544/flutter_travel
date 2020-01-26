@@ -31,6 +31,7 @@ dependencies:
   flutter_html: ^0.9.8
   webview_flutter: ^0.3.17
   flare_flutter: ^2.0.1
+  fl_chart: ^0.8.0
 
 dev_dependencies:
   flutter_test:
