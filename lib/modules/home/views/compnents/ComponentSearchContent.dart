@@ -34,9 +34,9 @@ class _ComponentSearchContentState extends State<ComponentSearchContent> with Co
 			// 判断是否滑动到了页面的最底部
 			if(_controller.position.pixels == this._controller.position.maxScrollExtent){
 				// 如果不是最后一页数据，则生成新的数据添加到list里面
-				if(this.hasMore) {
-					this._retrieveData();
-				}
+				// if(this.hasMore) {
+				// 	this.retrieveData();
+				// }
 			}
 		});
 	}
@@ -49,7 +49,7 @@ class _ComponentSearchContentState extends State<ComponentSearchContent> with Co
 		super.dispose();
 	}
 
-	void _retrieveData() {
+	void retrieveData() {
 		this.blocGalleryList.update();
 	}
 
@@ -108,7 +108,10 @@ class _ComponentSearchContentState extends State<ComponentSearchContent> with Co
 					// 判断是不是最后一页
 					if(this.hasMore){
 						// 不是最后一页，返回一个loading窗
-						return this.getLoadMoreItem();
+						return GestureDetector(
+							child: this.getLoadMoreItem(),
+							onTap: this.retrieveData,
+						);
 					} else {
 						// 是最后一页，显示我是有底线的
 						return this.getNoMoreItem();

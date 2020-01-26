@@ -31,9 +31,9 @@ class _ViewDiscoverContentState extends State<ViewDiscoverContent> with CommonTr
 		this._controller.addListener(() {
 			if (this._controller.position.pixels == this._controller.position.maxScrollExtent) {
 				// 最后一页数据位置生成新的数据添加到LIST列表里
-				if (this.hasMore) {
-					this.retriveData();
-				}
+				// if (this.hasMore) {
+				// 	this.retriveData();
+				// }
 			}
 		});
 	}
@@ -114,7 +114,10 @@ class _ViewDiscoverContentState extends State<ViewDiscoverContent> with CommonTr
 			itemBuilder: (context, index) {
 				if (index == this.renderListData.length) {
 					if (this.hasMore) {
-						return this.getLoadMoreItem();
+						return GestureDetector(
+							child: this.getLoadMoreItem(),
+							onTap: this.retriveData,
+						);
 					} else {
 						return this.getNoMoreItem();
 					}

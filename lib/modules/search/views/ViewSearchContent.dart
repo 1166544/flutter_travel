@@ -26,9 +26,9 @@ class _ViewSearchContentState extends State<ViewSearchContent> with CommonTravel
 
 		this._controller.addListener(() {
 			if (this._controller.position.pixels == this._controller.position.maxScrollExtent) {
-				if (this.hasMore) {
-					this.retriveData();
-				}
+				// if (this.hasMore) {
+				// 	this.retriveData();
+				// }
 			}
 		});
 	}
@@ -114,7 +114,10 @@ class _ViewSearchContentState extends State<ViewSearchContent> with CommonTravel
 			itemBuilder: (context, index) {
 				if (index == this.renderListData.length) {
 					if (this.hasMore) {
-						return this.getLoadMoreItem(); 
+						return GestureDetector(
+							child: this.getLoadMoreItem(),
+							onTap: this.retriveData,
+						);
 					} else {
 						return this.getNoMoreItem();
 					}
