@@ -201,7 +201,7 @@ class _PageDetailContentState extends State<PageDetailContent> with CommonTravel
 				Text(
 					this.getFullTime(contentItem.ts), 
 					style: TextStyle(
-						fontSize: 10.0,
+						fontSize: 14.0,
 						color: Colors.grey,
 					)
 				)
@@ -220,7 +220,7 @@ class _PageDetailContentState extends State<PageDetailContent> with CommonTravel
 				child: Html(
 					data: replaceContent,
 					useRichText: true,
-					defaultTextStyle: TextStyle(color: Colors.black, fontSize: 13.0),
+					defaultTextStyle: TextStyle(color: Colors.black, fontSize: 15.0),
 				),
 			);
 		} else {
@@ -314,7 +314,7 @@ class _PageDetailContentState extends State<PageDetailContent> with CommonTravel
 			padding: EdgeInsets.fromLTRB(15.0, 20.0, 26.0, 0.0),
 			child: Row(
 				children: <Widget>[
-					Text('一介草根 ${item.from}', style: TextStyle(color: Color(0xFFaeb2bc), fontSize: 10)),
+					Text('一介草根 ${item.from}', style: TextStyle(color: Color(0xFFaeb2bc), fontSize: 12)),
 					Spacer(),
 					this.getSubTitleNum(0)
 				],
