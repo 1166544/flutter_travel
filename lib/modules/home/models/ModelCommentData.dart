@@ -17,6 +17,10 @@ class ModelCommentData {
 
 		if (result != null && errmsg == 0) {
 			dynamic resultData = result['data'];
+
+			if (resultData is List) {
+				return;
+			}
 			dynamic comments = resultData['comments'];
 			dynamic vipComments = resultData['vip_comments'];
 			dynamic hotComments = resultData['hot_comments'];
