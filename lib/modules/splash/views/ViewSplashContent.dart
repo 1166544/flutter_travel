@@ -22,16 +22,17 @@ class _SplashScreenState extends State<ViewSplashContent> with CommonTravelItem 
 	BlocSplashList blocGalleryList;
 	int maxTickTime = 10;
 	int currentCountDown = 10;
+	Timer timer;
 
 	/// 倒计时
 	startTime() async {
 		var _duration = new Duration(seconds: 1);
-		return new Timer.periodic(_duration, navigationPage);
+		this.timer = new Timer.periodic(_duration, navigationPage);
+		return this.timer;
 	}
 
 	/// 倒计时处理
 	void navigationPage(dynamic timer) {
-		print(timer);
 		if (timer.tick >= this.maxTickTime) {
 			this.navigateToHome();
 		} else {
@@ -54,6 +55,7 @@ class _SplashScreenState extends State<ViewSplashContent> with CommonTravelItem 
 
 	@override
 	void dispose() {
+		this.timer.cancel();
 		super.dispose();
 		this.blocGalleryList.dispose();
 	}
