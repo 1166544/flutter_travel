@@ -49,9 +49,9 @@ class _PageDisplayState extends State<PageDisplay> with CommonTravelItem, Common
 		this._controller.addListener(() {
 			if (this._controller.position.pixels == this._controller.position.maxScrollExtent) {
 				// 最后一页数据位置生成新的数据添加到LIST列表里
-				if (this.hasMore) {
-					this._retriveData();
-				}
+				// if (this.hasMore) {
+				// 	this.retriveData();
+				// }
 			}
 		});
 	}
@@ -95,8 +95,8 @@ class _PageDisplayState extends State<PageDisplay> with CommonTravelItem, Common
 		await this.blocGalleryList.update();
 	}
 
-	/// 上拉刷新调用
-	Future<Null> _retriveData() async {
+	/// 点击加载更多
+	Future<Null> retriveData() async {
 		this.isPullup = true;
 		await this.refreshData();
 	}
@@ -187,7 +187,10 @@ class _PageDisplayState extends State<PageDisplay> with CommonTravelItem, Common
 			itemBuilder: (context, index) {
 				if (index == this.renderListData.length) {
 					if (this.hasMore) {
-						return this.getLoadingItem();
+						return GestureDetector(
+							child: this.getLoadMoreItem(),
+							onTap: this.retriveData,
+						);
 					} else {
 						return this.getNoMoreItem();
 					}

@@ -15,16 +15,16 @@ class CommonTravelItem {
 		return new CommonLoading();
 	}
 
-	/// 返回加载中圆圈
-	Widget getLoadingItem() {
+	/// 点击加载更多
+	Widget getLoadMoreItem() {
 		return Container(
-			padding: EdgeInsets.fromLTRB(0, 5.0, 0, 5.0),
+			padding: EdgeInsets.fromLTRB(0, 15.0, 0, 15.0),
 			decoration: BoxDecoration(
 				color: Colors.grey.withOpacity(0.3)
 			),
 			child: Center(
 				child: Text(
-					'上拉加载更多~',
+					'点击加载更多~',
 					style: TextStyle(color: Colors.black)
 				),
 			),

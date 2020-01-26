@@ -27,7 +27,7 @@ class _ViewSearchContentState extends State<ViewSearchContent> with CommonTravel
 		this._controller.addListener(() {
 			if (this._controller.position.pixels == this._controller.position.maxScrollExtent) {
 				if (this.hasMore) {
-					this._retriveData();
+					this.retriveData();
 				}
 			}
 		});
@@ -41,7 +41,7 @@ class _ViewSearchContentState extends State<ViewSearchContent> with CommonTravel
 	}
 
 	/// 更新数据
-	void _retriveData() {
+	void retriveData() {
 		this.blocGalleryList.update();
 	}
 
@@ -114,7 +114,7 @@ class _ViewSearchContentState extends State<ViewSearchContent> with CommonTravel
 			itemBuilder: (context, index) {
 				if (index == this.renderListData.length) {
 					if (this.hasMore) {
-						return this.getLoadingItem(); 
+						return this.getLoadMoreItem(); 
 					} else {
 						return this.getNoMoreItem();
 					}

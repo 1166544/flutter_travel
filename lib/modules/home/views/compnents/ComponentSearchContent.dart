@@ -108,7 +108,7 @@ class _ComponentSearchContentState extends State<ComponentSearchContent> with Co
 					// 判断是不是最后一页
 					if(this.hasMore){
 						// 不是最后一页，返回一个loading窗
-						return this.getLoadingItem();
+						return this.getLoadMoreItem();
 					} else {
 						// 是最后一页，显示我是有底线的
 						return this.getNoMoreItem();
