@@ -26,8 +26,7 @@ class _SplashScreenState extends State<ViewSplashContent> with CommonTravelItem 
 
 	/// 倒计时
 	startTime() async {
-		var _duration = new Duration(seconds: 1);
-		this.timer = new Timer.periodic(_duration, navigationPage);
+		this.timer = new Timer.periodic(new Duration(seconds: 1), navigationPage);
 		return this.timer;
 	}
 

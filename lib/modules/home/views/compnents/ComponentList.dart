@@ -43,7 +43,7 @@ class ComponentList extends StatelessWidget with CommonTimeFormate, CommonNaviga
 			var cover1 = '';
 
 			if (imageurls.length > 0) {
-				cover1 = imageurls[0].urlWebp;
+				cover1 = imageurls[0].urlWebp ?? imageurls[0].url;
 			}
 			lsitWidget.add(
 				this.buildExperienceItem(
@@ -110,7 +110,7 @@ class ComponentList extends StatelessWidget with CommonTimeFormate, CommonNaviga
 					height: 105.0,
 					decoration: BoxDecoration(
 					image: DecorationImage(
-						image:NetworkImage(avataUrl), 
+						image:NetworkImage(avataUrl, headers: this.getCrossHeaders()), 
 						fit: BoxFit.cover),
 						border: Border.all(
 							color: Colors.grey.withOpacity(0.5), width: 0.5
