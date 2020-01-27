@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_travel/modules/profile/models/ModelProfile.dart';
-import 'package:flutter_travel/modules/profile/views/ViewProfileComment.dart';
+import 'package:flutter_travel/modules/profile/views/components/ComponentProfileComment.dart';
 
 /// 中部报告信息
-class ViewMiddleReport extends StatefulWidget {
-  ViewMiddleReport({Key key, AsyncSnapshot<ModelProfile> snapshot}) : super(key: key);
+class ComponentMiddleReport extends StatefulWidget {
+  ComponentMiddleReport({Key key, AsyncSnapshot<ModelProfile> snapshot}) : super(key: key);
 
-  _ViewMiddleReportState createState() => _ViewMiddleReportState();
+  _ComponentMiddleReportState createState() => _ComponentMiddleReportState();
 }
 
-class _ViewMiddleReportState extends State<ViewMiddleReport> with ViewProfileComment {
+class _ComponentMiddleReportState extends State<ComponentMiddleReport> with ComponentProfileComment {
   @override
   Widget build(BuildContext context) {
 	return Container(

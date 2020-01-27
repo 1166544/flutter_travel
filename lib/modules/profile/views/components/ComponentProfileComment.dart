@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 /// 公用方法
-class ViewProfileComment {
+class ComponentProfileComment {
 
   	/// 带黄底横线标题
 	Widget getUnderlineText(String content) {

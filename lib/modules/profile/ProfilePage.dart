@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_travel/core/bloc/BlocProvider.dart';
 import 'package:flutter_travel/modules/profile/blocs/BlocMyInfo.dart';
-import 'package:flutter_travel/modules/profile/views/ViewBlocContent.dart';
+import 'package:flutter_travel/modules/profile/views/components/ComponentBlocContent.dart';
 
 /// 我的模块
 class ProfilePage extends StatefulWidget {
@@ -33,7 +33,7 @@ class _ProfilePageState extends State<ProfilePage> {
 		  ),
 		  body: BlocProvider(
 			  bloc: BlocMyInfo(),
-			  child: ViewBlocContent(),
+			  child: ComponentBlocContent(),
 		  )
 	  );
 

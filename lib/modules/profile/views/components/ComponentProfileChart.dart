@@ -2,12 +2,12 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
 /// 数据统计表格
-class ViewProfileChart extends StatefulWidget {
+class ComponentProfileChart extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => ViewProfileChartState();
+  State<StatefulWidget> createState() => ComponentProfileChartState();
 }
 
-class ViewProfileChartState extends State<ViewProfileChart> {
+class ComponentProfileChartState extends State<ComponentProfileChart> {
 	bool isShowingMainData;
 
 	@override

@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_travel/modules/profile/models/ModelProfile.dart';
 
 /// 中部访问信息
-class ViewVisitors extends StatefulWidget {
-  ViewVisitors({Key key, AsyncSnapshot<ModelProfile> snapshot}) : super(key: key);
+class ComponentVisitors extends StatefulWidget {
+  ComponentVisitors({Key key, AsyncSnapshot<ModelProfile> snapshot}) : super(key: key);
 
-  _ViewVisitorsState createState() => _ViewVisitorsState();
+  _ComponentVisitorsState createState() => _ComponentVisitorsState();
 }
 
-class _ViewVisitorsState extends State<ViewVisitors> {
+class _ComponentVisitorsState extends State<ComponentVisitors> {
 	@override
 	Widget build(BuildContext context) {
 		return Container(

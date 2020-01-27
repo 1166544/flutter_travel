@@ -4,22 +4,22 @@ import 'package:flutter_travel/core/bloc/BlocProvider.dart';
 import 'package:flutter_travel/modules/common/CommonTravelItem.dart';
 import 'package:flutter_travel/modules/profile/blocs/BlocMyInfo.dart';
 import 'package:flutter_travel/modules/profile/models/ModelProfile.dart';
-import 'package:flutter_travel/modules/profile/views/ViewMiddleReport.dart';
-import 'package:flutter_travel/modules/profile/views/ViewPresciption.dart';
-import 'package:flutter_travel/modules/profile/views/ViewProfileChart.dart';
-import 'package:flutter_travel/modules/profile/views/ViewTopStructs.dart';
-import 'package:flutter_travel/modules/profile/views/ViewVisitors.dart';
+import 'package:flutter_travel/modules/profile/views/components/ComponentMiddleReport.dart';
+import 'package:flutter_travel/modules/profile/views/components/ComponentPresciption.dart';
+import 'package:flutter_travel/modules/profile/views/components/ComponentProfileChart.dart';
+import 'package:flutter_travel/modules/profile/views/components/ComponentTopStructs.dart';
+import 'package:flutter_travel/modules/profile/views/components/ComponentVisitors.dart';
 import 'package:flutter_travel/redux/actions/ActionAuth.dart';
 import 'package:flutter_travel/redux/states/StateApp.dart';
 
 /// 我的信息模块视图
-class ViewBlocContent extends StatefulWidget {
-  ViewBlocContent({Key key}) : super(key: key);
+class ComponentBlocContent extends StatefulWidget {
+  ComponentBlocContent({Key key}) : super(key: key);
 
-  _ViewBlocContentState createState() => _ViewBlocContentState();
+  _ComponentBlocContentState createState() => _ComponentBlocContentState();
 }
 
-class _ViewBlocContentState extends State<ViewBlocContent> with CommonTravelItem {
+class _ComponentBlocContentState extends State<ComponentBlocContent> with CommonTravelItem {
 
 	BlocMyInfo blocGalleryList;
 	GlobalKey<RefreshIndicatorState> refreshKey = GlobalKey<RefreshIndicatorState>();
@@ -92,22 +92,22 @@ class _ViewBlocContentState extends State<ViewBlocContent> with CommonTravelItem
 	
 	/// 顶部头像
 	Widget buildTopStucts(AsyncSnapshot<ModelProfile> snapshot) {
-		return ViewTopStructs(snapshot: snapshot);
+		return ComponentTopStructs(snapshot: snapshot);
 	}
 	
 	/// 中部报告信息
 	Widget buildMiddleReportStucts(AsyncSnapshot<ModelProfile> snapshot) {
-		return ViewMiddleReport(snapshot: snapshot);
+		return ComponentMiddleReport(snapshot: snapshot);
 	}
 	
 	/// 中部访问信息
 	Widget buildMiddleVisitorStucts(AsyncSnapshot<ModelProfile> snapshot) {
-		return ViewVisitors(snapshot: snapshot);
+		return ComponentVisitors(snapshot: snapshot);
 	}
 	
 	/// 中部实现信息
 	Widget buildMiddlePresciptionStucts(AsyncSnapshot<ModelProfile> snapshot) {
-		return ViewPresciption(snapshot: snapshot);
+		return ComponentPresciption(snapshot: snapshot);
 	}
 	
 	/// 底部按钮
@@ -146,7 +146,7 @@ class _ViewBlocContentState extends State<ViewBlocContent> with CommonTravelItem
   	Widget buildMiddleChart() {
 		return Container(
 			padding: EdgeInsets.fromLTRB(20.0, 30.0, 20.0, 0.0),
-			child: ViewProfileChart(),
+			child: ComponentProfileChart(),
 		);
 	}
 

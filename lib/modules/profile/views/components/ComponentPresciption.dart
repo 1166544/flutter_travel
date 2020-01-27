@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_travel/modules/profile/models/ModelProfile.dart';
-import 'package:flutter_travel/modules/profile/views/ViewProfileComment.dart';
+import 'package:flutter_travel/modules/profile/views/components/ComponentProfileComment.dart';
 
 /// 中实现信息
-class ViewPresciption extends StatefulWidget {
-  ViewPresciption({Key key, AsyncSnapshot<ModelProfile> snapshot}) : super(key: key);
+class ComponentPresciption extends StatefulWidget {
+  ComponentPresciption({Key key, AsyncSnapshot<ModelProfile> snapshot}) : super(key: key);
 
-  _ViewPresciptionState createState() => _ViewPresciptionState();
+  _ComponentPresciptionState createState() => _ComponentPresciptionState();
 }
 
-class _ViewPresciptionState extends State<ViewPresciption> with ViewProfileComment {
+class _ComponentPresciptionState extends State<ComponentPresciption> with ComponentProfileComment {
   @override
   Widget build(BuildContext context) {
 	return Container(
