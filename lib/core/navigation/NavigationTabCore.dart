@@ -6,5 +6,7 @@ class NavigationTabCore extends StatefulWidget {
 	NavigationTabCore({Key key}) : super(key: key);
 
 	@override
-	State<StatefulWidget> createState() => NavigationTabCoreState();
+	State<StatefulWidget> createState() {
+		return NavigationTabCoreState();
+	}
 }

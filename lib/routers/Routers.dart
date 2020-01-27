@@ -3,6 +3,7 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_travel/core/navigation/NavigationTabCore.dart';
 import 'package:flutter_travel/modules/home/views/pages/PageSearchResult.dart';
 import 'package:flutter_travel/modules/login/LoginPage.dart';
+import 'package:flutter_travel/modules/profile/ProfilePage.dart';
 import 'package:flutter_travel/modules/profile/views/pages/PageFormSubmit.dart';
 import 'package:flutter_travel/modules/splash/SplashPage.dart';
 import 'package:flutter_travel/redux/states/StateApp.dart';
@@ -21,6 +22,7 @@ class Routers {
 	static String mainPage = '/main';
 	static String searchPage = '/search';
 	static String profileEditPage = '/edit';
+	static String profilePage = '/profile';
 
 	/// 初始化路由
 	Map<String, WidgetBuilder> init() {
@@ -41,7 +43,10 @@ class Routers {
 			Routers.searchPage: (BuildContext context) => PageSearchResult(),
 
 			// 个人信息编辑页
-			Routers.profileEditPage: (BuildContext context) => PageFormSubmit()
+			Routers.profileEditPage: (BuildContext context) => PageFormSubmit(),
+
+			// 个人信息页
+			Routers.profilePage: (BuildContext context) => ProfilePage()
 		};
 	}
 }

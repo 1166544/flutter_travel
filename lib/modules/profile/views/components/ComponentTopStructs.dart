@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_travel/modules/common/CommonNavigator.dart';
 import 'package:flutter_travel/modules/profile/models/ModelProfile.dart';
+import 'package:flutter_travel/modules/profile/views/pages/PageFormSubmit.dart';
 import 'package:flutter_travel/routers/Routers.dart';
 
 /// 顶部头像结构
@@ -9,7 +11,7 @@ class ComponentTopStructs extends StatefulWidget {
   _ComponentTopStructsState createState() => _ComponentTopStructsState();
 }
 
-class _ComponentTopStructsState extends State<ComponentTopStructs> {
+class _ComponentTopStructsState extends State<ComponentTopStructs> with CommonNavigator {
 	@override
 	Widget build(BuildContext context) {
 		return Container(
@@ -52,8 +54,8 @@ class _ComponentTopStructsState extends State<ComponentTopStructs> {
 	}
 
 	/// 跳转至编辑页
-	void navigateToProfile() {
-		Navigator.of(context).pushReplacementNamed(Routers.profileEditPage);
+	void navigateToProfile() { 
+		this.navigateTo(context, PageFormSubmit());
 	}
 
 	/// 头像信息
