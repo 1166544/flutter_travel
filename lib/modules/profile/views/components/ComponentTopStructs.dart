@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_travel/modules/profile/models/ModelProfile.dart';
+import 'package:flutter_travel/routers/Routers.dart';
 
 /// 顶部头像结构
 class ComponentTopStructs extends StatefulWidget {
@@ -46,10 +47,13 @@ class _ComponentTopStructsState extends State<ComponentTopStructs> {
 					Text('EDIT', style: TextStyle(fontSize: 14, color: Colors.white.withOpacity(0.6)),)
 				],
 			),
-			onTap: () {
-				// print
-			},
+			onTap: this.navigateToProfile,
 		);
+	}
+
+	/// 跳转至编辑页
+	void navigateToProfile() {
+		Navigator.of(context).pushReplacementNamed(Routers.profileEditPage);
 	}
 
 	/// 头像信息

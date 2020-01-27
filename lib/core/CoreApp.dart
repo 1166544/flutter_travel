@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_travel/core/middleware/MiddlewarePersistor.dart';
 import 'package:flutter_travel/core/presentation/PresentationPlatformAdaptive.dart';
-import 'package:flutter_travel/modules/loading/LoadingPage.dart';
+import 'package:flutter_travel/modules/common/CommonLoading.dart';
 import 'package:flutter_travel/redux/states/StateApp.dart';
 import 'package:flutter_travel/redux/store/StoreApp.dart';
 import 'package:flutter_travel/routers/Routers.dart';
@@ -31,7 +31,7 @@ class CoreApp extends StatelessWidget {
 
 		return PersistorGate(
 			persistor: persistor,
-			loading: LoadingPage(),
+			loading: CommonLoading(),
 			builder: (context) => StoreProvider<AppState>(
 				store: store,
 				child: MaterialApp(
