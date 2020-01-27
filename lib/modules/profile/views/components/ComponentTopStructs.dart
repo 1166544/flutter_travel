@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_travel/modules/common/CommonNavigator.dart';
 import 'package:flutter_travel/modules/profile/models/ModelProfile.dart';
 import 'package:flutter_travel/modules/profile/views/pages/PageFormSubmit.dart';
-import 'package:flutter_travel/routers/Routers.dart';
 
 /// 顶部头像结构
 class ComponentTopStructs extends StatefulWidget {

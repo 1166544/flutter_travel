@@ -102,8 +102,8 @@ class _SplashScreenState extends State<ViewSplashContent> with CommonTravelItem 
 									child: Row(
 										mainAxisAlignment: MainAxisAlignment.end,
 										children: <Widget>[
-											Text(this.currentCountDown.toString(), style: TextStyle(color: Colors.white, fontSize: 19.0)),
-											Text('S 跳过', style: TextStyle(color: Colors.white, fontSize: 19.0))
+											Text(this.currentCountDown.toString(), style: TextStyle(color: Color(0xFFdedede), fontSize: 19.0)),
+											Text('S 跳过', style: TextStyle(color: Color(0xFFdedede), fontSize: 19.0))
 										],
 									),
 								),

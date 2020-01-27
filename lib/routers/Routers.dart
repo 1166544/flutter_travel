@@ -37,7 +37,9 @@ class Routers {
 			Routers.loginPage: (BuildContext context) => LoginPage(),
 
 			// 主页
-			Routers.mainPage: (BuildContext context) => NavigationTabCore(),
+			Routers.mainPage: (BuildContext context) {
+				return NavigationTabCore();
+			},
 
 			// 搜索结果页
 			Routers.searchPage: (BuildContext context) => PageSearchResult(),

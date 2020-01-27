@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_travel/core/navigation/NavigationTabCore.dart';
+import 'package:flutter_travel/core/navigation/NavigationTabItem.dart';
 import 'package:flutter_travel/modules/common/CommonNavigator.dart';
 import 'package:intl/intl.dart';  
 
@@ -28,7 +29,11 @@ class _PageFormSubmitState extends State<PageFormSubmit> with CommonNavigator {
 					icon: Icon(Icons.arrow_back_ios),
 					color: Colors.white,
 					onPressed: () {
-						this.navigateTo(context, NavigationTabCore());
+						// 返回个人信息页
+            			Navigator.of(context).pushAndRemoveUntil(
+							MaterialPageRoute(builder:(context) => NavigationTabCore(selecteItem: NavigationTabItem.Profile)),
+							(route) => route == null
+						);
 					},
 				),
 			),    
@@ -157,7 +162,7 @@ class _PageFormSubmitState extends State<PageFormSubmit> with CommonNavigator {
 					SizedBox(height: 20.0),
 					FormBuilderSlider(    
 						attribute: "slider",    
-						validators: [FormBuilderValidators.min(6)],    
+						validators: [FormBuilderValidators.min(1)],    
 						min: 0.0,    
 						max: 10.0,    
 						initialValue: 1.0,    

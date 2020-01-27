@@ -11,6 +11,7 @@ class NavigationTabCoreState extends State<NavigationTabCore> {
 	NavigationTabCoreState();
 	Map<NavigationTabItem, Widget> mapPageList = new Map<NavigationTabItem, Widget>();
 	NavigationTabItem currentItem = NavigationTabItem.Home;
+	bool isFirstTabUsed = false;
 
 	/// TAB选择处理
 	_onSelectTab(int index) {
@@ -39,6 +40,12 @@ class NavigationTabCoreState extends State<NavigationTabCore> {
 
 	@override
 	Widget build(BuildContext context) {
+
+		if (widget.selecteItem != null && !this.isFirstTabUsed) {
+			this._updateCurrentItem(widget.selecteItem);
+			this.isFirstTabUsed = true;
+		}
+
 		return Scaffold(
 			body: this._buildBody(),
 			bottomNavigationBar: this._buildBottomNavigationBar(),
