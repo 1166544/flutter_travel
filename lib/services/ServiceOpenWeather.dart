@@ -39,7 +39,6 @@ class ServiceOpenWeather extends HttpServiceCore {
 	}
 
 	/// 依据经纬度返回城市信息
-	/// form 格式
 	/// url http://api.openweathermap.org/data/2.5/weather?lat=23.1290800000&lon=113.2643600000&appid=
 	Future<Response<dynamic>> getCityNameByPosition({double lat, double lon}) async {
 		return await this.get('data/2.5/weather?lat=${lat.toString()}&lon=${lon.toString()}&appid=${this.openKey}');

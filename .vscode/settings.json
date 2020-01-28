@@ -8,4 +8,7 @@
     "editor.fontFamily": "San Francisco, Menlo, Monaco, 'Courier New', monospace",
     "powermode.enabled": true,
     "powermode.enableShake": false,
+    "files.exclude": {
+        "**/.g.dart": true
+    },
 }
