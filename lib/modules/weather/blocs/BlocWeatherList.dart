@@ -50,6 +50,9 @@ class BlocWeatherList implements BlocBase {
 
 		// 触发数据更新
 		this._inGallery.add(this._gallery);
+
+		// 将数据存入STORE
+		
 	}
 
 	@override

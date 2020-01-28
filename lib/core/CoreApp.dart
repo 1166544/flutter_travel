@@ -10,6 +10,7 @@ import 'package:flutter_travel/routers/Routers.dart';
 import 'package:flutter_travel/services/ServiceEnviroment.dart';
 
 import 'package:flutter_travel/core/api/ApiEnviroment.dart';
+import 'package:flutter_travel/services/ServiceGlobal.dart';
 import 'package:redux_persist_flutter/redux_persist_flutter.dart';
 
 /// APP启动入口
@@ -23,6 +24,7 @@ class CoreApp extends StatelessWidget {
 
 	CoreApp({this.env}) {
 		ServiceEnviroment.init(this.env);
+		ServiceGlobal.init(this.store);
 	}
 
 	// 程序根入口
