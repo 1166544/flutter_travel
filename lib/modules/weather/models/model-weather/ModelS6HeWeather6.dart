@@ -1,9 +1,9 @@
-import 'package:flutter_travel/modules/weather/models/weather/ModelS6Basic.dart';
-import 'package:flutter_travel/modules/weather/models/weather/ModelS6DailyForecast.dart';
-import 'package:flutter_travel/modules/weather/models/weather/ModelS6Hourly.dart';
-import 'package:flutter_travel/modules/weather/models/weather/ModelS6Lifestyle.dart';
-import 'package:flutter_travel/modules/weather/models/weather/ModelS6Now.dart';
-import 'package:flutter_travel/modules/weather/models/weather/ModelS6Update.dart';
+import 'package:flutter_travel/modules/weather/models/model-weather/ModelS6Basic.dart';
+import 'package:flutter_travel/modules/weather/models/model-weather/ModelS6DailyForecast.dart';
+import 'package:flutter_travel/modules/weather/models/model-weather/ModelS6Hourly.dart';
+import 'package:flutter_travel/modules/weather/models/model-weather/ModelS6Lifestyle.dart';
+import 'package:flutter_travel/modules/weather/models/model-weather/ModelS6Now.dart';
+import 'package:flutter_travel/modules/weather/models/model-weather/ModelS6Update.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'ModelS6HeWeather6.g.dart';

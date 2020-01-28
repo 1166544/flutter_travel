@@ -1,9 +1,9 @@
-import 'package:flutter_travel/modules/weather/models/weather/ModelClouds.dart';
-import 'package:flutter_travel/modules/weather/models/weather/ModelCoord.dart';
+import 'package:flutter_travel/modules/weather/models/model-weather/ModelClouds.dart';
+import 'package:flutter_travel/modules/weather/models/model-weather/ModelCoord.dart';
+import 'package:flutter_travel/modules/weather/models/model-weather/ModelSys.dart';
+import 'package:flutter_travel/modules/weather/models/model-weather/ModelWeather.dart';
+import 'package:flutter_travel/modules/weather/models/model-weather/ModelWind.dart';
 import 'package:flutter_travel/modules/weather/models/weather/ModelMain.dart';
-import 'package:flutter_travel/modules/weather/models/weather/ModelSys.dart';
-import 'package:flutter_travel/modules/weather/models/weather/ModelWeather.dart';
-import 'package:flutter_travel/modules/weather/models/weather/ModelWind.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'ModelWeatherList.g.dart';

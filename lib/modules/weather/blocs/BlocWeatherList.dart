@@ -2,9 +2,9 @@ import 'dart:async';
 
 import 'package:flutter_travel/core/bloc/BlocBase.dart';
 import 'package:flutter_travel/modules/weather/models/ModelDisplayWeatherInfo.dart';
-import 'package:flutter_travel/modules/weather/models/air/ModelS6Air.dart';
-import 'package:flutter_travel/modules/weather/models/weather/ModelS6Weather.dart';
-import 'package:flutter_travel/modules/weather/models/weather/ModelWeatherList.dart';
+import 'package:flutter_travel/modules/weather/models/model-air/ModelS6Air.dart';
+import 'package:flutter_travel/modules/weather/models/model-weather/ModelS6Weather.dart';
+import 'package:flutter_travel/modules/weather/models/model-weather/ModelWeatherList.dart';
 import 'package:flutter_travel/services/ServiceFreeAirAndWeather.dart';
 import 'package:flutter_travel/services/ServiceOpenWeather.dart';
 

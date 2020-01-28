@@ -1,6 +1,7 @@
 
-import 'package:flutter_travel/modules/weather/models/air/ModelS6Air.dart';
-import 'package:flutter_travel/modules/weather/models/weather/ModelS6Weather.dart';
+
+import 'package:flutter_travel/modules/weather/models/model-air/ModelS6Air.dart';
+import 'package:flutter_travel/modules/weather/models/model-weather/ModelS6Weather.dart';
 
 /// 显示天气信息
 class ModelDisplayWeatherInfo {
