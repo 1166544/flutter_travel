@@ -2,7 +2,7 @@ import 'package:flutter_travel/redux/states/StateUser.dart';
 import 'package:meta/meta.dart';
 
 @immutable
-class AuthState {
+class StateAuth {
 
     /// 是否已登录
     final bool isAuthenticated;
@@ -11,13 +11,13 @@ class AuthState {
     final bool isAuthenticating;
 
 	/// 用户信息
-    final User user;
+    final StateUser user;
 
 	/// 错误信息
     final String error;
 
     // constructor with default
-    AuthState({
+    StateAuth({
         this.isAuthenticated = false,
         this.isAuthenticating = false,
         this.user,
@@ -25,13 +25,13 @@ class AuthState {
     });
 
     // 返回副本,允许复制之前的AuthState参数时修改这些参数
-    AuthState copyWith({
+    StateAuth copyWith({
         bool isAuthenticated,
         bool isAuthenticating,
         String error,
-        User user
+        StateUser user
     }) {
-        return AuthState(
+        return StateAuth(
             isAuthenticated: isAuthenticated ?? this.isAuthenticated,
             isAuthenticating: isAuthenticating ?? this.isAuthenticating,
             error: error ?? this.error,
@@ -40,11 +40,11 @@ class AuthState {
     }
 
 	/// JSON反序列化
-    factory AuthState.fromJSON(Map<String, dynamic> json) => AuthState(
+    factory StateAuth.fromJSON(Map<String, dynamic> json) => StateAuth(
         isAuthenticated: json['isAuthenticated'],
         isAuthenticating: json['isAuthenticating'],
         error: '',	// 反系列化时上次记录的登录错误信息不需要记录
-        user: json['user'] == null ? null : User.fromJSON(json['user']),
+        user: json['user'] == null ? null : StateUser.fromJSON(json['user']),
     );
 
 	/// 转换成JSON

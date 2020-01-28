@@ -1,16 +1,16 @@
 /// 用户信息
-class User {
+class StateUser {
     final String token;
     final String id;
 
-    User(this.token, this.id);
+    StateUser(this.token, this.id);
 
     Map<String, dynamic> toJSON() => <String, dynamic>{
         'token': this.token,
         'id': this.id
     };
 
-    factory User.fromJSON(Map<String, dynamic> json) => User(
+    factory StateUser.fromJSON(Map<String, dynamic> json) => StateUser(
         json['token'],
         json['id'],
     );

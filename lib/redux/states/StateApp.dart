@@ -4,16 +4,16 @@ import 'package:meta/meta.dart';
 
 @immutable
 class AppState {
-    final AuthState auth;
+    final StateAuth auth;
 	final StatePage page;
 
-    AppState({AuthState auth, StatePage page}): 
-		auth = auth ?? AuthState(), 
+    AppState({StateAuth auth, StatePage page}): 
+		auth = auth ?? StateAuth(), 
 		page = page ?? StatePage();
 
 	/// 将登录信息从本地缓存反序列化
     static AppState rehydrationJSON(dynamic json) => AppState(
-        auth: AuthState.fromJSON(json['auth'])
+        auth: StateAuth.fromJSON(json['auth'])
     );
 
 	/// 登录信息转成JSON结构
@@ -24,7 +24,7 @@ class AppState {
 	/// 返回副本
     AppState copyWith({
         bool rehydrated,
-        AuthState auth,
+        StateAuth auth,
     }) {
         return AppState(
             auth: auth ?? this.auth
