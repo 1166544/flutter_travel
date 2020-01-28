@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_travel/core/bloc/BlocProvider.dart';
 import 'package:flutter_travel/modules/weather/blocs/BlocWeatherList.dart';
 import 'package:flutter_travel/modules/weather/models/ModelDisplayWeatherInfo.dart';
-import 'package:flutter_travel/modules/weather/models/ModelWeatherItem.dart';
 import 'package:flutter_travel/modules/weather/view/components/ComponentWeatherWidget.dart';
 
 /// 天气组件实现
 class ComponentWeather extends StatefulWidget {
-  ComponentWeather({Key key}) : super(key: key);
+	final ModelDisplayWeatherInfo weatherData;
+  	ComponentWeather({Key key, this.weatherData}) : super(key: key);
 
-  _ComponentWeatherState createState() => _ComponentWeatherState();
+  	_ComponentWeatherState createState() => _ComponentWeatherState();
 }
 
 class _ComponentWeatherState extends State<ComponentWeather> {
@@ -24,7 +24,11 @@ class _ComponentWeatherState extends State<ComponentWeather> {
 
 	@override
 	Widget build(BuildContext context) {
-
+		// 从STORE获取
+		if (widget.weatherData != null) {
+			return ComponentWeatherWidget(weather: widget.weatherData.sourceData);
+		}
+		
 		this.blocGalleryList = BlocProvider.of<BlocWeatherList>(context);
 		this.blocGalleryList.init();
 
@@ -32,6 +36,7 @@ class _ComponentWeatherState extends State<ComponentWeather> {
 	}
 
 	Widget getStreamBuilder(BuildContext context) {
+		// 从BLOC获取
 		return StreamBuilder(
 			stream: this.blocGalleryList.outGallery,
 			builder: (context, snapshot) {
@@ -45,7 +50,7 @@ class _ComponentWeatherState extends State<ComponentWeather> {
 	}
 
 	Widget buildLayout(AsyncSnapshot<ModelDisplayWeatherInfo> snapshot) {
-		return ComponentWeatherWidget(weather: ModelWeatherItem.fromJson(snapshot.data.sourceData.data));
+		return ComponentWeatherWidget(weather: widget.weatherData.sourceData);
 	}
 
 	Widget buildEmptyLayout(BuildContext context) {

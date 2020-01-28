@@ -1,9 +1,10 @@
+import 'package:flutter_travel/modules/weather/models/ModelDisplayWeatherInfo.dart';
 import 'package:meta/meta.dart';
 
 @immutable
 class StateWeather {
 	/// data
-	final dynamic weatherData;
+	final ModelDisplayWeatherInfo weatherData;
 
 	StateWeather({
 		this.weatherData
@@ -11,7 +12,7 @@ class StateWeather {
 
 	// 返回副本
     StateWeather copyWith({
-		dynamic weatherData
+		ModelDisplayWeatherInfo weatherData
     }) {
         return StateWeather(
             weatherData: weatherData ?? this.weatherData,
