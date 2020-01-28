@@ -184,7 +184,12 @@ class _PageDisplayState extends State<PageDisplay> with CommonTravelItem, Common
 		}
 
 		// 第四行(动态增长)标题
-		renderList.add(Text('My Newsleeters', style:TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontFamily: 'Montserrat')));
+		renderList.add(
+			Padding(
+				padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+				child: Text('My Newsleeters', style:TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontFamily: 'Montserrat')),
+			)
+		);
 		renderList.add(SizedBox(height: 10.0));
 		renderList.add(this.getDynamicList(snapshotList));
 
