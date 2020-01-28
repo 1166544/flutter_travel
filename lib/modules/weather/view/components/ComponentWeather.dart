@@ -49,6 +49,6 @@ class _ComponentWeatherState extends State<ComponentWeather> {
 	}
 
 	Widget buildEmptyLayout(BuildContext context) {
-		return Text('test');
+		return Text('');
 	}
 }

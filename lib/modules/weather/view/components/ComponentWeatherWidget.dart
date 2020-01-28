@@ -4,6 +4,7 @@ import 'package:flutter_travel/modules/weather/view/components/ComponentValueTil
 import 'package:flutter_travel/modules/weather/view/components/ComponentWeatherSwipePager.dart';
 import 'package:intl/intl.dart';
 
+/// 简化版天气消息
 class ComponentWeatherWidget extends StatelessWidget {
   final ModelWeatherItem weather;
 
@@ -15,6 +16,7 @@ class ComponentWeatherWidget extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
+			SizedBox(height: 20),
           Text(
             this.weather.cityName.toUpperCase(),
             style: TextStyle(
@@ -39,47 +41,50 @@ class ComponentWeatherWidget extends StatelessWidget {
             child: Divider(
               color:Colors.black,
             ),
-            padding: EdgeInsets.all(10),
+            padding: EdgeInsets.all(1),
           ),
-          Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
-            ComponentValueTile("wind speed", '${this.weather.windSpeed} m/s'),
-            Padding(
-              padding: const EdgeInsets.only(left: 15, right: 15),
-              child: Center(
-                  child: Container(
-                width: 1,
-                height: 30,
-                color: Colors.white,
-              )),
-            ),
-            ComponentValueTile(
-                "sunrise",
-                DateFormat('h:m a').format(DateTime.fromMillisecondsSinceEpoch(
-                    this.weather.sunrise * 1000))),
-            Padding(
-              padding: const EdgeInsets.only(left: 15, right: 15),
-              child: Center(
-                  child: Container(
-                width: 1,
-                height: 30,
-                color: Colors.white,
-              )),
-            ),
-            ComponentValueTile(
-                "sunset",
-                DateFormat('h:m a').format(DateTime.fromMillisecondsSinceEpoch(
-                    this.weather.sunset * 1000))),
-            Padding(
-              padding: const EdgeInsets.only(left: 15, right: 15),
-              child: Center(
-                  child: Container(
-                width: 1,
-                height: 30,
-                color: Colors.white,
-              )),
-            ),
-            ComponentValueTile("humidity", '${this.weather.humidity}%'),
-          ]),
+          Row(
+			  mainAxisAlignment: MainAxisAlignment.center, 
+			  children: <Widget>[
+				ComponentValueTile("Wind speed", '${this.weather.windSpeed} m/s'),
+				Padding(
+				padding: const EdgeInsets.only(left: 15, right: 15),
+				child: Center(
+					child: Container(
+					width: 1,
+					height: 30,
+					color: Colors.white,
+				)),
+				),
+				ComponentValueTile(
+					"Sunrise",
+					DateFormat('h:m a').format(DateTime.fromMillisecondsSinceEpoch(
+						this.weather.sunrise * 1000))),
+				Padding(
+				padding: const EdgeInsets.only(left: 15, right: 15),
+				child: Center(
+					child: Container(
+					width: 1,
+					height: 30,
+					color: Colors.white,
+				)),
+				),
+				ComponentValueTile(
+					"Sunset",
+					DateFormat('h:m a').format(DateTime.fromMillisecondsSinceEpoch(
+						this.weather.sunset * 1000))),
+				Padding(
+				padding: const EdgeInsets.only(left: 15, right: 15),
+				child: Center(
+					child: Container(
+					width: 1,
+					height: 30,
+					color: Colors.white,
+				)),
+				),
+				ComponentValueTile("Humidity", '${this.weather.humidity}%'),
+          	]),
+			SizedBox(height: 20.0,)
         ]
       ),
     );
