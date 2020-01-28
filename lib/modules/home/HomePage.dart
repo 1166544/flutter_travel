@@ -35,7 +35,7 @@ class _HomePageState extends State<HomePage> with CommonNavigator, SingleTickerP
 
 	/// TAB视图
 	final List<Widget> _tabsView = <Widget>[
-		PageDisplay(requestParams: ''),
+		PageDisplay(requestParams: null),
 		PageFashion(),
 		PageMilitary(),
 		PageSociality(),

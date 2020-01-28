@@ -69,7 +69,7 @@ class _PageDisplayState extends State<PageDisplay> with CommonTravelItem, Common
 
 		// 连接数据源
 		if (!this.isInited) {
-			this.blocGalleryList.updateParams({
+			var requestParams = {
 				'from': 'news_webapp',
 				'pd': 'webapp',
 				'os': 'iphone',
@@ -77,7 +77,13 @@ class _PageDisplayState extends State<PageDisplay> with CommonTravelItem, Common
 				'category_id': 101,
 				'action': 0,
 				'wf': 0
-			});
+			};
+
+			if (widget.requestParams != null) {
+				requestParams = widget.requestParams;
+			}
+
+			this.blocGalleryList.updateParams(requestParams);
 		}
 
 		// 连接视图，下拉刷新
