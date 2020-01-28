@@ -12,6 +12,7 @@ import 'package:flutter_travel/modules/home/views/compnents/ComponentScroll.dart
 import 'package:flutter_travel/modules/home/views/compnents/ComponentSearchBar.dart';
 import 'package:flutter_travel/modules/home/views/compnents/ComponentTitle.dart';
 import 'package:flutter_travel/modules/home/views/pages/PageSearchResult.dart';
+import 'package:flutter_travel/modules/weather/view/pages/PageHomeWeather.dart';
 
 /// 资讯显示列表
 class PageDisplay extends StatefulWidget {
@@ -152,15 +153,24 @@ class _PageDisplayState extends State<PageDisplay> with CommonTravelItem, Common
 			}
 		}
 
-		List<Widget> renderList = [
-			// 搜索条
-			ComponentSearchBar(callBack: (val) => {
-				this.navigateTo(context, PageSearchResult(searchContent: val))
-			}),
+		List<Widget> renderList = [];
 
-			// 改进提示
-			ComponentImproving(snapshot),
-		];
+		// 搜索条(非首页才增加)
+		if (widget.requestParams != null) {
+			renderList.add(ComponentSearchBar(callBack: (val) => {
+				this.navigateTo(context, PageSearchResult(searchContent: val))
+			}));
+		} else {
+			renderList.add(this.getAbsTopSpace());
+		}
+
+		// 改进提示
+		renderList.add(ComponentImproving(snapshot));
+
+		// 天气消息(首页才增加)
+		// if (widget.requestParams == null) {
+		// 	renderList.add(PageHomeWeather());
+		// }
 
 		// 第2行 横向滚动列表
 		if (coverList.length > 0) {
@@ -208,6 +218,17 @@ class _PageDisplayState extends State<PageDisplay> with CommonTravelItem, Common
 				return SizedBox(height: 5.0);
 			},
 			itemCount: this.renderListData.length + 1,
+		);
+	}
+
+	/// 顶部空白区域
+	Widget getAbsTopSpace() {
+		return Container(
+			padding: EdgeInsets.fromLTRB(0, 20, 0, 20),
+			decoration: BoxDecoration(
+				color: Colors.white,
+				shape: BoxShape.rectangle
+			),
 		);
 	}
 }

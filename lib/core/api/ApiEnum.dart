@@ -14,5 +14,9 @@ enum API_ENUM {
 	
 	JSON_PLACE_HOLDER,
 	
-	CN_NODE
+	CN_NODE,
+	
+	OPEN_WEATHER,
+	
+	FREE_API
 }

@@ -41,6 +41,14 @@ class ConfigDefault {
 			key: API_ENUM.BING,
 			serverUrl: 'https://cn.bing.com/'
 		));
+		this.serverUrlList.add(ApiConfigVO(
+			key: API_ENUM.OPEN_WEATHER,
+			serverUrl: 'https://api.openweathermap.org/'
+		));
+		this.serverUrlList.add(ApiConfigVO(
+			key: API_ENUM.FREE_API,
+			serverUrl: 'https://free-api.heweather.net/'
+		));
 	}
 
 	/// 获取服务器URL
@@ -78,6 +86,16 @@ class ConfigDefault {
 	/// libid
 	ApiLibInfo getLibInfo() {
 		return this._apiLibInfo;
+	}
+
+	/// open weather key
+	String openWeatherKey() {
+		return '2f8796eefe67558dc205b09dd336d022';
+	}
+
+	/// heweahter key
+	String heWeatherKey() {
+		return '2d2a76fac8324146a1b17b68bda42c76';
 	}
 
 }

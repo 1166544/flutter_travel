@@ -35,6 +35,14 @@ class ConfigProd extends ConfigDefault {
 			key: API_ENUM.BING,
 			serverUrl: 'https://cn.bing.com/'
 		));
+		this.serverUrlList.add(ApiConfigVO(
+			key: API_ENUM.OPEN_WEATHER,
+			serverUrl: 'https://api.openweathermap.org/'
+		));
+		this.serverUrlList.add(ApiConfigVO(
+			key: API_ENUM.FREE_API,
+			serverUrl: 'https://free-api.heweather.net/'
+		));
 	}
 
 }
