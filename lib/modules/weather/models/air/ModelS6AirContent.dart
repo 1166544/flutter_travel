@@ -1,7 +1,7 @@
-import 'package:flutter_travel/modules/weather/models/ModelS6AirNowCity.dart';
-import 'package:flutter_travel/modules/weather/models/ModelS6AirNowStation.dart';
-import 'package:flutter_travel/modules/weather/models/ModelS6Basic.dart';
-import 'package:flutter_travel/modules/weather/models/ModelS6Update.dart';
+import 'package:flutter_travel/modules/weather/models/air/ModelS6AirNowCity.dart';
+import 'package:flutter_travel/modules/weather/models/air/ModelS6AirNowStation.dart';
+import 'package:flutter_travel/modules/weather/models/weather/ModelS6Basic.dart';
+import 'package:flutter_travel/modules/weather/models/weather/ModelS6Update.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'ModelS6AirContent.g.dart';

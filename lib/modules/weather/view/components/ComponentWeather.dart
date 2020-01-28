@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_travel/core/bloc/BlocProvider.dart';
 import 'package:flutter_travel/modules/weather/blocs/BlocWeatherList.dart';
 import 'package:flutter_travel/modules/weather/models/ModelDisplayWeatherInfo.dart';
+import 'package:flutter_travel/modules/weather/models/ModelWeatherItem.dart';
+import 'package:flutter_travel/modules/weather/view/components/ComponentWeatherWidget.dart';
 
 /// 天气组件实现
 class ComponentWeather extends StatefulWidget {
@@ -43,15 +45,7 @@ class _ComponentWeatherState extends State<ComponentWeather> {
 	}
 
 	Widget buildLayout(AsyncSnapshot<ModelDisplayWeatherInfo> snapshot) {
-		return Center(
-			child: Column(
-				children: <Widget>[
-					Text('SEATTLE', style: TextStyle(color: Colors.black, fontSize: 40.0, fontWeight: FontWeight.bold)),
-					SizedBox(height: 5.0),
-					Text('OVERCAST CLOUDS', style: TextStyle(color: Colors.black, fontSize: 20.0, fontWeight: FontWeight.normal)),
-				],
-			),
-		);
+		return ComponentWeatherWidget(weather: ModelWeatherItem.fromJson(snapshot.data.sourceData.data));
 	}
 
 	Widget buildEmptyLayout(BuildContext context) {

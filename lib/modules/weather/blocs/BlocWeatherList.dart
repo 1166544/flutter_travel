@@ -2,9 +2,9 @@ import 'dart:async';
 
 import 'package:flutter_travel/core/bloc/BlocBase.dart';
 import 'package:flutter_travel/modules/weather/models/ModelDisplayWeatherInfo.dart';
-import 'package:flutter_travel/modules/weather/models/ModelS6Air.dart';
-import 'package:flutter_travel/modules/weather/models/ModelS6Weather.dart';
-import 'package:flutter_travel/modules/weather/models/ModelWeatherList.dart';
+import 'package:flutter_travel/modules/weather/models/air/ModelS6Air.dart';
+import 'package:flutter_travel/modules/weather/models/weather/ModelS6Weather.dart';
+import 'package:flutter_travel/modules/weather/models/weather/ModelWeatherList.dart';
 import 'package:flutter_travel/services/ServiceFreeAirAndWeather.dart';
 import 'package:flutter_travel/services/ServiceOpenWeather.dart';
 
@@ -46,7 +46,7 @@ class BlocWeatherList implements BlocBase {
 		ModelS6Air airData = ModelS6Air.fromJson(cityAir.data);
 
 		// 组装所需数据结构
-		this._gallery = new ModelDisplayWeatherInfo(airInfo: airData, weatherInfo: weatherData);
+		this._gallery = new ModelDisplayWeatherInfo(airInfo: airData, weatherInfo: weatherData, sourceData: cityResult);
 
 		// 触发数据更新
 		this._inGallery.add(this._gallery);

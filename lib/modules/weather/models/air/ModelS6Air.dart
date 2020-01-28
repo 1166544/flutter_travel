@@ -1,4 +1,4 @@
-import 'package:flutter_travel/modules/weather/models/ModelS6AirContent.dart';
+import 'package:flutter_travel/modules/weather/models/air/ModelS6AirContent.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'ModelS6Air.g.dart';
