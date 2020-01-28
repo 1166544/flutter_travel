@@ -43,7 +43,15 @@ class _ComponentWeatherState extends State<ComponentWeather> {
 	}
 
 	Widget buildLayout(AsyncSnapshot<ModelWeatherList> snapshot) {
-		return Text('data');
+		return Center(
+			child: Column(
+				children: <Widget>[
+					Text('SEATTLE', style: TextStyle(color: Colors.black, fontSize: 40.0, fontWeight: FontWeight.bold)),
+					SizedBox(height: 5.0),
+					Text('OVERCAST CLOUDS', style: TextStyle(color: Colors.black, fontSize: 20.0, fontWeight: FontWeight.normal)),
+				],
+			),
+		);
 	}
 
 	Widget buildEmptyLayout(BuildContext context) {

@@ -31,7 +31,7 @@ class BlocWeatherList implements BlocBase {
 		dynamic cityResult = await this._serviceWeatherList.getCityNameByPosition(lat:23.1290800000, lon:113.2643600000);
 
 		// 返回数据列表更新数据源
-		this._gallery = ModelWeatherList.fromJson(cityResult['data']);
+		this._gallery = ModelWeatherList.fromJson(cityResult.data);
 
 		// 触发数据更新
 		this._inGallery.add(this._gallery);

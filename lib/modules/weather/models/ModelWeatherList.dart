@@ -13,7 +13,7 @@ class ModelWeatherList {
 	@JsonKey(name: 'coord')
 	ModelCoord coord;
 
-	@JsonKey(name: 'weather')
+	@JsonKey(name: 'weather', nullable: false)
 	List<ModelWeather> weather;
 
 	@JsonKey(name: 'base')
@@ -51,7 +51,7 @@ class ModelWeatherList {
 
 	ModelWeatherList({
 		this.coord,
-		this.weather,
+		List<ModelWeather> weather,
 		this.base,
 		this.main,
 		this.visibility,
@@ -63,8 +63,8 @@ class ModelWeatherList {
 		this.id,
 		this.name,
 		this.cod
-	});
-
+	}): weather = weather ?? <ModelWeather> [];
+	
 	factory ModelWeatherList.fromJson(Map<String, dynamic> json) => _$ModelWeatherListFromJson(json);
 	Map<String, dynamic> toJson() => _$ModelWeatherListToJson(this);
 }

@@ -168,9 +168,9 @@ class _PageDisplayState extends State<PageDisplay> with CommonTravelItem, Common
 		renderList.add(ComponentImproving(snapshot));
 
 		// 天气消息(首页才增加)
-		// if (widget.requestParams == null) {
-		// 	renderList.add(PageHomeWeather());
-		// }
+		if (widget.requestParams == null) {
+			renderList.add(PageHomeWeather());
+		}
 
 		// 第2行 横向滚动列表
 		if (coverList.length > 0) {
