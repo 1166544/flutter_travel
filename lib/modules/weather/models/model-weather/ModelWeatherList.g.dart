@@ -15,9 +15,7 @@ ModelWeatherList _$ModelWeatherListFromJson(Map<String, dynamic> json) {
         .map((e) => ModelWeather.fromJson(e as Map<String, dynamic>))
         .toList(),
     base: json['base'] as String,
-    main: json['main'] == null
-        ? null
-        : ModelMain.fromJson(json['main'] as Map<String, dynamic>),
+    main: json['main'],
     visibility: json['visibility'] as int,
     wind: json['wind'] == null
         ? null

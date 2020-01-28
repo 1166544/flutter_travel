@@ -1,14 +1,17 @@
 import 'package:flutter_travel/redux/states/StateAuth.dart';
 import 'package:flutter_travel/redux/states/StatePage.dart';
+import 'package:flutter_travel/redux/states/StateWeather.dart';
 import 'package:meta/meta.dart';
 
 @immutable
 class AppState {
     final StateAuth auth;
 	final StatePage page;
+	final StateWeather weather;
 
-    AppState({StateAuth auth, StatePage page}): 
+    AppState({StateWeather weather, StateAuth auth, StatePage page}): 
 		auth = auth ?? StateAuth(), 
+		weather = weather ?? StateWeather(), 
 		page = page ?? StatePage();
 
 	/// 将登录信息从本地缓存反序列化
