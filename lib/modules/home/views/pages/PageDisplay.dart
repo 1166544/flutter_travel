@@ -229,7 +229,7 @@ class _PageDisplayState extends State<PageDisplay> with CommonTravelItem, Common
 	/// 顶部空白区域
 	Widget getAbsTopSpace() {
 		return Container(
-			padding: EdgeInsets.fromLTRB(0, 20, 0, 20),
+			padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
 			decoration: BoxDecoration(
 				color: Colors.white,
 				shape: BoxShape.rectangle

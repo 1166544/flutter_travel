@@ -14,7 +14,6 @@ class ComponentWeatherSwipePager extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      height: 200,
       child: ComponentCurrentConditions(
             weather: weather,
         ),

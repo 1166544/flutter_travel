@@ -14,31 +14,28 @@ class ComponentCurrentConditions extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        Row(
-			mainAxisAlignment: MainAxisAlignment.center, 
-			crossAxisAlignment: CrossAxisAlignment.start,
-			children: <Widget>[
-				Icon(
-					weather.getIconData(),
-					color: Colors.black,
-					size: 70,
-				),
-				SizedBox(
-					height: 20,
-				),
-				Text(
-					'${this.weather.temperature.as(this.temperatureUnit).round()}°',
-					style: TextStyle(
-						fontSize: 100,
-						fontWeight: FontWeight.w100,
-						color: Colors.black,
-				))
-			],
+		SizedBox(
+			height: 20,
 		),
+		Icon(
+			weather.getIconData(),
+			color: Colors.black,
+			size: 70,
+		),
+		SizedBox(
+			height: 20,
+		),
+		Text(
+			'${this.weather.temperature.as(this.temperatureUnit).round()} °C',
+			style: TextStyle(
+				fontSize: 100,
+				fontWeight: FontWeight.w100,
+				color: Colors.black,
+		)),
         Row(
 			mainAxisAlignment: MainAxisAlignment.center, 
 			children: <Widget>[
-				ComponentValueTile("max", '${this.weather.maxTemperature.as(this.temperatureUnit).round()}°'),
+				ComponentValueTile("max", '${this.weather.maxTemperature.as(this.temperatureUnit).round()} °C'),
 				Padding(
 					padding: const EdgeInsets.only(left: 15, right: 15),
 					child: Center(
@@ -46,10 +43,10 @@ class ComponentCurrentConditions extends StatelessWidget {
 					width: 1,
 					height: 30,
 					color:
-						Colors.black,
+						Colors.black.withOpacity(0.3),
 					)),
 				),
-				ComponentValueTile("min", '${this.weather.minTemperature.as(this.temperatureUnit).round()}°'),
+				ComponentValueTile("min", '${this.weather.minTemperature.as(this.temperatureUnit).round()} °C'),
         	]
 		),
       ]

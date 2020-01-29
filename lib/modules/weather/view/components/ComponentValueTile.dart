@@ -17,7 +17,7 @@ class ComponentValueTile extends StatelessWidget {
         Text(
           this.label,
           style: TextStyle(
-              color: Colors.black.withOpacity(0.6),
+              color: Colors.black.withOpacity(0.3),
         )),
         SizedBox(
           height: 5,
