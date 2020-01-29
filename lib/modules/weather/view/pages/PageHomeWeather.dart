@@ -12,12 +12,56 @@ class PageHomeWeather extends StatefulWidget {
   _PageHomeWeatherState createState() => _PageHomeWeatherState();
 }
 
-class _PageHomeWeatherState extends State<PageHomeWeather> {
+class _PageHomeWeatherState extends State<PageHomeWeather> with TickerProviderStateMixin {
+	
+	/// 淡出动画
+	AnimationController controller;
+	Animation animation;
+
+	@override
+	void initState() {
+		super.initState();
+
+		// 动画控制器
+		this.controller = AnimationController(
+			duration: Duration(seconds: 2),
+			vsync: this
+		);
+
+		// 动画类型
+		this.animation = Tween(
+			begin: 0.0,
+			end: 1.0
+		).animate(this.controller);
+
+		// 动画状态监听
+		this.controller.addStatusListener((status) {
+			print(status);
+			// AnimationStatus.completed
+			// AnimationStatus.dismissed
+			// AnimationStatus.forward
+			// AnimationStatus.reverse
+		});
+
+		// 启动动画
+		this.controller.forward();
+	}
+
+	@override
+	void dispose() {
+		super.dispose();
+		this.controller.dispose();
+	}
+	
 	@override
 	Widget build(BuildContext context) {
 		return BlocProvider(
 			bloc: BlocWeatherList(),
-			child: getWeatherComponent(),
+			// 淡入淡出动画
+			child: FadeTransition(
+				opacity: this.animation,
+				child: this.getWeatherComponent(),
+			),
 		);
 	}
 
