@@ -37,12 +37,12 @@ class BlocWeatherList implements BlocBase {
 	}
 
 	/// 初始化
-	Future<Null> init() async {
+	Future<Null> init({double longitude, double latitude}) async {
 
 		// 检测STORE中是否已存在
 		if (this.store.state.weather.weatherData == null) {
 			// 初始化时调用service列表数据 
-			dynamic cityResult = await this._serviceWeatherList.getCityNameByPosition(lat:23.1290800000, lon:113.2643600000);
+			dynamic cityResult = await this._serviceWeatherList.getCityNameByPosition(lat:latitude, lon:longitude);
 			ModelWeatherItem weatherSourceData = ModelWeatherItem.fromJson(cityResult.data);
 
 			// 获取天气
