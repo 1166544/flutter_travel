@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:flutter_travel/core/bloc/BlocProvider.dart';
 import 'package:flutter_travel/modules/common/CommonTravelItem.dart';
 import 'package:flutter_travel/modules/discover/views/ViewContentRender.dart';
@@ -107,31 +108,43 @@ class _ViewDiscoverContentState extends State<ViewDiscoverContent> with CommonTr
 		// 是否为最后一页
 		this.hasMore = snapshot.data.hasmore;
 
-		return ListView.separated(
-			controller: this._controller,
-			physics: BouncingScrollPhysics(),
-			shrinkWrap: true,
-			itemBuilder: (context, index) {
-				if (index == this.renderListData.length) {
-					if (this.hasMore) {
-						return GestureDetector(
-							child: this.getLoadMoreItem(),
-							onTap: this.retriveData,
-						);
+		return AnimationLimiter(
+			child: ListView.separated(
+				controller: this._controller,
+				physics: BouncingScrollPhysics(),
+				shrinkWrap: true,
+				itemBuilder: (context, index) {
+					if (index == this.renderListData.length) {
+						if (this.hasMore) {
+							return GestureDetector(
+								child: this.getLoadMoreItem(),
+								onTap: this.retriveData,
+							);
+						} else {
+							return this.getNoMoreItem();
+						}
 					} else {
-						return this.getNoMoreItem();
-					}
-				} else {
-					var item = this.rebuildImageUrls(this.renderListData[index]);
+						var item = this.rebuildImageUrls(this.renderListData[index]);
 
-					return ViewContentRender(snapData: item, renderIndex: index);
-				}
-			},
-			separatorBuilder: (context, index) {
-				return this.buildTravelSep();
-			},
-			itemCount: this.renderListData.length + 1,
-		);
+						return AnimationConfiguration.staggeredList(
+							position: index,
+							duration: const Duration(milliseconds: 375),
+							child: SlideAnimation( //滑动动画
+								verticalOffset: 50.0,
+								child: FadeInAnimation( //渐隐渐现动画
+									child: ViewContentRender(snapData: item, renderIndex: index),
+								),
+							),
+						);
+					}
+				},
+				separatorBuilder: (context, index) {
+					return this.buildTravelSep();
+				},
+				itemCount: this.renderListData.length + 1,
+			)
+        );
+
 	}
 
 	// 补足缺失图片
