@@ -34,7 +34,7 @@ class ComponentWeatherWidget extends StatelessWidget {
 					fontSize: 15,
 					color: Colors.black,
 				)),
-				ComponentWeatherSwipePager(weather: weather),
+				ComponentWeatherSwiperPager(weather: weather),
 			]
 		),
 	);
