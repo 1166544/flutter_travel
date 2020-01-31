@@ -3,6 +3,7 @@ import 'package:flutter_travel/modules/weather/models/ModelWeatherItem.dart';
 import 'package:flutter_travel/modules/weather/view/components/ComponentConverters.dart';
 import 'package:flutter_travel/modules/weather/view/components/ComponentValueTile.dart';
 
+/// 温度和天气显示组件
 class ComponentWeatherSwiperPager extends StatefulWidget {
 	final ModelWeatherItem weather;
   	ComponentWeatherSwiperPager({Key key, this.weather}) : super(key: key);
@@ -10,9 +11,33 @@ class ComponentWeatherSwiperPager extends StatefulWidget {
   	_ComponentWeatherSwiperPagerState createState() => _ComponentWeatherSwiperPagerState();
 }
 
-class _ComponentWeatherSwiperPagerState extends State<ComponentWeatherSwiperPager> {
+class _ComponentWeatherSwiperPagerState extends State<ComponentWeatherSwiperPager> with TickerProviderStateMixin {
 	final TemperatureUnit temperatureUnit = TemperatureUnit.celsius;
 	
+	AnimationController controller;
+  	Animation<Offset> animationRight;
+  	Animation<Offset> animationLeft;
+
+	@override
+	void initState() {
+		super.initState();
+		this.controller = AnimationController(duration: Duration(milliseconds: 600), vsync: this);
+		this.controller.addStatusListener((status) {
+			// print(status);	
+		});
+
+    	Animation curve = new CurvedAnimation(parent: controller, curve: Curves.easeOut);
+		this.animationRight = Tween(begin: Offset(1.0, 0.0), end: Offset.zero).animate(curve);
+		this.animationLeft = Tween(begin: Offset(-1.0, 0.0), end: Offset.zero).animate(curve);
+		this.controller.forward();
+	}
+
+	@override
+	void dispose() {
+		super.dispose();
+		this.controller.dispose();
+	}
+
 	@override
 	Widget build(BuildContext context) {
 		return Column(
@@ -29,13 +54,33 @@ class _ComponentWeatherSwiperPagerState extends State<ComponentWeatherSwiperPage
 			SizedBox(
 				height: 20,
 			),
-			Text(
-				'${widget.weather.temperature.as(this.temperatureUnit).round()} °C',
-				style: TextStyle(
-					fontSize: 100,
-					fontWeight: FontWeight.w100,
-					color: Colors.black,
-			)),
+			Row(
+				mainAxisAlignment: MainAxisAlignment.center,
+				children: <Widget>[
+					SlideTransition(
+						position: this.animationLeft,
+						child: Text(
+							'${widget.weather.temperature.as(this.temperatureUnit).round()}',
+							style: TextStyle(
+								fontSize: 100,
+								fontWeight: FontWeight.w100,
+								color: Colors.black,
+							)
+						)
+					),
+					SlideTransition(
+						position: this.animationRight,
+						child: Text(
+							' °C',
+							style: TextStyle(
+								fontSize: 100,
+								fontWeight: FontWeight.w100,
+								color: Colors.black,
+							)
+						)
+					)
+				],
+			),
 			Row(
 				mainAxisAlignment: MainAxisAlignment.center, 
 				children: <Widget>[

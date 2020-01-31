@@ -22,7 +22,7 @@ class _ComponentWeatherWidgetState extends State<ComponentWeatherWidget> with Ti
 
 		// 动画控制器
 		this.controller = AnimationController(
-			duration: Duration(seconds: 2),
+			duration: Duration(seconds: 1),
 			vsync: this
 		);
 
