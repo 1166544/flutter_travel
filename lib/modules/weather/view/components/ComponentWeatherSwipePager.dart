@@ -41,64 +41,64 @@ class _ComponentWeatherSwiperPagerState extends State<ComponentWeatherSwiperPage
 	@override
 	Widget build(BuildContext context) {
 		return Column(
-		mainAxisAlignment: MainAxisAlignment.center,
-		children: <Widget>[
-			SizedBox(
-				height: 20,
-			),
-			Icon(
-				widget.weather.getIconData(),
-				color: Colors.black,
-				size: 70,
-			),
-			SizedBox(
-				height: 20,
-			),
-			Row(
-				mainAxisAlignment: MainAxisAlignment.center,
-				children: <Widget>[
-					SlideTransition(
-						position: this.animationLeft,
-						child: Text(
-							'${widget.weather.temperature.as(this.temperatureUnit).round()}',
-							style: TextStyle(
-								fontSize: 100,
-								fontWeight: FontWeight.w100,
-								color: Colors.black,
+			mainAxisAlignment: MainAxisAlignment.center,
+			children: <Widget>[
+				SizedBox(
+					height: 20,
+				),
+				Icon(
+					widget.weather.getIconData(),
+					color: Colors.black,
+					size: 70,
+				),
+				SizedBox(
+					height: 20,
+				),
+				Row(
+					mainAxisAlignment: MainAxisAlignment.center,
+					children: <Widget>[
+						SlideTransition(
+							position: this.animationLeft,
+							child: Text(
+								'${widget.weather.temperature.as(this.temperatureUnit).round()}',
+								style: TextStyle(
+									fontSize: 100,
+									fontWeight: FontWeight.w100,
+									color: Colors.black,
+								)
+							)
+						),
+						SlideTransition(
+							position: this.animationRight,
+							child: Text(
+								' °C',
+								style: TextStyle(
+									fontSize: 100,
+									fontWeight: FontWeight.w100,
+									color: Colors.black,
+								)
 							)
 						)
-					),
-					SlideTransition(
-						position: this.animationRight,
-						child: Text(
-							' °C',
-							style: TextStyle(
-								fontSize: 100,
-								fontWeight: FontWeight.w100,
-								color: Colors.black,
-							)
-						)
-					)
-				],
-			),
-			Row(
-				mainAxisAlignment: MainAxisAlignment.center, 
-				children: <Widget>[
-					ComponentValueTile("max", '${widget.weather.maxTemperature.as(this.temperatureUnit).round()} °C'),
-					Padding(
-						padding: const EdgeInsets.only(left: 15, right: 15),
-						child: Center(
-							child: Container(
-						width: 1,
-						height: 30,
-						color:
-							Colors.black.withOpacity(0.3),
-						)),
-					),
-					ComponentValueTile("min", '${widget.weather.minTemperature.as(this.temperatureUnit).round()} °C'),
-				]
-			),
-		]
+					],
+				),
+				Row(
+					mainAxisAlignment: MainAxisAlignment.center, 
+					children: <Widget>[
+						ComponentValueTile("max", '${widget.weather.maxTemperature.as(this.temperatureUnit).round()} °C'),
+						Padding(
+							padding: const EdgeInsets.only(left: 15, right: 15),
+							child: Center(
+								child: Container(
+							width: 1,
+							height: 30,
+							color:
+								Colors.black.withOpacity(0.3),
+							)),
+						),
+						ComponentValueTile("min", '${widget.weather.minTemperature.as(this.temperatureUnit).round()} °C'),
+					]
+				),
+			]
 		);
 	}
 }
