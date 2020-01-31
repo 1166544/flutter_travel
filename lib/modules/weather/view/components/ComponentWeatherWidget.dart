@@ -10,7 +10,48 @@ class ComponentWeatherWidget extends StatefulWidget {
   	_ComponentWeatherWidgetState createState() => _ComponentWeatherWidgetState();
 }
 
-class _ComponentWeatherWidgetState extends State<ComponentWeatherWidget> {
+class _ComponentWeatherWidgetState extends State<ComponentWeatherWidget> with TickerProviderStateMixin {
+
+	/// 淡出动画
+	AnimationController controller;
+	Animation animation;
+
+	@override
+	void initState() {
+		super.initState();
+
+		// 动画控制器
+		this.controller = AnimationController(
+			duration: Duration(seconds: 2),
+			vsync: this
+		);
+
+		// 动画类型
+		this.animation = Tween(
+			begin: 0.0,
+			end: 1.0
+		).animate(this.controller);
+
+		// 动画状态监听
+		this.controller.addStatusListener((status) {
+			print(status);
+			// AnimationStatus.completed
+			// AnimationStatus.dismissed
+			// AnimationStatus.forward
+			// AnimationStatus.reverse
+		});
+
+		// 启动动画
+		this.controller.reset();
+		this.controller.forward();
+	}
+
+	@override
+	void dispose() {
+		this.controller.dispose();
+		super.dispose();
+	}
+
 	@override
 	Widget build(BuildContext context) {
 		return Center(
@@ -37,7 +78,11 @@ class _ComponentWeatherWidgetState extends State<ComponentWeatherWidget> {
 						fontSize: 15,
 						color: Colors.black,
 					)),
-					ComponentWeatherSwiperPager(weather: widget.weather),
+
+					FadeTransition(
+						opacity: this.animation,
+						child:ComponentWeatherSwiperPager(weather: widget.weather)
+					)
 				]
 			),
 		);

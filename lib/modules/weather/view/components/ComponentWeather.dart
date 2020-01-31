@@ -18,44 +18,14 @@ class _ComponentWeatherState extends State<ComponentWeather> with TickerProvider
 	
 	BlocWeatherList blocGalleryList;
 
-	/// 淡出动画
-	AnimationController controller;
-	Animation animation;
-
 	@override
 	void initState() {
 		super.initState();
-
-		// 动画控制器
-		this.controller = AnimationController(
-			duration: Duration(seconds: 2),
-			vsync: this
-		);
-
-		// 动画类型
-		this.animation = Tween(
-			begin: 0.0,
-			end: 1.0
-		).animate(this.controller);
-
-		// 动画状态监听
-		this.controller.addStatusListener((status) {
-			print(status);
-			// AnimationStatus.completed
-			// AnimationStatus.dismissed
-			// AnimationStatus.forward
-			// AnimationStatus.reverse
-		});
-
-		// 启动动画
-		this.controller.reset();
-		this.controller.forward();
 	}
 
 	@override
 	void dispose() {
 		this.blocGalleryList.dispose();
-		this.controller.dispose();
 		super.dispose();
 	}
 
@@ -63,10 +33,7 @@ class _ComponentWeatherState extends State<ComponentWeather> with TickerProvider
 	Widget build(BuildContext context) {
 		// 从STORE获取
 		if (widget.weatherData != null) {
-			return FadeTransition(
-				opacity: this.animation,
-				child: ComponentWeatherWidget(weather: widget.weatherData.sourceData)
-			);
+			return ComponentWeatherWidget(weather: widget.weatherData.sourceData);
 		}
 		
 		this.blocGalleryList = BlocProvider.of<BlocWeatherList>(context);
@@ -97,10 +64,7 @@ class _ComponentWeatherState extends State<ComponentWeather> with TickerProvider
 	}
 
 	Widget buildLayout(AsyncSnapshot<ModelDisplayWeatherInfo> snapshot) {
-		return FadeTransition(
-				opacity: this.animation,
-				child: ComponentWeatherWidget(weather: widget.weatherData.sourceData)
-		);
+		return ComponentWeatherWidget(weather: widget.weatherData.sourceData);
 	}
 
 	Widget buildEmptyLayout(BuildContext context) {
