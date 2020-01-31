@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_travel/modules/weather/models/ModelWeatherItem.dart';
 import 'package:flutter_travel/modules/weather/view/components/ComponentConverters.dart';
+import 'package:flutter_travel/modules/weather/view/components/ComponentTemplature.dart';
 import 'package:flutter_travel/modules/weather/view/components/ComponentValueTile.dart';
 
 /// 温度和天气显示组件
@@ -56,17 +57,11 @@ class _ComponentWeatherSwiperPagerState extends State<ComponentWeatherSwiperPage
 				),
 				Row(
 					mainAxisAlignment: MainAxisAlignment.center,
+					crossAxisAlignment: CrossAxisAlignment.start,
 					children: <Widget>[
 						SlideTransition(
 							position: this.animationLeft,
-							child: Text(
-								'${widget.weather.temperature.as(this.temperatureUnit).round()}',
-								style: TextStyle(
-									fontSize: 100,
-									fontWeight: FontWeight.w100,
-									color: Colors.black,
-								)
-							)
+							child: ComponentTemplature(templature: widget.weather.temperature.as(this.temperatureUnit).round())
 						),
 						SlideTransition(
 							position: this.animationRight,

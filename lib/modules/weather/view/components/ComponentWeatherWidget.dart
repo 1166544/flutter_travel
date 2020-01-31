@@ -60,24 +60,25 @@ class _ComponentWeatherWidgetState extends State<ComponentWeatherWidget> with Ti
 				children: <Widget>[
 					SizedBox(height: 20),
 					Text(
-					widget.weather.cityName.toUpperCase(),
-					style: TextStyle(
-						fontWeight: FontWeight.w900,
-						letterSpacing: 5,
-						color: Colors.black,
-						fontSize: 25),
-					),
-					SizedBox(
-					height: 10,
+						widget.weather.cityName.toUpperCase(),
+						style: TextStyle(
+							fontWeight: FontWeight.w900,
+							letterSpacing: 5,
+							color: Colors.black,
+							fontSize: 25),
+						),
+						SizedBox(
+						height: 10,
 					),
 					Text(
-					widget.weather.description.toUpperCase(),
-					style: TextStyle(
-						fontWeight: FontWeight.w200,
-						letterSpacing: 5,
-						fontSize: 15,
-						color: Colors.black,
-					)),
+						widget.weather.description.toUpperCase(),
+						style: TextStyle(
+							fontWeight: FontWeight.w200,
+							letterSpacing: 5,
+							fontSize: 15,
+							color: Colors.black,
+						)
+					),
 
 					FadeTransition(
 						opacity: this.animation,

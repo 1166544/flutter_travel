@@ -47,7 +47,7 @@ class _SplashScreenState extends State<ViewSplashContent> with CommonTravelItem 
 	}
 
 	@override
-		void initState() {
+	void initState() {
 		super.initState();
 		startTime();
 	}
