@@ -31,14 +31,16 @@ class HttpServiceCore {
 	void init() {
 		this.dio = new Dio();
 		this.dio.options.baseUrl = this.baseUrl;
-		this.dio.options.connectTimeout = 30000;
-		this.dio.options.receiveTimeout = 30000;
+		this.dio.options.connectTimeout = 5000;
+		this.dio.options.receiveTimeout = 5000;
 
 		// 请求和响应处理
 		this.dio.interceptors.add(InterceptorsWrapper(
 			onRequest:(RequestOptions options){
 				// 在请求被发送之前做一些事情
+				this.dio.interceptors.requestLock.lock();
 				options.headers = this.generateRequestHeaders();
+				this.dio.interceptors.requestLock.unlock();
 				return options; //continue
 				// 如果你想完成请求并返回一些自定义数据，可以返回一个`Response`对象或返回`dio.resolve(data)`。
 				// 这样请求将会被终止，上层then会被调用，then中返回的数据将是你的自定义数据data.
@@ -50,10 +52,10 @@ class HttpServiceCore {
 				// 在返回响应数据之前做一些预处理 
 				return response; // continue
 			},
-			onError: (DioError e) {
-				// 当请求失败时做一些预处理
+			onError: (DioError e) async {
+				// 请求失败时预处理
 				print(e);
-				return e;//continue
+				return e;
 			}
 		));
 
