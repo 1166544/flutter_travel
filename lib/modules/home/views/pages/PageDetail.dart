@@ -52,7 +52,7 @@ class _PageDetailState extends State<PageDetail> with CommonNavigator {
 				backgroundColor: Colors.grey.withOpacity(0.2)
 			),
 			body: BlocProvider(
-				bloc: BlocDetail(),
+				bloc: blocDetail,
 				child: PageDetailContent(requestParams: widget.requestParams),
 			),
 		);

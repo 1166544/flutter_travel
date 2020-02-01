@@ -11,16 +11,15 @@ class BlocSplashList implements BlocBase {
 	ServiceBing _serviceNewsList;
 
 	/// 数据流处理器对象
-	StreamController<ModelsBing> _galleryController;
+	StreamController<ModelsBing> galleryController;
 
 	/// 流入流
-	Sink<ModelsBing> get _inGallery => _galleryController.sink;
+	Sink<ModelsBing> get _inGallery => galleryController.sink;
 
 	/// 流出流
-	Stream<ModelsBing> get outGallery => _galleryController.stream;
+	Stream<ModelsBing> get outGallery => galleryController.stream;
 
-	BlocSplashList() {
-		this._galleryController = StreamController<ModelsBing>.broadcast();
+	BlocSplashList(this.galleryController) {
 		this._serviceNewsList = new ServiceBing();
 	}
 
@@ -50,3 +49,6 @@ class BlocSplashList implements BlocBase {
 	}
 
 }
+
+/// BLOC实例
+final blocSplashList = BlocSplashList(StreamController<ModelsBing>.broadcast());

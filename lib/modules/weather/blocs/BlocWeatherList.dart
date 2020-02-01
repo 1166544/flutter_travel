@@ -21,16 +21,15 @@ class BlocWeatherList implements BlocBase {
 	Store<AppState> store;
 	
 	/// 数据流处理器对象
-	StreamController<ModelDisplayWeatherInfo> _galleryController;
+	StreamController<ModelDisplayWeatherInfo> galleryController;
 
 	/// 流入流
-	Sink<ModelDisplayWeatherInfo> get _inGallery => _galleryController.sink;
+	Sink<ModelDisplayWeatherInfo> get _inGallery => galleryController.sink;
 
 	/// 流出流
-	Stream<ModelDisplayWeatherInfo> get outGallery => _galleryController.stream;
+	Stream<ModelDisplayWeatherInfo> get outGallery => galleryController.stream;
 
-	BlocWeatherList() {
-		this._galleryController = StreamController<ModelDisplayWeatherInfo>.broadcast();
+	BlocWeatherList(this.galleryController) {
 		this._serviceWeatherList = new ServiceOpenWeather();
 		this._serviceWeatherAndAirList = new ServiceFreeAirAndWeather();
 		this.store = ServiceGlobal.instance.getStoreInstance();
@@ -78,3 +77,6 @@ class BlocWeatherList implements BlocBase {
 	}
 
 }
+
+/// BLOC实例
+final blocWeatherList = BlocWeatherList(StreamController<ModelDisplayWeatherInfo>.broadcast());

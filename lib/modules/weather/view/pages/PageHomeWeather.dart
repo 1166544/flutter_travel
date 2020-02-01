@@ -27,7 +27,7 @@ class _PageHomeWeatherState extends State<PageHomeWeather> {
 	@override
 	Widget build(BuildContext context) {
 		return BlocProvider(
-			bloc: BlocWeatherList(),
+			bloc: blocWeatherList,
 			child: this.getWeatherComponent(),
 		);
 	}

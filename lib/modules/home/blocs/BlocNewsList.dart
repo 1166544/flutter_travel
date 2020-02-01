@@ -14,16 +14,15 @@ class BlocNewsList implements BlocBase {
 	dynamic _requestParams = '';
 
 	/// 数据流处理器对象
-	StreamController<ModelsNewsList> _galleryController;
+	StreamController<ModelsNewsList> galleryController;
 
 	/// 流入流
-	Sink<ModelsNewsList> get _inGallery => _galleryController.sink;
+	Sink<ModelsNewsList> get _inGallery => galleryController.sink;
 
 	/// 流出流
-	Stream<ModelsNewsList> get outGallery => _galleryController.stream;
+	Stream<ModelsNewsList> get outGallery => galleryController.stream;
 
-	BlocNewsList() {
-		this._galleryController = StreamController<ModelsNewsList>.broadcast();
+	BlocNewsList(this.galleryController) {
 		this._serviceNewsList = new ServiceNewsList();
 		this._serviceToken = new ServiceToken();
 	}
@@ -88,3 +87,6 @@ class BlocNewsList implements BlocBase {
 	}
 
 }
+
+/// BLOC实例
+final blocNewsList = BlocNewsList(StreamController<ModelsNewsList>.broadcast());

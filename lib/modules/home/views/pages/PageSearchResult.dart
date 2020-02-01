@@ -31,7 +31,7 @@ class _PageSearchResultState extends State<PageSearchResult> {
 				backgroundColor: Color(0xffebeff8),
 			),
 			body: BlocProvider(
-				bloc: BlocSearch(),
+				bloc: blocSearch,
 				child: ComponentSearchContent(searchContent: widget.searchContent),
 			),
 		);

@@ -32,7 +32,7 @@ class _ProfilePageState extends State<ProfilePage> {
 			  backgroundColor: Color(0xffebeff8),
 		  ),
 		  body: BlocProvider(
-			  bloc: BlocMyInfo(),
+			  bloc: blocMyInfo,
 			  child: ComponentBlocContent(),
 		  )
 	  );

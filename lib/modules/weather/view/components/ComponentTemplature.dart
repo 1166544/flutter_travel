@@ -32,7 +32,7 @@ class _ComponentTemplatureState extends State<ComponentTemplature> with TickerPr
 		});
 
     	Animation curve = new CurvedAnimation(parent: controller, curve: Curves.linearToEaseOut);
-		this.animation = Tween(begin: Offset.zero, end: Offset(0.0, -0.875)).animate(curve);
+		this.animation = Tween(begin: Offset.zero, end: Offset(0.0, -0.95)).animate(curve);
 
 		this.startTime();
 	}

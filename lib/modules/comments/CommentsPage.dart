@@ -24,7 +24,7 @@ class _CommentsPageState extends State<CommentsPage> with CommonNavigator {
 		return Scaffold(
 			appBar: this.getAppBar(context, '精选留言'),
 			body: BlocProvider(
-				bloc: BlocComment(),
+				bloc: blocComment,
 				child: CommentPageContent(requestParams: widget.requestParams)
 			)
 		);

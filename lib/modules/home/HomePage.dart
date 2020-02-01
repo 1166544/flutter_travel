@@ -81,7 +81,7 @@ class _HomePageState extends State<HomePage> with CommonNavigator, SingleTickerP
 				)
 			),
 			body: BlocProvider(
-				bloc: BlocNewsList(),
+				bloc: blocNewsList,
 				child: TabBarView(
 					controller: this._tabController,
 					children: this._tabsView,

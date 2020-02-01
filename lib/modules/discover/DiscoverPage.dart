@@ -28,7 +28,7 @@ class _SearchPageState extends State<DiscoverPage> {
 				backgroundColor: Colors.white
 			),
 			body: BlocProvider(
-				bloc: BlocNewsList(),
+				bloc: blocNewsList,
 				child: ViewDiscoverContent(),
 			)
 		);

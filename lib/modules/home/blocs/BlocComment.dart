@@ -13,16 +13,15 @@ class BlocComment implements BlocBase {
 	dynamic _requestParams = '';
 
 	/// 数据流处理器对象
-	StreamController<ModelCommentData> _commentController;
+	StreamController<ModelCommentData> commentController;
 
 	/// 流入流
-	Sink<ModelCommentData> get _inStream => _commentController.sink;
+	Sink<ModelCommentData> get _inStream => commentController.sink;
 
 	/// 流出流
-	Stream<ModelCommentData> get outStream => _commentController.stream;
+	Stream<ModelCommentData> get outStream => commentController.stream;
 
-	BlocComment() {
-		this._commentController = StreamController<ModelCommentData>.broadcast();
+	BlocComment(this.commentController) {
 		this._serviceNewsList = new ServiceNewsList();
 		this._serviceToken = new ServiceToken();
 	}
@@ -58,3 +57,6 @@ class BlocComment implements BlocBase {
 		// this._commentController.close();
 	}
 }
+
+/// BLOC实例
+final blocComment = BlocComment(StreamController<ModelCommentData>.broadcast());

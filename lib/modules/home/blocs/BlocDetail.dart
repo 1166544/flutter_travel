@@ -17,16 +17,15 @@ class BlocDetail implements BlocBase {
 	dynamic _requestParams = '';
 
 	/// 数据流处理器对象
-	StreamController<ModelPageData> _detailController;
+	StreamController<ModelPageData> detailController;
 
 	/// 流入流
-	Sink<ModelPageData> get _inStream => _detailController.sink;
+	Sink<ModelPageData> get _inStream => detailController.sink;
 
 	/// 流出流
-	Stream<ModelPageData> get outStream => _detailController.stream;
+	Stream<ModelPageData> get outStream => detailController.stream;
 
-	BlocDetail() {
-		this._detailController = StreamController<ModelPageData>.broadcast();
+	BlocDetail(this.detailController) {
 		this._serviceNewsList = new ServiceNewsList();
 		this._serviceToken = new ServiceToken();
 	}
@@ -78,3 +77,6 @@ class BlocDetail implements BlocBase {
 	}
 
 }
+
+/// Bloc实例
+final blocDetail = BlocDetail(StreamController<ModelPageData>.broadcast());

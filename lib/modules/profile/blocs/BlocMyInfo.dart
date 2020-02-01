@@ -11,16 +11,15 @@ class BlocMyInfo implements BlocBase {
 	ServiceJsonPlaceHolder _serviceJsonPlaceHolder;
 
 	/// 数据流处理器对象
-	StreamController<ModelProfile> _galleryController;
+	StreamController<ModelProfile> galleryController;
 
 	/// 流入流
-	Sink<ModelProfile> get _inGallery => _galleryController.sink;
+	Sink<ModelProfile> get _inGallery => galleryController.sink;
 
 	/// 流出流
-	Stream<ModelProfile> get outGallery => _galleryController.stream;
+	Stream<ModelProfile> get outGallery => galleryController.stream;
 
-	BlocMyInfo() {
-		this._galleryController = StreamController<ModelProfile>.broadcast();
+	BlocMyInfo(this.galleryController) {
 		this._serviceJsonPlaceHolder = new ServiceJsonPlaceHolder();
 		this.init();
 	}
@@ -55,3 +54,6 @@ class BlocMyInfo implements BlocBase {
 	}
 
 }
+
+/// BLOC实例
+final blocMyInfo = BlocMyInfo(StreamController<ModelProfile>.broadcast());

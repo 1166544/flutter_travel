@@ -11,16 +11,15 @@ class BlocSearch implements BlocBase {
 	dynamic _requestParams = '';
 
 	/// 数据流处理器对象
-	StreamController<ModelSearch> _galleryController;
+	StreamController<ModelSearch> galleryController;
 
 	/// 流入流
-	Sink<ModelSearch> get _inGallery => _galleryController.sink;
+	Sink<ModelSearch> get _inGallery => galleryController.sink;
 
 	/// 流出流
-	Stream<ModelSearch> get outGallery => _galleryController.stream;
+	Stream<ModelSearch> get outGallery => galleryController.stream;
 
-	BlocSearch() {
-		this._galleryController = StreamController<ModelSearch>.broadcast();
+	BlocSearch(this.galleryController) {
 		this._serviceLibInfo = new ServiceLibInfo();
 	}
 
@@ -62,3 +61,6 @@ class BlocSearch implements BlocBase {
 	}
 
 }
+
+/// BLOC实例
+final blocSearch = BlocSearch(StreamController<ModelSearch>.broadcast());

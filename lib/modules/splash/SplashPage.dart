@@ -15,7 +15,7 @@ class _SplashPageState extends State<SplashPage> {
   Widget build(BuildContext context) {
 	return Scaffold(
 		body: BlocProvider(
-			bloc: BlocSplashList(),
+			bloc: blocSplashList,
 			child: ViewSplashContent(),
 		),
 	);

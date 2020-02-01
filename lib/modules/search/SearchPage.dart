@@ -32,7 +32,7 @@ class _SearchPageState extends State<SearchPage> with CommonNavigator {
 			backgroundColor: Colors.white
 		),
 		body: BlocProvider(
-			bloc: BlocNewsList(),
+			bloc: blocNewsList,
 			child: ViewSearchContent(),
 		),
 	);
