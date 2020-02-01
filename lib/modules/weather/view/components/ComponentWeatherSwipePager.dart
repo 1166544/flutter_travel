@@ -59,14 +59,22 @@ class _ComponentWeatherSwiperPagerState extends State<ComponentWeatherSwiperPage
 					mainAxisAlignment: MainAxisAlignment.center,
 					crossAxisAlignment: CrossAxisAlignment.start,
 					children: <Widget>[
+						ComponentTemplature(templature: widget.weather.temperature.as(this.temperatureUnit).round()),
 						SlideTransition(
 							position: this.animationLeft,
-							child: ComponentTemplature(templature: widget.weather.temperature.as(this.temperatureUnit).round())
+							child: Text(
+								' °',
+								style: TextStyle(
+									fontSize: 100,
+									fontWeight: FontWeight.w100,
+									color: Colors.black,
+								)
+							)
 						),
 						SlideTransition(
 							position: this.animationRight,
 							child: Text(
-								' °C',
+								'C',
 								style: TextStyle(
 									fontSize: 100,
 									fontWeight: FontWeight.w100,
