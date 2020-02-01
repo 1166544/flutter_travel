@@ -32,7 +32,7 @@ class _ComponentTemplatureState extends State<ComponentTemplature> with TickerPr
 		});
 
     	Animation curve = new CurvedAnimation(parent: controller, curve: Curves.linearToEaseOut);
-		this.animation = Tween(begin: Offset.zero, end: Offset(0.0, -0.95)).animate(curve);
+		this.animation = Tween(begin: Offset(0.0, -1), end: Offset.zero).animate(curve);
 
 		this.startTime();
 	}
@@ -50,7 +50,7 @@ class _ComponentTemplatureState extends State<ComponentTemplature> with TickerPr
 		for (var i = 0; i < widget.templature; i++) {
 			renderList.add(
 				Text(
-					'${i.toString()}',
+					'${(widget.templature - i).toString()}',
 					style: TextStyle(
 						fontSize: 100,
 						fontWeight: FontWeight.w100,
@@ -63,7 +63,7 @@ class _ComponentTemplatureState extends State<ComponentTemplature> with TickerPr
 		return ClipRect(
 			child: Align(
 				alignment: Alignment.topLeft,
-				heightFactor: 0.1,
+				heightFactor: 0.08,
 				child: SlideTransition(
 					position: this.animation,
 					child: Column(
