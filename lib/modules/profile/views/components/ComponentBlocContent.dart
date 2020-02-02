@@ -56,48 +56,50 @@ class _ComponentBlocContentState extends State<ComponentBlocContent> with Common
 			builder: (context, snapshot) {
 				// 数据源到位时渲染列表
 				return this.buildSearchLayout(snapshot);
-				// if (snapshot.hasData) {
-				// 	return this.buildSearchLayout(snapshot);
-				// } else {
-				// 	return this.buildEmptyLayout(context);
-				// }
 			},
 		);
 	}
 
 	/// 基础页面结构
 	Widget buildSearchLayout(AsyncSnapshot<ModelProfile> snapshot) {
-		return ListView(
-			children: <Widget>[
-				// 顶部头像
-				this.buildTopStucts(snapshot),
+		return StoreConnector<AppState, dynamic>(
+			converter: (store) {
+				return store.state.auth;
+			},
+			builder: (context, auth) {
+				return ListView(
+					children: <Widget>[
+						// 顶部头像
+						this.buildTopStucts(snapshot, auth),
 
-				// 中部报告信息
-				this.buildMiddleReportStucts(snapshot),
+						// 中部报告信息
+						this.buildMiddleReportStucts(snapshot, auth),
 
-				// 中部表格
-				this.buildMiddleChart(),
+						// 中部表格
+						this.buildMiddleChart(),
 
-				// 中部实现信息
-				this.buildMiddlePresciptionStucts(snapshot),
+						// 中部实现信息
+						this.buildMiddlePresciptionStucts(snapshot),
 
-				// 中部访问信息
-				this.buildMiddleVisitorStucts(snapshot),
+						// 中部访问信息
+						this.buildMiddleVisitorStucts(snapshot),
 
-				// 底部按钮
-				this.buildButtonStucts(snapshot),
-			]
+						// 底部按钮
+						this.buildButtonStucts(snapshot),
+					]
+				);
+			}
 		);
 	}
 	
 	/// 顶部头像
-	Widget buildTopStucts(AsyncSnapshot<ModelProfile> snapshot) {
-		return ComponentTopStructs(snapshot: snapshot);
+	Widget buildTopStucts(AsyncSnapshot<ModelProfile> snapshot, dynamic auth) {
+		return ComponentTopStructs(snapshot: snapshot, auth: auth);
 	}
 	
 	/// 中部报告信息
-	Widget buildMiddleReportStucts(AsyncSnapshot<ModelProfile> snapshot) {
-		return ComponentMiddleReport(snapshot: snapshot);
+	Widget buildMiddleReportStucts(AsyncSnapshot<ModelProfile> snapshot, dynamic auth) {
+		return ComponentMiddleReport(snapshot: snapshot, auth: auth);
 	}
 	
 	/// 中部访问信息
@@ -128,7 +130,7 @@ class _ComponentBlocContentState extends State<ComponentBlocContent> with Common
 						padding: EdgeInsets.all(10.0),
 						child: Center(
 							child: Text(
-								'Logout system here',
+								'Logout system'.toUpperCase(),
 								style: TextStyle(
 									fontSize: 19.0,
 									fontWeight: FontWeight.bold,

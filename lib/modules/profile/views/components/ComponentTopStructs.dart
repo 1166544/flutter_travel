@@ -2,28 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_travel/modules/common/CommonNavigator.dart';
 import 'package:flutter_travel/modules/profile/models/ModelProfile.dart';
 import 'package:flutter_travel/modules/profile/views/pages/PageFormSubmit.dart';
+import 'package:flutter_travel/redux/states/StateAuth.dart';
 
 /// 顶部头像结构
 class ComponentTopStructs extends StatefulWidget {
-  ComponentTopStructs({Key key, AsyncSnapshot<ModelProfile> snapshot}) : super(key: key);
+	final StateAuth auth;
+	final AsyncSnapshot<ModelProfile> snapshot;
+  	ComponentTopStructs({Key key, this.snapshot, this.auth}) : super(key: key);
 
-  _ComponentTopStructsState createState() => _ComponentTopStructsState();
+  	_ComponentTopStructsState createState() => _ComponentTopStructsState();
 }
 
 class _ComponentTopStructsState extends State<ComponentTopStructs> with CommonNavigator {
 	@override
 	Widget build(BuildContext context) {
 		return Container(
-			decoration: BoxDecoration(
-				color: Color(0xFF45489e),
-				borderRadius: BorderRadius.only(
-					topLeft: Radius.circular(0.0), 
-					topRight: Radius.circular(0.0), 
-					bottomLeft: Radius.circular(20.0), 
-					bottomRight: Radius.circular(20.0),
-				)
-			),
-			padding: EdgeInsets.fromLTRB(35.0, 25.0, 15.0, 20.0),
+			padding: EdgeInsets.fromLTRB(20.0, 25.0, 15.0, 20.0),
 			child: Row(
 				mainAxisAlignment: MainAxisAlignment.start,
 				crossAxisAlignment: CrossAxisAlignment.start,
@@ -43,9 +37,9 @@ class _ComponentTopStructsState extends State<ComponentTopStructs> with CommonNa
 				mainAxisAlignment: MainAxisAlignment.end,
 				crossAxisAlignment: CrossAxisAlignment.end,
 				children: <Widget>[
-					Icon(Icons.edit, color: Colors.white),
+					Icon(Icons.edit, color: Colors.black),
 					SizedBox(width: 5.0),
-					Text('EDIT', style: TextStyle(fontSize: 14, color: Colors.white.withOpacity(0.6)),)
+					Text('EDIT', style: TextStyle(fontSize: 14, color: Colors.black.withOpacity(0.6)),)
 				],
 			),
 			onTap: this.navigateToProfile,
@@ -59,48 +53,53 @@ class _ComponentTopStructsState extends State<ComponentTopStructs> with CommonNa
 
 	/// 头像信息
 	Widget getAvataItem() {
-		return Column(
+		return Row(
 			mainAxisAlignment: MainAxisAlignment.start,
 			crossAxisAlignment: CrossAxisAlignment.start,
 			children: <Widget>[
-				SizedBox(height: 45.0),
 				Hero(
-					tag: 'assets/images/chatbubble.png',
+					tag: widget.auth.user.user.avatarUrl,
 					child: Container(
-						height: 85.0,
-						width: 85.0,
+						height: 55.0,
+						width: 55.0,
 						decoration: BoxDecoration(
-							borderRadius: BorderRadius.circular(62.5),
+							borderRadius: BorderRadius.circular(7),
 							image: DecorationImage(
 								fit:BoxFit.cover,
-								image: AssetImage('assets/images/chatbubble.png')
+								image: NetworkImage(widget.auth.user.user.avatarUrl)
 							),
 							boxShadow: [
 								BoxShadow(
-									color: Color(0xff302f90),
-									offset: Offset(10.0, 8.0),
-									blurRadius: 10.5,
-									spreadRadius: 8.8)
+									color: Colors.grey,
+									offset: Offset(1.0, 1.0),
+									blurRadius: 1,
+									spreadRadius: 1)
 							] 
 						),
 					),
 				),
-				SizedBox(height: 15.0),
-				Text(
-					'Mark Stewart',
-					style: TextStyle(
-						fontSize: 18.0,
-						color: Colors.white,
-						fontWeight: FontWeight.bold
-					)
-				),
-				SizedBox(height: 10.0),
-				Text(
-					'20mg capsule',
-					style: TextStyle(
-						fontSize: 12.0,
-						color: Color(0xFF8b8cda)
-					)
+				SizedBox(width: 15.0),
+				Column(
+					mainAxisAlignment: MainAxisAlignment.start,
+					crossAxisAlignment: CrossAxisAlignment.start,
+					children: [
+						Text(
+							widget.auth.user.user.name,
+							style: TextStyle(
+								fontSize: 22.0,
+								color: Colors.black,
+								fontWeight: FontWeight.bold
+							)
+						),
+						SizedBox(height: 10.0),
+						Text(
+							widget.auth.user.user.bio,
+							style: TextStyle(
+								fontSize: 12.0,
+								color: Colors.black
+							)
+						)
+					]
 				),
 			],
 		);
