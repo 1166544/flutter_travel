@@ -29,7 +29,7 @@ class _PageDisplayState extends State<PageDisplay> with CommonTravelItem, Common
 	BlocNewsList blocGalleryList;
 	bool isInited = false;
 	bool hasMore = false;
-	bool isPullup = false;
+	bool isFirstLoad = false;
 
 	GlobalKey<RefreshIndicatorState> refreshKey = GlobalKey<RefreshIndicatorState>();
 
@@ -98,14 +98,18 @@ class _PageDisplayState extends State<PageDisplay> with CommonTravelItem, Common
 
 	/// 下拉刷新调用
 	Future<Null> refreshData() async {
-		this.isPullup = false;
+		this.isFirstLoad = false;
+
+		// 区别上拉增加，下拉刷新时清除原有数据
+		this.experienceList = [];
+		this.coverList = [];
+		this.renderListData = [];
 		await this.blocGalleryList.update();
 	}
 
 	/// 点击加载更多
 	Future<Null> retriveData() async {
-		this.isPullup = true;
-		await this.refreshData();
+		await this.blocGalleryList.update();
 	}
 
 	/// 连接stream数据源
@@ -131,29 +135,31 @@ class _PageDisplayState extends State<PageDisplay> with CommonTravelItem, Common
 		// 是否为最后一页
 		this.hasMore = snapshot.data.hasmore;
 
-		// 区别上拉增加，下拉刷新时清除原有数据
-		if (!this.isPullup) {
-			this.experienceList = [];
-			this.coverList = [];
-			this.renderListData = [];
-		}
-
 		List<ModelNewsItem> snapshotList = snapshot.data.news;
 		int count = snapshot.data.news.length;
 		
 		// 数据分层
 		for (var i = 0; i < count; i++) {
 			ModelNewsItem item = snapshotList[i]; 
-			if (item.imageurls.length > 0 && this.experienceList.length < 10) {
-				this.experienceList.add(item);
-			} else if (item.imageurls.length >= 1 && this.coverList.length < 5) {
-				this.coverList.add(item);
+
+			if (!this.isFirstLoad) {
+				if (item.imageurls.length > 0 && this.experienceList.length < 10) {
+					this.experienceList.add(item);
+				} else if (item.imageurls.length >= 1 && this.coverList.length < 5) {
+					this.coverList.add(item);
+				} else {
+					this.renderListData.add(item);
+				}
 			} else {
+				// 第二次以后放入最层部显示列表
 				this.renderListData.add(item);
 			}
 		}
 
 		List<Widget> renderList = [];
+
+		// 首次进行数据分层
+		this.isFirstLoad = true;
 
 		// 搜索条(非首页才增加)
 		if (widget.requestParams != null) {

@@ -5,7 +5,7 @@ import 'dart:io';
 import 'package:dio/adapter.dart';
 import 'package:flutter_travel/core/api/ApiEnum.dart';
 import 'package:flutter_travel/core/api/ApiEnviroment.dart';
-import 'package:flutter_travel/core/http/HttpTransformerCore.dart';
+// import 'package:flutter_travel/core/http/HttpTransformerCore.dart';
 import 'package:flutter_travel/services/ServiceEnviroment.dart';
 import 'package:dio/dio.dart';
 
@@ -31,8 +31,8 @@ class HttpServiceCore {
 	void init() {
 		this.dio = new Dio();
 		this.dio.options.baseUrl = this.baseUrl;
-		this.dio.options.connectTimeout = 5000;
-		this.dio.options.receiveTimeout = 5000;
+		this.dio.options.connectTimeout = 10000;
+		this.dio.options.receiveTimeout = 10000;
 
 		// 请求和响应处理
 		this.dio.interceptors.add(InterceptorsWrapper(
@@ -66,7 +66,7 @@ class HttpServiceCore {
 		// this.dio.interceptors.add(CookieManager(CookieJar()));
 
 		// 自定义拦截器
-		this.dio.transformer = new HttpTransformerCore();
+		// this.dio.transformer = new HttpTransformerCore();
 
 		// 开发环境抓包请求
 		if (ServiceEnviroment.instance.env == ENVIROMENT.DEVELOPEMENT) {
