@@ -45,7 +45,7 @@ class ServiceToken extends HttpServiceCore {
 		};
 	}
 
-	/// get token
+	/// get news token
 	Future<Response<dynamic>> getToken() async {
 		dynamic result;
 		ApiToken sourceToken = this.enviroment.getEnv().getToken();
