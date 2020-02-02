@@ -36,7 +36,7 @@ class LoginWelcome extends StatelessWidget {
 					),
 					SizedBox(height: 7.0),
 					Text(
-					'sign in to continue',
+					'Pls sign in with github account to continue',
 					style: TextStyle(
 						color: Color(0xFF7a8099),
 						fontWeight: FontWeight.bold,

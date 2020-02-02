@@ -98,4 +98,14 @@ class ConfigDefault {
 		return '2d2a76fac8324146a1b17b68bda42c76';
 	}
 
+	/// github auth client id
+	String githubAppClientId() {
+		return '76edfa3197b5ddb963b1';
+	}
+
+	/// github App ClientSecret
+	String githubAppClientSecret() {
+		return '9a1eae61d39f7d4551700dfe91224893a49db0e9';
+	}
+
 }

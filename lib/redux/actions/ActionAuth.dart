@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_github_api/entity/basic_auth_param.dart';
+import 'package:flutter_github_api/flutter_github_api.dart';
 import 'package:flutter_travel/redux/states/StateApp.dart';
 import 'package:flutter_travel/redux/states/StateUser.dart';
 import 'package:flutter_travel/routers/Routers.dart';
+import 'package:flutter_travel/services/ServiceEnviroment.dart';
 import 'package:redux/redux.dart';
 
 /// 用户登录请求
@@ -30,20 +33,26 @@ final Function login = (BuildContext context, String username, String password) 
     return (Store<AppState> store) {
         store.dispatch(UserLoginRequest());
 
-		// 模拟登录
-        if (username == 'james' && password == 'liauw') {
-            store.dispatch(UserLoginSuccess(StateUser('placeholder_token', 'placeholder_id')));
-            Navigator.of(context).pushNamedAndRemoveUntil(Routers.mainPage, (_) => false);
-        } else {
-            store.dispatch(UserLoginFailure('Username or password were incorrect.', StateUser('', '')));
-        }
+		Auth auth = Auth(ServiceEnviroment.instance.getEnv().githubAppClientId(), ServiceEnviroment.instance.getEnv().githubAppClientSecret());
+		GithubOauth oauth = GithubOauth(auth);
+		oauth.login(username,password).then((result){
+			if (result.data != null) {
+				oauth.getToken(username, password).then((tokenValue) {
+					store.dispatch(UserLoginSuccess(StateUser(result.data, tokenValue.data)));
+					Navigator.of(context).pushNamedAndRemoveUntil(Routers.mainPage, (_) => false);
+				});
+			} else {
+				store.dispatch(UserLoginFailure('Username or password were incorrect.', StateUser(null, '')));
+			}
+		});
+
     };
 };
 
 /// 清除上次输入内容
 final Function clear = (BuildContext context) {
     return (Store<AppState> store) {
-        store.dispatch(UserLoginFailure('', StateUser('', '')));
+        store.dispatch(UserLoginFailure('', StateUser(null, '')));
     };
 };
 

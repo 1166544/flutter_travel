@@ -36,6 +36,7 @@ dependencies:
   geolocator: ^5.2.0
   permission_handler: '^4.2.0+hotfix.2'
   flutter_staggered_animations: ^0.1.2
+  flutter_github_api: ^0.2.1+2
 
 dev_dependencies:
   flutter_test:
