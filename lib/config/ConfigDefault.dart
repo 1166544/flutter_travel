@@ -108,4 +108,8 @@ class ConfigDefault {
 		return '9a1eae61d39f7d4551700dfe91224893a49db0e9';
 	}
 
+	/// login logo url
+	String loginLogoUrl() {
+		return 'https://github.githubassets.com/images/modules/octocats/supportcat.jpg';
+	}
 }

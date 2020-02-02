@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_travel/redux/states/StateApp.dart';
+import 'package:flutter_travel/services/ServiceEnviroment.dart';
 
 class LoginLogo extends StatelessWidget {
-	const LoginLogo({Key key}) : super(key: key);
+	LoginLogo({Key key}) : super(key: key);
 
 	@override
 	Widget build(BuildContext context) {
@@ -13,15 +14,34 @@ class LoginLogo extends StatelessWidget {
 			child: Center(
 				child: Column(
 					children: <Widget>[
-						Container(
-							width: 132,
-							height: 167,
-							decoration: BoxDecoration(
-								image: DecorationImage(
-									image: AssetImage('assets/images/tran_logo.png'),
-									fit: BoxFit.cover
-								)
-							),
+						Row(
+							mainAxisAlignment: MainAxisAlignment.center,
+							children: [
+								Container(
+									width: 132,
+									height: 167,
+									decoration: BoxDecoration(
+										image: DecorationImage(
+											image: AssetImage('assets/images/tran_logo.png'),
+											fit: BoxFit.cover
+										)
+									),
+								),
+								SizedBox(width: 9),
+								Text('X', style: TextStyle(color: Colors.grey, fontSize: 40, fontWeight: FontWeight.w100)),
+								SizedBox(width: 16),
+								Container(
+									width: 120,
+									height: 120,
+									decoration: BoxDecoration(
+										image: DecorationImage(
+											image: NetworkImage(ServiceEnviroment.instance.getEnv().loginLogoUrl()),
+											fit: BoxFit.cover,
+										),
+										borderRadius: BorderRadius.circular(100.0)
+									),
+								),
+							]
 						),
 						Padding(
 							padding: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),

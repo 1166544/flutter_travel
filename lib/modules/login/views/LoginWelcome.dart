@@ -39,7 +39,7 @@ class LoginWelcome extends StatelessWidget {
 					'Pls sign in with github account to continue',
 					style: TextStyle(
 						color: Color(0xFF7a8099),
-						fontWeight: FontWeight.bold,
+						fontWeight: FontWeight.w100,
 						fontSize: 26.0
 					),
 					)

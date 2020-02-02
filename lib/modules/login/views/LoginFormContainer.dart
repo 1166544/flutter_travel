@@ -86,10 +86,10 @@ class _LoginFormState extends State<LoginForm> {
 										padding: EdgeInsets.all(10.0),
 										child: Center(
 											child: Text(
-												'Login',
+												'Login'.toUpperCase(),
 												style: TextStyle(
 													fontSize: 19.0,
-													fontWeight: FontWeight.bold,
+													fontWeight: FontWeight.w300,
 													color: Colors.white
 												)
 											),
