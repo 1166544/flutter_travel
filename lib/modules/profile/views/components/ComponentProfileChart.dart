@@ -1,10 +1,17 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_travel/modules/profile/models/ModelProfile.dart';
+import 'package:flutter_travel/redux/states/StateAuth.dart';
 
 /// 数据统计表格
 class ComponentProfileChart extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() => ComponentProfileChartState();
+	final StateAuth auth;
+	final AsyncSnapshot<ModelProfile> snapshot;
+ 
+	ComponentProfileChart({Key key, this.snapshot, this.auth}) : super(key: key);
+
+	@override
+	State<StatefulWidget> createState() => ComponentProfileChartState();
 }
 
 class ComponentProfileChartState extends State<ComponentProfileChart> {
@@ -12,8 +19,8 @@ class ComponentProfileChartState extends State<ComponentProfileChart> {
 
 	@override
 	void initState() {
-	super.initState();
-	isShowingMainData = true;
+		super.initState();
+		isShowingMainData = true;
 	}
 
 	@override
@@ -24,29 +31,15 @@ class ComponentProfileChartState extends State<ComponentProfileChart> {
 		padding: EdgeInsets.fromLTRB(0, 0.0, 0, 0),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(2)),
-		  color: Color(0xFFe1e6f0)
+		  color: Colors.white
         ),
         child: Stack(
           children: <Widget>[
             Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
-                SizedBox(
-                  height: 37,
-                ),
                 Text(
-                  'Unfold Shop 2020',
-                  style: TextStyle(
-                    color: Color(0xff827daa),
-                    fontSize: 16,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-                SizedBox(
-                  height: 4,
-                ),
-                Text(
-                  'Monthly Sales',
+                  'Code push trends',
                   style: TextStyle(
                       color: Colors.black,
                       fontSize: 28,
@@ -59,15 +52,12 @@ class ComponentProfileChartState extends State<ComponentProfileChart> {
                 ),
                 Expanded(
                   child: Padding(
-                    padding: EdgeInsets.only(right: 16.0, left: 6.0),
+                    padding: EdgeInsets.only(right: 0.0, left: 0.0),
                     child: LineChart(
-                      isShowingMainData ? sampleData1() : sampleData2(),
-                      swapAnimationDuration: Duration(milliseconds: 250),
+						isShowingMainData ? sampleData1() : sampleData2(),
+						swapAnimationDuration: Duration(milliseconds: 250),
                     ),
                   ),
-                ),
-                SizedBox(
-                  height: 10,
                 ),
               ],
             ),
@@ -93,7 +83,7 @@ class ComponentProfileChartState extends State<ComponentProfileChart> {
 		return LineChartData(
 			lineTouchData: LineTouchData(
 				touchTooltipData: LineTouchTooltipData(
-					tooltipBgColor: Colors.blueGrey.withOpacity(0.8),
+					tooltipBgColor: Color(0xFF4f50ad),
 				),
 				touchCallback: (LineTouchResponse touchResponse) {
 					print(touchResponse);
@@ -106,11 +96,11 @@ class ComponentProfileChartState extends State<ComponentProfileChart> {
 			titlesData: FlTitlesData(
 				bottomTitles: SideTitles(
 					showTitles: true,
-					reservedSize: 22,
+					reservedSize: 10,
 					textStyle: TextStyle(
 						color: Colors.black,
 						fontWeight: FontWeight.normal,
-						fontSize: 12,
+						fontSize: 10,
 					),
 					margin: 7,
 					getTitles: (value) {
@@ -128,25 +118,29 @@ class ComponentProfileChartState extends State<ComponentProfileChart> {
 				leftTitles: SideTitles(
 					showTitles: true,
 					textStyle: TextStyle(
-					color: Color(0xff75729e),
-					fontWeight: FontWeight.bold,
-					fontSize: 14,
+					color: Colors.grey.withOpacity(0.5),
+					fontWeight: FontWeight.w400,
+					fontSize: 12,
 					),
 					getTitles: (value) {
 					switch (value.toInt()) {
+						case 0:
+							return '0K';
 						case 1:
-							return '1m';
+							return '1K';
 						case 2:
-							return '2m';
+							return '2K';
 						case 3:
-							return '3m';
+							return '3K';
 						case 4:
-							return '5m';
+							return '4K';
+						case 5:
+							return '5K';
 						}
 						return '';
 					},
 					margin: 8,
-					reservedSize: 30,
+					reservedSize: 15,
 				),
 			),
 			borderData: FlBorderData(
@@ -154,7 +148,7 @@ class ComponentProfileChartState extends State<ComponentProfileChart> {
 				border: Border(
 					bottom: BorderSide(
 					color: Color(0xff4e4965),
-					width: 1,
+					width: 0.5,
 					),
 					left: BorderSide(
 						color: Colors.transparent,
@@ -188,7 +182,7 @@ class ComponentProfileChartState extends State<ComponentProfileChart> {
 			],
 			isCurved: true,
 			colors: [
-				Colors.blueGrey.withOpacity(0.5),
+				Colors.green[300],
 			],
 			barWidth: 4,
 			isStrokeCapRound: true,
@@ -210,7 +204,7 @@ class ComponentProfileChartState extends State<ComponentProfileChart> {
 			],
 			isCurved: true,
 			colors: [
-				Color(0xffaa4cfc),
+				Color(0xFF4f50ad),
 			],
 			barWidth: 4,
 			isStrokeCapRound: true,
@@ -218,7 +212,7 @@ class ComponentProfileChartState extends State<ComponentProfileChart> {
 			show: false,
 			),
 			belowBarData: BarAreaData(show: false, colors: [
-				Color(0x00aa4cfc),
+				Color(0xFF68bef5),
 			]),
 		);
 		LineChartBarData lineChartBarData3 = LineChartBarData(

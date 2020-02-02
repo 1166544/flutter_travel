@@ -76,7 +76,7 @@ class _ComponentBlocContentState extends State<ComponentBlocContent> with Common
 						this.buildMiddleReportStucts(snapshot, auth),
 
 						// 中部表格
-						this.buildMiddleChart(),
+						this.buildMiddleChart(snapshot, auth),
 
 						// 中部实现信息
 						this.buildMiddlePresciptionStucts(snapshot),
@@ -145,10 +145,10 @@ class _ComponentBlocContentState extends State<ComponentBlocContent> with Common
 	}
 
 	/// 中部表格
-  	Widget buildMiddleChart() {
+  	Widget buildMiddleChart(AsyncSnapshot<ModelProfile> snapshot, dynamic auth) {
 		return Container(
 			padding: EdgeInsets.fromLTRB(20.0, 30.0, 20.0, 0.0),
-			child: ComponentProfileChart(),
+			child: ComponentProfileChart(snapshot: snapshot, auth: auth),
 		);
 	}
 
