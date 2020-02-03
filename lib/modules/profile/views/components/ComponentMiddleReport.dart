@@ -82,7 +82,7 @@ class _ComponentMiddleReportState extends State<ComponentMiddleReport> with Comp
 		return Column(
 			children: [
 				Icon(icon, size: 20, color: color),
-				Text('${descTitle.toString()} ${descNum.toString()}', style: TextStyle(fontSize: 16, color: color))
+				Text('${descTitle.toString()} ${descNum.toString()}', style: TextStyle(fontSize: 16, color: color, fontWeight: FontWeight.w400))
 			]
 		);
 	}
@@ -123,7 +123,7 @@ class _ComponentMiddleReportState extends State<ComponentMiddleReport> with Comp
 						mainAxisAlignment: MainAxisAlignment.start,
 						crossAxisAlignment: CrossAxisAlignment.start,
 						children: [
-							Text(trends.toStringAsFixed(1), style: TextStyle(color: Colors.white, fontSize: 28)),
+							Text(trends.toStringAsFixed(1), style: TextStyle(color: Colors.white, fontSize: 32, fontWeight: FontWeight.w300)),
 							SizedBox(width: 7),
 							Text(increase, style: TextStyle(color: Colors.white.withOpacity(0.3), fontSize: 12))
 						]

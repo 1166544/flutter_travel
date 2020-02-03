@@ -47,6 +47,10 @@ class ConfigDev extends ConfigDefault {
 			key: API_ENUM.GITHUB,
 			serverUrl: 'https://api.github.com/'
 		));
+		this.serverUrlList.add(ApiConfigVO(
+			key: API_ENUM.NOW,
+			serverUrl: 'https://github-contributions-api.now.sh/'
+		));
 	}
 
 	/// proxy服务器地址，只有开发环境走proxy

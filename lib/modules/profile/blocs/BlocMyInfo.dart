@@ -2,13 +2,13 @@ import 'dart:async';
 
 import 'package:flutter_travel/core/bloc/BlocBase.dart';
 import 'package:flutter_travel/modules/profile/models/ModelProfile.dart';
-import 'package:flutter_travel/services/ServiceJsonPlaceHolder.dart';
+import 'package:flutter_travel/services/ServiceNow.dart';
 
 /// 我的页面数据
 class BlocMyInfo implements BlocBase {
 
 	ModelProfile _gallery;
-	ServiceJsonPlaceHolder _serviceJsonPlaceHolder;
+	ServiceNow _serviceNow;
 
 	/// 数据流处理器对象
 	StreamController<ModelProfile> galleryController;
@@ -20,18 +20,17 @@ class BlocMyInfo implements BlocBase {
 	Stream<ModelProfile> get outGallery => galleryController.stream;
 
 	BlocMyInfo(this.galleryController) {
-		this._serviceJsonPlaceHolder = new ServiceJsonPlaceHolder();
+		this._serviceNow = new ServiceNow();
 		this.init();
 	}
 
 	/// 初始化
 	Future<Null> init() async {
 		// 初始化时调用service列表数据 
-		dynamic result = await this._serviceJsonPlaceHolder.getPostsData();
+		dynamic result = await this._serviceNow.getContributions();
 
 		// 返回数据列表更新数据源
-		this._gallery = new ModelProfile();
-		this._gallery.update(result);
+		this._gallery = new ModelProfile.fromJson(result.data);
 
 		// 触发数据更新
 		this._inGallery.add(this._gallery);
@@ -43,7 +42,7 @@ class BlocMyInfo implements BlocBase {
 
 	@override
 	void dispose() {
-		// this._galleryController.close();
+		// hole
 	}
 
 	/// 更新数据源操作

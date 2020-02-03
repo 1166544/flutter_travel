@@ -20,5 +20,7 @@ enum API_ENUM {
 	
 	FREE_API,
 	
-	GITHUB
+	GITHUB,
+
+	NOW
 }

@@ -53,6 +53,10 @@ class ConfigDefault {
 			key: API_ENUM.GITHUB,
 			serverUrl: 'https://api.github.com/'
 		));
+		this.serverUrlList.add(ApiConfigVO(
+			key: API_ENUM.NOW,
+			serverUrl: 'https://github-contributions-api.now.sh/'
+		));
 	}
 
 	/// 获取服务器URL
