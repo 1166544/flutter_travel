@@ -43,19 +43,6 @@ final Function login = (BuildContext context, String userName, String password) 
 		} else {
 			store.dispatch(UserLoginFailure('Username or password were incorrect.', StateUser(null, '')));
 		}
-		
-		// Auth auth = Auth(ServiceEnviroment.instance.getEnv().githubAppClientId(), ServiceEnviroment.instance.getEnv().githubAppClientSecret());
-		// GithubOauth oauth = GithubOauth(auth);
-		// oauth.login(username,password).then((result){
-		// 	if (result.data != null) {
-		// 		oauth.getToken(username, password).then((tokenValue) {
-		// 			store.dispatch(UserLoginSuccess(StateUser(result.data, tokenValue.data)));
-		// 			Navigator.of(context).pushNamedAndRemoveUntil(Routers.mainPage, (_) => false);
-		// 		});
-		// 	} else {
-		// 		store.dispatch(UserLoginFailure('Username or password were incorrect.', StateUser(null, '')));
-		// 	}
-		// });
 
     };
 };
