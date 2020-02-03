@@ -49,6 +49,10 @@ class ConfigDefault {
 			key: API_ENUM.FREE_API,
 			serverUrl: 'https://free-api.heweather.net/'
 		));
+		this.serverUrlList.add(ApiConfigVO(
+			key: API_ENUM.GITHUB,
+			serverUrl: 'https://api.github.com/'
+		));
 	}
 
 	/// 获取服务器URL

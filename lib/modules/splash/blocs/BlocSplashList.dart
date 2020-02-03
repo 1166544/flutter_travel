@@ -3,12 +3,14 @@ import 'dart:async';
 import 'package:flutter_travel/core/bloc/BlocBase.dart';
 import 'package:flutter_travel/modules/splash/models/ModelsBing.dart';
 import 'package:flutter_travel/services/ServiceBing.dart';
+import 'package:flutter_travel/services/ServiceGitHub.dart';
 
 /// 封面数据
 class BlocSplashList implements BlocBase {
 
 	ModelsBing _gallery;
 	ServiceBing _serviceNewsList;
+	ServiceGitHub _serviceGithub;
 
 	/// 数据流处理器对象
 	StreamController<ModelsBing> galleryController;
@@ -21,6 +23,7 @@ class BlocSplashList implements BlocBase {
 
 	BlocSplashList(this.galleryController) {
 		this._serviceNewsList = new ServiceBing();
+		this._serviceGithub = new ServiceGitHub();
 	}
 
 	/// 初始化
@@ -32,13 +35,17 @@ class BlocSplashList implements BlocBase {
 		// 返回数据列表更新数据源序列化
 		this._gallery = ModelsBing.fromJson(result.data);
 
+		// 加载完闪页信息后异步同步更新用户信息
+		await this._serviceGithub.getUserInfo();
+
 		// 触发数据更新
 		this._inGallery.add(this._gallery);
+
 	}
 
 	@override
 	void dispose() {
-		// this._galleryController.close();
+		// hole
 	}
 
 	/// 更新数据源操作

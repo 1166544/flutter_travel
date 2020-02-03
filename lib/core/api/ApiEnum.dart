@@ -18,5 +18,7 @@ enum API_ENUM {
 	
 	OPEN_WEATHER,
 	
-	FREE_API
+	FREE_API,
+	
+	GITHUB
 }
