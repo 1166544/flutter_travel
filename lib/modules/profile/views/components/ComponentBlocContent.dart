@@ -28,6 +28,7 @@ class _ComponentBlocContentState extends State<ComponentBlocContent> with Common
 	Widget build(BuildContext context) {
 		// 连接数据源
 		this.blocGalleryList = BlocProvider.of<BlocMyInfo>(context);
+		this.blocGalleryList.update();
 
 		// 连接视图, 加上下拉刷新
 		return RefreshIndicator(

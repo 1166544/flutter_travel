@@ -21,7 +21,6 @@ class BlocMyInfo implements BlocBase {
 
 	BlocMyInfo(this.galleryController) {
 		this._serviceNow = new ServiceNow();
-		this.init();
 	}
 
 	/// 初始化

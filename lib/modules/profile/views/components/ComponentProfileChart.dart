@@ -1,5 +1,7 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_travel/modules/profile/models/ModelContributionsData.dart';
+import 'package:flutter_travel/modules/profile/models/ModelLine.dart';
 import 'package:flutter_travel/modules/profile/models/ModelProfile.dart';
 import 'package:flutter_travel/redux/states/StateAuth.dart';
 
@@ -15,75 +17,158 @@ class ComponentProfileChart extends StatefulWidget {
 }
 
 class ComponentProfileChartState extends State<ComponentProfileChart> {
-	bool isShowingMainData;
+	/// 图例数据
+	List<ModelLine> lineNames;
+
+	/// 图表数据
+	List<LineChartBarData> chartDataList;
 
 	@override
 	void initState() {
 		super.initState();
-		isShowingMainData = true;
 	}
 
 	@override
 	Widget build(BuildContext context) {
-    return AspectRatio(
-      aspectRatio: 1.23,
-      child: Container(
-		padding: EdgeInsets.fromLTRB(0, 0.0, 0, 0),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(2)),
-		  color: Colors.white
-        ),
-        child: Stack(
-          children: <Widget>[
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                Text(
-                  'Code push trends',
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 28,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 2),
-                  textAlign: TextAlign.center,
-                ),
-                SizedBox(
-                  height: 37,
-                ),
-                Expanded(
-                  child: Padding(
-                    padding: EdgeInsets.only(right: 0.0, left: 0.0),
-                    child: LineChart(
-						isShowingMainData ? sampleData1() : sampleData2(),
-						swapAnimationDuration: Duration(milliseconds: 250),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            IconButton(
-              icon: Icon(
-                Icons.refresh,
-                color: Colors.black.withOpacity(isShowingMainData ? 1.0 : 0.5),
-              ),
-              onPressed: () {
-                setState(() {
-                  isShowingMainData = !isShowingMainData;
-                });
-              },
-            )
-          ],
-        ),
-      ),
-    );
-  }
+
+		if (widget.snapshot.data == null) {
+			return Container();
+		}
+
+		// 拿出历史数据
+		this.chartDataList = this.getPasedHistoryData();
+
+		return AspectRatio(
+				aspectRatio: 1.3,
+				child: Container(
+					padding: EdgeInsets.fromLTRB(0, 0.0, 0, 0),
+					decoration: BoxDecoration(
+					borderRadius: BorderRadius.all(Radius.circular(2)),
+						color: Colors.white
+					),
+					child: Column(
+						crossAxisAlignment: CrossAxisAlignment.stretch,
+						mainAxisAlignment: MainAxisAlignment.center,
+						children: <Widget>[
+							Text(
+								'Years code contribution trends',
+								style: TextStyle(
+									color: Colors.black,
+									fontSize: 22,
+									fontWeight: FontWeight.bold,
+									letterSpacing: 0
+								),
+								textAlign: TextAlign.center,
+							),
+							SizedBox(
+								height: 29,
+							),
+							this.getDescLabels(),
+							SizedBox(
+								height: 10,
+							),
+							Expanded(
+								child: Padding(
+									padding: EdgeInsets.only(right: 0.0, left: 0.0),
+									child: LineChart(
+										historyConfigData(),
+										swapAnimationDuration: Duration(milliseconds: 250),
+									),
+								),
+							),
+						],
+					),
+				),
+			);
+  	}
+
+	/// 构造图例
+	Widget getDescLabels() {
+
+		// 分离格子数据
+		double deivdeNum = 4.0;
+		double divideMaxSource = this.lineNames.length / deivdeNum;
+		int divideMax = divideMaxSource.round();
+
+		List<List<ModelLine>> colList = [];
+
+		for (var i = 0; i < divideMax; i++) {
+			List<ModelLine> insertList = [];
+			colList.add(insertList);
+		}
+
+		for (var i = 0; i < this.lineNames.length; i++) {
+			for (var k = 0; k < colList.length; k++) {
+				List<ModelLine> insertList = colList[k];
+
+				if (insertList.length < deivdeNum) {
+					insertList.add(this.lineNames[i]);
+					break;
+				}
+			}
+		}
+
+		return Column(
+			children: colList.map((item) => getItemContainer(item)).toList()
+		);
+	}
+
+	/// 图例列
+	Widget getItemContainer(List<ModelLine> item) {
+		return Row(
+			mainAxisAlignment: MainAxisAlignment.center,
+			children: item.map(((subItem) => getSubItemContainer(subItem))).toList()
+		);
+	}
+
+	/// 图例项
+	Widget getSubItemContainer(ModelLine itemData) {
+		return Container(
+			padding: EdgeInsets.fromLTRB(10, 0, 10.0, 5.0),
+			child: Row(
+				children: [
+					Text(
+						'${itemData.name}: ', 
+						style: TextStyle(
+							fontSize: 13, 
+							fontWeight: FontWeight.w300
+						)
+					),
+					Container(
+						width: 30,
+						height: 7,
+						decoration: BoxDecoration(
+							color: itemData.color
+						),
+					),
+				]
+			)
+		);
+	}
 
 	/// 图表数据源
-	LineChartData sampleData1() {
+	LineChartData historyConfigData() {
 		return LineChartData(
 			lineTouchData: LineTouchData(
 				touchTooltipData: LineTouchTooltipData(
 					tooltipBgColor: Color(0xFF4f50ad),
+					getTooltipItems: (List<LineBarSpot> touchedSpots) {
+						if (touchedSpots == null) {
+							return null;
+						}
+
+						return touchedSpots.map((LineBarSpot touchedSpot) {
+							if (touchedSpot == null) {
+								return null;
+							}
+							final TextStyle textStyle = TextStyle(
+								color: Colors.white,
+								fontWeight: FontWeight.bold,
+								fontSize: 14,
+							);
+							return LineTooltipItem((touchedSpot.y.toInt() * 10).toString(), textStyle);
+						}).toList();
+					}
 				),
 				touchCallback: (LineTouchResponse touchResponse) {
 					print(touchResponse);
@@ -96,21 +181,40 @@ class ComponentProfileChartState extends State<ComponentProfileChart> {
 			titlesData: FlTitlesData(
 				bottomTitles: SideTitles(
 					showTitles: true,
-					reservedSize: 10,
+					reservedSize: 0,
 					textStyle: TextStyle(
 						color: Colors.black,
 						fontWeight: FontWeight.normal,
 						fontSize: 10,
 					),
-					margin: 7,
+					margin: 5,
+					interval: 1,
 					getTitles: (value) {
 						switch (value.toInt()) {
+							case 1:
+								return 'Jan';
 							case 2:
-								return 'SEPT';
+								return 'Feb';
+							case 3:
+								return 'Mar';
+							case 4:
+								return 'Apr';
+							case 5:
+								return 'May';
+							case 6:
+								return 'Jun';
 							case 7:
-								return 'OCT';
+								return 'Jul';
+							case 8:
+								return 'Aug';
+							case 9:
+								return 'Sept';
+							case 10:
+								return 'Oct';
+							case 11:
+								return 'Nov';
 							case 12:
-								return 'DEC';
+								return 'Dec';
 						}
 						return '';
 					},
@@ -118,37 +222,38 @@ class ComponentProfileChartState extends State<ComponentProfileChart> {
 				leftTitles: SideTitles(
 					showTitles: true,
 					textStyle: TextStyle(
-					color: Colors.grey.withOpacity(0.5),
-					fontWeight: FontWeight.w400,
-					fontSize: 12,
+						color: Colors.grey.withOpacity(0.5),
+						fontWeight: FontWeight.w400,
+						fontSize: 12,
 					),
 					getTitles: (value) {
-					switch (value.toInt()) {
-						case 0:
-							return '0K';
-						case 1:
-							return '1K';
-						case 2:
-							return '2K';
-						case 3:
-							return '3K';
-						case 4:
-							return '4K';
-						case 5:
-							return '5K';
+						switch (value.toInt()) {
+							case 0:
+								return '0';
+							case 2:
+								return '20+';
+							case 4:
+								return '40+';
+							case 6:
+								return '60+';
+							case 8:
+								return '80+';
+							case 10:
+								return '100+';
 						}
 						return '';
 					},
-					margin: 8,
-					reservedSize: 15,
+					margin: 12,
+					reservedSize: 18,
+					interval: 1
 				),
 			),
 			borderData: FlBorderData(
 				show: true,
 				border: Border(
 					bottom: BorderSide(
-					color: Color(0xff4e4965),
-					width: 0.5,
+						color: Color(0xff4e4965),
+						width: 0.5,
 					),
 					left: BorderSide(
 						color: Colors.transparent,
@@ -162,238 +267,84 @@ class ComponentProfileChartState extends State<ComponentProfileChart> {
 				),
 			),
 			minX: 0,
-			maxX: 14,
-			maxY: 4,
+			maxX: 13,
+			maxY: 10,
 			minY: 0,
-			lineBarsData: linesBarData1(),
+			lineBarsData: this.chartDataList,
 		);
 	}
 
-	List<LineChartBarData> linesBarData1() {
-		LineChartBarData lineChartBarData1 = LineChartBarData(
-			spots: [
-				FlSpot(1, 1),
-				FlSpot(3, 1.5),
-				FlSpot(5, 1.4),
-				FlSpot(7, 3.4),
-				FlSpot(10, 2),
-				FlSpot(12, 2.2),
-				FlSpot(13, 1.8),
-			],
-			isCurved: true,
-			colors: [
-				Colors.green[300],
-			],
-			barWidth: 4,
-			isStrokeCapRound: true,
-			dotData: FlDotData(
-				show: false,
-			),
-			belowBarData: BarAreaData(
-				show: false,
-			),
-		);
-		final LineChartBarData lineChartBarData2 = LineChartBarData(
-			spots: [
-				FlSpot(1, 1),
-				FlSpot(3, 2.8),
-				FlSpot(7, 1.2),
-				FlSpot(10, 2.8),
-				FlSpot(12, 2.6),
-				FlSpot(13, 3.9),
-			],
-			isCurved: true,
-			colors: [
-				Color(0xFF4f50ad),
-			],
-			barWidth: 4,
-			isStrokeCapRound: true,
-			dotData: FlDotData(
-			show: false,
-			),
-			belowBarData: BarAreaData(show: false, colors: [
-				Color(0xFF68bef5),
-			]),
-		);
-		LineChartBarData lineChartBarData3 = LineChartBarData(
-			spots: [
-				FlSpot(1, 2.8),
-				FlSpot(3, 1.9),
-				FlSpot(6, 3),
-				FlSpot(10, 1.3),
-				FlSpot(13, 2.5),
-			],
-			isCurved: true,
-			colors: [
-				Color(0xff27b6fc),
-			],
-			barWidth: 4,
-			isStrokeCapRound: true,
-			dotData: FlDotData(
-				show: false,
-			),
-			belowBarData: BarAreaData(
-				show: false,
-			),
-		);
-		return [
-			lineChartBarData1,
-			lineChartBarData2,
-			lineChartBarData3,
-		];
+	/// 筛选构造数据源
+	List<LineChartBarData> getPasedHistoryData() {
+		List<LineChartBarData> chartDataList = [];
+		// 104 190 245
+		int r = 104;
+		int g = 190;
+		int b = 245;
+
+		// 拿出历年数据
+		List<ModelLine> lineNames = [];
+		List<ModelContributionsYear> list = widget.snapshot.data.contributions.list;
+		for (var i = 0; i < list.length; i++) {
+			// 对RGB色码进行通道变幻
+			r += 15;
+			g += 5;
+			// b += 4;
+			Color color = Color.fromARGB(255, r, g, b);
+			ModelContributionsYear item = list[i];
+			lineNames.add(ModelLine(item.label, color));
+
+			List<FlSpot> spotList = this.getSpotList(item);
+
+			// 构造数据
+			LineChartBarData lineChartBarData = LineChartBarData(
+				spots: spotList,
+				isCurved: true,
+				colors: [
+					color,
+				],
+				barWidth: 2,
+				isStrokeCapRound: false,
+				dotData: FlDotData(
+					show: false,
+					dotColor: Color(0xff67bdf3),
+					dotSize: 3
+				),
+				belowBarData: BarAreaData(
+					show: false,
+				),
+			);
+
+			chartDataList.add(lineChartBarData);
+		}
+
+		this.lineNames = lineNames;
+
+		return chartDataList;
 	}
 
-	LineChartData sampleData2() {
-		return LineChartData(
-			lineTouchData: LineTouchData(
-				enabled: false,
-			),
-			gridData: FlGridData(
-				show: false,
-			),
-			titlesData: FlTitlesData(
-			bottomTitles: SideTitles(
-				showTitles: true,
-				reservedSize: 22,
-				textStyle: TextStyle(
-				color: Color(0xff72719b),
-				fontWeight: FontWeight.normal,
-				fontSize: 16,
-				),
-				margin: 10,
-				getTitles: (value) {
-				switch (value.toInt()) {
-					case 2:
-						return 'SEPT';
-					case 7:
-						return 'OCT';
-					case 12:
-						return 'DEC';
-				}
-				return '';
-				},
-			),
-			leftTitles: SideTitles(
-				showTitles: true,
-				textStyle: TextStyle(
-				color: Color(0xff75729e),
-				fontWeight: FontWeight.bold,
-				fontSize: 14,
-				),
-				getTitles: (value) {
-				switch (value.toInt()) {
-					case 1:
-					return '1m';
-					case 2:
-					return '2m';
-					case 3:
-					return '3m';
-					case 4:
-					return '5m';
-					case 5:
-					return '6m';
-				}
-				return '';
-				},
-				margin: 8,
-				reservedSize: 30,
-			),
-			),
-			borderData: FlBorderData(
-				show: true,
-				border: Border(
-				bottom: BorderSide(
-					color: Color(0xff4e4965),
-					width: 1,
-				),
-				left: BorderSide(
-					color: Colors.transparent,
-				),
-				right: BorderSide(
-					color: Colors.transparent,
-				),
-				top: BorderSide(
-					color: Colors.transparent,
-				),
-				)),
-			minX: 0,
-			maxX: 14,
-			maxY: 6,
-			minY: 0,
-			lineBarsData: linesBarData2(),
-		);
+	/// 图表点
+	List<FlSpot> getSpotList(ModelContributionsYear item) {
+		List<FlSpot> spotList = [];
+		for (var k = 0; k < item.list.length; k++) {
+			ModelContributionsMonthData subItem = item.list[k];
+			double lineY = this.getSpotMonthData(subItem.list) / 10;
+
+			print(lineY);
+			FlSpot lineSpot = FlSpot(double.parse(subItem.label), lineY);
+			spotList.add(lineSpot);
+		}
+
+		return spotList;
 	}
 
-	List<LineChartBarData> linesBarData2() {
-		return [
-		LineChartBarData(
-			spots: [
-				FlSpot(1, 1),
-				FlSpot(3, 4),
-				FlSpot(5, 1.8),
-				FlSpot(7, 5),
-				FlSpot(10, 2),
-				FlSpot(12, 2.2),
-				FlSpot(13, 1.8),
-			],
-			isCurved: true,
-			curveSmoothness: 0,
-			colors: [
-				Colors.blueAccent,
-			],
-			barWidth: 4,
-			isStrokeCapRound: true,
-			dotData: FlDotData(
-			show: false,
-			),
-			belowBarData: BarAreaData(
-			show: false,
-			),
-		),
-		LineChartBarData(
-			spots: [
-				FlSpot(1, 1),
-				FlSpot(3, 2.8),
-				FlSpot(7, 1.2),
-				FlSpot(10, 2.8),
-				FlSpot(12, 2.6),
-				FlSpot(13, 3.9),
-			],
-			isCurved: true,
-			colors: [
-				Colors.blueGrey,
-			],
-			barWidth: 2,
-			isStrokeCapRound: true,
-			dotData: FlDotData(
-			show: false,
-			),
-			belowBarData: BarAreaData(show: true, colors: [
-				Colors.blueGrey.withOpacity(0.3),
-			]),
-		),
-		LineChartBarData(
-			spots: [
-			FlSpot(1, 3.8),
-			FlSpot(3, 1.9),
-			FlSpot(6, 5),
-			FlSpot(10, 3.3),
-			FlSpot(13, 4.5),
-			],
-			isCurved: true,
-			curveSmoothness: 0,
-			colors: [
-			Colors.orangeAccent,
-			],
-			barWidth: 2,
-			isStrokeCapRound: true,
-			dotData: FlDotData(
-			show: true,
-			),
-			belowBarData: BarAreaData(
-			show: false,
-			),
-		),
-		];
-  }
+	/// 统计月数据
+	double getSpotMonthData(List<ModelContributionsDayData> list) {
+		double total = 0;
+		for (var i = 0; i < list.length; i++) {
+			total += list[i].count;
+		}
+
+		return total;
+	}
 }

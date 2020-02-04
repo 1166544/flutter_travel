@@ -40,7 +40,7 @@ class _ComponentMiddleReportState extends State<ComponentMiddleReport> with Comp
 						'[Personal tech blog] ${widget.auth.user.user.htmlUrl}',
 						style: TextStyle(
 							fontSize: 14.0,
-							color: Color(0xFF252949)
+							color: Color(0xFF252949).withOpacity(0.6)
 						)
 					),
 					
@@ -48,10 +48,11 @@ class _ComponentMiddleReportState extends State<ComponentMiddleReport> with Comp
 					
 					// 绿色进度条文本
 					Text(
-						'Follower / Following',
+						'FOLLOWER / FOLLOWING',
 						style: TextStyle(
 							fontSize: 12.0,
-							color: Colors.grey
+							color: Colors.black,
+							fontWeight: FontWeight.w600
 						)
 					),
 					

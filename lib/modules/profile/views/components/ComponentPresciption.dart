@@ -13,7 +13,7 @@ class _ComponentPresciptionState extends State<ComponentPresciption> with Compon
   @override
   Widget build(BuildContext context) {
 	return Container(
-			padding: EdgeInsets.fromLTRB(20.0, 55.0, 20.0, 45.0),
+			padding: EdgeInsets.fromLTRB(20.0, 35.0, 20.0, 45.0),
 			child: Column(
 				crossAxisAlignment: CrossAxisAlignment.start,
 				children: <Widget>[
