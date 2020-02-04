@@ -26,6 +26,7 @@ class ModelContributionsItem {
 				break;
 				case 'contributions':
 					this.thisYearData = ModelContributionsItem.fromJson(source[item]);
+					this.list.add(this.thisYearData.list[0]);
 				break;
 				default:
 					this.list.add(ModelContributionsYear.fromJson(source[item], item));

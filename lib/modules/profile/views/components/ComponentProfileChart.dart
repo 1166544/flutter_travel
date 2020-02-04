@@ -51,7 +51,7 @@ class ComponentProfileChartState extends State<ComponentProfileChart> {
 						mainAxisAlignment: MainAxisAlignment.center,
 						children: <Widget>[
 							Text(
-								'Years code contribution trends',
+								'Years of code contribution trends',
 								style: TextStyle(
 									color: Colors.black,
 									fontSize: 22,
@@ -88,7 +88,7 @@ class ComponentProfileChartState extends State<ComponentProfileChart> {
 		// 分离格子数据
 		double deivdeNum = 4.0;
 		double divideMaxSource = this.lineNames.length / deivdeNum;
-		int divideMax = divideMaxSource.round();
+		int divideMax = divideMaxSource.ceil();
 
 		List<List<ModelLine>> colList = [];
 
@@ -277,22 +277,35 @@ class ComponentProfileChartState extends State<ComponentProfileChart> {
 	/// 筛选构造数据源
 	List<LineChartBarData> getPasedHistoryData() {
 		List<LineChartBarData> chartDataList = [];
+
+		// 拿出历年数据
+		List<ModelLine> lineNamesLocal = [];
+		List<ModelContributionsYear> list = widget.snapshot.data.contributions.list;
 		// 104 190 245
 		int r = 104;
 		int g = 190;
 		int b = 245;
 
-		// 拿出历年数据
-		List<ModelLine> lineNames = [];
-		List<ModelContributionsYear> list = widget.snapshot.data.contributions.list;
 		for (var i = 0; i < list.length; i++) {
-			// 对RGB色码进行通道变幻
-			r += 15;
-			g += 5;
-			// b += 4;
-			Color color = Color.fromARGB(255, r, g, b);
+			Color color;
+			int lastItem = list.length - 1;
+			int lastSecondItem = list.length - 2;
+
+			// 区别近两年颜色
+			if (i == lastItem) {
+				color = Color(0xFF4f50ad);
+			} else if (i == lastSecondItem){
+				color = Color(0xFF68bef5);
+			} else {
+				// 对RGB色码进行通道变幻
+				r += 10;
+				// g += 5;
+				// b += 4;
+			  	color = Color.fromARGB(255, r, g, b);
+			}
+
 			ModelContributionsYear item = list[i];
-			lineNames.add(ModelLine(item.label, color));
+			lineNamesLocal.add(ModelLine(item.label, color));
 
 			List<FlSpot> spotList = this.getSpotList(item);
 
@@ -318,7 +331,7 @@ class ComponentProfileChartState extends State<ComponentProfileChart> {
 			chartDataList.add(lineChartBarData);
 		}
 
-		this.lineNames = lineNames;
+		this.lineNames = lineNamesLocal;
 
 		return chartDataList;
 	}
@@ -330,7 +343,6 @@ class ComponentProfileChartState extends State<ComponentProfileChart> {
 			ModelContributionsMonthData subItem = item.list[k];
 			double lineY = this.getSpotMonthData(subItem.list) / 10;
 
-			print(lineY);
 			FlSpot lineSpot = FlSpot(double.parse(subItem.label), lineY);
 			spotList.add(lineSpot);
 		}
