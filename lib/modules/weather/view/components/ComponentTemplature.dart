@@ -63,7 +63,7 @@ class _ComponentTemplatureState extends State<ComponentTemplature> with TickerPr
 		return ClipRect(
 			child: Align(
 				alignment: Alignment.topLeft,
-				heightFactor: 0.17,
+				heightFactor: 0.15,
 				child: SlideTransition(
 					position: this.animation,
 					child: Column(

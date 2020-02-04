@@ -50,11 +50,12 @@ class HttpServiceCore {
 			},
 			onResponse:(Response response) {
 				// 在返回响应数据之前做一些预处理 
+				this.formatStatus(response);
 				return response; // continue
 			},
 			onError: (DioError e) async {
-				// 请求失败时预处理
-				print(e);
+				// 请求失败时预处理, 通知TOAST，加载中提示
+				this.formatError(e);
 				return e;
 			}
 		));
@@ -78,6 +79,60 @@ class HttpServiceCore {
 				};
 				client.badCertificateCallback = (X509Certificate cert, String host, int port) => true;
 			};
+		}
+	}
+
+	/// 返回状态码处理
+	void formatStatus(Response response) {
+		switch(response.statusCode) {
+			case 400:
+				print("请求语法错误");
+				break;
+			case 403:
+				print("服务器拒绝执行");
+				break;
+			case 404:
+				print("无法连接服务器");
+				break;
+			case 405:
+				print("请求方法被禁止");
+				break;
+			case 500:
+				print("服务器内部错误");
+				break;
+			case 502:
+				print("无效的请求");
+				break;
+			case 503:
+				print("服务器服务停止响应");
+				break;
+			case 505:
+				print("不支持HTTP协议请求");
+				break;
+		}
+	}
+
+	/// error错误信息处理
+	void formatError(DioError e) {
+		switch(e.type) {
+			case DioErrorType.CONNECT_TIMEOUT:
+		    	print("连接超时");
+				break;
+			case DioErrorType.SEND_TIMEOUT:
+				print("请求超时");
+				break;
+			case DioErrorType.RECEIVE_TIMEOUT:
+				print("响应超时");
+				break;
+			case DioErrorType.RESPONSE:
+				print("出现异常");
+				break;
+			case DioErrorType.CANCEL:
+				print("请求取消");
+				break;
+			case DioErrorType.DEFAULT:
+				print("未知错误");
+				break;
 		}
 	}
 				
