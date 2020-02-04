@@ -41,12 +41,7 @@ class ServiceBing extends HttpServiceCore {
 	/// form 格式
 	/// url https://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&nc=1579939952028&pid=hp&uhd=1&uhdwidth=3840&uhdheight=2160
 	Future<Response<dynamic>> getSplashImage(dynamic params) async {
-		try {
-			Response response = await this.get('HPImageArchive.aspx?format=js&idx=0&n=1&nc=${new DateTime.now().millisecondsSinceEpoch}&pid=hp&uhd=1&uhdwidth=3840&uhdheight=2160');
-			return response;
-		} catch (e) {
-			print(e);
-			return e;
-		}
+		Response response = await this.get('HPImageArchive.aspx?format=js&idx=0&n=1&nc=${new DateTime.now().millisecondsSinceEpoch}&pid=hp&uhd=1&uhdwidth=3840&uhdheight=2160');
+		return response;
 	}
 }

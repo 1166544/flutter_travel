@@ -31,8 +31,8 @@ class HttpServiceCore {
 	void init() {
 		this.dio = new Dio();
 		this.dio.options.baseUrl = this.baseUrl;
-		this.dio.options.connectTimeout = 10000;
-		this.dio.options.receiveTimeout = 10000;
+		this.dio.options.connectTimeout = 15000;
+		this.dio.options.receiveTimeout = 15000;
 
 		// 请求和响应处理
 		this.dio.interceptors.add(InterceptorsWrapper(

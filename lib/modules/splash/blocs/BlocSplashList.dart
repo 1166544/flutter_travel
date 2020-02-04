@@ -29,14 +29,15 @@ class BlocSplashList implements BlocBase {
 	/// 初始化
 	Future<Null> init(dynamic requestParams) async {
 
+		// 加载完闪页信息后异步同步更新用户信息
+		dynamic userInfo = await this._serviceGithub.getUserInfo();
+		print(userInfo);
+
 		// 初始化时调用service列表数据 
 		dynamic result = await this._serviceNewsList.getSplashImage({});
 
 		// 返回数据列表更新数据源序列化
 		this._gallery = ModelsBing.fromJson(result.data);
-
-		// 加载完闪页信息后异步同步更新用户信息
-		await this._serviceGithub.getUserInfo();
 
 		// 触发数据更新
 		this._inGallery.add(this._gallery);

@@ -23,6 +23,7 @@ class _SplashScreenState extends State<ViewSplashContent> with CommonTravelItem 
 	int maxTickTime = 10;
 	int currentCountDown = 10;
 	Timer timer;
+	bool isFirstLoaded = false;
 
 	/// 倒计时
 	startTime() async {
@@ -61,10 +62,12 @@ class _SplashScreenState extends State<ViewSplashContent> with CommonTravelItem 
 
 	@override
 	Widget build(BuildContext context) {
-		this.blocGalleryList = BlocProvider.of<BlocSplashList>(context);
 
-		// 获取封面数据
-		this.blocGalleryList.init({});
+		if (!this.isFirstLoaded) {
+			this.blocGalleryList = BlocProvider.of<BlocSplashList>(context);
+			this.blocGalleryList.init({});
+			this.isFirstLoaded = true;
+		}
 
 		return this.getStreamBuilder();
 	}
