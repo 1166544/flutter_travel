@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_travel/modules/profile/models/ModelProfile.dart';
+import 'package:flutter_travel/redux/states/StateAuth.dart';
 
 /// 中部访问信息
 class ComponentVisitors extends StatefulWidget {
-  ComponentVisitors({Key key, AsyncSnapshot<ModelProfile> snapshot}) : super(key: key);
+	final AsyncSnapshot<ModelProfile> snapshot;
+	final StateAuth auth;
+  	ComponentVisitors({Key key, this.snapshot, this.auth}) : super(key: key);
 
-  _ComponentVisitorsState createState() => _ComponentVisitorsState();
+  	_ComponentVisitorsState createState() => _ComponentVisitorsState();
 }
 
 class _ComponentVisitorsState extends State<ComponentVisitors> {
 	@override
 	Widget build(BuildContext context) {
+		if (widget.auth.user == null) {
+			return Container();
+		}
 		return Container(
 			padding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 40.0),
 			decoration: BoxDecoration(
@@ -20,9 +26,9 @@ class _ComponentVisitorsState extends State<ComponentVisitors> {
 				crossAxisAlignment: CrossAxisAlignment.center,
 				mainAxisAlignment: MainAxisAlignment.spaceEvenly,
 				children: <Widget>[
-					this.getVisitorItem(90, 'Unknow', 0.0),
-					this.getVisitorItem(11, 'Famillar', 0.4),
-					this.getVisitorItem(6, 'Excellent', 1.0),
+					this.getVisitorItem(widget.auth.user.user.publicReposCount, 'Repos', 1.8),
+					this.getVisitorItem(widget.auth.user.user.publicGistsCount, 'Gists', 0.4),
+					this.getVisitorItem(widget.auth.user.user.followersCount, 'Followers', 1.0),
 				]
 			)
 		);
@@ -55,7 +61,7 @@ class _ComponentVisitorsState extends State<ComponentVisitors> {
 					Text(
 						desc,
 						style: TextStyle(
-							fontSize: 15.0,
+							fontSize: 13.0,
 							fontWeight: FontWeight.bold,
 							color: score > 50 ? Color(0xFF6d6d8d) : Colors.black
 						)
@@ -79,8 +85,8 @@ class _ComponentVisitorsState extends State<ComponentVisitors> {
 										begin: Alignment.centerLeft,
 										end: Alignment.centerRight,
 										colors: [
-											Color(0xFF5e82f5),
-											Color(0xFF5e82f5)
+											Colors.lightGreen,
+											Colors.green
 										]
 									)
 								),

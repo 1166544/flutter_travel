@@ -83,7 +83,7 @@ class _ComponentBlocContentState extends State<ComponentBlocContent> with Common
 						this.buildMiddlePresciptionStucts(snapshot),
 
 						// 中部访问信息
-						this.buildMiddleVisitorStucts(snapshot),
+						this.buildMiddleVisitorStucts(snapshot, auth),
 
 						// 底部按钮
 						this.buildButtonStucts(snapshot),
@@ -104,8 +104,8 @@ class _ComponentBlocContentState extends State<ComponentBlocContent> with Common
 	}
 	
 	/// 中部访问信息
-	Widget buildMiddleVisitorStucts(AsyncSnapshot<ModelProfile> snapshot) {
-		return ComponentVisitors(snapshot: snapshot);
+	Widget buildMiddleVisitorStucts(AsyncSnapshot<ModelProfile> snapshot, dynamic auth) {
+		return ComponentVisitors(snapshot: snapshot, auth: auth);
 	}
 	
 	/// 中部实现信息
