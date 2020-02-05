@@ -62,4 +62,10 @@ class ServiceToken extends HttpServiceCore {
 
 		return null;
 	}
+
+	/// 将TOKEN重置过期
+	void resetToken() {
+		ApiToken sourceToken = this.enviroment.getEnv().getToken();
+		sourceToken.updateExpire(true);
+	}
 }

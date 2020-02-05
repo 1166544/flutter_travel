@@ -50,8 +50,8 @@ class _ViewSearchContentState extends State<ViewSearchContent> with CommonTravel
 		// 连接数据源
 		this.blocGalleryList = BlocProvider.of<BlocNewsList>(context);
 		
-		// 接接本地数据
-		this.blocGalleryList.updateParams(
+		// 接接本地数据(重置TOKEN方式)
+		this.blocGalleryList.updateByTokenCancel(
 			{
 				'form': 'news_webapp',
 				'pd': 'webapp',

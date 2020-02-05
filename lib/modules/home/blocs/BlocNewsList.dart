@@ -70,6 +70,13 @@ class BlocNewsList implements BlocBase {
 		this.invoke();
 	}
 
+	/// 更新请求参数(过期TOKEN)
+	void updateByTokenCancel(dynamic requestParams) {
+		this._requestParams = requestParams;
+		this._serviceToken.resetToken();
+		this.init();
+	}
+
 	Future<Null> update() async {
 		await this.init();
 	}
