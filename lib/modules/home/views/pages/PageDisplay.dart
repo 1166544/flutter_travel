@@ -20,10 +20,10 @@ class PageDisplay extends StatefulWidget {
 
   	PageDisplay({ Key key, @required this.requestParams}) : super(key: key);
 
-	_PageDisplayState createState() => _PageDisplayState();
+	PageDisplayState createState() => PageDisplayState();
 }
 
-class _PageDisplayState extends State<PageDisplay> with CommonTravelItem, CommonNavigator {
+class PageDisplayState extends State<PageDisplay> with CommonTravelItem, CommonNavigator {
   
 	BlocNewsList blocGalleryList;
 	bool isInited = false;
@@ -39,7 +39,7 @@ class _PageDisplayState extends State<PageDisplay> with CommonTravelItem, Common
 
 	ScrollController _controller = new ScrollController();
 
-	_PageDisplayState(): super();
+	PageDisplayState(): super();
 	
 	@override
 	void initState() {

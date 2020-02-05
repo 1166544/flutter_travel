@@ -3,8 +3,8 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_travel/core/bloc/BlocProvider.dart';
 import 'package:flutter_travel/modules/common/CommonNavigator.dart';
 import 'package:flutter_travel/modules/home/blocs/BlocNewsList.dart';
-import 'package:flutter_travel/modules/home/views/pages/PageDisplay.dart';
 import 'package:flutter_travel/modules/home/views/pages/PageFashion.dart';
+import 'package:flutter_travel/modules/home/views/pages/PageFocus.dart';
 import 'package:flutter_travel/modules/home/views/pages/PageGlobal.dart';
 import 'package:flutter_travel/modules/home/views/pages/PageMilitary.dart';
 import 'package:flutter_travel/modules/home/views/pages/PageSociality.dart';
@@ -35,7 +35,7 @@ class _HomePageState extends State<HomePage> with CommonNavigator, SingleTickerP
 
 	/// TAB视图
 	final List<Widget> _tabsView = <Widget>[
-		PageDisplay(requestParams: null),
+		PageFocus(),
 		PageFashion(),
 		PageMilitary(),
 		PageSociality(),
