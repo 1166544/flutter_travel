@@ -44,8 +44,10 @@ class BlocNewsList implements BlocBase {
 		this._gallery.update(result);
 
 		// 弹消息通知
-		ModelNewsItem item = this._gallery.news[0];
-		await this._serviceNotification.showNotification(title: item.title, body: item.abs);
+		if (this._gallery.news.length > 0) {
+			ModelNewsItem item = this._gallery.news[0];
+			await this._serviceNotification.showNotification(title: item.title, body: item.abs);
+		}
 
 		// 触发数据更新
 		this._inGallery.add(this._gallery);
