@@ -50,7 +50,7 @@ class ServiceGitHub extends HttpServiceCore {
 
 	/// get github userinfo
 	Future<Response<dynamic>> getUserInfo() async {
-		var result = await this.get('users/${this.user.name}?client_id=${this.config.githubAppClientId()}&client_secret=${this.config.githubAppClientSecret()}');
+		var result = await this.get('users/${this.user.name}');
 		String tocken = this.store.state.auth.user.token;
 		store.dispatch(UserLoginSuccess(StateUser(User.fromJson(result.data), tocken)));
 
