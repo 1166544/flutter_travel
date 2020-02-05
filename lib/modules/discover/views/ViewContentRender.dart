@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_travel/modules/common/CommonTimeFormate.dart';
 import 'package:flutter_travel/modules/common/CommonTravelItem.dart';
 import 'package:flutter_travel/modules/home/models/ModelNewsItem.dart';
+import 'package:flutter_travel/modules/weather/view/pages/PageHomeWeather.dart';
 
 class ViewContentRender extends StatefulWidget {
 	final ModelNewsItem snapData;
@@ -34,6 +35,10 @@ class _ViewContentRenderState extends State<ViewContentRender> with CommonTravel
 			displayList.add(
 				this.buildStartIcon())
 			;
+
+			// 温度组件
+			displayList.add(PageHomeWeather());
+			
 			displayList.add(
 				Image.asset(
 					'assets/images/dot.png',
