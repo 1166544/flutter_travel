@@ -3,7 +3,9 @@ import 'package:flutter_travel/core/CoreApp.dart';
 import 'package:flutter_travel/core/api/ApiEnviroment.dart';
 
 /// 测试环境
-void main() {
+Future<void> main() async{
 	WidgetsFlutterBinding.ensureInitialized();
+	await CoreApp.ensureNotification();
+	
 	runApp(CoreApp(env: ENVIROMENT.TEST));
 }

@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:flutter_travel/core/CoreApp.dart';
 import 'package:flutter_travel/core/bloc/BlocBase.dart';
 import 'package:flutter_travel/modules/home/models/ModelsNewsList.dart';
 import 'package:flutter_travel/services/ServiceNewsList.dart';
@@ -39,6 +41,8 @@ class BlocNewsList implements BlocBase {
 		this._gallery = new ModelsNewsList();
 		this._gallery.update(result);
 
+		await this.showNotification();
+
 		// 触发数据更新
 		this._inGallery.add(this._gallery);
 	}
@@ -54,9 +58,35 @@ class BlocNewsList implements BlocBase {
 		this._gallery = new ModelsNewsList();
 		this._gallery.update(result);
 
+		await this.showNotification();
+
 		// 触发数据更新
 		this._inGallery.add(this._gallery);
 	}
+
+	/// 弹出通知
+	Future<void> showNotification() async {
+		var androidPlatformChannelSpecifics = AndroidNotificationDetails(
+			'your channel id', 
+			'your channel name', 
+			'your channel description',
+			importance: Importance.Max, 
+			priority: Priority.High, 
+			ticker: 'ticker'
+		);
+		var iOSPlatformChannelSpecifics = IOSNotificationDetails();
+		var platformChannelSpecifics = NotificationDetails(
+			androidPlatformChannelSpecifics, iOSPlatformChannelSpecifics);
+
+		await flutterLocalNotificationsPlugin.show(
+			0, 
+			this._gallery.news[0].title, 
+			'plain body', 
+			platformChannelSpecifics,
+			payload: 
+			'item x'
+		);
+  	}
 
 	/// 更新请求参数
 	void updateParams(dynamic requestParams) {
