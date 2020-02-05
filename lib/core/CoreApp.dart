@@ -24,7 +24,7 @@ class CoreApp extends StatelessWidget {
 
 	CoreApp({this.env}) {
 		ServiceEnviroment.init(this.env);
-		ServiceGlobal.init(this.store);
+		ServiceGlobal.init(this.store, Routers(store: this.store));
 	}
 
 	// 程序根入口
@@ -41,7 +41,7 @@ class CoreApp extends StatelessWidget {
 					theme: defaultTargetPlatform == TargetPlatform.iOS
                         ? kIOSTheme
                         : kDefaultTheme,
-					routes: Routers(store: store).init()
+					routes: ServiceGlobal.instance.getRouters().init()
 				)
 			),
 		);

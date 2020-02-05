@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_travel/redux/states/StateApp.dart';
+import 'package:flutter_travel/routers/Routers.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:redux/redux.dart';
@@ -24,12 +25,26 @@ class ServiceGlobal {
 	/// 地理定位服务
 	Position _geoLocation;
 
+	/// 路由
+	Routers _router;
+
 	ServiceGlobal._internal() {
 		// 初始化 hole
 	}
 
-	static init(Store<AppState> store) {
+	static init(Store<AppState> store, Routers router) {
 		ServiceGlobal._getInstance().saveStoreInstance(store: store);
+		ServiceGlobal._getInstance().saveRouter(router: router);
+	}
+
+	/// 保存router引用
+	void saveRouter({Routers router}) {
+		this._router = router;
+	}
+
+	/// 获取router引用
+	Routers getRouters() {
+		return this._router;
 	}
 
 	/// 保存STORE引用

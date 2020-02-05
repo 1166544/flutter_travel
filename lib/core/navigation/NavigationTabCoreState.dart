@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_travel/core/navigation/NavigationTabCore.dart';
 import 'package:flutter_travel/core/navigation/NavigationTabItem.dart';
-import 'package:flutter_travel/modules/discover/DiscoverPage.dart';
-import 'package:flutter_travel/modules/profile/ProfilePage.dart';
-import 'package:flutter_travel/modules/home/HomePage.dart';
-import 'package:flutter_travel/modules/search/SearchPage.dart';
+import 'package:flutter_travel/services/ServiceGlobal.dart';
 
 /// TAB VIEW STATE入口类
 class NavigationTabCoreState extends State<NavigationTabCore> {
 	NavigationTabCoreState();
-	Map<NavigationTabItem, Widget> mapPageList = new Map<NavigationTabItem, Widget>();
 	NavigationTabItem currentItem = NavigationTabItem.Home;
 	bool isFirstTabUsed = false;
 
@@ -52,42 +48,9 @@ class NavigationTabCoreState extends State<NavigationTabCore> {
 		);
 	}
 
-	/// 储存主要首页
-	/// * [TabItem tabItem] 页面枚举
-	Widget getMapPage(NavigationTabItem tabItem) {
-		try {
-		  	if (this.mapPageList[tabItem] != null) {
-				return this.mapPageList[tabItem];
-			}
-		} catch (e) {
-			print(e);
-		}
-
-		switch (tabItem) {
-			case NavigationTabItem.Home:
-				// Home模块
-				this.mapPageList[tabItem] = HomePage();
-				break;
-			case NavigationTabItem.Search:
-				// 搜索模块
-				this.mapPageList[tabItem] = SearchPage();
-				break;
-			case NavigationTabItem.Discover:
-				// Discover模块
-				this.mapPageList[tabItem] = DiscoverPage();
-				break;
-			case NavigationTabItem.Profile:
-				// Profile模块
-				this.mapPageList[tabItem] = ProfilePage();
-				break;
-		}
-
-		return this.mapPageList[tabItem];
-	}
-
 	/// 构建界面
 	Widget _buildBody() {
-		return this.getMapPage(currentItem);
+		return ServiceGlobal.instance.getRouters().getMainPageByEnum(currentItem);
 	}
 
 	/// 底部TAB按钮
