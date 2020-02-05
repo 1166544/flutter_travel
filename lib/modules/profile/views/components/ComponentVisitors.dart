@@ -85,8 +85,8 @@ class _ComponentVisitorsState extends State<ComponentVisitors> {
 										begin: Alignment.centerLeft,
 										end: Alignment.centerRight,
 										colors: [
-											Colors.lightGreen,
-											Colors.green
+											Color(0xfffe7850),
+											Color(0xfffe7850),
 										]
 									)
 								),
