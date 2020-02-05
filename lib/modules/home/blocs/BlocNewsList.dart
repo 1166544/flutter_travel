@@ -15,6 +15,7 @@ class BlocNewsList implements BlocBase {
 	ServiceToken _serviceToken;
 	ServiceNotification _serviceNotification;
 	dynamic _requestParams = '';
+	bool isFirstLoad = false;
 
 	/// 数据流处理器对象
 	StreamController<ModelsNewsList> galleryController;
@@ -43,14 +44,16 @@ class BlocNewsList implements BlocBase {
 		this._gallery = new ModelsNewsList();
 		this._gallery.update(result);
 
-		// 弹消息通知
-		if (this._gallery.news.length > 0) {
+		// 第1次弹消息通知
+		if (this._gallery.news.length > 0 && this._requestParams['hot'] != null && !this.isFirstLoad) {
 			ModelNewsItem item = this._gallery.news[0];
 			await this._serviceNotification.showNotification(title: item.title, body: item.abs);
 		}
 
 		// 触发数据更新
 		this._inGallery.add(this._gallery);
+
+		this.isFirstLoad = true;
 	}
 
 	Future<Null> invoke() async {
@@ -71,6 +74,7 @@ class BlocNewsList implements BlocBase {
 	/// 更新请求参数
 	void updateParams(dynamic requestParams) {
 		this._requestParams = requestParams;
+
 		this.init();
 	}
 

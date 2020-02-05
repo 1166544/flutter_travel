@@ -14,7 +14,8 @@ class PageFocus extends PageDisplay {
 			'ver': 6,
 			'category_id': 101,
 			'action': 0,
-			'wf': 0
+			'wf': 0,
+			'hot': 1
 		}
 	);
 
