@@ -3,6 +3,7 @@ import 'package:flutter_github_api/flutter_github_api.dart';
 import 'package:flutter_travel/config/ConfigDefault.dart';
 import 'package:flutter_travel/core/api/ApiEnum.dart';
 import 'package:flutter_travel/core/http/HttpServiceCore.dart';
+import 'package:flutter_travel/modules/splash/models/ModelsBing.dart';
 import 'package:flutter_travel/redux/actions/ActionAuth.dart';
 import 'package:flutter_travel/redux/states/StateApp.dart';
 import 'package:flutter_travel/redux/states/StateUser.dart';
@@ -49,10 +50,16 @@ class ServiceGitHub extends HttpServiceCore {
 	}
 
 	/// get github userinfo
-	Future<Response<dynamic>> getUserInfo() async {
+	Future<Response<dynamic>> getUserInfo(ModelsBing coverData) async {
 		var result = await this.get('users/${this.user.name}');
 		String tocken = this.store.state.auth.user.token;
-		store.dispatch(UserLoginSuccess(StateUser(User.fromJson(result.data), tocken)));
+		StateUser newUserInfo = StateUser(User.fromJson(result.data), tocken);
+
+		// 存储封面信息
+		newUserInfo.updateCover(coverData);
+
+		// 用户信息存储到STORE
+		store.dispatch(UserLoginSuccess(newUserInfo));
 
 		return result;
 	}

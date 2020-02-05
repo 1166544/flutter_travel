@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_travel/core/api/ApiEnum.dart';
 import 'package:flutter_travel/modules/common/CommonNavigator.dart';
 import 'package:flutter_travel/modules/common/CommonTimeFormate.dart';
 import 'package:flutter_travel/modules/common/CommonTravelItem.dart';
 import 'package:flutter_travel/modules/home/models/ModelNewsItem.dart';
 import 'package:flutter_travel/modules/home/views/pages/PageDetail.dart';
+import 'package:flutter_travel/modules/splash/models/ModelsBingItem.dart';
+import 'package:flutter_travel/redux/states/StateApp.dart';
+import 'package:flutter_travel/services/ServiceEnviroment.dart';
+import 'package:flutter_travel/services/ServiceGlobal.dart';
+import 'package:redux/redux.dart';
 
 class ViewSearchContentRender extends StatefulWidget {
 	final ModelNewsItem snapData;
@@ -48,14 +54,30 @@ class _ViewSearchContentRenderState extends State<ViewSearchContentRender> with 
 	Widget buildCoverImage() {
 		DecorationImage decorationImage;
 
+		Store<AppState> store = ServiceGlobal.instance.getStoreInstance();
+		String titleStr = 'Back to the nature';
+		String subTitleStr = 'Coming up under the start.';
+
 		if (widget.coverImage != null) {
 			decorationImage = DecorationImage(
 				image: NetworkImage(widget.coverImage, headers: this.getCrossHeaders()),
 				fit: BoxFit.cover
 			);
 		} else {
+			ModelsBingItem data = store.state.auth.user.coverData.images[0];
+			String url = '${ServiceEnviroment.instance.getEnv().getServerUrl(API_ENUM.BING)}${data.url}';
+			titleStr = data.copyright;
+			if (titleStr.indexOf('(') != -1) {
+				List<String> splitList = titleStr.split('(');
+
+				if (splitList.length > 1) {
+					String subItem = splitList[1];
+					subTitleStr = subItem.replaceAll(')', '');
+					titleStr = splitList[0];
+				}
+			}
 			decorationImage = DecorationImage(
-				image: AssetImage('assets/road.jpg'),
+				image: NetworkImage(url),
 				fit: BoxFit.cover
 			);
 		}
@@ -73,11 +95,14 @@ class _ViewSearchContentRenderState extends State<ViewSearchContentRender> with 
 					mainAxisAlignment: MainAxisAlignment.end,
 					children: <Widget>[
 						Text(
-							'Back to the nature',
+							titleStr,
+							softWrap: true,
+							overflow: TextOverflow.ellipsis,
+							maxLines: 2,
 							style: TextStyle(
 								color: Colors.white,
 								fontWeight: FontWeight.bold,
-								fontSize: 30.0,
+								fontSize: 26.0,
 								shadows: [
 									Shadow(
 										offset: Offset(3.0, 3.0),
@@ -88,7 +113,7 @@ class _ViewSearchContentRenderState extends State<ViewSearchContentRender> with 
 							),
 						),
 						Text(
-							'Coming up under the start.',
+							subTitleStr,
 							style: TextStyle(
 								color: Colors.white,
 								fontWeight: FontWeight.bold,

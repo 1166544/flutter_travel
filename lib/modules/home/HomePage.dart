@@ -115,7 +115,6 @@ class _HomePageState extends State<HomePage> with CommonNavigator, SingleTickerP
 				return store.state.auth.toString();
 			},
 			builder: (context, auth) {
-				// return Text('Materials - 60 分钟杂志 ${auth.toString()}',
 				return Text('Materials - 60 Minute Manaze',
 					style: TextStyle(
 					color: Colors.black,
