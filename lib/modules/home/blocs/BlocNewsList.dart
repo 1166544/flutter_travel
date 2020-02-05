@@ -1,10 +1,10 @@
 import 'dart:async';
 
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:flutter_travel/core/CoreApp.dart';
 import 'package:flutter_travel/core/bloc/BlocBase.dart';
+import 'package:flutter_travel/modules/home/models/ModelNewsItem.dart';
 import 'package:flutter_travel/modules/home/models/ModelsNewsList.dart';
 import 'package:flutter_travel/services/ServiceNewsList.dart';
+import 'package:flutter_travel/services/ServiceNotification.dart';
 import 'package:flutter_travel/services/ServiceToken.dart';
 
 /// 新闻列表数据
@@ -13,6 +13,7 @@ class BlocNewsList implements BlocBase {
 	ModelsNewsList _gallery;
 	ServiceNewsList _serviceNewsList;
 	ServiceToken _serviceToken;
+	ServiceNotification _serviceNotification;
 	dynamic _requestParams = '';
 
 	/// 数据流处理器对象
@@ -27,6 +28,7 @@ class BlocNewsList implements BlocBase {
 	BlocNewsList(this.galleryController) {
 		this._serviceNewsList = new ServiceNewsList();
 		this._serviceToken = new ServiceToken();
+		this._serviceNotification = new ServiceNotification();
 	}
 
 	/// 初始化
@@ -41,7 +43,9 @@ class BlocNewsList implements BlocBase {
 		this._gallery = new ModelsNewsList();
 		this._gallery.update(result);
 
-		await this.showNotification();
+		// 弹消息通知
+		ModelNewsItem item = this._gallery.news[0];
+		await this._serviceNotification.showNotification(title: item.title, body: item.abs);
 
 		// 触发数据更新
 		this._inGallery.add(this._gallery);
@@ -58,35 +62,9 @@ class BlocNewsList implements BlocBase {
 		this._gallery = new ModelsNewsList();
 		this._gallery.update(result);
 
-		await this.showNotification();
-
 		// 触发数据更新
 		this._inGallery.add(this._gallery);
 	}
-
-	/// 弹出通知
-	Future<void> showNotification() async {
-		var androidPlatformChannelSpecifics = AndroidNotificationDetails(
-			'your channel id', 
-			'your channel name', 
-			'your channel description',
-			importance: Importance.Max, 
-			priority: Priority.High, 
-			ticker: 'ticker'
-		);
-		var iOSPlatformChannelSpecifics = IOSNotificationDetails();
-		var platformChannelSpecifics = NotificationDetails(
-			androidPlatformChannelSpecifics, iOSPlatformChannelSpecifics);
-
-		await flutterLocalNotificationsPlugin.show(
-			0, 
-			this._gallery.news[0].title, 
-			'plain body', 
-			platformChannelSpecifics,
-			payload: 
-			'item x'
-		);
-  	}
 
 	/// 更新请求参数
 	void updateParams(dynamic requestParams) {
