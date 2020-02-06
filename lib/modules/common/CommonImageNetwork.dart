@@ -20,33 +20,20 @@ class CommentImageNetwork {
 
 	/// 加载缓存图片
 	static ImageProvider<dynamic> imageNetwork(String url, {Map<String, String> headers}) {
-		Image image = Image.network(url, headers: headers);
-		ImageStream stream = image.image.resolve(ImageConfiguration.empty);
-		stream.addListener(ImageStreamListener((ImageInfo info, bool success){
-			// hole
-		}, onError: (dynamic exception, StackTrace stackTrace) async* {
-			print('enter onError start');
-			print(exception);
-			print(stackTrace);
-			print('enter onError end');
-			image = Image.asset('assets/images/chatbubble.png');
-		}));
-
-		return image.image;
-
-		// var completer = new Completer.sync();
+		return NetworkImage(url, headers: headers);
+		
+		// Image image = Image.network(url, headers: headers);
+		// ImageStream stream = image.image.resolve(ImageConfiguration.empty);
 		// stream.addListener(ImageStreamListener((ImageInfo info, bool success){
-		// 	// return image.image;
-		// 	completer.complete(image.image);
-		// }, onError: (dynamic exception, StackTrace stackTrace) {
+		// 	// hole
+		// }, onError: (dynamic exception, StackTrace stackTrace) async* {
 		// 	print('enter onError start');
 		// 	print(exception);
 		// 	print(stackTrace);
 		// 	print('enter onError end');
-		// 	completer.complete(Image.asset('assets/images/chatbubble.png').image);
-		// 	// return image.image;
+		// 	image = Image.asset('assets/images/chatbubble.png');
 		// }));
 
-		// return completer.future.asStream();
+		// return image.image;
 	}
 }
