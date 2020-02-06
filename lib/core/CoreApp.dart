@@ -14,7 +14,7 @@ import 'package:flutter_travel/core/api/ApiEnviroment.dart';
 import 'package:flutter_travel/services/ServiceGlobal.dart';
 import 'package:redux_persist_flutter/redux_persist_flutter.dart';
 
-/// 注程序
+/// 主程序
 class CoreApp extends StatefulWidget {
 	// store
 	final store = createStore();
