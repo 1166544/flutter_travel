@@ -120,4 +120,11 @@ class ConfigDefault {
 	String loginLogoUrl() {
 		return 'https://github.githubassets.com/images/modules/octocats/supportcat.jpg';
 	}
+
+	/// 上报EMAIL地址
+	List<String> getSendReportEmail() {
+		return [
+			'1166544@qq.com'
+		];
+	}
 }
