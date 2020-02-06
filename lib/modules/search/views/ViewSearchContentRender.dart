@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_travel/core/api/ApiEnum.dart';
+import 'package:flutter_travel/modules/common/CommonImageNetwork.dart';
 import 'package:flutter_travel/modules/common/CommonNavigator.dart';
 import 'package:flutter_travel/modules/common/CommonTimeFormate.dart';
 import 'package:flutter_travel/modules/common/CommonTravelItem.dart';
@@ -60,7 +61,7 @@ class _ViewSearchContentRenderState extends State<ViewSearchContentRender> with 
 
 		if (widget.coverImage != null) {
 			decorationImage = DecorationImage(
-				image: NetworkImage(widget.coverImage, headers: this.getCrossHeaders()),
+				image: CommentImageNetwork.imageNetwork(widget.coverImage, headers: this.getCrossHeaders()),
 				fit: BoxFit.cover
 			);
 		} else {
@@ -90,7 +91,7 @@ class _ViewSearchContentRenderState extends State<ViewSearchContentRender> with 
 				url = ManagerEnviroment.instance.getEnv().loginLogoUrl();
 			}
 			decorationImage = DecorationImage(
-				image: NetworkImage(url),
+				image: CommentImageNetwork.imageNetwork(url),
 				fit: BoxFit.cover
 			);
 		}
@@ -316,7 +317,7 @@ class _ViewSearchContentRenderState extends State<ViewSearchContentRender> with 
 			height: 80.0,
 			decoration: BoxDecoration(
 			image: DecorationImage(
-					image: NetworkImage(url, headers: this.getCrossHeaders()), fit: BoxFit.cover),
+					image: CommentImageNetwork.imageNetwork(url, headers: this.getCrossHeaders()), fit: BoxFit.cover),
 					borderRadius: BorderRadius.only(
 						topLeft: Radius.circular(3.0),
 						topRight: Radius.circular(3.0),

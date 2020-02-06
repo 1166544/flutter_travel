@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:flutter_travel/modules/common/CommonImageNetwork.dart';
 import 'package:flutter_travel/modules/common/CommonNavigator.dart';
 import 'package:flutter_travel/modules/common/CommonTravelItem.dart';
 import 'package:flutter_travel/modules/home/models/ModelSearch.dart';
@@ -108,7 +109,7 @@ class _ComponentSearchRenderState extends State<ComponentSearchRender> with Comm
 						height: 120.0,
 						decoration: BoxDecoration(
 							image: DecorationImage(
-								image: NetworkImage(url, headers: this.getCrossHeaders()),
+								image: CommentImageNetwork.imageNetwork(url, headers: this.getCrossHeaders()),
 								fit: BoxFit.cover
 							),
 							border: Border.all(
@@ -202,7 +203,7 @@ class _ComponentSearchRenderState extends State<ComponentSearchRender> with Comm
 			height: 90.0,
 			decoration: BoxDecoration(
 				image: DecorationImage(
-					image: NetworkImage(url, headers: this.getCrossHeaders()),
+					image: CommentImageNetwork.imageNetwork(url, headers: this.getCrossHeaders()),
 					fit: BoxFit.cover
 				),
 				border: Border.all(

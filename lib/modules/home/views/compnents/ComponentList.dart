@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_travel/modules/common/CommonImageNetwork.dart';
 import 'package:flutter_travel/modules/common/CommonNavigator.dart';
 import 'package:flutter_travel/modules/common/CommonTimeFormate.dart';
 import 'package:flutter_travel/modules/home/models/ModelImage.dart';
@@ -110,7 +111,7 @@ class ComponentList extends StatelessWidget with CommonTimeFormate, CommonNaviga
 					height: 105.0,
 					decoration: BoxDecoration(
 					image: DecorationImage(
-						image:NetworkImage(avataUrl, headers: this.getCrossHeaders()), 
+						image:CommentImageNetwork.imageNetwork(avataUrl, headers: this.getCrossHeaders()), 
 						fit: BoxFit.cover),
 						border: Border.all(
 							color: Colors.grey.withOpacity(0.5), width: 0.5

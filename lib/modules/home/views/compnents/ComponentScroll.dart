@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_travel/modules/common/CommonImageNetwork.dart';
 import 'package:flutter_travel/modules/common/CommonNavigator.dart';
 import 'package:flutter_travel/modules/home/models/ModelImage.dart';
 import 'package:flutter_travel/modules/home/models/ModelNewsItem.dart';
@@ -60,7 +61,7 @@ class ComponentScroll extends StatelessWidget with CommonNavigator {
 			height: 180.0,
 			decoration: BoxDecoration(
 				image: DecorationImage(
-					image: NetworkImage(cover1), 
+					image: CommentImageNetwork.imageNetwork(cover1), 
 					fit: BoxFit.cover,
 				),
 				borderRadius: BorderRadius.only(
@@ -111,7 +112,7 @@ class ComponentScroll extends StatelessWidget with CommonNavigator {
 									height: 40.0,
 									decoration: BoxDecoration(
 									image: DecorationImage(
-											image: NetworkImage(coverCopy), fit: BoxFit.cover),
+											image: CommentImageNetwork.imageNetwork(coverCopy), fit: BoxFit.cover),
 											borderRadius: BorderRadius.only(
 												topLeft: Radius.circular(7.0),
 												topRight: Radius.circular(7.0),

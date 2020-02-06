@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_travel/core/bloc/BlocProvider.dart';
 import 'package:flutter_travel/modules/common/CommonGalleryItem.dart';
+import 'package:flutter_travel/modules/common/CommonImageNetwork.dart';
 import 'package:flutter_travel/modules/common/CommonNavigator.dart';
 import 'package:flutter_travel/modules/common/CommonTimeFormate.dart';
 import 'package:flutter_travel/modules/common/CommonTravelItem.dart';
@@ -373,7 +374,7 @@ class _PageDetailContentState extends State<PageDetailContent> with CommonTravel
 					crossAxisAlignment: CrossAxisAlignment.start,
 					children: <Widget>[
 						CircleAvatar(
-							backgroundImage: NetworkImage(item.userPic),
+							backgroundImage: CommentImageNetwork.imageNetwork(item.userPic),
 							radius: 15.0,
 						),
 						SizedBox(width: 10.0),

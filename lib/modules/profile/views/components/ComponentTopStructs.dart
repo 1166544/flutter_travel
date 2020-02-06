@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_travel/modules/common/CommonImageNetwork.dart';
 import 'package:flutter_travel/modules/common/CommonNavigator.dart';
 import 'package:flutter_travel/modules/profile/models/ModelProfile.dart';
 import 'package:flutter_travel/modules/profile/views/pages/PageFormSubmit.dart';
@@ -66,7 +67,7 @@ class _ComponentTopStructsState extends State<ComponentTopStructs> with CommonNa
 							borderRadius: BorderRadius.circular(7),
 							image: DecorationImage(
 								fit:BoxFit.cover,
-								image: NetworkImage(widget.auth.user.user.avatarUrl)
+								image: CommentImageNetwork.imageNetwork(widget.auth.user.user.avatarUrl)
 							),
 							boxShadow: [
 								BoxShadow(

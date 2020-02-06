@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:flutter_travel/modules/common/CommonImageNetwork.dart';
 import 'package:flutter_travel/redux/states/StateApp.dart';
 import 'package:flutter_travel/core/manager/ManagerEnviroment.dart';
 
@@ -35,7 +36,7 @@ class LoginLogo extends StatelessWidget {
 									height: 120,
 									decoration: BoxDecoration(
 										image: DecorationImage(
-											image: NetworkImage(ManagerEnviroment.instance.getEnv().loginLogoUrl()),
+											image: CommentImageNetwork.imageNetwork(ManagerEnviroment.instance.getEnv().loginLogoUrl()),
 											fit: BoxFit.cover,
 										),
 										borderRadius: BorderRadius.circular(100.0)

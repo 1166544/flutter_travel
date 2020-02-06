@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:flutter_travel/modules/common/CommonImageNetwork.dart';
 import 'package:flutter_travel/modules/common/CommonNavigator.dart';
 import 'package:flutter_travel/modules/home/models/ModelContent.dart';
 import 'package:flutter_travel/modules/home/models/ModelNewsItem.dart';
@@ -123,7 +124,7 @@ class _CommonPhotoViewerState extends State<CommonPhotoViewer> with CommonNaviga
 							builder: (BuildContext context, int index) {
 								return PhotoViewGalleryPageOptions(
 									tightMode: true,
-									imageProvider: NetworkImage(this.list[index].url, headers: this.getCrossHeaders()),
+									imageProvider: CommentImageNetwork.imageNetwork(this.list[index].url, headers: this.getCrossHeaders()),
 									initialScale: PhotoViewComputedScale.contained * 0.95,
 									minScale: PhotoViewComputedScale.contained * 0.95,
 									maxScale: PhotoViewComputedScale.covered * 1.1,

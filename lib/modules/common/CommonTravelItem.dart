@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_travel/modules/common/CommonImageNetwork.dart';
 import 'package:flutter_travel/modules/common/CommonLoading.dart';
 import 'package:flutter_travel/modules/common/CommonNavigator.dart';
 import 'package:flutter_travel/modules/common/CommonPhotoViewer.dart';
@@ -155,7 +156,7 @@ class CommonTravelItem {
 	if (url.indexOf('assets/') != -1) {
 		return AssetImage(url);
 	} else {
-		return NetworkImage(url, headers: this.navigatorData.getCrossHeaders());
+		return CommentImageNetwork.imageNetwork(url, headers: this.navigatorData.getCrossHeaders());
 	}
   }
 

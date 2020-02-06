@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_travel/core/bloc/BlocProvider.dart';
 import 'package:flutter_travel/modules/common/CommonGalleryItem.dart';
+import 'package:flutter_travel/modules/common/CommonImageNetwork.dart';
 import 'package:flutter_travel/modules/common/CommonNavigator.dart';
 import 'package:flutter_travel/modules/common/CommonTimeFormate.dart';
 import 'package:flutter_travel/modules/common/CommonTravelItem.dart';
@@ -121,7 +122,7 @@ class _CommentPageContentState extends State<CommentPageContent> with CommonTrav
 					Row(
 						children: <Widget>[
 							CircleAvatar(
-								backgroundImage: NetworkImage(firstItem.userPic),
+								backgroundImage: CommentImageNetwork.imageNetwork(firstItem.userPic),
 								radius: 25.0,
 							),
 							SizedBox(width: 12.0),
@@ -254,7 +255,7 @@ class _CommentPageContentState extends State<CommentPageContent> with CommonTrav
 					crossAxisAlignment: CrossAxisAlignment.start,
 					children: <Widget>[
 						CircleAvatar(
-							backgroundImage: NetworkImage(item.userPic),
+							backgroundImage: CommentImageNetwork.imageNetwork(item.userPic),
 							radius: 15.0,
 						),
 						SizedBox(width: 10.0),
