@@ -1,3 +1,4 @@
+import 'package:catcher/core/catcher.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -43,6 +44,16 @@ class _CoreAppState extends State<CoreApp> {
 			builder: (context) => StoreProvider<AppState>(
 				store: widget.store,
 				child: MaterialApp(
+					navigatorKey: Catcher.navigatorKey,
+					builder: (BuildContext context, Widget widget) {
+						Catcher.addDefaultErrorWidget(
+							showStacktrace: true,
+							customTitle: 'Exception Report',
+							customDescription: 'Excepation catcher details'
+						);
+
+						return widget; 
+					},
 					debugShowCheckedModeBanner: false,
 					theme: defaultTargetPlatform == TargetPlatform.iOS
                         ? kIOSTheme
