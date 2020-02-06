@@ -6,13 +6,13 @@ import 'package:flutter_travel/config/ConfigTest.dart';
 import 'package:flutter_travel/core/api/ApiEnviroment.dart';
 
 /// 环境配置服务
-class ServiceEnviroment {
-	factory ServiceEnviroment() => _getInstance();
-	static ServiceEnviroment get instance => _getInstance();
-	static ServiceEnviroment _instance;
-	static ServiceEnviroment _getInstance() {
+class ManagerEnviroment {
+	factory ManagerEnviroment() => _getInstance();
+	static ManagerEnviroment get instance => _getInstance();
+	static ManagerEnviroment _instance;
+	static ManagerEnviroment _getInstance() {
 		if (_instance == null) {
-			_instance = new ServiceEnviroment._internal();
+			_instance = new ManagerEnviroment._internal();
 		}
 
 		return _instance;
@@ -20,16 +20,16 @@ class ServiceEnviroment {
 
   	/// 实例化单例
 	static init(ENVIROMENT env) {
-		ServiceEnviroment enviroment = ServiceEnviroment.instance;
+		ManagerEnviroment enviroment = ManagerEnviroment.instance;
 		enviroment.updateEnv(env);
 	}
 
 	/// 获取当前环境配置(static)
 	static getCurrentEnviroment() {
-		return ServiceEnviroment.instance.getEnv();
+		return ManagerEnviroment.instance.getEnv();
 	}
 
-	ServiceEnviroment._internal() {
+	ManagerEnviroment._internal() {
 		// 初始化 hole
 	}
 

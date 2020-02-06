@@ -3,7 +3,7 @@ import 'package:flutter_travel/core/bloc/BlocProvider.dart';
 import 'package:flutter_travel/modules/weather/blocs/BlocWeatherList.dart';
 import 'package:flutter_travel/modules/weather/models/ModelDisplayWeatherInfo.dart';
 import 'package:flutter_travel/modules/weather/view/components/ComponentWeatherWidget.dart';
-import 'package:flutter_travel/services/ServiceGlobal.dart';
+import 'package:flutter_travel/core/manager/ManagerGlobal.dart';
 import 'package:geolocator/geolocator.dart';
 
 /// 天气组件实现
@@ -39,7 +39,7 @@ class _ComponentWeatherState extends State<ComponentWeather> with TickerProvider
 		this.blocGalleryList = BlocProvider.of<BlocWeatherList>(context);
 
 		// 获取定位
-		ServiceGlobal.instance.getGeoLocation(context).then((Position position) => {
+		ManagerGlobal.instance.getGeoLocation(context).then((Position position) => {
 			this.blocGalleryList.init(longitude: position.longitude, latitude: position.latitude)
 		}).catchError((error) => {
 			// hole

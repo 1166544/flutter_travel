@@ -1,8 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_travel/core/api/ApiEnum.dart';
 import 'package:flutter_travel/core/http/HttpServiceCore.dart';
-
-import 'ServiceEnviroment.dart';
+import 'package:flutter_travel/core/manager/ManagerEnviroment.dart';
 
 /// JSON HOLDER API服务
 class ServiceJsonPlaceHolder extends HttpServiceCore {
@@ -20,7 +19,7 @@ class ServiceJsonPlaceHolder extends HttpServiceCore {
 	ServiceJsonPlaceHolder._internal(): super() {
 		// 初始化
 		this.apiKey = API_ENUM.JSON_PLACE_HOLDER;
-		this.enviroment = ServiceEnviroment.instance;
+		this.enviroment = ManagerEnviroment.instance;
 		this.baseUrl = this.enviroment.getEnv().getServerUrl(this.apiKey);
 
 		super.init();

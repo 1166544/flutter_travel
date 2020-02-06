@@ -8,7 +8,7 @@ import 'package:flutter_travel/modules/weather/models/model-weather/ModelS6Weath
 import 'package:flutter_travel/redux/actions/ActionWeather.dart';
 import 'package:flutter_travel/redux/states/StateApp.dart';
 import 'package:flutter_travel/services/ServiceFreeAirAndWeather.dart';
-import 'package:flutter_travel/services/ServiceGlobal.dart';
+import 'package:flutter_travel/core/manager/ManagerGlobal.dart';
 import 'package:flutter_travel/services/ServiceOpenWeather.dart';
 import 'package:redux/redux.dart';
 
@@ -32,7 +32,7 @@ class BlocWeatherList implements BlocBase {
 	BlocWeatherList(this.galleryController) {
 		this._serviceWeatherList = new ServiceOpenWeather();
 		this._serviceWeatherAndAirList = new ServiceFreeAirAndWeather();
-		this.store = ServiceGlobal.instance.getStoreInstance();
+		this.store = ManagerGlobal.instance.getStoreInstance();
 	}
 
 	/// 初始化

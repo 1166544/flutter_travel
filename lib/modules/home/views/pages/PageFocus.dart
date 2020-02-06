@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_travel/modules/home/models/ModelsNewsList.dart';
 import 'package:flutter_travel/modules/home/views/pages/PageDisplay.dart';
-import 'package:flutter_travel/services/ServiceNotification.dart';
+import 'package:flutter_travel/core/manager/ManagerNotification.dart';
 
 /// 头条页
 class PageFocus extends PageDisplay {

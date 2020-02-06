@@ -2,10 +2,10 @@ import 'package:catcher/catcher_plugin.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_travel/core/CoreApp.dart';
 import 'package:flutter_travel/core/api/ApiEnviroment.dart';
-import 'package:flutter_travel/services/ServiceEnviroment.dart';
-import 'package:flutter_travel/services/ServiceNotification.dart';
+import 'package:flutter_travel/core/manager/ManagerEnviroment.dart';
+import 'package:flutter_travel/core/manager/ManagerNotification.dart';
 
-List<String> sendReportEmail = ServiceEnviroment.instance.getEnv().getSendReportEmail();
+List<String> sendReportEmail = ManagerEnviroment.instance.getEnv().getSendReportEmail();
 CatcherOptions debugOptions = CatcherOptions(DialogReportMode(), [ConsoleHandler()]);
 CatcherOptions releaseOptions = CatcherOptions(DialogReportMode(), [EmailManualHandler(sendReportEmail)]);
 

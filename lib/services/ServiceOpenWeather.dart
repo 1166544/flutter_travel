@@ -1,8 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_travel/core/api/ApiEnum.dart';
 import 'package:flutter_travel/core/http/HttpServiceCore.dart';
-
-import 'ServiceEnviroment.dart';
+import 'package:flutter_travel/core/manager/ManagerEnviroment.dart';
 
 /// 通用天气 API服务
 class ServiceOpenWeather extends HttpServiceCore {
@@ -21,7 +20,7 @@ class ServiceOpenWeather extends HttpServiceCore {
 	ServiceOpenWeather._internal(): super() {
 		// 初始化
 		this.apiKey = API_ENUM.OPEN_WEATHER;
-		this.enviroment = ServiceEnviroment.instance;
+		this.enviroment = ManagerEnviroment.instance;
 		this.baseUrl = this.enviroment.getEnv().getServerUrl(this.apiKey);
 		this.openKey = this.enviroment.getEnv().openWeatherKey();
 

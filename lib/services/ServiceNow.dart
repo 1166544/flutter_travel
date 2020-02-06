@@ -1,11 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_travel/core/api/ApiEnum.dart';
 import 'package:flutter_travel/core/http/HttpServiceCore.dart';
+import 'package:flutter_travel/core/manager/ManagerEnviroment.dart';
 import 'package:flutter_travel/redux/states/StateApp.dart';
-import 'package:flutter_travel/services/ServiceGlobal.dart';
+import 'package:flutter_travel/core/manager/ManagerGlobal.dart';
 import 'package:redux/redux.dart';
-
-import 'ServiceEnviroment.dart';
 
 /// now.sh服务
 class ServiceNow extends HttpServiceCore {
@@ -26,11 +25,11 @@ class ServiceNow extends HttpServiceCore {
 	ServiceNow._internal(): super() {
 		// 初始化
 		this.apiKey = API_ENUM.NOW;
-		this.enviroment = ServiceEnviroment.instance;
+		this.enviroment = ManagerEnviroment.instance;
 		this.baseUrl = this.enviroment.getEnv().getServerUrl(this.apiKey);
 
 		super.init();
-		this.store = ServiceGlobal.instance.getStoreInstance();
+		this.store = ManagerGlobal.instance.getStoreInstance();
 	}
 
 	/// get github contributions

@@ -4,7 +4,7 @@ import 'package:flutter_travel/core/bloc/BlocBase.dart';
 import 'package:flutter_travel/modules/home/models/ModelNewsItem.dart';
 import 'package:flutter_travel/modules/home/models/ModelsNewsList.dart';
 import 'package:flutter_travel/services/ServiceNewsList.dart';
-import 'package:flutter_travel/services/ServiceNotification.dart';
+import 'package:flutter_travel/core/manager/ManagerNotification.dart';
 import 'package:flutter_travel/services/ServiceToken.dart';
 
 /// 新闻列表数据

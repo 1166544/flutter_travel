@@ -7,8 +7,8 @@ import 'package:flutter_travel/modules/home/models/ModelNewsItem.dart';
 import 'package:flutter_travel/modules/home/views/pages/PageDetail.dart';
 import 'package:flutter_travel/modules/splash/models/ModelsBingItem.dart';
 import 'package:flutter_travel/redux/states/StateApp.dart';
-import 'package:flutter_travel/services/ServiceEnviroment.dart';
-import 'package:flutter_travel/services/ServiceGlobal.dart';
+import 'package:flutter_travel/core/manager/ManagerEnviroment.dart';
+import 'package:flutter_travel/core/manager/ManagerGlobal.dart';
 import 'package:redux/redux.dart';
 
 class ViewSearchContentRender extends StatefulWidget {
@@ -54,7 +54,7 @@ class _ViewSearchContentRenderState extends State<ViewSearchContentRender> with 
 	Widget buildCoverImage() {
 		DecorationImage decorationImage;
 
-		Store<AppState> store = ServiceGlobal.instance.getStoreInstance();
+		Store<AppState> store = ManagerGlobal.instance.getStoreInstance();
 		String titleStr = 'Back to the nature';
 		String subTitleStr = 'Coming up under the start.';
 
@@ -64,17 +64,30 @@ class _ViewSearchContentRenderState extends State<ViewSearchContentRender> with 
 				fit: BoxFit.cover
 			);
 		} else {
-			ModelsBingItem data = store.state.auth.user.coverData.images[0];
-			String url = '${ServiceEnviroment.instance.getEnv().getServerUrl(API_ENUM.BING)}${data.url}';
-			titleStr = data.copyright;
-			if (titleStr.indexOf('(') != -1) {
-				List<String> splitList = titleStr.split('(');
+			String url;
+			if (store != null && 
+				store.state != null && 
+				store.state.auth != null && 
+				store.state.auth.user != null && 
+				store.state.auth.user.coverData != null && 
+				store.state.auth.user.coverData.images != null && 
+				store.state.auth.user.coverData.images.length > 0) {
+				// 使用封面数据
+				ModelsBingItem data = store.state.auth.user.coverData.images[0];
+				url = '${ManagerEnviroment.instance.getEnv().getServerUrl(API_ENUM.BING)}${data.url}';
+				titleStr = data.copyright;
+				if (titleStr.indexOf('(') != -1) {
+					List<String> splitList = titleStr.split('(');
 
-				if (splitList.length > 1) {
-					String subItem = splitList[1];
-					subTitleStr = subItem.replaceAll(')', '');
-					titleStr = splitList[0];
+					if (splitList.length > 1) {
+						String subItem = splitList[1];
+						subTitleStr = subItem.replaceAll(')', '');
+						titleStr = splitList[0];
+					}
 				}
+			} else {
+				// 使用配置数据
+				url = ManagerEnviroment.instance.getEnv().loginLogoUrl();
 			}
 			decorationImage = DecorationImage(
 				image: NetworkImage(url),

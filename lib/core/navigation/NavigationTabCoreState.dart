@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_travel/core/navigation/NavigationTabCore.dart';
 import 'package:flutter_travel/core/navigation/NavigationTabItem.dart';
-import 'package:flutter_travel/services/ServiceGlobal.dart';
+import 'package:flutter_travel/core/manager/ManagerGlobal.dart';
 
 /// TAB VIEW STATE入口类
 class NavigationTabCoreState extends State<NavigationTabCore> {
@@ -50,7 +50,7 @@ class NavigationTabCoreState extends State<NavigationTabCore> {
 
 	/// 构建界面
 	Widget _buildBody() {
-		return ServiceGlobal.instance.getRouters().getMainPageByEnum(currentItem);
+		return ManagerGlobal.instance.getRouters().getMainPageByEnum(currentItem);
 	}
 
 	/// 底部TAB按钮

@@ -1,8 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_travel/core/api/ApiEnum.dart';
 import 'package:flutter_travel/core/http/HttpServiceCore.dart';
-
-import 'ServiceEnviroment.dart';
+import 'package:flutter_travel/core/manager/ManagerEnviroment.dart';
 
 /// CN NODE API服务
 class ServiceCnNode extends HttpServiceCore {
@@ -20,7 +19,7 @@ class ServiceCnNode extends HttpServiceCore {
 	ServiceCnNode._internal(): super() {
 		// 初始化
 		this.apiKey = API_ENUM.API_OPEN;
-		this.enviroment = ServiceEnviroment.instance;
+		this.enviroment = ManagerEnviroment.instance;
 		this.baseUrl = this.enviroment.getEnv().getServerUrl(this.apiKey);
 
 		super.init();

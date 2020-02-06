@@ -1,8 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_travel/core/api/ApiEnum.dart';
 import 'package:flutter_travel/core/http/HttpServiceCore.dart';
-
-import 'ServiceEnviroment.dart';
+import 'package:flutter_travel/core/manager/ManagerEnviroment.dart';
 
 /// Bing API服务
 class ServiceBing extends HttpServiceCore {
@@ -20,7 +19,7 @@ class ServiceBing extends HttpServiceCore {
 	ServiceBing._internal(): super() {
 		// 初始化
 		this.apiKey = API_ENUM.BING;
-		this.enviroment = ServiceEnviroment.instance;
+		this.enviroment = ManagerEnviroment.instance;
 		this.baseUrl = this.enviroment.getEnv().getServerUrl(this.apiKey);
 
 		super.init();

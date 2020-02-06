@@ -9,7 +9,7 @@ import 'package:flutter_travel/modules/splash/blocs/BlocSplashList.dart';
 import 'package:flutter_travel/modules/splash/models/ModelsBing.dart';
 import 'package:flutter_travel/modules/splash/models/ModelsBingItem.dart';
 import 'package:flutter_travel/routers/Routers.dart';
-import 'package:flutter_travel/services/ServiceEnviroment.dart';
+import 'package:flutter_travel/core/manager/ManagerEnviroment.dart';
 
 /// 闪屏页内容
 class ViewSplashContent extends StatefulWidget {
@@ -88,7 +88,7 @@ class _SplashScreenState extends State<ViewSplashContent> with CommonTravelItem 
 
 	Widget buildLayout(dynamic snapshot) {
 		ModelsBingItem data = snapshot.data.images[0];
-		String url = '${ServiceEnviroment.instance.getEnv().getServerUrl(API_ENUM.BING)}${data.url}';
+		String url = '${ManagerEnviroment.instance.getEnv().getServerUrl(API_ENUM.BING)}${data.url}';
 
 		return Container(
 			width: MediaQuery.of(this.context).size.width,

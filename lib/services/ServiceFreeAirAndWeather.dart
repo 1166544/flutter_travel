@@ -1,8 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_travel/core/api/ApiEnum.dart';
 import 'package:flutter_travel/core/http/HttpServiceCore.dart';
-
-import 'ServiceEnviroment.dart';
+import 'package:flutter_travel/core/manager/ManagerEnviroment.dart';
 
 /// 中文版天气和空气质量 API服务
 class ServiceFreeAirAndWeather extends HttpServiceCore {
@@ -21,7 +20,7 @@ class ServiceFreeAirAndWeather extends HttpServiceCore {
 	ServiceFreeAirAndWeather._internal(): super() {
 		// 初始化
 		this.apiKey = API_ENUM.FREE_API;
-		this.enviroment = ServiceEnviroment.instance;
+		this.enviroment = ManagerEnviroment.instance;
 		this.baseUrl = this.enviroment.getEnv().getServerUrl(this.apiKey);
 		this.openKey = this.enviroment.getEnv().heWeatherKey();
 

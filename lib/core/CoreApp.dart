@@ -8,10 +8,10 @@ import 'package:flutter_travel/modules/common/CommonLoading.dart';
 import 'package:flutter_travel/redux/states/StateApp.dart';
 import 'package:flutter_travel/redux/store/StoreApp.dart';
 import 'package:flutter_travel/routers/Routers.dart';
-import 'package:flutter_travel/services/ServiceEnviroment.dart';
+import 'package:flutter_travel/core/manager/ManagerEnviroment.dart';
 
 import 'package:flutter_travel/core/api/ApiEnviroment.dart';
-import 'package:flutter_travel/services/ServiceGlobal.dart';
+import 'package:flutter_travel/core/manager/ManagerGlobal.dart';
 import 'package:redux_persist_flutter/redux_persist_flutter.dart';
 
 /// 主程序
@@ -24,8 +24,8 @@ class CoreApp extends StatefulWidget {
 
 	CoreApp({Key key, this.env}) : super(key: key) {
 		// 初始化相关服务
-		ServiceEnviroment.init(this.env);
-		ServiceGlobal.init(this.store, Routers(store: this.store));
+		ManagerEnviroment.init(this.env);
+		ManagerGlobal.init(this.store, Routers(store: this.store));
 	}
 
 	_CoreAppState createState() => _CoreAppState();
@@ -47,7 +47,7 @@ class _CoreAppState extends State<CoreApp> {
 					theme: defaultTargetPlatform == TargetPlatform.iOS
                         ? kIOSTheme
                         : kDefaultTheme,
-					routes: ServiceGlobal.instance.getRouters().init()
+					routes: ManagerGlobal.instance.getRouters().init()
 				)
 			),
 		);

@@ -7,17 +7,17 @@ import 'package:rxdart/subjects.dart';
 
 /// 消通通知
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =  FlutterLocalNotificationsPlugin();
-final BehaviorSubject<ServiceReceivedNotification> didReceiveLocalNotificationSubject = BehaviorSubject<ServiceReceivedNotification>();
+final BehaviorSubject<ManagerNotification> didReceiveLocalNotificationSubject = BehaviorSubject<ManagerNotification>();
 final BehaviorSubject<String> selectNotificationSubject = BehaviorSubject<String>();
 
 /// 消息通知消息体
-class ServiceReceivedNotification {
+class ManagerNotification {
 	final int id;
 	final String title;
 	final String body;
 	final String payload;
 
-  	ServiceReceivedNotification(
+  	ManagerNotification(
       {
 		@required this.id,
 		@required this.title,
@@ -53,7 +53,7 @@ class ServiceNotification {
 			onDidReceiveLocalNotification:
 				(int id, String title, String body, String payload) async {
 					didReceiveLocalNotificationSubject.add(
-						ServiceReceivedNotification(id: id, title: title, body: body, payload: payload)
+						ManagerNotification(id: id, title: title, body: body, payload: payload)
 					);
 				});
 
@@ -100,7 +100,7 @@ class ServiceNotificationWidget extends PageDisplayState {
 	@override
 	void initState() {
 		super.initState();
-		didReceiveLocalNotificationSubject.stream.listen((ServiceReceivedNotification receivedNotification) async {
+		didReceiveLocalNotificationSubject.stream.listen((ManagerNotification receivedNotification) async {
 			await showDialog(
 				context: context,
 				builder: (BuildContext context) => CupertinoAlertDialog(

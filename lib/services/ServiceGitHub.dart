@@ -3,14 +3,13 @@ import 'package:flutter_github_api/flutter_github_api.dart';
 import 'package:flutter_travel/config/ConfigDefault.dart';
 import 'package:flutter_travel/core/api/ApiEnum.dart';
 import 'package:flutter_travel/core/http/HttpServiceCore.dart';
+import 'package:flutter_travel/core/manager/ManagerEnviroment.dart';
 import 'package:flutter_travel/modules/splash/models/ModelsBing.dart';
 import 'package:flutter_travel/redux/actions/ActionAuth.dart';
 import 'package:flutter_travel/redux/states/StateApp.dart';
 import 'package:flutter_travel/redux/states/StateUser.dart';
-import 'package:flutter_travel/services/ServiceGlobal.dart';
+import 'package:flutter_travel/core/manager/ManagerGlobal.dart';
 import 'package:redux/redux.dart';
-
-import 'ServiceEnviroment.dart';
 
 /// Github服务
 class ServiceGitHub extends HttpServiceCore {
@@ -33,11 +32,11 @@ class ServiceGitHub extends HttpServiceCore {
 	ServiceGitHub._internal(): super() {
 		// 初始化
 		this.apiKey = API_ENUM.GITHUB;
-		this.enviroment = ServiceEnviroment.instance;
+		this.enviroment = ManagerEnviroment.instance;
 		this.baseUrl = this.enviroment.getEnv().getServerUrl(this.apiKey);
 
 		super.init();
-		this.store = ServiceGlobal.instance.getStoreInstance();
+		this.store = ManagerGlobal.instance.getStoreInstance();
 		this.user = this.store.state.auth.user.user;
 		this.config = this.enviroment.getEnv();
 	}

@@ -7,13 +7,13 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:redux/redux.dart';
 
 /// 全局服务
-class ServiceGlobal {
-	factory ServiceGlobal() => _getInstance();
-	static ServiceGlobal get instance => _getInstance();
-	static ServiceGlobal _instance;
-	static ServiceGlobal _getInstance() {
+class ManagerGlobal {
+	factory ManagerGlobal() => _getInstance();
+	static ManagerGlobal get instance => _getInstance();
+	static ManagerGlobal _instance;
+	static ManagerGlobal _getInstance() {
 		if (_instance == null) {
-			_instance = new ServiceGlobal._internal();
+			_instance = new ManagerGlobal._internal();
 		}
 
 		return _instance;
@@ -28,13 +28,13 @@ class ServiceGlobal {
 	/// 路由
 	Routers _router;
 
-	ServiceGlobal._internal() {
+	ManagerGlobal._internal() {
 		// 初始化 hole
 	}
 
 	static init(Store<AppState> store, Routers router) {
-		ServiceGlobal._getInstance().saveStoreInstance(store: store);
-		ServiceGlobal._getInstance().saveRouter(router: router);
+		ManagerGlobal._getInstance().saveStoreInstance(store: store);
+		ManagerGlobal._getInstance().saveRouter(router: router);
 	}
 
 	/// 保存router引用

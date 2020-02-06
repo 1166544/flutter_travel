@@ -6,7 +6,7 @@ import 'package:dio/adapter.dart';
 import 'package:flutter_travel/core/api/ApiEnum.dart';
 import 'package:flutter_travel/core/api/ApiEnviroment.dart';
 // import 'package:flutter_travel/core/http/HttpTransformerCore.dart';
-import 'package:flutter_travel/services/ServiceEnviroment.dart';
+import 'package:flutter_travel/core/manager/ManagerEnviroment.dart';
 import 'package:dio/dio.dart';
 
 /// 封装过的HTTP请求核心类
@@ -16,7 +16,7 @@ class HttpServiceCore {
 	API_ENUM apiKey;
 
 	/// 配置文件
-	ServiceEnviroment enviroment;
+	ManagerEnviroment enviroment;
 
 	/// 基本URL
 	String baseUrl;
@@ -70,12 +70,12 @@ class HttpServiceCore {
 		// this.dio.transformer = new HttpTransformerCore();
 
 		// 开发环境抓包请求
-		if (ServiceEnviroment.instance.env == ENVIROMENT.DEVELOPEMENT) {
+		if (ManagerEnviroment.instance.env == ENVIROMENT.DEVELOPEMENT) {
 			(dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
 				(HttpClient client) {
 				client.findProxy = (uri) {
 					// proxy all request to localhost:8888
-					return "PROXY ${ServiceEnviroment.instance.getEnv().getProxyUrl()}";
+					return "PROXY ${ManagerEnviroment.instance.getEnv().getProxyUrl()}";
 				};
 				client.badCertificateCallback = (X509Certificate cert, String host, int port) => true;
 			};

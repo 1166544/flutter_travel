@@ -2,8 +2,7 @@ import 'package:flutter_github_api/entity/basic_auth_param.dart';
 import 'package:flutter_github_api/entity/oauth_result.dart';
 import 'package:flutter_github_api/flutter_github_api.dart';
 import 'package:flutter_travel/core/http/HttpServiceCore.dart';
-
-import 'ServiceEnviroment.dart';
+import 'package:flutter_travel/core/manager/ManagerEnviroment.dart';
 
 /// 登录服务
 class ServiceLogin extends HttpServiceCore {
@@ -23,7 +22,7 @@ class ServiceLogin extends HttpServiceCore {
 
 	ServiceLogin._internal(): super() {
 		// 初始化
-		this.enviroment = ServiceEnviroment.instance;
+		this.enviroment = ManagerEnviroment.instance;
 
 		this.auth = Auth(
 			this.enviroment.getEnv().githubAppClientId(), 
