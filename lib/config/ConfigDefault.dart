@@ -73,7 +73,7 @@ class ConfigDefault {
 
 	/// proxy服务器地址，默认不走proxy
 	String getProxyUrl() {
-		return '';
+		return null;
 	}
 
 	/// 更新TOKEN

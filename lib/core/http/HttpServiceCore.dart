@@ -70,12 +70,13 @@ class HttpServiceCore {
 		// this.dio.transformer = new HttpTransformerCore();
 
 		// 开发环境抓包请求
-		if (ManagerEnviroment.instance.env == ENVIROMENT.DEVELOPEMENT) {
+		var proxyUrl = ManagerEnviroment.instance.getEnv().getProxyUrl();
+		if (ManagerEnviroment.instance.env == ENVIROMENT.DEVELOPEMENT && proxyUrl != null) {
 			(dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
 				(HttpClient client) {
 				client.findProxy = (uri) {
 					// proxy all request to localhost:8888
-					return "PROXY ${ManagerEnviroment.instance.getEnv().getProxyUrl()}";
+					return "PROXY $proxyUrl";
 				};
 				client.badCertificateCallback = (X509Certificate cert, String host, int port) => true;
 			};
