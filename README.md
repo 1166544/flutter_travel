@@ -14,7 +14,7 @@ flutter run
 
 ## BUILD
 ```shell
-// 开发环境
+// 开发环境 
 flutter build -t lib/core/env/EnviromentDev.dart
 
 // 测试环境
