@@ -38,13 +38,15 @@ class _ComponentMiddleReportState extends State<ComponentMiddleReport> with Comp
 					
 					Text(
 						'[Personal tech blog] ${widget.auth.user.user.htmlUrl}',
+						maxLines: 2,
+						overflow: TextOverflow.ellipsis,
 						style: TextStyle(
-							fontSize: 14.0,
-							color: Color(0xFF252949).withOpacity(0.6)
+							fontSize: 12.0,
+							color: Color(0xFF252949).withOpacity(0.6),
 						)
 					),
 					
-					SizedBox(height: 30.0),
+					SizedBox(height: 16.0),
 					
 					// 绿色进度条文本
 					Text(
@@ -83,7 +85,7 @@ class _ComponentMiddleReportState extends State<ComponentMiddleReport> with Comp
 		return Column(
 			children: [
 				Icon(icon, size: 20, color: color),
-				Text('${descTitle.toString()} ${descNum.toString()}', style: TextStyle(fontSize: 16, color: color, fontWeight: FontWeight.w400))
+				Text('${descTitle.toString()} ${descNum.toString()}', style: TextStyle(fontSize: 13, color: color, fontWeight: FontWeight.w400))
 			]
 		);
 	}
@@ -94,7 +96,7 @@ class _ComponentMiddleReportState extends State<ComponentMiddleReport> with Comp
 			mainAxisAlignment: MainAxisAlignment.spaceBetween,
 			children: [
 				this.getTrendsBlockItem(color: Color(0xFF4f50ad), icon: Icons.panorama_fish_eye, title: 'Followers count', trends: widget.auth.user.user.followersCount, increase:'+2%'),
-				SizedBox(width: 20),
+				SizedBox(width: 10),
 				this.getTrendsBlockItem(color: Color(0xFF68bef5), icon: Icons.cloud_download, title: 'Following Count', trends: widget.auth.user.user.followingCount, increase: '+0.5%')
 			]
 		);
@@ -115,8 +117,16 @@ class _ComponentMiddleReportState extends State<ComponentMiddleReport> with Comp
 					Row(
 						children: [
 							Icon(icon, size: 13, color: Colors.white),
-							SizedBox(width: 5),
-							Text(title, style: TextStyle(color: Colors.white, fontSize: 13))
+							SizedBox(width: 3),
+							Text(title, 
+								overflow: TextOverflow.ellipsis,
+								maxLines: 1,
+								style: TextStyle(
+									color: Colors.white, 
+									fontSize: 13,
+									fontWeight: FontWeight.w300
+								)
+							)
 						]
 					),
 					Spacer(),
@@ -124,9 +134,24 @@ class _ComponentMiddleReportState extends State<ComponentMiddleReport> with Comp
 						mainAxisAlignment: MainAxisAlignment.start,
 						crossAxisAlignment: CrossAxisAlignment.start,
 						children: [
-							Text(trends.toStringAsFixed(1), style: TextStyle(color: Colors.white, fontSize: 32, fontWeight: FontWeight.w300)),
+							Text(
+								trends.toStringAsFixed(1), 
+								overflow: TextOverflow.ellipsis,
+								maxLines: 1,
+								style: TextStyle(
+									color: Colors.white, 
+									fontSize: 25, 
+									fontWeight: FontWeight.w600
+								)
+							),
 							SizedBox(width: 7),
-							Text(increase, style: TextStyle(color: Colors.white.withOpacity(0.3), fontSize: 12))
+							Text(increase, 
+								overflow: TextOverflow.ellipsis,
+								maxLines: 1,
+								style: TextStyle(
+								color: Colors.white.withOpacity(0.3), 
+								fontSize: 12)
+							)
 						]
 					)
 				]

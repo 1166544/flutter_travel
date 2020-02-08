@@ -33,7 +33,7 @@ ReportMode debugReportMode = ManagerCustomPageReportMode();
 ReportMode releaseReportMode = SilentReportMode();
 
 // 注册
-CatcherOptions debugOptions = CatcherOptions(debugReportMode, [emailManualHandler, consoleHandler]);
+CatcherOptions debugOptions = CatcherOptions(debugReportMode, [consoleHandler]);
 CatcherOptions releaseOptions = CatcherOptions(releaseReportMode, [emailManualHandler]);
 
 /// 异常管理器, 使用CATCHER包裹启动类捕获异常

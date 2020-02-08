@@ -38,7 +38,7 @@ class _ComponentTopStructsState extends State<ComponentTopStructs> with CommonNa
 				mainAxisAlignment: MainAxisAlignment.end,
 				crossAxisAlignment: CrossAxisAlignment.end,
 				children: <Widget>[
-					Icon(Icons.edit, color: Colors.black),
+					Icon(Icons.edit, color: Colors.black, size: 15.0),
 					SizedBox(width: 5.0),
 					Text('EDIT', style: TextStyle(fontSize: 14, color: Colors.black.withOpacity(0.6)),)
 				],

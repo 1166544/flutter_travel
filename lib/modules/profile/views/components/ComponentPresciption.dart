@@ -44,7 +44,7 @@ class _ComponentPresciptionState extends State<ComponentPresciption> with Compon
 						Text(
 							widget.snapshot.data.contributions.total.toStringAsFixed(1),
 							style: TextStyle(
-								fontSize: 39.0,
+								fontSize: 30.0,
 								color: Colors.black,
 								fontWeight: FontWeight.bold
 							)
@@ -53,8 +53,10 @@ class _ComponentPresciptionState extends State<ComponentPresciption> with Compon
 							children: <Widget>[
 								Text(
 									'Total contributions counts of this year',
+									maxLines: 2,
+									overflow: TextOverflow.ellipsis,
 									style: TextStyle(
-										fontSize: 19.0,
+										fontSize: 14.0,
 										color: Color(0xFF9395a3)
 									)
 								),

@@ -120,7 +120,7 @@ class _ComponentBlocContentState extends State<ComponentBlocContent> with Common
 				store.dispatch(logout(context));
 			},
 			builder: (BuildContext context, logout) => Container(
-				padding: EdgeInsets.fromLTRB(20.0, 25.0, 20.0, 40.0),
+				padding: EdgeInsets.fromLTRB(20.0, 30.0, 20.0, 40.0),
 				child: GestureDetector(
 					onTap: () => logout(context),
 					child: Container(
@@ -128,12 +128,12 @@ class _ComponentBlocContentState extends State<ComponentBlocContent> with Common
 							color: Color(0xFF5e82f5),
 							borderRadius: BorderRadius.circular(9.0)
 						),
-						padding: EdgeInsets.all(10.0),
+						padding: EdgeInsets.all(14.0),
 						child: Center(
 							child: Text(
 								'Logout system'.toUpperCase(),
 								style: TextStyle(
-									fontSize: 19.0,
+									fontSize: 15.0,
 									fontWeight: FontWeight.bold,
 									color: Colors.white
 								)
@@ -148,7 +148,7 @@ class _ComponentBlocContentState extends State<ComponentBlocContent> with Common
 	/// 中部表格
   	Widget buildMiddleChart(AsyncSnapshot<ModelProfile> snapshot, dynamic auth) {
 		return Container(
-			padding: EdgeInsets.fromLTRB(20.0, 30.0, 20.0, 0.0),
+			padding: EdgeInsets.fromLTRB(20.0, 30.0, 20.0, 10.0),
 			child: ComponentProfileChart(snapshot: snapshot, auth: auth),
 		);
 	}

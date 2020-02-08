@@ -52,7 +52,7 @@ class _ComponentVisitorsState extends State<ComponentVisitors> {
 					Text(
 						score.toString(),
 						style: TextStyle(
-							fontSize: 28.0,
+							fontSize: 24.0,
 							fontWeight: FontWeight.bold,
 							color: score > 50 ? Color(0xFF6d6d8d) : Colors.black
 						)
@@ -63,10 +63,10 @@ class _ComponentVisitorsState extends State<ComponentVisitors> {
 						style: TextStyle(
 							fontSize: 13.0,
 							fontWeight: FontWeight.bold,
-							color: score > 50 ? Color(0xFF6d6d8d) : Colors.black
+							color: score > 50 ? Color(0xFF6d6d8d) : Colors.black.withOpacity(0.5)
 						)
 					),
-					SizedBox(height: 15.0),
+					SizedBox(height: 6.0),
 					Stack(
 						children: <Widget>[
 							Container(

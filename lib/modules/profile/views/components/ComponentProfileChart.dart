@@ -130,12 +130,12 @@ class ComponentProfileChartState extends State<ComponentProfileChart> {
 					Text(
 						'${itemData.name}: ', 
 						style: TextStyle(
-							fontSize: 13, 
+							fontSize: 11, 
 							fontWeight: FontWeight.w300
 						)
 					),
 					Container(
-						width: 30,
+						width: 20,
 						height: 7,
 						decoration: BoxDecoration(
 							color: itemData.color
@@ -181,13 +181,13 @@ class ComponentProfileChartState extends State<ComponentProfileChart> {
 			titlesData: FlTitlesData(
 				bottomTitles: SideTitles(
 					showTitles: true,
-					reservedSize: 0,
+					reservedSize: -24,
 					textStyle: TextStyle(
 						color: Colors.black,
 						fontWeight: FontWeight.normal,
 						fontSize: 10,
 					),
-					margin: 5,
+					margin: 3,
 					interval: 1,
 					getTitles: (value) {
 						switch (value.toInt()) {
@@ -224,7 +224,7 @@ class ComponentProfileChartState extends State<ComponentProfileChart> {
 					textStyle: TextStyle(
 						color: Colors.grey.withOpacity(0.5),
 						fontWeight: FontWeight.w400,
-						fontSize: 12,
+						fontSize: 10,
 					),
 					getTitles: (value) {
 						switch (value.toInt()) {
@@ -243,7 +243,7 @@ class ComponentProfileChartState extends State<ComponentProfileChart> {
 						}
 						return '';
 					},
-					margin: 12,
+					margin: 10,
 					reservedSize: 18,
 					interval: 1
 				),
@@ -266,7 +266,7 @@ class ComponentProfileChartState extends State<ComponentProfileChart> {
 					),
 				),
 			),
-			minX: 0,
+			minX: 1,
 			maxX: 13,
 			maxY: 10,
 			minY: 0,
