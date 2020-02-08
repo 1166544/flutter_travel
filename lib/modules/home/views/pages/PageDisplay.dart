@@ -170,7 +170,7 @@ class PageDisplayState extends State<PageDisplay> with CommonTravelItem, CommonN
 		}
 
 		// 改进提示
-		renderList.add(ComponentImproving(snapshot));
+		renderList.add(ComponentImproving(snapshot: snapshot));
 
 		// 天气消息(首页才增加)
 		// if (widget.requestParams == null) {

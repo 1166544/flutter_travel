@@ -5,7 +5,9 @@ import 'package:flutter_travel/redux/states/StateApp.dart';
 
 /// 持续改进提示
 class ComponentImproving extends StatefulWidget {
-	ComponentImproving(AsyncSnapshot<ModelsNewsList> snapshot, {Key key}) : super(key: key);
+	final AsyncSnapshot<ModelsNewsList> snapshot;
+
+	ComponentImproving({this.snapshot, Key key}) : super(key: key);
 
 	_ComponentImprovingState createState() => _ComponentImprovingState();
 }
@@ -28,6 +30,12 @@ class _ComponentImprovingState extends State<ComponentImproving> {
 	Widget buidCircleIconBar(
 		String startCount, String hotelName, Color colorValue, Color colorCenter, Color shapeColor) {
 		
+		// 显示头条标题
+		String displayStr = "No one will pay for your future. You either try to climb up or rot in the mud at the bottom of society. That's life.";
+		if (widget.snapshot.hasData && widget.snapshot.data.news != null && widget.snapshot.data.news.length > 0) {
+			displayStr = widget.snapshot.data.news[0].title.toString();
+		}
+
 		return Container(
 			// RadialGridient圆形渐变效果
 			decoration: BoxDecoration(
@@ -52,13 +60,13 @@ class _ComponentImprovingState extends State<ComponentImproving> {
 							Container(
 								padding: EdgeInsets.fromLTRB(0.0, 5.0, 0, 0),
 								child: Text(
-									"No one will pay for your future. You either try to climb up or rot in the mud at the bottom of society. That's life.", 
+									displayStr, 
 									style: TextStyle(
 										fontSize: 9.0, 
 										color: Colors.white, 
 										fontFamily: 'Montserrat',
 									),
-									maxLines: 3,
+									maxLines: 2,
 									softWrap: true,
 									overflow: TextOverflow.ellipsis,
 								),
