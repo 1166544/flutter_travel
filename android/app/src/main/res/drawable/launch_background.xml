@@ -9,5 +9,5 @@
             android:gravity="center"
             android:src="@mipmap/launch_image" />
     </item> -->
-	<item android:drawable="@mipmap/splash_bg"></item>
+	<!-- <item android:drawable="@mipmap/splash_bg"></item> -->
 </layer-list>
