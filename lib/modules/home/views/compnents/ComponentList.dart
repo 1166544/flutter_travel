@@ -123,7 +123,7 @@ class ComponentList extends StatelessWidget with CommonTimeFormate, CommonNaviga
 								maxLines: 2,
 								softWrap: true,
 								style: TextStyle(
-									fontSize: 16.0,
+									fontSize: 15.0,
 									color: Colors.black87,
 									fontWeight: FontWeight.bold)),
 						),
@@ -152,7 +152,7 @@ class ComponentList extends StatelessWidget with CommonTimeFormate, CommonNaviga
 											fit: BoxFit.cover),
 										),
 									),
-									SizedBox(width: 10.0),
+									SizedBox(width: 5.0),
 									Text(this.getDateText(chatNum),
 										style: TextStyle(color: Colors.grey, fontSize: 12.0)),
 									Spacer(),

@@ -116,7 +116,7 @@ class _ViewSearchContentRenderState extends State<ViewSearchContentRender> with 
 							style: TextStyle(
 								color: Colors.white,
 								fontWeight: FontWeight.bold,
-								fontSize: 26.0,
+								fontSize: 19.0,
 								shadows: [
 									Shadow(
 										offset: Offset(3.0, 3.0),
@@ -131,7 +131,7 @@ class _ViewSearchContentRenderState extends State<ViewSearchContentRender> with 
 							style: TextStyle(
 								color: Colors.white,
 								fontWeight: FontWeight.bold,
-								fontSize: 15.0,
+								fontSize: 13.0,
 								shadows: [
 									Shadow(
 										offset: Offset(3.0, 3.0),

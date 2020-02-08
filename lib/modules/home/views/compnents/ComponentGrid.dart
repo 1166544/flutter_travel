@@ -51,14 +51,14 @@ class ComponentGrid extends StatelessWidget with CommonNavigator {
 					Row(
 						children: <Widget>[
 							Container(
-								width: MediaQuery.of(context).size.width - 120.0,
+								width: MediaQuery.of(context).size.width - 80.0,
 								child: Text(
 									title,
 									maxLines: 1,
 									overflow: TextOverflow.ellipsis,
 									softWrap: true,
 									style: TextStyle(
-										fontSize: 18.0, 
+										fontSize: 16.0, 
 										fontWeight: FontWeight.bold, 
 										color: Colors.black
 									)
