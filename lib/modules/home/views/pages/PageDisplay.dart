@@ -161,7 +161,7 @@ class PageDisplayState extends State<PageDisplay> with CommonTravelItem, CommonN
 		this.isFirstLoad = true;
 
 		// 搜索条(非首页才增加)
-		if (widget.requestParams != null) {
+		if (widget.requestParams != null && widget.requestParams['hot'] == null) {
 			renderList.add(ComponentSearchBar(callBack: (val) => {
 				this.navigateTo(context, PageSearchResult(searchContent: val))
 			}));
