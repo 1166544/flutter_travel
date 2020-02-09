@@ -27,4 +27,18 @@ class Utils {
 
 		return input[0].toUpperCase() + input.substring(1);
 	}
+
+	/// 千级单位转换
+	static String numbersToKilo(String value) {
+		var splitArr = value.split('');
+		var total = 5;
+		var result = '';
+
+		for (var i = 0; i < splitArr.length; i++) {
+			if (i <= total) {
+				result += splitArr[i];
+			}
+		}
+		return '$result K';
+	}
 }

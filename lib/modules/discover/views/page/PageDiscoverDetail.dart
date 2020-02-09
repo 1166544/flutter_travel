@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_travel/modules/common/CommonImageNetwork.dart';
 import 'package:flutter_travel/modules/common/CommonNavigator.dart';
+import 'package:flutter_travel/modules/common/CommonTimeFormate.dart';
 import 'package:flutter_travel/modules/home/models/ModelNewsItem.dart';
+import 'package:flutter_travel/modules/utils/Utils.dart';
 import 'package:flutter_travel/services/ServiceApiOpen.dart';
 
 class PageDiscoverDetail extends StatefulWidget {
@@ -15,7 +17,7 @@ class PageDiscoverDetail extends StatefulWidget {
 }
 
 /// 详情页
-class _PageDiscoverDetailState extends State<PageDiscoverDetail> with CommonNavigator {
+class _PageDiscoverDetailState extends State<PageDiscoverDetail> with CommonNavigator, CommonTimeFormate {
 
 	ServiceApiOpen serviceApiOpen;
 	String coverUrl = 'https://t10.baidu.com/it/u=952691838,387326037&fm=173&app=25&f=JPEG?w=480&h=360&s=BE915581FEDB3ED046BDE99403009093';
@@ -54,6 +56,7 @@ class _PageDiscoverDetailState extends State<PageDiscoverDetail> with CommonNavi
 		);
   	}
 	
+	/// 页面布局
 	Widget getBody() {
 		return Stack(
 			children: [
@@ -64,27 +67,41 @@ class _PageDiscoverDetailState extends State<PageDiscoverDetail> with CommonNavi
 						crossAxisAlignment: CrossAxisAlignment.start,
 						children: <Widget>[
 							this.buildCover(),
-							this.buildTitle('Zofia Kowalski', 'Architect'),
+							this.buildTitle(widget.item.title, 'Architect'),
 							this.buildScrollList(),
 							// this.buildScrollTile(),
-							this.buildBottomText('Monsister de Monterrat, Span', '23:11 - 30 11.2322')
+							this.buildBottomText(widget.item.abs, widget.item.ts)
 						],
 						)
 					],
 				),
-				Padding(
-					padding: EdgeInsets.fromLTRB(15, 45, 0, 0),
-					child: GestureDetector(
-						child: Icon(Icons.arrow_back_ios, size: 23, color: Colors.white),
-						onTap: () {
-							this.navigateBack(context);
-						},
-					),
+				Stack(
+					children: [
+						Padding(
+							padding: EdgeInsets.fromLTRB(15, 45, 0, 0),
+							child: Row(
+								mainAxisAlignment: MainAxisAlignment.center,
+								children: [
+									Text(widget.item.site, style: TextStyle(fontSize: 18, fontWeight: FontWeight.w300, color: Colors.white))
+								]
+							),
+						),
+						Padding(
+							padding: EdgeInsets.fromLTRB(15, 45, 0, 0),
+							child: GestureDetector(
+								child: Icon(Icons.arrow_back_ios, size: 23, color: Colors.white),
+								onTap: () {
+									this.navigateBack(context);
+								},
+							),
+						)
+					]
 				),
 			]
 		);
 	}
 
+	/// 底部文本
 	Widget buildBottomText(String descTitle, String dateTitle) {
 		return Padding(
 			padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
@@ -100,12 +117,18 @@ class _PageDiscoverDetailState extends State<PageDiscoverDetail> with CommonNavi
 						),
 					),
 					SizedBox(height: 15),
-					Text(descTitle, style: TextStyle(fontSize: 15, fontWeight: FontWeight.normal, color: Colors.black)),
+					Text(
+						descTitle, 
+						overflow: TextOverflow.ellipsis,
+						maxLines: 4,
+						style: TextStyle(fontSize: 14, fontWeight: FontWeight.normal, color: Colors.black)
+					),
 					SizedBox(height: 5),
 					Row(
 						children: [
 							Icon(Icons.brightness_4, size: 10, color: Colors.grey),
-							Text(dateTitle, style: TextStyle(fontSize: 12, fontWeight: FontWeight.normal, color: Colors.grey))
+							SizedBox(width: 5),
+							Text(this.getFullTime(dateTitle), style: TextStyle(fontSize: 12, fontWeight: FontWeight.normal, color: Colors.grey))
 						]
 					),
 				]
@@ -153,8 +176,13 @@ class _PageDiscoverDetailState extends State<PageDiscoverDetail> with CommonNavi
 			child: Column(
 				crossAxisAlignment: CrossAxisAlignment.start,
 				children: <Widget>[
-					Text(title, style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black)),
-					SizedBox(height: 10),
+					Text(
+						title, 
+						overflow: TextOverflow.ellipsis,
+						maxLines: 2,
+						style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black)
+					),
+					SizedBox(height: 5),
 					Text(desc, style: TextStyle(fontSize: 13, fontWeight: FontWeight.normal, color: Colors.grey)),
 				],
 			)
@@ -194,9 +222,9 @@ class _PageDiscoverDetailState extends State<PageDiscoverDetail> with CommonNavi
 							child: Row(
 								mainAxisAlignment: MainAxisAlignment.spaceBetween,
 								children: <Widget>[
-									this.getCoverItem(71, 'Posts'),
-									this.getCoverItem(429, 'Followers'),
-									this.getCoverItem(1234, 'Following'),
+									this.getCoverItem(Utils.numbersToKilo(widget.item.nid), 'Posts'),
+									this.getCoverItem(Utils.numbersToKilo(widget.item.ext.qid), 'Followers'),
+									this.getCoverItem(Utils.numbersToKilo(widget.item.ext.ts.toString()), 'Following'),
 								]
 							),
 						)
@@ -206,10 +234,10 @@ class _PageDiscoverDetailState extends State<PageDiscoverDetail> with CommonNavi
 		);
 	}
 
-	Widget getCoverItem(int value, String title) {
+	Widget getCoverItem(String value, String title) {
 		return Column(
 			children: <Widget>[
-				Text(value.toString(), style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.white)),
+				Text(value, style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.white)),
 				SizedBox(height: 5),
 				Text(title, style: TextStyle(fontSize: 14, fontWeight: FontWeight.normal, color: Colors.white)),
 			],
