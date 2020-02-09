@@ -155,21 +155,34 @@ class _PageDiscoverDetailState extends State<PageDiscoverDetail> with CommonNavi
 					fit: BoxFit.cover,
 				)
 			),
-			child: Column(
-				children: [
-					Spacer(),
-					Padding(
-						padding: EdgeInsets.fromLTRB(35, 0, 35, 15),
-						child: Row(
-							mainAxisAlignment: MainAxisAlignment.spaceBetween,
-							children: <Widget>[
-								this.getCoverItem(71, 'Posts'),
-								this.getCoverItem(429, 'Followers'),
-								this.getCoverItem(1234, 'Following'),
-							]
-						),
-					)
-				]
+			child: Container(
+				decoration: BoxDecoration(
+					gradient: LinearGradient(
+						begin: Alignment.topCenter,
+						end: Alignment.bottomCenter,
+						stops: [0.7, 1],
+						colors: [
+							Colors.black.withOpacity(0.0),
+							Colors.black.withOpacity(1),
+						],
+					),
+				),
+				child: Column(
+					children: [
+						Spacer(),
+						Padding(
+							padding: EdgeInsets.fromLTRB(35, 0, 35, 15),
+							child: Row(
+								mainAxisAlignment: MainAxisAlignment.spaceBetween,
+								children: <Widget>[
+									this.getCoverItem(71, 'Posts'),
+									this.getCoverItem(429, 'Followers'),
+									this.getCoverItem(1234, 'Following'),
+								]
+							),
+						)
+					]
+				),
 			)
 		);
 	}
