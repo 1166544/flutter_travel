@@ -8,13 +8,15 @@ import 'package:flutter_travel/modules/home/models/ModelContent.dart';
 /// 按钮小图标组件
 class ComponentDiscoverCoverItem extends StatefulWidget {
 	final ModelContent item;
-	ComponentDiscoverCoverItem({Key key, this.item}) : super(key: key);
+	final int index;
+	ComponentDiscoverCoverItem({Key key, this.item, this.index}) : super(key: key);
 
 	_ComponentDiscoverCoverItemState createState() => _ComponentDiscoverCoverItemState();
 }
 
 class _ComponentDiscoverCoverItemState extends State<ComponentDiscoverCoverItem> with CommonNavigator {
 	BlocDiscoverDetail blocData;
+	bool isDefaultSelected = false;
 
 	@override
 	void dispose() {
@@ -31,17 +33,29 @@ class _ComponentDiscoverCoverItemState extends State<ComponentDiscoverCoverItem>
 			builder: (context, snapshot) {
 				// 数据源到位时渲染列表
 				if (snapshot.hasData) {
+					// 有数据时
 					if (snapshot.data.data.small.url == widget.item.data.small.url) {
 						return this.getCoverItemByClickOutline();
 					} else {
 						return this.getCoverItemByClick();
 					}
 				} else {
-					return this.getCoverItemByClick();
+					// 无数据时
+					if (this.getIsFirstItem()) {
+						this.isDefaultSelected = true;
+						return this.getCoverItemByClickOutline();
+					} else {
+						return this.getCoverItemByClick();
+					}
 				}
 			}
 		);
 	}	
+
+	/// 无数据时首位数据判断
+	bool getIsFirstItem() {
+		return widget.index == 0 && !this.isDefaultSelected;
+	}
 
 	/// 渲染封面小组件,添加点击按钮, 显示是否选中
 	Widget getCoverItemByClickOutline() {

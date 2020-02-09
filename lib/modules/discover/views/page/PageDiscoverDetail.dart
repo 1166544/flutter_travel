@@ -155,7 +155,7 @@ class _PageDiscoverDetailState extends State<PageDiscoverDetail> with CommonNavi
 
 		List<Widget> renderList = [];
 		for (var i = 0; i < this.displayList.length; i++) {
-			renderList.add(this.buildCoverSlectItem(this.displayList[i]));
+			renderList.add(this.buildCoverSlectItem(this.displayList[i], index: i));
 		}
 
 		// 更多按钮
@@ -171,8 +171,13 @@ class _PageDiscoverDetailState extends State<PageDiscoverDetail> with CommonNavi
 	}
 
 	/// 横向排列图片
-	Widget buildCoverSlectItem(ModelContent item) {
-		return ComponentDiscoverCoverItem(item: item);
+	Widget buildCoverSlectItem(ModelContent item, {int index}) {
+		return ComponentDiscoverCoverItem(item: item, index: index);
+	}
+
+	/// 封面
+	Widget buildCover() {
+		return ComponentDiscoverCover(item: widget.item, coverUrl: this.coverUrl);
 	}
 
 	/// 点击添加更多
@@ -233,8 +238,4 @@ class _PageDiscoverDetailState extends State<PageDiscoverDetail> with CommonNavi
 		);
 	}
 
-	/// 封面
-	Widget buildCover() {
-		return ComponentDiscoverCover(item: widget.item, coverUrl: this.coverUrl);
-	}
 }
