@@ -19,7 +19,8 @@ import 'package:flutter_travel/modules/home/models/ModelPageData.dart';
 class PageDetail extends StatefulWidget {
 	
 	final dynamic requestParams;
-  	PageDetail({ Key key, @required this.requestParams}) : super(key: key);
+	final String site;
+  	PageDetail({ Key key, @required this.requestParams, this.site}) : super(key: key);
 
 	_PageDetailState createState() => _PageDetailState();
 }
@@ -33,7 +34,7 @@ class _PageDetailState extends State<PageDetail> with CommonNavigator {
 
 		return Scaffold(
 			appBar: AppBar(
-				title: Text('NEWS DETAIL',
+				title: Text(widget.site != null ? widget.site : 'NEWS DETAIL',
 					style: TextStyle(
 					color: Colors.black,
 					fontWeight: FontWeight.bold,

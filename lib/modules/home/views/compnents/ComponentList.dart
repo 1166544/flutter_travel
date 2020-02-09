@@ -87,8 +87,10 @@ class ComponentList extends StatelessWidget with CommonTimeFormate, CommonNaviga
 			onTap: () => {
 				this.navigateTo(
 					context, 
-					PageDetail(requestParams: { 'nids': item.nid }
-				))
+					PageDetail(
+						requestParams: { 'nids': item.nid, },
+						site: item.site
+					))
 			},
 		);
 	}
