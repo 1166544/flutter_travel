@@ -19,7 +19,7 @@ class ComponentScroll extends StatelessWidget with CommonNavigator {
 		return Container(
 				padding: EdgeInsets.fromLTRB(15.0, 10.0, 0.0, 0.0),
 				width: MediaQuery.of(context).size.width,
-				height: 220.0,
+				height: 190.0,
 				child: ListView(
 					scrollDirection: Axis.horizontal,
 					children: this.buildCoverIamge(context),
@@ -35,7 +35,7 @@ class ComponentScroll extends StatelessWidget with CommonNavigator {
 		for (var i = 0; i < count; i++) {
 			ModelNewsItem item = this.list[i];
 			lsitWidget.add(this.buildScrollImageItem(item, context));
-			lsitWidget.add(SizedBox(width: 15.0));
+			lsitWidget.add(SizedBox(width: 8.0));
 		}
 
 		return lsitWidget;
@@ -57,7 +57,7 @@ class ComponentScroll extends StatelessWidget with CommonNavigator {
 		}
 			
 		return Container(
-			width: 290.0,
+			width: 280.0,
 			height: 180.0,
 			decoration: BoxDecoration(
 				image: DecorationImage(
@@ -108,8 +108,8 @@ class ComponentScroll extends StatelessWidget with CommonNavigator {
 							crossAxisAlignment: CrossAxisAlignment.end,
 							children: <Widget>[
 								Container(
-									width: 40.0,
-									height: 40.0,
+									width: 35.0,
+									height: 35.0,
 									decoration: BoxDecoration(
 									image: DecorationImage(
 											image: CommentImageNetwork.imageNetwork(coverCopy), fit: BoxFit.cover),
@@ -122,12 +122,18 @@ class ComponentScroll extends StatelessWidget with CommonNavigator {
 								),
 								SizedBox(width: 10.0),
 								Container(
-									width: 220.0,
-									height: 40.0,
+									width: 200.0,
 									child: Text(item.title,
 										maxLines: 2,
 										softWrap: true,
-										style: TextStyle(fontWeight: FontWeight.normal, fontSize: 15.0, color: Colors.white)))
+										overflow: TextOverflow.ellipsis,
+										style: TextStyle(
+											fontWeight: FontWeight.normal, 
+											fontSize: 13.0, 
+											color: Colors.white
+										)
+									)
+								)
 							],
 						)
 					)

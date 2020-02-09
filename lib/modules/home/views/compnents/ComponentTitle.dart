@@ -10,7 +10,7 @@ class ComponentTitle extends StatelessWidget {
 	return Padding(
 		padding: EdgeInsets.fromLTRB(15.0, 30.0, 10.0, 0.0),
 		child: Text("Discover News",
-			style: TextStyle(fontSize: 23.0, fontWeight: FontWeight.bold, fontFamily: 'Montserrat'),
+			style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold, fontFamily: 'Montserrat'),
 			maxLines: 2));
 	}
 }

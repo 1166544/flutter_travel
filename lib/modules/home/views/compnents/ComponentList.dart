@@ -20,7 +20,7 @@ class ComponentList extends StatelessWidget with CommonTimeFormate, CommonNaviga
 			child: Column(
 				crossAxisAlignment: CrossAxisAlignment.start,
 				children: <Widget>[
-				Text('Experiences',
+				Text('Express',
 					style:
 						TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontFamily: 'Montserrat')),
 				SizedBox(height: 20.0),
@@ -114,7 +114,7 @@ class ComponentList extends StatelessWidget with CommonTimeFormate, CommonNaviga
 						child: CommentImageNetwork.getNetworkImage(avataUrl, headers: this.getCrossHeaders(), fit: BoxFit.cover)
 					),
 				),
-				SizedBox(width: 15.0),
+				SizedBox(width: 12.0),
 				Column(
 					children: <Widget>[
 						Container(
@@ -123,7 +123,7 @@ class ComponentList extends StatelessWidget with CommonTimeFormate, CommonNaviga
 								maxLines: 2,
 								softWrap: true,
 								style: TextStyle(
-									fontSize: 15.0,
+									fontSize: 13.0,
 									color: Colors.black87,
 									fontWeight: FontWeight.bold)),
 						),
@@ -143,14 +143,10 @@ class ComponentList extends StatelessWidget with CommonTimeFormate, CommonNaviga
 							width: MediaQuery.of(context).size.width - 170,
 							child: Row(
 							children: <Widget>[
-									Container(
-										width: 10.0,
-										height: 10.0,
-										decoration: BoxDecoration(
-										image: DecorationImage(
-											image: AssetImage('assets/images/speechbubble.png'),
-											fit: BoxFit.cover),
-										),
+									Icon(
+										Icons.date_range, 
+										size: 10,
+										color: Colors.grey,
 									),
 									SizedBox(width: 5.0),
 									Text(this.getDateText(chatNum),

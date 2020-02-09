@@ -107,7 +107,7 @@ class _ComponentImprovingState extends State<ComponentImproving> {
 					child: Text(
 						title,
 						style: TextStyle(
-							fontSize: 20.0,
+							fontSize: 16.0,
 							color: Colors.white,
 							fontWeight: FontWeight.bold)
 					),
