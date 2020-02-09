@@ -114,7 +114,7 @@ class PageDisplayState extends State<PageDisplay> with CommonTravelItem, CommonN
 	/// 连接stream数据源
 	Widget getStreamBuilder(BuildContext context) {
 		return StreamBuilder<ModelsNewsList>(
-			stream: this.blocGalleryList.outGallery,
+			stream: this.blocGalleryList.outStream,
 			builder: (context, snapshot) {
 				// 数据源到位时渲染列表
 				if (snapshot.hasData) {

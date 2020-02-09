@@ -52,7 +52,7 @@ class _ComponentWeatherState extends State<ComponentWeather> with TickerProvider
 	Widget getStreamBuilder(BuildContext context) {
 		// 从BLOC获取
 		return StreamBuilder(
-			stream: this.blocGalleryList.outGallery,
+			stream: this.blocGalleryList.outStream,
 			builder: (context, snapshot) {
 				if (snapshot.hasData) {
 					return this.buildLayout(snapshot);

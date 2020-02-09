@@ -24,10 +24,10 @@ class BlocWeatherList implements BlocBase {
 	StreamController<ModelDisplayWeatherInfo> galleryController;
 
 	/// 流入流
-	Sink<ModelDisplayWeatherInfo> get _inGallery => galleryController.sink;
+	Sink<ModelDisplayWeatherInfo> get _inStream => galleryController.sink;
 
 	/// 流出流
-	Stream<ModelDisplayWeatherInfo> get outGallery => galleryController.stream;
+	Stream<ModelDisplayWeatherInfo> get outStream => galleryController.stream;
 
 	BlocWeatherList(this.galleryController) {
 		this._serviceWeatherList = new ServiceOpenWeather();
@@ -56,7 +56,7 @@ class BlocWeatherList implements BlocBase {
 			this._gallery = new ModelDisplayWeatherInfo(airInfo: airData, weatherInfo: weatherData, sourceData: weatherSourceData);
 
 			// 触发数据更新
-			this._inGallery.add(this._gallery);
+			this._inStream.add(this._gallery);
 
 			// 将数据存入STORE
 			this.store.dispatch(ActionWeatherUpdate(this._gallery));
@@ -73,7 +73,7 @@ class BlocWeatherList implements BlocBase {
 	/// * [ModelWeatherList gallery] 数据源
 	void updateGallery(ModelDisplayWeatherInfo gallery) {
 		this._gallery = gallery;
-		this._inGallery.add(this._gallery);
+		this._inStream.add(this._gallery);
 	}
 
 }

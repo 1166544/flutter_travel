@@ -14,10 +14,10 @@ class BlocMyInfo implements BlocBase {
 	StreamController<ModelProfile> galleryController;
 
 	/// 流入流
-	Sink<ModelProfile> get _inGallery => galleryController.sink;
+	Sink<ModelProfile> get _inStream => galleryController.sink;
 
 	/// 流出流
-	Stream<ModelProfile> get outGallery => galleryController.stream;
+	Stream<ModelProfile> get outStream => galleryController.stream;
 
 	BlocMyInfo(this.galleryController) {
 		this._serviceNow = new ServiceNow();
@@ -32,7 +32,7 @@ class BlocMyInfo implements BlocBase {
 		this._gallery = new ModelProfile.fromJson(result.data);
 
 		// 触发数据更新
-		this._inGallery.add(this._gallery);
+		this._inStream.add(this._gallery);
 	}
 
 	Future<Null> update() async {
@@ -48,7 +48,7 @@ class BlocMyInfo implements BlocBase {
 	/// * [GraphicsBlocModel gallery] 数据源
 	void updateGallery(ModelProfile gallery) {
 		this._gallery = gallery;
-		this._inGallery.add(this._gallery);
+		this._inStream.add(this._gallery);
 	}
 
 }

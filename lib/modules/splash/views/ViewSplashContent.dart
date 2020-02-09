@@ -75,7 +75,7 @@ class _SplashScreenState extends State<ViewSplashContent> with CommonTravelItem 
 	/// 流式布局结构
 	Widget getStreamBuilder() {
 		return StreamBuilder<ModelsBing>(
-			stream: this.blocGalleryList.outGallery,
+			stream: this.blocGalleryList.outStream,
 			builder: (context, snapshot) {
 				if (snapshot.hasData) {
 					return this.buildLayout(snapshot);

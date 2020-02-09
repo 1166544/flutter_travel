@@ -14,10 +14,10 @@ class BlocSearch implements BlocBase {
 	StreamController<ModelSearch> galleryController;
 
 	/// 流入流
-	Sink<ModelSearch> get _inGallery => galleryController.sink;
+	Sink<ModelSearch> get _inStream => galleryController.sink;
 
 	/// 流出流
-	Stream<ModelSearch> get outGallery => galleryController.stream;
+	Stream<ModelSearch> get outStream => galleryController.stream;
 
 	BlocSearch(this.galleryController) {
 		this._serviceLibInfo = new ServiceLibInfo();
@@ -57,7 +57,7 @@ class BlocSearch implements BlocBase {
 	/// 更新数据源操作
 	/// * [ModelSearch gallery] 数据源
 	void updateGallery(ModelSearch gallery) {
-		this._inGallery.add(gallery);
+		this._inStream.add(gallery);
 	}
 
 }

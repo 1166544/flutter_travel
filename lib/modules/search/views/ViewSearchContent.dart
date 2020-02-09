@@ -78,7 +78,7 @@ class _ViewSearchContentState extends State<ViewSearchContent> with CommonTravel
 	/// 页面结构
 	Widget getStreamBuilder() {
 		return StreamBuilder<ModelsNewsList>(
-			stream: this.blocGalleryList.outGallery,
+			stream: this.blocGalleryList.outStream,
 			builder: (context, snapshot) {
 				if (snapshot.hasData) {
 					return this.buildLayout(snapshot);

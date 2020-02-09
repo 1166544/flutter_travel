@@ -21,10 +21,10 @@ class BlocNewsList implements BlocBase {
 	StreamController<ModelsNewsList> galleryController;
 
 	/// 流入流
-	Sink<ModelsNewsList> get _inGallery => galleryController.sink;
+	Sink<ModelsNewsList> get _inStream => galleryController.sink;
 
 	/// 流出流
-	Stream<ModelsNewsList> get outGallery => galleryController.stream;
+	Stream<ModelsNewsList> get outStream => galleryController.stream;
 
 	BlocNewsList(this.galleryController) {
 		this._serviceNewsList = new ServiceNewsList();
@@ -51,7 +51,7 @@ class BlocNewsList implements BlocBase {
 		}
 
 		// 触发数据更新
-		this._inGallery.add(this._gallery);
+		this._inStream.add(this._gallery);
 
 		this.isFirstLoad = true;
 	}
@@ -68,7 +68,7 @@ class BlocNewsList implements BlocBase {
 		this._gallery.update(result);
 
 		// 触发数据更新
-		this._inGallery.add(this._gallery);
+		this._inStream.add(this._gallery);
 	}
 
 	/// 更新请求参数
@@ -104,7 +104,7 @@ class BlocNewsList implements BlocBase {
 	/// * [ModelsNewsList gallery] 数据源
 	void updateGallery(ModelsNewsList gallery) {
 		this._gallery = gallery;
-		this._inGallery.add(this._gallery);
+		this._inStream.add(this._gallery);
 	}
 
 }

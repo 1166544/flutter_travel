@@ -12,10 +12,10 @@ class BlocDiscoverDetail implements BlocBase {
 	StreamController<ModelContent> _dataController;
 
 	/// 流入流
-	Sink<ModelContent> get _inGallery => _dataController.sink;
+	Sink<ModelContent> get _inStream => _dataController.sink;
 
 	/// 流出流
-	Stream<ModelContent> get outGallery => _dataController.stream;
+	Stream<ModelContent> get outStream => _dataController.stream;
 
   	BlocDiscoverDetail(
 		this._dataController,
@@ -31,7 +31,7 @@ class BlocDiscoverDetail implements BlocBase {
 	/// * [ModelContent data] 数据源
 	void update(ModelContent data) {
 		this._data = data;
-		this._inGallery.add(this._data);
+		this._inStream.add(this._data);
 	}
 
 }

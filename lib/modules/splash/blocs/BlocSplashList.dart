@@ -16,10 +16,10 @@ class BlocSplashList implements BlocBase {
 	StreamController<ModelsBing> galleryController;
 
 	/// 流入流
-	Sink<ModelsBing> get _inGallery => galleryController.sink;
+	Sink<ModelsBing> get _inStream => galleryController.sink;
 
 	/// 流出流
-	Stream<ModelsBing> get outGallery => galleryController.stream;
+	Stream<ModelsBing> get outStream => galleryController.stream;
 
 	BlocSplashList(this.galleryController) {
 		this._serviceNewsList = new ServiceBing();
@@ -39,7 +39,7 @@ class BlocSplashList implements BlocBase {
 		await this._serviceGithub.getUserInfo(this._gallery);
 
 		// 触发数据更新
-		this._inGallery.add(this._gallery);
+		this._inStream.add(this._gallery);
 
 	}
 
@@ -52,7 +52,7 @@ class BlocSplashList implements BlocBase {
 	/// * [ModelsNewsList gallery] 数据源
 	void updateGallery(ModelsBing gallery) {
 		this._gallery = gallery;
-		this._inGallery.add(this._gallery);
+		this._inStream.add(this._gallery);
 	}
 
 }

@@ -29,7 +29,7 @@ class _ComponentDiscoverCoverItemState extends State<ComponentDiscoverCoverItem>
 		this.blocData = BlocProvider.of<BlocDiscoverDetail>(context);
 
 		return StreamBuilder<ModelContent>(
-			stream: this.blocData.outGallery,
+			stream: this.blocData.outStream,
 			builder: (context, snapshot) {
 				// 数据源到位时渲染列表
 				if (snapshot.hasData) {

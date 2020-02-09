@@ -6,7 +6,7 @@ import 'package:flutter_travel/modules/common/CommonTimeFormate.dart';
 import 'package:flutter_travel/modules/discover/blocs/BlocDiscoverDetail.dart';
 import 'package:flutter_travel/modules/discover/models/ModelDetail.dart';
 import 'package:flutter_travel/modules/discover/views/components/CommentDiscoverCover.dart';
-import 'package:flutter_travel/modules/discover/views/components/ComponentDiscoverCoverItem.dart';
+import 'package:flutter_travel/modules/discover/views/components/ComponentDiscoverTile.dart';
 import 'package:flutter_travel/modules/home/models/ModelContent.dart';
 import 'package:flutter_travel/modules/home/models/ModelNewsItem.dart';
 import 'package:flutter_travel/services/ServiceApiOpen.dart';
@@ -54,17 +54,17 @@ class _PageDiscoverDetailState extends State<PageDiscoverDetail> with CommonNavi
 			child: AnnotatedRegion<SystemUiOverlayStyle>(
 				value: SystemUiOverlayStyle.light,
 				child: Scaffold(
-						appBar: PreferredSize(
-							child: Offstage(
-								offstage: true,
-								child: AppBar(
-									title: Text('test'),
-									brightness: Brightness.light,
-								),
+					appBar: PreferredSize(
+						child: Offstage(
+							offstage: true,
+							child: AppBar(
+								title: Text('test'),
+								brightness: Brightness.light,
 							),
-							preferredSize: Size.fromHeight(MediaQuery.of(context).size.height * 007),
 						),
-						body: this.getBody(),
+						preferredSize: Size.fromHeight(MediaQuery.of(context).size.height * 007),
+					),
+					body: this.getBody(),
 				)
 			),
 		);
@@ -83,7 +83,6 @@ class _PageDiscoverDetailState extends State<PageDiscoverDetail> with CommonNavi
 							this.buildCover(),
 							this.buildTitle(widget.item.title, 'Architect'),
 							this.buildScrollList(),
-							// this.buildScrollTile(),
 							this.buildBottomText(widget.item.abs, widget.item.ts)
 						],
 						)
@@ -152,70 +151,12 @@ class _PageDiscoverDetailState extends State<PageDiscoverDetail> with CommonNavi
 
 	/// 横向选择列表
 	Widget buildScrollList() {
-
-		List<Widget> renderList = [];
-		for (var i = 0; i < this.displayList.length; i++) {
-			renderList.add(this.buildCoverSlectItem(this.displayList[i], index: i));
-		}
-
-		// 更多按钮
-		renderList.add(this.buildRectMore(this.fullDisplayList.length));
-
-		return Padding(
-			padding: EdgeInsets.fromLTRB(5, 0, 5, 20),
-			child: Row(
-				mainAxisAlignment: MainAxisAlignment.spaceAround,
-				children: renderList
-			)
-		);
-	}
-
-	/// 横向排列图片
-	Widget buildCoverSlectItem(ModelContent item, {int index}) {
-		return ComponentDiscoverCoverItem(item: item, index: index);
+		return ComponentDiscoverTile(displayList: this.displayList, fullDisplayList: this.fullDisplayList);
 	}
 
 	/// 封面
 	Widget buildCover() {
 		return ComponentDiscoverCover(item: widget.item, coverUrl: this.coverUrl);
-	}
-
-	/// 点击添加更多
-	Widget buildRectMore(int moreLength) {
-		return GestureDetector(
-			onTap: () {
-				// 展开所有小图
-			},
-			child: Container(
-				width: 60.0,
-				height: 60.0,
-				child: ClipRRect(
-					borderRadius: BorderRadius.circular(8),
-					child: Container(
-						width: 60,
-						height: 60,
-						decoration: BoxDecoration(
-							color: Colors.grey,
-							shape: BoxShape.rectangle
-						),
-						child: Center(
-							child: Text(
-								'+${moreLength.toString()}', 
-								style: TextStyle(
-									fontSize: 15, 
-									fontWeight: FontWeight.normal, 
-									color: Colors.white
-								)
-							)
-						),
-					)
-				),
-			)
-		);
-	}
-
-	Widget buildScrollTile() {
-		return Text('');
 	}
 
 	/// 标题
