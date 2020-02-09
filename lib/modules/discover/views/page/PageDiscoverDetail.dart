@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_travel/modules/common/CommonImageNetwork.dart';
+import 'package:flutter_travel/core/bloc/BlocProvider.dart';
 import 'package:flutter_travel/modules/common/CommonNavigator.dart';
 import 'package:flutter_travel/modules/common/CommonTimeFormate.dart';
+import 'package:flutter_travel/modules/discover/blocs/BlocDiscoverDetail.dart';
 import 'package:flutter_travel/modules/discover/models/ModelDetail.dart';
+import 'package:flutter_travel/modules/discover/views/components/CommentDiscoverCover.dart';
+import 'package:flutter_travel/modules/discover/views/components/ComponentDiscoverCoverItem.dart';
 import 'package:flutter_travel/modules/home/models/ModelContent.dart';
 import 'package:flutter_travel/modules/home/models/ModelNewsItem.dart';
-import 'package:flutter_travel/modules/utils/Utils.dart';
 import 'package:flutter_travel/services/ServiceApiOpen.dart';
 
 class PageDiscoverDetail extends StatefulWidget {
@@ -28,7 +30,6 @@ class _PageDiscoverDetailState extends State<PageDiscoverDetail> with CommonNavi
 	List<ModelContent> fullDisplayList;
 
 	_PageDiscoverDetailState() {
-		// this.serviceApiOpen = new ServiceApiOpen();
 		this.modelDetail = new ModelDiscoverDetail();
 	}
 
@@ -43,30 +44,29 @@ class _PageDiscoverDetailState extends State<PageDiscoverDetail> with CommonNavi
 		if (displayList.length > 0) {
 			this.coverUrl = displayList[0].data.small.url;
 		}
-		// 调用数据
-		// this.serviceApiOpen.getJournalismData().then((onValue) {
-		// 	print(onValue);
-		// });
-		// print(await this.serviceApiOpen.getJournalismData());
+
 	}
 
 	@override
 	Widget build(BuildContext context) {
-		return AnnotatedRegion<SystemUiOverlayStyle>(
-			value: SystemUiOverlayStyle.light,
-			child: Scaffold(
-					appBar: PreferredSize(
-						child: Offstage(
-							offstage: true,
-							child: AppBar(
-								title: Text('test'),
-								brightness: Brightness.light,
+		return BlocProvider<BlocDiscoverDetail>(
+			bloc: blocDiscoverDetail,
+			child: AnnotatedRegion<SystemUiOverlayStyle>(
+				value: SystemUiOverlayStyle.light,
+				child: Scaffold(
+						appBar: PreferredSize(
+							child: Offstage(
+								offstage: true,
+								child: AppBar(
+									title: Text('test'),
+									brightness: Brightness.light,
+								),
 							),
+							preferredSize: Size.fromHeight(MediaQuery.of(context).size.height * 007),
 						),
-						preferredSize: Size.fromHeight(MediaQuery.of(context).size.height * 0.07),
-					),
-					body: this.getBody(),
-			)
+						body: this.getBody(),
+				)
+			),
 		);
   	}
 	
@@ -172,14 +172,7 @@ class _PageDiscoverDetailState extends State<PageDiscoverDetail> with CommonNavi
 
 	/// 横向排列图片
 	Widget buildCoverSlectItem(ModelContent item) {
-		return Container(
-			width: 60.0,
-			height: 60.0,
-			child: ClipRRect(
-				borderRadius: BorderRadius.circular(8),
-				child: CommentImageNetwork.getNetworkImage(item.data.small.url, headers: this.getCrossHeaders(), fit: BoxFit.cover)
-			),
-		);
+		return ComponentDiscoverCoverItem(item: item);
 	}
 
 	/// 点击添加更多
@@ -242,57 +235,6 @@ class _PageDiscoverDetailState extends State<PageDiscoverDetail> with CommonNavi
 
 	/// 封面
 	Widget buildCover() {
-		return Container(
-			width: MediaQuery.of(context).size.width,
-			height: MediaQuery.of(context).size.height * 0.60,
-			decoration: BoxDecoration(
-				image: DecorationImage(
-					image: CommentImageNetwork.imageNetwork(this.coverUrl, headers: this.getCrossHeaders()), 
-					fit: BoxFit.cover,
-				)
-			),
-			child: Container(
-				decoration: BoxDecoration(
-					gradient: LinearGradient(
-						begin: Alignment.topCenter,
-						end: Alignment.bottomCenter,
-						stops: [0.7, 1],
-						colors: [
-							Colors.black.withOpacity(0.0),
-							Colors.black.withOpacity(1),
-						],
-					),
-				),
-				child: Column(
-					mainAxisAlignment: MainAxisAlignment.start,
-					crossAxisAlignment: CrossAxisAlignment.start,
-					children: [
-						Spacer(),
-						Padding(
-							padding: EdgeInsets.fromLTRB(35, 0, 35, 15),
-							child: Row(
-								mainAxisAlignment: MainAxisAlignment.spaceBetween,
-								children: <Widget>[
-									this.getCoverItem(Utils.numbersToKilo(widget.item.nid), 'Posts'),
-									this.getCoverItem(Utils.numbersToKilo(widget.item.ext.qid), 'Followers'),
-									this.getCoverItem(Utils.numbersToKilo(widget.item.ext.ts.toString()), 'Following'),
-								]
-							),
-						)
-					]
-				),
-			)
-		);
+		return ComponentDiscoverCover(item: widget.item, coverUrl: this.coverUrl);
 	}
-
-	Widget getCoverItem(String value, String title) {
-		return Column(
-			children: <Widget>[
-				Text(value, style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.white)),
-				SizedBox(height: 5),
-				Text(title, style: TextStyle(fontSize: 14, fontWeight: FontWeight.normal, color: Colors.white)),
-			],
-		);
-	}
-
 }
