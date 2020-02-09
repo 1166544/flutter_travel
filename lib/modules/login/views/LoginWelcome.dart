@@ -38,8 +38,8 @@ class LoginWelcome extends StatelessWidget {
 					Text(
 					'Pls sign in with github account to continue',
 					style: TextStyle(
-						color: Color(0xFF7a8099),
-						fontWeight: FontWeight.w100,
+						color: Colors.black.withOpacity(0.7),
+						fontWeight: FontWeight.w300,
 						fontSize: 16.0
 					),
 					)
