@@ -3,6 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_travel/modules/common/CommonImageNetwork.dart';
 import 'package:flutter_travel/modules/common/CommonNavigator.dart';
 import 'package:flutter_travel/modules/common/CommonTimeFormate.dart';
+import 'package:flutter_travel/modules/discover/models/ModelDetail.dart';
+import 'package:flutter_travel/modules/home/models/ModelContent.dart';
 import 'package:flutter_travel/modules/home/models/ModelNewsItem.dart';
 import 'package:flutter_travel/modules/utils/Utils.dart';
 import 'package:flutter_travel/services/ServiceApiOpen.dart';
@@ -20,15 +22,27 @@ class PageDiscoverDetail extends StatefulWidget {
 class _PageDiscoverDetailState extends State<PageDiscoverDetail> with CommonNavigator, CommonTimeFormate {
 
 	ServiceApiOpen serviceApiOpen;
-	String coverUrl = 'https://t10.baidu.com/it/u=952691838,387326037&fm=173&app=25&f=JPEG?w=480&h=360&s=BE915581FEDB3ED046BDE99403009093';
+	String coverUrl;
+	ModelDiscoverDetail modelDetail;
+	List<ModelContent> displayList;
+	List<ModelContent> fullDisplayList;
 
 	_PageDiscoverDetailState() {
 		// this.serviceApiOpen = new ServiceApiOpen();
+		this.modelDetail = new ModelDiscoverDetail();
 	}
 
 	@override
 	void initState() {
 		super.initState();
+		
+		this.displayList = this.modelDetail.getDisplayList(widget.item.content, size: 4);
+		this.fullDisplayList = this.modelDetail.getDisplayList(widget.item.content);
+
+		// 设置首页
+		if (displayList.length > 0) {
+			this.coverUrl = displayList[0].data.small.url;
+		}
 		// 调用数据
 		// this.serviceApiOpen.getJournalismData().then((onValue) {
 		// 	print(onValue);
@@ -138,30 +152,67 @@ class _PageDiscoverDetailState extends State<PageDiscoverDetail> with CommonNavi
 
 	/// 横向选择列表
 	Widget buildScrollList() {
+
+		List<Widget> renderList = [];
+		for (var i = 0; i < this.displayList.length; i++) {
+			renderList.add(this.buildCoverSlectItem(this.displayList[i]));
+		}
+
+		// 更多按钮
+		renderList.add(this.buildRectMore(this.fullDisplayList.length));
+
 		return Padding(
 			padding: EdgeInsets.fromLTRB(5, 0, 5, 20),
 			child: Row(
 				mainAxisAlignment: MainAxisAlignment.spaceAround,
-				children: [
-					this.buildCoverSlectItem(),
-					this.buildCoverSlectItem(),
-					this.buildCoverSlectItem(),
-					this.buildCoverSlectItem(),
-					this.buildCoverSlectItem(),
-				]
+				children: renderList
 			)
 		);
 	}
 
 	/// 横向排列图片
-	Widget buildCoverSlectItem() {
+	Widget buildCoverSlectItem(ModelContent item) {
 		return Container(
 			width: 60.0,
 			height: 60.0,
 			child: ClipRRect(
 				borderRadius: BorderRadius.circular(8),
-				child: CommentImageNetwork.getNetworkImage(this.coverUrl, headers: this.getCrossHeaders(), fit: BoxFit.cover)
+				child: CommentImageNetwork.getNetworkImage(item.data.small.url, headers: this.getCrossHeaders(), fit: BoxFit.cover)
 			),
+		);
+	}
+
+	/// 点击添加更多
+	Widget buildRectMore(int moreLength) {
+		return GestureDetector(
+			onTap: () {
+				// 展开所有小图
+			},
+			child: Container(
+				width: 60.0,
+				height: 60.0,
+				child: ClipRRect(
+					borderRadius: BorderRadius.circular(8),
+					child: Container(
+						width: 60,
+						height: 60,
+						decoration: BoxDecoration(
+							color: Colors.grey,
+							shape: BoxShape.rectangle
+						),
+						child: Center(
+							child: Text(
+								'+${moreLength.toString()}', 
+								style: TextStyle(
+									fontSize: 15, 
+									fontWeight: FontWeight.normal, 
+									color: Colors.white
+								)
+							)
+						),
+					)
+				),
+			)
 		);
 	}
 
