@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_travel/modules/common/CommonImageNetwork.dart';
 import 'package:flutter_travel/modules/common/CommonNavigator.dart';
 import 'package:flutter_travel/modules/home/models/ModelNewsItem.dart';
@@ -35,38 +36,54 @@ class _PageDiscoverDetailState extends State<PageDiscoverDetail> with CommonNavi
 
 	@override
 	Widget build(BuildContext context) {
-		return Scaffold(
-			appBar: AppBar(
-				backgroundColor: Colors.transparent,
-				elevation: 0.0,
-				leading: IconButton(
-					icon: Icon(Icons.arrow_back_ios),
-					color: Colors.black,
-					onPressed: () {
-					Navigator.of(context).pop();
-					},
-				),
-				actions: <Widget>[
-					IconButton(icon: Icon(Icons.more_vert), onPressed: () {})
-				],
-			),
-			body: ListView(
-			children: <Widget>[
-				Column(
-				mainAxisAlignment: MainAxisAlignment.start,
-				crossAxisAlignment: CrossAxisAlignment.start,
-				children: <Widget>[
-					this.buildCover(),
-					this.buildTitle('Zofia Kowalski', 'Architect'),
-					this.buildScrollList(),
-					// this.buildScrollTile(),
-					this.buildBottomText('Monsister de Monterrat, Span', '23:11 - 30 11.2322')
-				],
-				)
-			],
-			),
+		return AnnotatedRegion<SystemUiOverlayStyle>(
+			value: SystemUiOverlayStyle.light,
+			child: Scaffold(
+					appBar: PreferredSize(
+						child: Offstage(
+							offstage: true,
+							child: AppBar(
+								title: Text('test'),
+								brightness: Brightness.light,
+							),
+						),
+						preferredSize: Size.fromHeight(MediaQuery.of(context).size.height * 0.07),
+					),
+					body: this.getBody(),
+			)
 		);
   	}
+	
+	Widget getBody() {
+		return Stack(
+			children: [
+				ListView(
+					children: <Widget>[
+						Column(
+						mainAxisAlignment: MainAxisAlignment.start,
+						crossAxisAlignment: CrossAxisAlignment.start,
+						children: <Widget>[
+							this.buildCover(),
+							this.buildTitle('Zofia Kowalski', 'Architect'),
+							this.buildScrollList(),
+							// this.buildScrollTile(),
+							this.buildBottomText('Monsister de Monterrat, Span', '23:11 - 30 11.2322')
+						],
+						)
+					],
+				),
+				Padding(
+					padding: EdgeInsets.fromLTRB(15, 45, 0, 0),
+					child: GestureDetector(
+						child: Icon(Icons.arrow_back_ios, size: 23, color: Colors.white),
+						onTap: () {
+							this.navigateBack(context);
+						},
+					),
+				),
+			]
+		);
+	}
 
 	Widget buildBottomText(String descTitle, String dateTitle) {
 		return Padding(
@@ -148,7 +165,7 @@ class _PageDiscoverDetailState extends State<PageDiscoverDetail> with CommonNavi
 	Widget buildCover() {
 		return Container(
 			width: MediaQuery.of(context).size.width,
-			height: MediaQuery.of(context).size.height * 0.57,
+			height: MediaQuery.of(context).size.height * 0.60,
 			decoration: BoxDecoration(
 				image: DecorationImage(
 					image: CommentImageNetwork.imageNetwork(this.coverUrl, headers: this.getCrossHeaders()), 
@@ -168,6 +185,8 @@ class _PageDiscoverDetailState extends State<PageDiscoverDetail> with CommonNavi
 					),
 				),
 				child: Column(
+					mainAxisAlignment: MainAxisAlignment.start,
+					crossAxisAlignment: CrossAxisAlignment.start,
 					children: [
 						Spacer(),
 						Padding(
