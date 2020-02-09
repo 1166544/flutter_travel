@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_travel/core/bloc/BlocProvider.dart';
-import 'package:flutter_travel/modules/discover/views/ViewDiscoverContent.dart';
+import 'package:flutter_travel/modules/discover/views/components/ComponentDiscoverContent.dart';
 import 'package:flutter_travel/modules/home/blocs/BlocNewsList.dart';
 import 'package:flutter_travel/redux/states/StateApp.dart';
 
@@ -29,7 +29,7 @@ class _SearchPageState extends State<DiscoverPage> {
 			),
 			body: BlocProvider(
 				bloc: blocNewsList,
-				child: ViewDiscoverContent(),
+				child: ComponentDiscoverContent(),
 			)
 		);
 	}

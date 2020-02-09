@@ -3,7 +3,7 @@ import 'package:flutter_travel/modules/common/CommonImageNetwork.dart';
 import 'package:flutter_travel/modules/common/CommonLoading.dart';
 import 'package:flutter_travel/modules/common/CommonNavigator.dart';
 import 'package:flutter_travel/modules/common/CommonPhotoViewer.dart';
-import 'package:flutter_travel/modules/detail/DetailPage.dart';
+import 'package:flutter_travel/modules/discover/views/page/PageDiscoverDetail.dart';
 import 'package:flutter_travel/modules/home/models/ModelImage.dart';
 import 'package:flutter_travel/modules/home/models/ModelNewsItem.dart';
 
@@ -175,7 +175,7 @@ class CommonTravelItem {
 
   /// 图片详情
   Widget buildImgGalleryDetail(BuildContext context, String mainTitle,
-      String subTitle, String commentTitle) {
+      String subTitle, String commentTitle, {ModelNewsItem item}) {
     return Padding(
       padding: EdgeInsets.only(left: 25.0, right: 15.0, top: 15.0),
       child: Row(
@@ -202,7 +202,7 @@ class CommonTravelItem {
 					],
 				),
 				onTap: () {
-                    this.navigateToSubPage(context);
+                    this.navigateToSubPage(context, item: item);
                 }
 		  ),
           Spacer(),
@@ -230,10 +230,10 @@ class CommonTravelItem {
   }
 
   /// 导航至子页面
-  void navigateToSubPage(BuildContext context) {
+  void navigateToSubPage(BuildContext context, {ModelNewsItem item}) {
 	  Navigator.push(context,
 		MaterialPageRoute(builder: (context) {
-		return DetailPage();
+		return PageDiscoverDetail(item: item);
 	}));
   }
 

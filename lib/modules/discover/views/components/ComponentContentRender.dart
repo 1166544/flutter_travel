@@ -4,16 +4,16 @@ import 'package:flutter_travel/modules/common/CommonTravelItem.dart';
 import 'package:flutter_travel/modules/home/models/ModelNewsItem.dart';
 import 'package:flutter_travel/modules/weather/view/pages/PageHomeWeather.dart';
 
-class ViewContentRender extends StatefulWidget {
+class ComponentContentRender extends StatefulWidget {
 	final ModelNewsItem snapData;
 	final int renderIndex;
 
-	ViewContentRender({Key key, this.snapData, this.renderIndex}) : super(key: key);
+	ComponentContentRender({Key key, this.snapData, this.renderIndex}) : super(key: key);
 
-	_ViewContentRenderState createState() => _ViewContentRenderState();
+	_ComponentContentRenderState createState() => _ComponentContentRenderState();
 }
 
-class _ViewContentRenderState extends State<ViewContentRender> with CommonTravelItem, CommonTimeFormate {
+class _ComponentContentRenderState extends State<ComponentContentRender> with CommonTravelItem, CommonTimeFormate {
 	@override
 	Widget build(BuildContext context) {
 		return this.buildListItem(widget.snapData, widget.renderIndex);
@@ -59,7 +59,7 @@ class _ViewContentRenderState extends State<ViewContentRender> with CommonTravel
 			this.buildImageGrid(context, item, paddingTop: 0.0)
 		);
 		displayList.add(
-			this.buildImgGalleryDetail(context, item.title, item.abs, item.commentCount)
+			this.buildImgGalleryDetail(context, item.title, item.abs, item.commentCount, item: item)
 		);
 
 		return Column(

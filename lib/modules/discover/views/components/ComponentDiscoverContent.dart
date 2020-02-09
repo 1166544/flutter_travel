@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:flutter_travel/core/bloc/BlocProvider.dart';
 import 'package:flutter_travel/modules/common/CommonTravelItem.dart';
-import 'package:flutter_travel/modules/discover/views/ViewContentRender.dart';
+import 'package:flutter_travel/modules/discover/views/components/ComponentContentRender.dart';
 import 'package:flutter_travel/modules/home/blocs/BlocNewsList.dart';
 import 'package:flutter_travel/modules/home/models/ModelContent.dart';
 import 'package:flutter_travel/modules/home/models/ModelImage.dart';
@@ -10,13 +10,13 @@ import 'package:flutter_travel/modules/home/models/ModelNewsItem.dart';
 import 'package:flutter_travel/modules/home/models/ModelsNewsList.dart';
 
 /// 探索模块视图
-class ViewDiscoverContent extends StatefulWidget {
-  ViewDiscoverContent({Key key}) : super(key: key);
+class ComponentDiscoverContent extends StatefulWidget {
+  ComponentDiscoverContent({Key key}) : super(key: key);
 
-  _ViewDiscoverContentState createState() => _ViewDiscoverContentState();
+  _ComponentDiscoverContentState createState() => _ComponentDiscoverContentState();
 }
 
-class _ViewDiscoverContentState extends State<ViewDiscoverContent> with CommonTravelItem {
+class _ComponentDiscoverContentState extends State<ComponentDiscoverContent> with CommonTravelItem {
 
 	BlocNewsList blocGalleryList;
 	GlobalKey<RefreshIndicatorState> refreshKey = GlobalKey<RefreshIndicatorState>();
@@ -130,7 +130,7 @@ class _ViewDiscoverContentState extends State<ViewDiscoverContent> with CommonTr
 							child: SlideAnimation( //滑动动画
 								verticalOffset: 50.0,
 								child: FadeInAnimation( //渐隐渐现动画
-									child: ViewContentRender(snapData: item, renderIndex: index),
+									child: ComponentContentRender(snapData: item, renderIndex: index),
 								),
 							),
 						);
