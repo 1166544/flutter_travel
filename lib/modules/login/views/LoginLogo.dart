@@ -19,21 +19,21 @@ class LoginLogo extends StatelessWidget {
 							mainAxisAlignment: MainAxisAlignment.center,
 							children: [
 								Container(
-									width: 132,
-									height: 167,
+									width: 80,
+									height: 100,
 									decoration: BoxDecoration(
 										image: DecorationImage(
 											image: AssetImage('assets/images/tran_logo.png'),
-											fit: BoxFit.cover
+											fit: BoxFit.fill
 										)
 									),
 								),
 								SizedBox(width: 9),
-								Text('X', style: TextStyle(color: Colors.grey, fontSize: 40, fontWeight: FontWeight.w100)),
+								Text('X', style: TextStyle(color: Colors.grey, fontSize: 20, fontWeight: FontWeight.w100)),
 								SizedBox(width: 16),
 								Container(
-									width: 120,
-									height: 120,
+									width: 80,
+									height: 80,
 									decoration: BoxDecoration(
 										image: DecorationImage(
 											image: CommentImageNetwork.imageNetwork(ManagerEnviroment.instance.getEnv().loginLogoUrl()),

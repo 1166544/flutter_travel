@@ -25,7 +25,7 @@ class LoginWelcome extends StatelessWidget {
 						)
 					),
 				),
-				SizedBox(height: 26.0),
+				SizedBox(height: 10.0),
 				Text(
 					'Welcome,',
 					style: TextStyle(
@@ -40,7 +40,7 @@ class LoginWelcome extends StatelessWidget {
 					style: TextStyle(
 						color: Color(0xFF7a8099),
 						fontWeight: FontWeight.w100,
-						fontSize: 26.0
+						fontSize: 16.0
 					),
 					)
 			],
