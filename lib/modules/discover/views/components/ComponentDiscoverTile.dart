@@ -33,7 +33,7 @@ class _ComponentDiscoverTileState extends State<ComponentDiscoverTile> {
 			}
 
 			// 向上收缩按钮
-			// renderList.add(this.buildReduceMore(this.widget.fullDisplayList.length));
+			renderList.add(this.buildReduceMore(this.widget.displayList.length));
 
 			return Container(
 				width: MediaQuery.of(context).size.width,
@@ -43,7 +43,7 @@ class _ComponentDiscoverTileState extends State<ComponentDiscoverTile> {
 					crossAxisSpacing: 3,
 					mainAxisSpacing: 3,
 					padding: EdgeInsets.all(4.0),
-					childAspectRatio: 1.0,
+					childAspectRatio: 1,
 					children: renderList,
 				),
 			);
@@ -70,7 +70,9 @@ class _ComponentDiscoverTileState extends State<ComponentDiscoverTile> {
 
 	/// 横向排列图片
 	Widget buildCoverSlectItem(ModelContent item, {int index}) {
-		return ComponentDiscoverCoverItem(item: item, index: index);
+		return Center(
+			child: ComponentDiscoverCoverItem(item: item, index: index)
+		);
 	}
 
 	void expandTile() {
@@ -124,14 +126,42 @@ class _ComponentDiscoverTileState extends State<ComponentDiscoverTile> {
 		);
 	}
 
-	/// 点击收缩更多
-	// Widget buildReduceMore(int moreLength) {
-	// 	return GestureDetector(
-	// 		onTap: () {
-	// 			// 收缩所有小图
-	// 			this.shrinkTile();
-	// 		},
-	// 		child: this.buildCoverSlectItem(item: null, index: -100)
-	// 	);
-	// }
+	/// 点击减少更多
+	Widget buildReduceMore(int moreLength) {
+		return GestureDetector(
+			onTap: () {
+				// 收缩所有小图
+				this.shrinkTile();
+			},
+			child: Container(
+				width: 60.0,
+				height: 60.0,
+				child: ClipRRect(
+					borderRadius: BorderRadius.circular(8),
+					child: Container(
+						width: 60,
+						height: 60,
+						decoration: BoxDecoration(
+							color: Colors.grey,
+							shape: BoxShape.rectangle
+						),
+						child: Column(
+							mainAxisAlignment: MainAxisAlignment.center,
+							children: [
+								Text(
+									'+${moreLength.toString()}', 
+									style: TextStyle(
+										fontSize: 15, 
+										fontWeight: FontWeight.normal, 
+										color: Colors.white
+									)
+								),
+								Icon(Icons.keyboard_arrow_up, size: 20, color: Colors.white)
+							]
+						),
+					)
+				),
+			)
+		);
+	}
 }
