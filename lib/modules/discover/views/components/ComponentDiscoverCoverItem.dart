@@ -74,7 +74,11 @@ class _ComponentDiscoverCoverItemState extends State<ComponentDiscoverCoverItem>
 	Widget getCoverItemByClick() {
 		return GestureDetector(
 			onTap: this.updateCoverData,
-			child: this.getCoverItem(),
+			child: Stack(
+				children: [
+					this.getCoverItem(),
+				]
+			),
 		);
 	}
 
