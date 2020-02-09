@@ -68,7 +68,7 @@ class ManagerCustomPageReportMode extends ReportMode {
 	}
 
 	@override
-		bool isContextRequired() {
+	bool isContextRequired() {
 		return true;
 	}
 }
