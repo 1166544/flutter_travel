@@ -4,6 +4,7 @@ import 'package:flutter_travel/core/bloc/BlocProvider.dart';
 import 'package:flutter_travel/modules/common/CommonTravelItem.dart';
 import 'package:flutter_travel/modules/discover/views/ViewContentRender.dart';
 import 'package:flutter_travel/modules/home/blocs/BlocNewsList.dart';
+import 'package:flutter_travel/modules/home/models/ModelContent.dart';
 import 'package:flutter_travel/modules/home/models/ModelImage.dart';
 import 'package:flutter_travel/modules/home/models/ModelNewsItem.dart';
 import 'package:flutter_travel/modules/home/models/ModelsNewsList.dart';
@@ -99,10 +100,7 @@ class _ViewDiscoverContentState extends State<ViewDiscoverContent> with CommonTr
 
 		List<ModelNewsItem> list = snapshot.data.news;
 		for (var i = 0; i < list.length; i++) {
-
-			if (list[i].imageurls != null && list[i].imageurls.length >= 3) {
-				this.renderListData.add(list[i]);
-			}
+			this.renderListData.add(list[i]);
 		}
 
 		// 是否为最后一页
@@ -151,42 +149,41 @@ class _ViewDiscoverContentState extends State<ViewDiscoverContent> with CommonTr
 	ModelNewsItem rebuildImageUrls(ModelNewsItem item) {
 		var url1 = 'assets/beach1.jpg';
 		var url2 = 'assets/beach2.jpg';
-		var url3 = 'assets/beach3.jpg';
 		if (item.imageurls == null || item.imageurls.length == 0) {
-			ModelImage subItem1 = new ModelImage();
-			ModelImage subItem2 = new ModelImage();
-			ModelImage subItem3 = new ModelImage();
+			// 内容不存在时从CONTENT中找
+			if (item.content != null && item.content.length > 0) {
+				for (var i = 0; i < item.content.length; i++) {
+					ModelContent iterItem = item.content[i];
 
-			subItem1.url = url1;
-			subItem2.url = url2;
-			subItem3.url = url3;
+					if (iterItem.type == 'image' && item.imageurls.length < 3) {
+						ModelImage subItem = new ModelImage();
+						subItem.url = iterItem.data.small.url;
+						item.imageurls.add(subItem);
+					}
+				}
+			}
+		} else {
+			if (item.imageurls != null && item.imageurls.length == 1) {
+				ModelImage subItem1 = new ModelImage();
+				ModelImage subItem2 = new ModelImage();
 
-			item.imageurls = [
-				subItem1,
-				subItem2,
-				subItem3,
-			];
-		}
-		if (item.imageurls != null && item.imageurls.length == 1) {
-			ModelImage subItem1 = new ModelImage();
-			ModelImage subItem2 = new ModelImage();
+				subItem1.url = url1;
+				subItem2.url = url2;
 
-			subItem1.url = url1;
-			subItem2.url = url2;
+				item.imageurls = [
+					subItem1,
+					subItem2,
+				];
+			}
+			if (item.imageurls != null && item.imageurls.length == 2) {
+				ModelImage subItem1 = new ModelImage();
 
-			item.imageurls = [
-				subItem1,
-				subItem2,
-			];
-		}
-		if (item.imageurls != null && item.imageurls.length == 2) {
-			ModelImage subItem1 = new ModelImage();
+				subItem1.url = url1;
 
-			subItem1.url = url1;
-
-			item.imageurls = [
-				subItem1,
-			];
+				item.imageurls = [
+					subItem1,
+				];
+			}
 		}
 
 		return item;
