@@ -191,8 +191,8 @@ class PageDisplayState extends State<PageDisplay> with CommonTravelItem, CommonN
 		// 第四行(动态增长)标题
 		renderList.add(
 			Padding(
-				padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
-				child: Text('My Newsleeters', style:TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontFamily: 'Montserrat')),
+				padding: EdgeInsets.fromLTRB(10, 10, 0, 0),
+				child: Text('Newsleeters', style:TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontFamily: 'Montserrat')),
 			)
 		);
 		renderList.add(SizedBox(height: 10.0));
