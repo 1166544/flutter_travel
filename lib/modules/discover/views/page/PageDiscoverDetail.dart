@@ -24,7 +24,7 @@ class PageDiscoverDetail extends StatefulWidget {
 class _PageDiscoverDetailState extends State<PageDiscoverDetail> with CommonNavigator, CommonTimeFormate {
 
 	ServiceApiOpen serviceApiOpen;
-	String coverUrl;
+	ModelContent coverData;
 	ModelDiscoverDetail modelDetail;
 	List<ModelContent> displayList;
 	List<ModelContent> fullDisplayList;
@@ -42,7 +42,7 @@ class _PageDiscoverDetailState extends State<PageDiscoverDetail> with CommonNavi
 
 		// 设置首页
 		if (displayList.length > 0) {
-			this.coverUrl = displayList[0].data.small.url;
+			this.coverData = displayList[0];
 		}
 
 	}
@@ -160,12 +160,12 @@ class _PageDiscoverDetailState extends State<PageDiscoverDetail> with CommonNavi
 
 	/// 封面TAB小图标 - 横向选择列表
 	Widget buildScrollList() {
-		return ComponentDiscoverTile(displayList: this.displayList, fullDisplayList: this.fullDisplayList);
+		return ComponentDiscoverTile(displayList: this.displayList, fullDisplayList: this.fullDisplayList, coverData: this.coverData);
 	}
 
 	/// 封面
 	Widget buildCover() {
-		return ComponentDiscoverCover(item: widget.item, coverUrl: this.coverUrl);
+		return ComponentDiscoverCover(item: widget.item, coverData: this.coverData);
 	}
 
 	/// 标题

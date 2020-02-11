@@ -9,7 +9,8 @@ import 'package:flutter_travel/modules/home/models/ModelContent.dart';
 class ComponentDiscoverCoverItem extends StatefulWidget {
 	final ModelContent item;
 	final int index;
-	ComponentDiscoverCoverItem({Key key, this.item, this.index}) : super(key: key);
+	final ModelContent selectedItem;
+	ComponentDiscoverCoverItem({Key key, this.item, this.index, this.selectedItem}) : super(key: key);
 
 	_ComponentDiscoverCoverItemState createState() => _ComponentDiscoverCoverItemState();
 }
@@ -54,37 +55,26 @@ class _ComponentDiscoverCoverItemState extends State<ComponentDiscoverCoverItem>
 
 	/// 无数据时首位数据判断
 	bool getIsFirstItem() {
-		return widget.index == 0 && !this.isDefaultSelected;
+		return !this.isDefaultSelected && this.widget.selectedItem.data.small.url == widget.item.data.small.url;
 	}
 
 	/// 渲染封面小组件,添加点击按钮, 显示是否选中
 	Widget getCoverItemByClickOutline() {
-		return GestureDetector(
-			onTap: this.updateCoverData,
-			child: Stack(
-				children: [
-					this.getCoverItem(),
-					this.getOutLine()
-				]
-			),
+		return Stack(
+			children: [
+				this.getCoverItem(),
+				this.getOutLine()
+			]
 		);
 	}
 
 	/// 渲染封面小组件,添加点击按钮
 	Widget getCoverItemByClick() {
-		return GestureDetector(
-			onTap: this.updateCoverData,
-			child: Stack(
-				children: [
-					this.getCoverItem(),
-				]
-			),
+		return Stack(
+			children: [
+				this.getCoverItem(),
+			]
 		);
-	}
-
-	/// 更新封面数据源
-	void updateCoverData() {
-		this.blocData.update(widget.item);
 	}
 
 	/// 发光外观

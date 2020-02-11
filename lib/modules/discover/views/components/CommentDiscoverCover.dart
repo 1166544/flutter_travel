@@ -11,8 +11,8 @@ import 'package:flutter_travel/modules/utils/Utils.dart';
 /// 封面内容
 class ComponentDiscoverCover extends StatefulWidget {
 	final ModelNewsItem item;
-	final String coverUrl;
-	ComponentDiscoverCover({Key key, this.item, this.coverUrl}) : super(key: key);
+	final ModelContent coverData;
+	ComponentDiscoverCover({Key key, this.item, this.coverData}) : super(key: key);
 
 	_ComponentDiscoverCoverState createState() => _ComponentDiscoverCoverState();
 }
@@ -46,7 +46,7 @@ class _ComponentDiscoverCoverState extends State<ComponentDiscoverCover> with Co
 
 	/// 显示封面内容
 	Widget getCoverContent({String url}) {
-		String contentUrl = url ?? widget.coverUrl;
+		String contentUrl = url ?? widget.coverData.data.small.url;
 		return Container(
 			width: MediaQuery.of(context).size.width,
 			height: MediaQuery.of(context).size.height * 0.60,

@@ -8,8 +8,9 @@ import 'package:flutter_travel/modules/home/models/ModelContent.dart';
 class ComponentDiscoverTile extends StatefulWidget {
 	final List<ModelContent> displayList;
 	final List<ModelContent> fullDisplayList;
+	final ModelContent coverData;
 
-	ComponentDiscoverTile({Key key, this.displayList, this.fullDisplayList}) : super(key: key);
+	ComponentDiscoverTile({Key key, this.displayList, this.fullDisplayList, this.coverData}) : super(key: key);
 
 	_ComponentDiscoverTileState createState() => _ComponentDiscoverTileState();
 }
@@ -18,11 +19,13 @@ class _ComponentDiscoverTileState extends State<ComponentDiscoverTile> {
 
 	bool isExpand = false;
 	BlocDiscoverDetail blocData;
+	ModelContent selectedItem;
 
 	@override
 	void initState() {
 		super.initState();
 		this.isExpand = false;
+		this.selectedItem = widget.coverData;
 	}
 
   	@override
@@ -34,7 +37,11 @@ class _ComponentDiscoverTileState extends State<ComponentDiscoverTile> {
 		if (this.isExpand) {
 			// 格子展开列表
 			for (var i = 0; i < this.widget.fullDisplayList.length; i++) {
-				renderList.add(this.buildCoverSlectItem(this.widget.fullDisplayList[i], index: i));
+				renderList.add(this.buildCoverSlectItem(
+					this.widget.fullDisplayList[i], 
+					index: i, 
+					selectedItem: this.selectedItem
+				));
 			}
 
 			// 向上收缩按钮
@@ -56,7 +63,10 @@ class _ComponentDiscoverTileState extends State<ComponentDiscoverTile> {
 		} else {
 			// 简化列表
 			for (var i = 0; i < this.widget.displayList.length; i++) {
-				renderList.add(this.buildCoverSlectItem(this.widget.displayList[i], index: i));
+				renderList.add(this.buildCoverSlectItem(
+					this.widget.displayList[i], 
+					index: i,
+					selectedItem: this.selectedItem));
 			}
 
 			// 更多按钮
@@ -74,10 +84,21 @@ class _ComponentDiscoverTileState extends State<ComponentDiscoverTile> {
   	}
 
 	/// 横向排列图片
-	Widget buildCoverSlectItem(ModelContent item, {int index}) {
-		return Center(
-			child: ComponentDiscoverCoverItem(item: item, index: index)
+	Widget buildCoverSlectItem(ModelContent item, {int index, ModelContent selectedItem}) {
+		return GestureDetector(
+			onTap: () {
+				this.selectedItem = item;
+				this.updateCoverData();
+			},
+			child: Center(
+				child: ComponentDiscoverCoverItem(item: item, index: index, selectedItem: this.selectedItem)
+			)
 		);
+	}
+
+	/// 小图点击时更新封面数据源
+	void updateCoverData() {
+		this.blocData.update(this.selectedItem);
 	}
 
 	// 展开所有小图
