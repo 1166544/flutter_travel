@@ -27,7 +27,8 @@ EmailManualHandler emailManualHandler = EmailManualHandler(
 );
 
 // debug模式,使用自定义UI
-ReportMode debugReportMode = ManagerCustomPageReportMode();
+// ReportMode debugReportMode = ManagerCustomPageReportMode();
+ReportMode debugReportMode = DialogReportMode();
 
 // release模式
 ReportMode releaseReportMode = SilentReportMode();
