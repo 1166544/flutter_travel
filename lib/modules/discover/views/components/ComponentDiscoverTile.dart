@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_travel/core/bloc/BlocProvider.dart';
 import 'package:flutter_travel/modules/discover/blocs/BlocDiscoverDetail.dart';
 import 'package:flutter_travel/modules/discover/views/components/ComponentDiscoverCoverItem.dart';
+import 'package:flutter_travel/modules/discover/views/components/ComponentDiscoverShrinkItem.dart';
 import 'package:flutter_travel/modules/home/models/ModelContent.dart';
 
 /// 封面TAB小图标
@@ -156,40 +157,13 @@ class _ComponentDiscoverTileState extends State<ComponentDiscoverTile> {
 
 	/// 点击减少更多
 	Widget buildReduceMore(int moreLength) {
-		return GestureDetector(
+		return 
+		GestureDetector(
 			onTap: () {
 				// 收缩所有小图
 				this.shrinkTile();
 			},
-			child: Container(
-				width: 60.0,
-				height: 60.0,
-				child: ClipRRect(
-					borderRadius: BorderRadius.circular(8),
-					child: Container(
-						width: 60,
-						height: 60,
-						decoration: BoxDecoration(
-							color: Colors.grey,
-							shape: BoxShape.rectangle
-						),
-						child: Column(
-							mainAxisAlignment: MainAxisAlignment.center,
-							children: [
-								Text(
-									'+${moreLength.toString()}', 
-									style: TextStyle(
-										fontSize: 15, 
-										fontWeight: FontWeight.normal, 
-										color: Colors.white
-									)
-								),
-								Icon(Icons.keyboard_arrow_up, size: 20, color: Colors.white)
-							]
-						),
-					)
-				),
-			)
+			child: ComponentDiscoverShrinkItem(moreLength: moreLength)
 		);
 	}
 }
