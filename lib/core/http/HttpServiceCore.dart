@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:dio/adapter.dart';
 import 'package:flutter_travel/core/api/ApiEnum.dart';
 import 'package:flutter_travel/core/api/ApiEnviroment.dart';
+import 'package:flutter_travel/core/http/HttpTransformerCore.dart';
 // import 'package:flutter_travel/core/http/HttpTransformerCore.dart';
 import 'package:flutter_travel/core/manager/ManagerEnviroment.dart';
 import 'package:dio/dio.dart';
@@ -76,7 +77,7 @@ class HttpServiceCore {
 				(HttpClient client) {
 				client.findProxy = (uri) {
 					// proxy all request to localhost:8888
-					return "PROXY $proxyUrl";
+					return 'PROXY $proxyUrl';
 				};
 				client.badCertificateCallback = (X509Certificate cert, String host, int port) => true;
 			};
@@ -84,57 +85,81 @@ class HttpServiceCore {
 	}
 
 	/// 返回状态码处理
-	void formatStatus(Response response) {
+	String formatStatus(Response response) {
+		String statusDesc;
 		switch(response.statusCode) {
 			case 400:
-				print("请求语法错误");
+				statusDesc = '请求语法错误';
 				break;
 			case 403:
-				print("服务器拒绝执行");
+				statusDesc = '服务器拒绝执行';
 				break;
 			case 404:
-				print("无法连接服务器");
+				statusDesc = '无法连接服务器';
 				break;
 			case 405:
-				print("请求方法被禁止");
+				statusDesc = '请求方法被禁止';
 				break;
 			case 500:
-				print("服务器内部错误");
+				statusDesc = '服务器内部错误';
 				break;
 			case 502:
-				print("无效的请求");
+				statusDesc = '无效的请求';
 				break;
 			case 503:
-				print("服务器服务停止响应");
+				statusDesc = '服务器服务停止响应';
 				break;
 			case 505:
-				print("不支持HTTP协议请求");
+				statusDesc = '不支持HTTP协议请求';
 				break;
 		}
+		if (statusDesc != null) {
+			print(statusDesc);
+		}
+
+		return statusDesc;
 	}
 
 	/// error错误信息处理
-	void formatError(DioError e) {
+	String formatError(DioError e) {
+		String errorDesc;
 		switch(e.type) {
 			case DioErrorType.CONNECT_TIMEOUT:
-		    	print("连接超时");
+		    	errorDesc = '连接超时';
 				break;
 			case DioErrorType.SEND_TIMEOUT:
-				print("请求超时");
+				errorDesc = '请求超时';
 				break;
 			case DioErrorType.RECEIVE_TIMEOUT:
-				print("响应超时");
+				errorDesc = '响应超时';
 				break;
 			case DioErrorType.RESPONSE:
-				print("出现异常");
+				errorDesc = '出现异常';
 				break;
 			case DioErrorType.CANCEL:
-				print("请求取消");
+				errorDesc = '请求取消';
 				break;
 			case DioErrorType.DEFAULT:
-				print("未知错误");
+				errorDesc = '未知错误';
 				break;
 		}
+
+		return errorDesc;
+	}
+
+	/// 处理返回错误描述
+	Response<dynamic> handleErrorInfo(DioError e) {
+		HttpTransformResponse responseErrorData = HttpTransformResponse(
+			errorMessage: this.formatError(e),
+			errorUrl:e.request.path,
+			errorServer: e.request.uri.toString(),
+			errorStatus: e.response.statusCode.toString(),
+			errorDesc: e.response.statusCode.toString()
+		);
+
+		Response response = Response(data: responseErrorData);
+
+		return response;
 	}
 				
 	/// 处理GET请求
@@ -143,10 +168,14 @@ class HttpServiceCore {
 	///  * [Options options] 配置
 	Future<Response<dynamic>> get(String path, {Map<String, dynamic> queryParameters, Options options}) async {
 		var response;
-		if (queryParameters != null) {
-			response = await this.dio.get(path, queryParameters: queryParameters, options: options);
-		} else {
-			response = await this.dio.get(path);
+		try {
+			if (queryParameters != null) {
+				response = await this.dio.get(path, queryParameters: queryParameters, options: options);
+			} else {
+				response = await this.dio.get(path);
+			}
+		} catch (e) {
+			response = this.handleErrorInfo(e);
 		}
 
 		return response;
@@ -159,10 +188,14 @@ class HttpServiceCore {
 	/// * [Options options] 配置
 	Future<Response<dynamic>> post(String path, {dynamic data, Map<String, dynamic> queryParameters, Options options}) async {
 		var response;
-		if (queryParameters != null) {
-			response = await this.dio.post(path, data: data, queryParameters: queryParameters, options: options);
-		} else {
-			response = await this.dio.post(path, data: data);
+		try {
+			if (queryParameters != null) {
+				response = await this.dio.post(path, data: data, queryParameters: queryParameters, options: options);
+			} else {
+				response = await this.dio.post(path, data: data);
+			}
+		} catch (e) {
+			response = this.handleErrorInfo(e);
 		}
 
 		return response;
@@ -170,28 +203,51 @@ class HttpServiceCore {
 
 	/// 处理put
 	Future<Response<dynamic>> put(String path, {data, Options options, CancelToken cancelToken}) async {
-		return await this.dio.put(path, data: data, options: options, cancelToken: cancelToken);
+		var response;
+		try {
+			response = await this.dio.put(path, data: data, options: options, cancelToken: cancelToken);
+		} catch (e) {
+			response = this.handleErrorInfo(e);
+		}
+
+		return response;
 	}
 
 	/// 处理delete
 	Future<Response<dynamic>> delete(String path, {data, Options options, CancelToken cancelToken}) async {
-		return await this.dio.delete(path, data: data, options: options, cancelToken: cancelToken);
+		var response;
+		try {
+			response = await this.dio.delete(path, data: data, options: options, cancelToken: cancelToken);
+		} catch (e) {
+			response = this.handleErrorInfo(e);
+		}
+
+		return response;
 	}
 
 	/// 处理head
 	Future<Response<dynamic>> head(String path, {data, Options options, CancelToken cancelToken}) async {
-		return await this.dio.head(path, data: data, options: options, cancelToken: cancelToken);
+		var response;
+		try {
+			response = this.dio.head(path, data: data, options: options, cancelToken: cancelToken);
+		} catch (e) {
+			response = this.handleErrorInfo(e);
+		}
+
+		return response;
 	}
 
 	/// 处理patch
 	Future<Response<dynamic>> patch(String path, {data, Options options, CancelToken cancelToken}) async {
-		return await this.dio.patch(path, data: data, options: options, cancelToken: cancelToken);
-	}
+		var response;
+		try {
+			response = this.dio.patch(path, data: data, options: options, cancelToken: cancelToken);
+		} catch (e) {
+			response = this.handleErrorInfo(e);
+		}
 
-	/// 处理download
-	// Future<Response<dynamic>> download(String urlPath, String savePath, {OnDownloadProgress onProgress, data, bool flush: false, Options options,CancelToken cancelToken}) async {
-	// 	return await this.dio.download(urlPath, savePath, onProgress: onProgress, data: data, flush: flush, options: options, cancelToken: cancelToken);
-	// }
+		return response;
+	}
 
 	/// 生成自定义头部
 	Map<String, String> generateRequestHeaders() {
@@ -201,4 +257,10 @@ class HttpServiceCore {
 			'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1'
 		};
 	}
+
+	/// 处理download
+	// Future<Response<dynamic>> download(String urlPath, String savePath, {OnDownloadProgress onProgress, data, bool flush: false, Options options,CancelToken cancelToken}) async {
+	// 	var response;
+	// 	return await this.dio.download(urlPath, savePath, onProgress: onProgress, data: data, flush: flush, options: options, cancelToken: cancelToken);
+	// }
 }
