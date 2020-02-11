@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_travel/core/bloc/BlocProvider.dart';
+import 'package:flutter_travel/modules/discover/blocs/BlocDiscoverDetail.dart';
 import 'package:flutter_travel/modules/discover/views/components/ComponentDiscoverCoverItem.dart';
 import 'package:flutter_travel/modules/home/models/ModelContent.dart';
 
+/// 封面TAB小图标
 class ComponentDiscoverTile extends StatefulWidget {
 	final List<ModelContent> displayList;
 	final List<ModelContent> fullDisplayList;
@@ -14,6 +17,7 @@ class ComponentDiscoverTile extends StatefulWidget {
 class _ComponentDiscoverTileState extends State<ComponentDiscoverTile> {
 
 	bool isExpand = false;
+	BlocDiscoverDetail blocData;
 
 	@override
 	void initState() {
@@ -25,9 +29,10 @@ class _ComponentDiscoverTileState extends State<ComponentDiscoverTile> {
   	Widget build(BuildContext context) {
 		
 		List<Widget> renderList = [];
+		this.blocData = BlocProvider.of<BlocDiscoverDetail>(context);
 		
 		if (this.isExpand) {
-			// 格子列表
+			// 格子展开列表
 			for (var i = 0; i < this.widget.fullDisplayList.length; i++) {
 				renderList.add(this.buildCoverSlectItem(this.widget.fullDisplayList[i], index: i));
 			}
@@ -75,12 +80,14 @@ class _ComponentDiscoverTileState extends State<ComponentDiscoverTile> {
 		);
 	}
 
+	// 展开所有小图
 	void expandTile() {
 		setState(() {
 			this.isExpand = true;
 		});
 	}
 
+	// 收缩所有小图
 	void shrinkTile() {
 		setState(() {
 			this.isExpand = false;

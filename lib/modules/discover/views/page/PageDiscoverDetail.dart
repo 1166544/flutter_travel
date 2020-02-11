@@ -80,9 +80,16 @@ class _PageDiscoverDetailState extends State<PageDiscoverDetail> with CommonNavi
 						mainAxisAlignment: MainAxisAlignment.start,
 						crossAxisAlignment: CrossAxisAlignment.start,
 						children: <Widget>[
+							// 封面内容
 							this.buildCover(),
+
+							// 封面标题
 							this.buildTitle(widget.item.title, 'Architect'),
+
+							// 封面TAB小图标
 							this.buildScrollList(),
+
+							// 封面底部内容
 							this.buildBottomText(widget.item.abs, widget.item.ts)
 						],
 						)
@@ -90,6 +97,7 @@ class _PageDiscoverDetailState extends State<PageDiscoverDetail> with CommonNavi
 				),
 				Stack(
 					children: [
+						// 封面标题
 						Padding(
 							padding: EdgeInsets.fromLTRB(15, 45, 0, 0),
 							child: Row(
@@ -99,6 +107,7 @@ class _PageDiscoverDetailState extends State<PageDiscoverDetail> with CommonNavi
 								]
 							),
 						),
+						// 返回按钮
 						Padding(
 							padding: EdgeInsets.fromLTRB(15, 45, 0, 0),
 							child: GestureDetector(
@@ -149,7 +158,7 @@ class _PageDiscoverDetailState extends State<PageDiscoverDetail> with CommonNavi
 		);
 	}
 
-	/// 横向选择列表
+	/// 封面TAB小图标 - 横向选择列表
 	Widget buildScrollList() {
 		return ComponentDiscoverTile(displayList: this.displayList, fullDisplayList: this.fullDisplayList);
 	}
