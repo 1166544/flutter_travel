@@ -111,6 +111,17 @@ class ComponentList extends StatelessWidget with CommonTimeFormate, CommonNaviga
 				Container(
 					width: 120.0,
 					height: 105.0,
+					decoration: BoxDecoration(
+						shape: BoxShape.rectangle,
+						color: Colors.grey.withOpacity(0.2),
+						border: BorderDirectional(
+							top: BorderSide(color: Colors.grey, width: 0.5),
+							start: BorderSide(color: Colors.grey, width: 0.5),
+							end: BorderSide(color: Colors.grey, width: 0.5),
+							bottom: BorderSide(color: Colors.grey, width: 0.5),
+						),
+						borderRadius: BorderRadius.circular(8)
+					),
 					child: ClipRRect(
 						borderRadius: BorderRadius.circular(8),
 						child: CommentImageNetwork.getNetworkImage(avataUrl, headers: this.getCrossHeaders(), fit: BoxFit.cover)
