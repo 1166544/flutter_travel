@@ -66,6 +66,10 @@ class _HomePageState extends State<HomePage> with CommonNavigator, SingleTickerP
 	@override
 	Widget build(BuildContext context) {
 		return Scaffold(
+			// appBar: AppBar(
+			// 	elevation: 0.0,
+			// 	backgroundColor: Colors.white,
+			// ),
 			body: Column(
 				crossAxisAlignment: CrossAxisAlignment.start,
 				children: [
