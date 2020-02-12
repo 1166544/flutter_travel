@@ -3,6 +3,7 @@ import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:flutter_travel/core/bloc/BlocProvider.dart';
 import 'package:flutter_travel/modules/common/CommonTravelItem.dart';
 import 'package:flutter_travel/modules/discover/views/components/ComponentContentRender.dart';
+import 'package:flutter_travel/modules/discover/views/components/ComponentDiscoverSkeletonItem.dart';
 import 'package:flutter_travel/modules/home/blocs/BlocNewsList.dart';
 import 'package:flutter_travel/modules/home/models/ModelContent.dart';
 import 'package:flutter_travel/modules/home/models/ModelImage.dart';
@@ -87,9 +88,14 @@ class _ComponentDiscoverContentState extends State<ComponentDiscoverContent> wit
 			builder: (context, snapshot) {
 				// 数据源到位时渲染列表
 				if (snapshot.hasData) {
+					// 渲染真实内容
 					return this.buildLayout(snapshot);
 				} else {
-					return this.buildEmptyLayout(context);
+					// 渲染骨架内容
+					return this.buildEmptyLayout(
+						context, 
+						renderPage: ComponentDiscoverSkeletonItem()
+					);
 				}
 			},
 		);

@@ -7,21 +7,23 @@ import 'package:flutter_travel/core/manager/ManagerGlobal.dart';
 
 /// 加载中显示网络及错误组件
 class CommonLoading extends StatelessWidget {
-	const CommonLoading({Key key}) : super(key: key);
+	final CommonSkeletonItem renderPage;
+	CommonLoading({Key key, this.renderPage}) : super(key: key);
 
 	@override
 	Widget build(BuildContext context) {
 		return BlocProvider(
 			bloc: ManagerGlobal.instance.getBlocNetworkInstance(),
-			child: CommonLoadingPanel()
+			child: CommonLoadingPanel(renderPage: this.renderPage)
 		);
 	}
 }
 
 class CommonLoadingPanel extends StatefulWidget {
-  CommonLoadingPanel({Key key}) : super(key: key);
+	final CommonSkeletonItem renderPage;
+	CommonLoadingPanel({Key key, this.renderPage}) : super(key: key);
 
-  _CommonLoadingPanelState createState() => _CommonLoadingPanelState();
+	_CommonLoadingPanelState createState() => _CommonLoadingPanelState();
 }
 
 class _CommonLoadingPanelState extends State<CommonLoadingPanel> {
@@ -39,16 +41,20 @@ class _CommonLoadingPanelState extends State<CommonLoadingPanel> {
 				if (snapshot.hasData) {
 					return CommonError(snapshot: snapshot.data);
 				} else {
-					return CommonLoadingItem();
+					// 支持自定义显示内容
+					if (widget.renderPage != null) {
+						return widget.renderPage;
+					}
+					return CommonSkeletonItem();
 				}
 			},
 		);
 	}
 }
 
-/// 圆形显示动画
-class CommonLoadingItem extends StatelessWidget {
-  	CommonLoadingItem({Key key}) : super(key: key);
+/// 圆形显示动画(所有骨架屏子类继承自它)
+class CommonSkeletonItem extends StatelessWidget {
+  	CommonSkeletonItem({Key key}) : super(key: key);
 
 	@override
 	Widget build(BuildContext context) {
@@ -64,6 +70,31 @@ class CommonLoadingItem extends StatelessWidget {
 					),
 			)
 		);
+	}
+
+	/// 返回骨架
+	Widget getSkeletonItem({
+		double width = 20, 
+		double height = 20, 
+		Color color = Colors.grey,
+		BoxDecoration decoration
+		}) {
+		if (decoration != null) {
+			return Container(
+				width: width,
+				height: height,
+				decoration: decoration
+			);
+		} else {
+			return Container(
+				width: width,
+				height: height,
+				decoration: BoxDecoration(
+					shape: BoxShape.rectangle,
+					color: color
+				),
+			);
+		}
 	}
 }
 

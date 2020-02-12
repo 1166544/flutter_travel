@@ -12,8 +12,8 @@ class CommonTravelItem {
 	CommonNavigator navigatorData = new CommonNavigator();
 
 	/// 空数据结构提示
-	Widget buildEmptyLayout(BuildContext context) {
-		return new CommonLoading();
+	Widget buildEmptyLayout(BuildContext context, { CommonSkeletonItem renderPage }) {
+		return new CommonLoading(renderPage: renderPage);
 	}
 
 	/// 点击加载更多
