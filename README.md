@@ -3,7 +3,7 @@
 A travels Flutter project. 
 
 ## Proview
-![GitHub set up](snapshot/demo1.gif)
+![GitHub set up](./snapshot/demo1.gif)
 
 ## Upgrade
 ```shell 
