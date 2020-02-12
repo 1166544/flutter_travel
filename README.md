@@ -3,7 +3,7 @@
 A travels Flutter project. 
 
 ## Proview
-![GitHub set up](./snapshot/demo1.gif)
+![App proview](./snapshot/demo1.gif "App proview animation")
 
 ## Upgrade
 ```shell 
