@@ -66,26 +66,36 @@ class _HomePageState extends State<HomePage> with CommonNavigator, SingleTickerP
 	@override
 	Widget build(BuildContext context) {
 		return Scaffold(
-			appBar: AppBar(
-				title: Center(
-					child: this.getSearchTitle(),
-				),
-				elevation: 0.0,
-				backgroundColor: Colors.white,
-				bottom: TabBar(
-					controller: this._tabController,
-					tabs: this._tabsData,
-					labelColor: Colors.black,
-					indicatorColor: Color(0xFF5e81f4),
-					indicatorWeight: 3.0,
-				)
-			),
-			body: BlocProvider(
-				bloc: blocNewsList,
-				child: TabBarView(
-					controller: this._tabController,
-					children: this._tabsView,
-				),
+			body: Column(
+				crossAxisAlignment: CrossAxisAlignment.start,
+				children: [
+					Container(
+						padding: EdgeInsets.fromLTRB(10, 50, 0, 0),
+						decoration: BoxDecoration(
+							color: Colors.white.withOpacity(0.0),
+							border: Border(
+								bottom: BorderSide(
+									color: Colors.grey.withOpacity(0.5), 
+									width: 0.8
+								)
+							)
+						),
+						child: TabBar(
+							controller: this._tabController,
+							indicatorColor: Color(0xFF5e81f4),
+							labelColor: Colors.black,
+							tabs: this._tabsData,
+						)
+					),
+					SizedBox(height: 5),
+					Expanded(child: BlocProvider(
+						bloc: blocNewsList,
+						child: TabBarView(
+							controller: this._tabController,
+							children: this._tabsView,
+						),
+					))
+				]
 			),
 		);
 	}
