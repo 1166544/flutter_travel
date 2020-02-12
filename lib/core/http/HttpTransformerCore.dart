@@ -28,11 +28,11 @@ class HttpTransformerCore extends DefaultTransformer {
 
 class HttpTransformResponse{
 	
-	final String errorMessage;
+	final String errmsg;
 	final String errorUrl;
 	final String errorServer;
 	final String errorStatus;
 	final String errorDesc;
 
-	HttpTransformResponse({this.errorMessage, this.errorUrl, this.errorServer, this.errorStatus, this.errorDesc});
+	HttpTransformResponse({this.errmsg, this.errorUrl, this.errorServer, this.errorStatus, this.errorDesc});
 }

@@ -9,6 +9,7 @@ import 'package:flutter_travel/core/http/HttpTransformerCore.dart';
 // import 'package:flutter_travel/core/http/HttpTransformerCore.dart';
 import 'package:flutter_travel/core/manager/ManagerEnviroment.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter_travel/core/manager/ManagerGlobal.dart';
 
 /// 封装过的HTTP请求核心类
 class HttpServiceCore {
@@ -150,14 +151,17 @@ class HttpServiceCore {
 	/// 处理返回错误描述
 	Response<dynamic> handleErrorInfo(DioError e) {
 		HttpTransformResponse responseErrorData = HttpTransformResponse(
-			errorMessage: this.formatError(e),
+			errmsg: this.formatError(e),
 			errorUrl:e.request.path,
 			errorServer: e.request.uri.toString(),
-			errorStatus: e.response.statusCode.toString(),
-			errorDesc: e.response.statusCode.toString()
+			errorStatus: e.error.osError.errorCode.toString(),
+			errorDesc: e.error.osError.message,
 		);
 
 		Response response = Response(data: responseErrorData);
+
+		// 通知数据源更新，UI界面显示网络状态提示
+		ManagerGlobal.instance.getBlocNetworkInstance().update(responseErrorData);
 
 		return response;
 	}

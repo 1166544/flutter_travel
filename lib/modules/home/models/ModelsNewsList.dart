@@ -17,7 +17,7 @@ class ModelsNewsList {
 	/// 更新数据源
 	void update(dynamic resultData) {
 		dynamic result = resultData.data;
-		var errmsg = result['errmsg'];
+		var errmsg = result['errmsg'] != null ? result['errmsg'] : '';
 
 		if (result != null && errmsg == 'OK') {
 			dynamic resultSubData = result['data'];

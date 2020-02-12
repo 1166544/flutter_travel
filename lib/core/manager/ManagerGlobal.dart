@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_travel/core/bloc/BlocNetwork.dart';
 import 'package:flutter_travel/redux/states/StateApp.dart';
 import 'package:flutter_travel/routers/Routers.dart';
 import 'package:geolocator/geolocator.dart';
@@ -28,6 +29,8 @@ class ManagerGlobal {
 	/// 路由
 	Routers _router;
 
+	BlocNetwork _blockNetworkInstance;
+
 	ManagerGlobal._internal() {
 		// 初始化 hole
 	}
@@ -35,6 +38,15 @@ class ManagerGlobal {
 	static init(Store<AppState> store, Routers router) {
 		ManagerGlobal._getInstance().saveStoreInstance(store: store);
 		ManagerGlobal._getInstance().saveRouter(router: router);
+	}
+
+	/// 网络状态BLOC
+	BlocNetwork getBlocNetworkInstance() {
+		if (this._blockNetworkInstance == null) {
+			this._blockNetworkInstance = blocNetwork;
+		}
+
+		return this._blockNetworkInstance;
 	}
 
 	/// 保存router引用
