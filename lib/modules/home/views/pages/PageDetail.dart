@@ -222,7 +222,7 @@ class _PageDetailContentState extends State<PageDetailContent> with CommonTravel
 				child: Html(
 					data: replaceContent,
 					useRichText: true,
-					defaultTextStyle: TextStyle(color: Colors.black, fontSize: 15.0),
+					defaultTextStyle: TextStyle(color: Colors.black, fontSize: 17.0),
 				),
 			);
 		} else {
