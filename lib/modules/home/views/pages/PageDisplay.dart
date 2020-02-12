@@ -195,7 +195,7 @@ class PageDisplayState extends State<PageDisplay> with CommonTravelItem, CommonN
 				child: Text('Newsleeters', style:TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontFamily: 'Montserrat')),
 			)
 		);
-		renderList.add(SizedBox(height: 10.0));
+		// renderList.add(SizedBox(height: 10.0));
 		renderList.add(this.getDynamicList(snapshotList));
 
 		return ListView(
@@ -209,7 +209,7 @@ class PageDisplayState extends State<PageDisplay> with CommonTravelItem, CommonN
 	Widget getDynamicList(List<ModelNewsItem> snapshotList) {
 		return ListView.separated(
 			physics: BouncingScrollPhysics(),	// 禁用滑动事件
-			shrinkWrap: true,							// 无限高度兼容
+			shrinkWrap: true,					// 无限高度兼容
 			itemBuilder: (context, index) {
 				if (index == this.renderListData.length) {
 					if (this.hasMore) {
