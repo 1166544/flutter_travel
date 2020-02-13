@@ -6,6 +6,7 @@ import 'package:flutter_travel/modules/home/blocs/BlocNewsList.dart';
 import 'package:flutter_travel/modules/home/models/ModelNewsItem.dart';
 import 'package:flutter_travel/modules/home/models/ModelsNewsList.dart';
 import 'package:flutter_travel/modules/home/views/compnents/ComponentGrid.dart';
+import 'package:flutter_travel/modules/home/views/compnents/ComponentHomeSkeleton.dart';
 import 'package:flutter_travel/modules/home/views/compnents/ComponentImproving.dart';
 import 'package:flutter_travel/modules/home/views/compnents/ComponentList.dart';
 import 'package:flutter_travel/modules/home/views/compnents/ComponentScroll.dart';
@@ -122,7 +123,10 @@ class PageDisplayState extends State<PageDisplay> with CommonTravelItem, CommonN
 					this.isInited = true;
 					return this.buildLayout(snapshot);
 				} else {
-					return this.buildEmptyLayout(context);
+					return this.buildEmptyLayout(
+						context, 
+						renderPage: ComponentHomeSkeleton()
+					);
 				}
 			}
 		);

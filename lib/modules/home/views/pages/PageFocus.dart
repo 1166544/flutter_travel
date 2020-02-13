@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_travel/modules/home/models/ModelsNewsList.dart';
+import 'package:flutter_travel/modules/home/views/compnents/ComponentHomeSkeleton.dart';
 import 'package:flutter_travel/modules/home/views/pages/PageDisplay.dart';
 import 'package:flutter_travel/core/manager/ManagerNotification.dart';
 
@@ -36,7 +37,10 @@ class PageFocusState extends ServiceNotificationWidget {
 					this.isInited = true;
 					return this.buildLayout(snapshot);
 				} else {
-					return this.buildEmptyLayout(context);
+					return this.buildEmptyLayout(
+						context, 
+						renderPage: ComponentHomeSkeleton()
+					);
 				}
 			}
 		);
