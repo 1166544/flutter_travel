@@ -4,7 +4,8 @@ import 'package:flutter_travel/modules/common/CommonLoading.dart';
 
 /// 我的详情页骨架
 class ComponentProfileSkeleton extends CommonSkeletonItem {
-	Widget build(BuildContext context) {
+	
+	Widget buildLayout(BuildContext context) {
 		return ListView(
 			children: <Widget>[
 				// 顶部头像

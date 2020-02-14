@@ -4,7 +4,7 @@ import 'package:flutter_travel/modules/common/CommonLoading.dart';
 
 /// 加载中骨架外观页面(淡灰色)
 class ComponentDiscoverSkeletonItem extends CommonSkeletonItem {
-	Widget build(BuildContext context) {
+	Widget buildLayout(BuildContext context) {
 		List<Widget> renderList = [];
 		for (var i = 0; i < 10; i++) {
 			renderList.add(this.getRenderItem(context));

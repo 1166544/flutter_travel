@@ -7,7 +7,7 @@ import 'package:flutter_travel/core/manager/ManagerGlobal.dart';
 
 /// 加载中显示网络及错误组件
 class CommonLoading extends StatelessWidget {
-	final CommonSkeletonItem renderPage;
+	final Widget renderPage;
 	CommonLoading({Key key, this.renderPage}) : super(key: key);
 
 	@override
@@ -20,7 +20,7 @@ class CommonLoading extends StatelessWidget {
 }
 
 class CommonLoadingPanel extends StatefulWidget {
-	final CommonSkeletonItem renderPage;
+	final Widget renderPage;
 	CommonLoadingPanel({Key key, this.renderPage}) : super(key: key);
 
 	_CommonLoadingPanelState createState() => _CommonLoadingPanelState();
@@ -52,12 +52,22 @@ class _CommonLoadingPanelState extends State<CommonLoadingPanel> {
 	}
 }
 
-/// 圆形显示动画(所有骨架屏子类继承自它)
+/// 圆形显示动画组件(所有骨架屏子类继承自它)
 class CommonSkeletonItem extends StatelessWidget {
-  	CommonSkeletonItem({Key key}) : super(key: key);
-
+	
+	const CommonSkeletonItem({Key key}) : super(key: key);
+	
 	@override
 	Widget build(BuildContext context) {
+		return AnimatedOpacity(
+			opacity: 1.0, 
+			duration: Duration(seconds: 2),
+			child: this.buildLayout(context),
+		);
+	}
+
+	/// 构建布局(子类重定)
+	Widget buildLayout(BuildContext context) {
 		return Center(
 			child: Container(
 				width: 70,
@@ -98,7 +108,8 @@ class CommonSkeletonItem extends StatelessWidget {
 	}
 }
 
-/// 网络错误提示
+
+/// 网络错误提示页面组件
 class CommonError extends StatelessWidget {
 	final HttpTransformResponse snapshot;
 	CommonError({Key key, this.snapshot}) : super(key: key);

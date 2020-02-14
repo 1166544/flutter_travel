@@ -12,7 +12,7 @@ class CommonTravelItem {
 	CommonNavigator navigatorData = new CommonNavigator();
 
 	/// 空数据结构提示
-	Widget buildEmptyLayout(BuildContext context, { CommonSkeletonItem renderPage }) {
+	Widget buildEmptyLayout(BuildContext context, { Widget renderPage }) {
 		return new CommonLoading(renderPage: renderPage);
 	}
 
