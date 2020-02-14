@@ -7,6 +7,7 @@ import 'package:flutter_travel/modules/profile/models/ModelProfile.dart';
 import 'package:flutter_travel/modules/profile/views/components/ComponentMiddleReport.dart';
 import 'package:flutter_travel/modules/profile/views/components/ComponentPresciption.dart';
 import 'package:flutter_travel/modules/profile/views/components/ComponentProfileChart.dart';
+import 'package:flutter_travel/modules/profile/views/components/ComponentProfileSkeleton.dart';
 import 'package:flutter_travel/modules/profile/views/components/ComponentTopStructs.dart';
 import 'package:flutter_travel/modules/profile/views/components/ComponentVisitors.dart';
 import 'package:flutter_travel/redux/actions/ActionAuth.dart';
@@ -56,7 +57,11 @@ class _ComponentBlocContentState extends State<ComponentBlocContent> with Common
 			stream: this.blocGalleryList.outStream,
 			builder: (context, snapshot) {
 				// 数据源到位时渲染列表
-				return this.buildSearchLayout(snapshot);
+				if (snapshot.hasData) {
+					return this.buildSearchLayout(snapshot);
+				} else {
+					return this.buildEmptyLayout(context, renderPage: ComponentProfileSkeleton());
+				}
 			},
 		);
 	}
