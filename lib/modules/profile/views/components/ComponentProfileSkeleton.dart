@@ -4,6 +4,11 @@ import 'package:flutter_travel/modules/common/CommonLoading.dart';
 
 /// 我的详情页骨架
 class ComponentProfileSkeleton extends CommonSkeletonItem {
+	ComponentProfileSkeleton({Key key}) : super(key: key);
+
+	CommonSkeletonItemState createState() => ComponentHomeSkeletonState();
+}
+class ComponentHomeSkeletonState extends CommonSkeletonItemState {
 	
 	Widget buildLayout(BuildContext context) {
 		return ListView(

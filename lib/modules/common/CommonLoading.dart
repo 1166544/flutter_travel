@@ -53,16 +53,39 @@ class _CommonLoadingPanelState extends State<CommonLoadingPanel> {
 }
 
 /// 圆形显示动画组件(所有骨架屏子类继承自它)
-class CommonSkeletonItem extends StatelessWidget {
+class CommonSkeletonItem extends StatefulWidget {
+	CommonSkeletonItem({Key key}) : super(key: key);
+
+	CommonSkeletonItemState createState() => CommonSkeletonItemState();
+}
+class CommonSkeletonItemState extends State<CommonSkeletonItem> with SingleTickerProviderStateMixin {
 	
-	const CommonSkeletonItem({Key key}) : super(key: key);
+	AnimationController _controller;
+	Animation _animation;
+
+	@override
+	void initState() {
+		super.initState();
+		this._controller = AnimationController(
+			vsync: this,
+			duration: Duration(seconds: 1),
+		);
+		this._animation = Tween(begin: 0.0, end: 1.0).animate(this._controller);
+	}
+
+	@override
+	void dispose() {
+		this._controller.dispose();
+		super.dispose();
+	}
 	
 	@override
 	Widget build(BuildContext context) {
-		return AnimatedOpacity(
-			opacity: 1.0, 
-			duration: Duration(seconds: 2),
-			child: this.buildLayout(context),
+		this._controller.forward();
+
+		return FadeTransition(
+			opacity: this._animation,
+			child: this.buildLayout(context)
 		);
 	}
 

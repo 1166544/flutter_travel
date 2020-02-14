@@ -1,67 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_travel/modules/common/CommonLoading.dart';
 
 /// 首页面骨架屏
-class ComponentHomeSkeleton extends StatefulWidget {
-  ComponentHomeSkeleton({Key key}) : super(key: key);
+class ComponentHomeSkeleton extends CommonSkeletonItem {
+	ComponentHomeSkeleton({Key key}) : super(key: key);
 
-  _ComponentHomeSkeletonState createState() => _ComponentHomeSkeletonState();
+	CommonSkeletonItemState createState() => ComponentHomeSkeletonState();
 }
 
-class _ComponentHomeSkeletonState extends State<ComponentHomeSkeleton> with SingleTickerProviderStateMixin {
-	AnimationController _controller;
-	Animation _animation;
-
-	@override
-	void initState() {
-		super.initState();
-		this._controller = AnimationController(
-			vsync: this,
-			duration: Duration(seconds: 1),
-		);
-		this._animation = Tween(begin: 0.0, end: 1.0).animate(this._controller);
-	}
-
-	@override
-	void dispose() {
-		this._controller.dispose();
-		super.dispose();
-	}
-	
-	@override
-	Widget build(BuildContext context) {
-		this._controller.forward();
-
-		return FadeTransition(
-			opacity: this._animation,
-			child: this.buildLayout(context)
-		);
-	}
-
-	/// 返回骨架
-	Widget getSkeletonItem({
-		double width = 20, 
-		double height = 20, 
-		Color color = Colors.grey,
-		BoxDecoration decoration
-		}) {
-		if (decoration != null) {
-			return Container(
-				width: width,
-				height: height,
-				decoration: decoration
-			);
-		} else {
-			return Container(
-				width: width,
-				height: height,
-				decoration: BoxDecoration(
-					shape: BoxShape.rectangle,
-					color: color
-				),
-			);
-		}
-	}
+class ComponentHomeSkeletonState extends CommonSkeletonItemState {
 
 	Widget buildLayout(BuildContext context) {
 		List<Widget> renderList = [];
