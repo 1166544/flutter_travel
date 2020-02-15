@@ -21,7 +21,7 @@ class ComponentGrid extends StatelessWidget with CommonNavigator {
 	Widget buildNewsLetterView(ModelNewsItem item, BuildContext context) {
 		return Container(
 			width: MediaQuery.of(context).size.width,
-			height: 90.0,
+			height: 100.0,
 			decoration: BoxDecoration(
 				color: Colors.grey.withOpacity(0.06),
 				borderRadius: BorderRadius.all(Radius.circular(6.0)),
@@ -80,6 +80,7 @@ class ComponentGrid extends StatelessWidget with CommonNavigator {
 											'Show $bedgeeStr',
 											overflow: TextOverflow.ellipsis,
 											softWrap: true,
+											maxLines: 1,
 											style: TextStyle(
 												fontSize: 10.0, 
 												fontWeight: FontWeight.bold, 
@@ -98,9 +99,9 @@ class ComponentGrid extends StatelessWidget with CommonNavigator {
 							desc, 
 							overflow: TextOverflow.ellipsis,
 							softWrap: true,
-							maxLines: 2,
+							maxLines: 3,
 							style: TextStyle(
-								fontSize: 12.0, 
+								fontSize: 14.0, 
 								color: Colors.black.withOpacity(0.8)
 							)
 						),

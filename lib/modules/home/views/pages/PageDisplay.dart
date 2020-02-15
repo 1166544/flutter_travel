@@ -191,7 +191,7 @@ class PageDisplayState extends State<PageDisplay> with CommonTravelItem, CommonN
 		// 第四行(动态增长)标题
 		renderList.add(
 			Padding(
-				padding: EdgeInsets.fromLTRB(10, 10, 0, 0),
+				padding: EdgeInsets.fromLTRB(10, 30, 0, 0),
 				child: Text('Newsleeters', style:TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontFamily: 'Montserrat')),
 			)
 		);
@@ -217,6 +217,7 @@ class PageDisplayState extends State<PageDisplay> with CommonTravelItem, CommonN
 	/// 动态增长列表
 	Widget getDynamicList(List<ModelNewsItem> snapshotList) {
 		return ListView.separated(
+			padding: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
 			physics: BouncingScrollPhysics(),	// 禁用滑动事件
 			shrinkWrap: true,					// 无限高度兼容
 			itemBuilder: (context, index) {
