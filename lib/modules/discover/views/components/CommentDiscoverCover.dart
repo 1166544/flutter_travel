@@ -17,19 +17,33 @@ class ComponentDiscoverCover extends StatefulWidget {
 	_ComponentDiscoverCoverState createState() => _ComponentDiscoverCoverState();
 }
 
-class _ComponentDiscoverCoverState extends State<ComponentDiscoverCover> with CommonNavigator, CommonTimeFormate {
+class _ComponentDiscoverCoverState extends State<ComponentDiscoverCover> with CommonNavigator, CommonTimeFormate, TickerProviderStateMixin {
 	
 	BlocDiscoverDetail blocData;
+	AnimationController controller;
+	Animation animation;
+
+	@override
+	void initState() {
+		super.initState();
+		this.controller = AnimationController(
+			vsync: this,
+			duration: Duration(seconds: 1),
+		);
+		this.animation = Tween(begin: 0.0, end: 1.0).animate(this.controller);
+	}
 	
 	@override
 	void dispose() {
 		this.blocData.dispose();
+		this.controller.dispose();
 		super.dispose();
 	}
 
 	@override
 	Widget build(BuildContext context) {
 		this.blocData = BlocProvider.of<BlocDiscoverDetail>(context);
+		this.controller.forward();
 
 		return StreamBuilder<ModelContent>(
 			stream: this.blocData.outStream,
@@ -47,6 +61,18 @@ class _ComponentDiscoverCoverState extends State<ComponentDiscoverCover> with Co
 	/// 显示封面内容
 	Widget getCoverContent({String url}) {
 		String contentUrl = url ?? widget.coverData.data.small.url;
+
+		this.controller.reset();
+		this.controller.forward();
+		
+		return FadeTransition(
+			opacity: this.animation,
+			child: this.getCoverLayout(contentUrl),
+		);
+	}
+
+	/// 封面布局
+	Widget getCoverLayout(String contentUrl) {
 		return Container(
 			width: MediaQuery.of(context).size.width,
 			height: MediaQuery.of(context).size.height * 0.60,
