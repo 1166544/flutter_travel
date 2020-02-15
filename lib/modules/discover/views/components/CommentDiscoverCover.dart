@@ -20,30 +20,48 @@ class ComponentDiscoverCover extends StatefulWidget {
 class _ComponentDiscoverCoverState extends State<ComponentDiscoverCover> with CommonNavigator, CommonTimeFormate, TickerProviderStateMixin {
 	
 	BlocDiscoverDetail blocData;
-	AnimationController controller;
-	Animation animation;
+	AnimationController fadeController;
+	AnimationController scaleController;
+	Animation fadeAnimation;
+	Animation scaleAnimation;
 
 	@override
 	void initState() {
 		super.initState();
-		this.controller = AnimationController(
+		this.fadeController = AnimationController(
 			vsync: this,
-			duration: Duration(seconds: 1),
+			duration: Duration(milliseconds: 1000),
 		);
-		this.animation = Tween(begin: 0.0, end: 1.0).animate(this.controller);
+		this.scaleController = AnimationController(
+			vsync: this,
+			duration: Duration(milliseconds: 300),
+		);
+		this.fadeAnimation = Tween(begin: 0.0, end: 1.0).animate(this.fadeController);
+
+		// 缩小动画ease
+		Animation curve = CurvedAnimation(parent: this.scaleController, curve: Curves.easeInOut);
+		this.scaleAnimation = Tween(begin: 1.5, end: 1.0).animate(curve);
 	}
 	
 	@override
 	void dispose() {
 		this.blocData.dispose();
-		this.controller.dispose();
+		this.fadeController.dispose();
 		super.dispose();
+	}
+
+	/// 播放动画
+	void playAnimation() {
+		this.fadeController.reset();
+		this.scaleController.reset();
+
+		this.fadeController.forward();
+		this.scaleController.forward();
 	}
 
 	@override
 	Widget build(BuildContext context) {
 		this.blocData = BlocProvider.of<BlocDiscoverDetail>(context);
-		this.controller.forward();
 
 		return StreamBuilder<ModelContent>(
 			stream: this.blocData.outStream,
@@ -62,12 +80,15 @@ class _ComponentDiscoverCoverState extends State<ComponentDiscoverCover> with Co
 	Widget getCoverContent({String url}) {
 		String contentUrl = url ?? widget.coverData.data.small.url;
 
-		this.controller.reset();
-		this.controller.forward();
+		this.playAnimation();
 		
-		return FadeTransition(
-			opacity: this.animation,
-			child: this.getCoverLayout(contentUrl),
+		return ScaleTransition(
+			alignment: Alignment.center,
+			scale: this.scaleAnimation,
+			child: FadeTransition(
+				opacity: this.fadeAnimation,
+				child: this.getCoverLayout(contentUrl),
+			)
 		);
 	}
 

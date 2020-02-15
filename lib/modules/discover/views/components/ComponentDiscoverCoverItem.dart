@@ -96,6 +96,10 @@ class _ComponentDiscoverCoverItemState extends State<ComponentDiscoverCoverItem>
 		return Container(
 			width: 60.0,
 			height: 60.0,
+			decoration: BoxDecoration(
+				shape: BoxShape.rectangle,
+				color: Colors.grey.withOpacity(0.4)
+			),
 			child: ClipRRect(
 				borderRadius: BorderRadius.circular(8),
 				child: CommentImageNetwork.getNetworkImage(widget.item.data.small.url, headers: this.getCrossHeaders(), fit: BoxFit.cover)

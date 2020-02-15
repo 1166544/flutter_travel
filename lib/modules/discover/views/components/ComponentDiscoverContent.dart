@@ -133,9 +133,11 @@ class _ComponentDiscoverContentState extends State<ComponentDiscoverContent> wit
 						return AnimationConfiguration.staggeredList(
 							position: index,
 							duration: const Duration(milliseconds: 375),
-							child: SlideAnimation( //滑动动画
+							child: SlideAnimation( 
+								// 滑动动画
 								verticalOffset: 50.0,
-								child: FadeInAnimation( //渐隐渐现动画
+								child: FadeInAnimation( 
+									// 渐隐渐现动画
 									child: ComponentContentRender(snapData: item, renderIndex: index),
 								),
 							),
