@@ -4,6 +4,7 @@ import 'package:flutter_travel/modules/common/CommonImageNetwork.dart';
 import 'package:flutter_travel/modules/common/CommonNavigator.dart';
 import 'package:flutter_travel/modules/common/CommonTimeFormate.dart';
 import 'package:flutter_travel/modules/discover/blocs/BlocDiscoverDetail.dart';
+import 'package:flutter_travel/modules/discover/models/ModelSorter.dart';
 import 'package:flutter_travel/modules/home/models/ModelContent.dart';
 import 'package:flutter_travel/modules/home/models/ModelNewsItem.dart';
 import 'package:flutter_travel/modules/utils/Utils.dart';
@@ -12,7 +13,8 @@ import 'package:flutter_travel/modules/utils/Utils.dart';
 class ComponentDiscoverCover extends StatefulWidget {
 	final ModelNewsItem item;
 	final ModelContent coverData;
-	ComponentDiscoverCover({Key key, this.item, this.coverData}) : super(key: key);
+	final List<ModelContent> fullDisplayList;
+	ComponentDiscoverCover({Key key, this.item, this.coverData, this.fullDisplayList}) : super(key: key);
 
 	_ComponentDiscoverCoverState createState() => _ComponentDiscoverCoverState();
 }
@@ -30,7 +32,7 @@ class _ComponentDiscoverCoverState extends State<ComponentDiscoverCover> with Co
 		super.initState();
 		this.fadeController = AnimationController(
 			vsync: this,
-			duration: Duration(milliseconds: 1000),
+			duration: Duration(milliseconds: 500),
 		);
 		this.scaleController = AnimationController(
 			vsync: this,
@@ -82,14 +84,28 @@ class _ComponentDiscoverCoverState extends State<ComponentDiscoverCover> with Co
 
 		this.playAnimation();
 		
-		return ScaleTransition(
-			alignment: Alignment.center,
-			scale: this.scaleAnimation,
-			child: FadeTransition(
-				opacity: this.fadeAnimation,
-				child: this.getCoverLayout(contentUrl),
-			)
+		return GestureDetector(
+			onTap: () {
+				this.nextPage();	
+			},
+			child: ScaleTransition(
+				alignment: Alignment.center,
+				scale: this.scaleAnimation,
+				child: FadeTransition(
+					opacity: this.fadeAnimation,
+					child: this.getCoverLayout(contentUrl),
+				)
+			),
 		);
+	}
+
+	/// 更新到下一页
+	void nextPage() {
+		ModelContent nextItem = ModelSorter.getNextItem(
+			currentItem: this.blocData.data, 
+			fullDisplayList: this.widget.fullDisplayList
+		);
+		this.blocData.update(nextItem);
 	}
 
 	/// 封面布局

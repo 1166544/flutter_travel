@@ -23,6 +23,10 @@ class BlocDiscoverDetail implements BlocBase {
 		// hole
 	}
 
+	ModelContent get data {
+		return this._data;
+	}
+
 	void dispose() {
 		// this._dataController.close();
 	}

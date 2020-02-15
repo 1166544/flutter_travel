@@ -165,7 +165,7 @@ class _PageDiscoverDetailState extends State<PageDiscoverDetail> with CommonNavi
 
 	/// 封面
 	Widget buildCover() {
-		return ComponentDiscoverCover(item: widget.item, coverData: this.coverData);
+		return ComponentDiscoverCover(item: widget.item, coverData: this.coverData, fullDisplayList: this.fullDisplayList);
 	}
 
 	/// 标题
