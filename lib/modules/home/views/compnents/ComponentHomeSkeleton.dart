@@ -163,23 +163,9 @@ class ComponentHomeSkeletonState extends CommonSkeletonItemState {
 								spreadRadius: 1.8)
 							],
 						),
-						child: this.getImproveTitle(),
 					),
 				],
 				),
-			),
-		);
-	}
-
-	/// Redux数据调用: 绑定全局动态标题
-	Widget getImproveTitle() {
-		return Center(
-			child: Text(
-				'98%',
-				style: TextStyle(
-					fontSize: 16.0,
-					color: Colors.white,
-					fontWeight: FontWeight.bold)
 			),
 		);
 	}
