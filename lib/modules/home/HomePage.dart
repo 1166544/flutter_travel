@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_travel/core/bloc/BlocProvider.dart';
+import 'package:flutter_travel/core/manager/ManagerGlobal.dart';
 import 'package:flutter_travel/modules/common/CommonNavigator.dart';
 import 'package:flutter_travel/modules/home/blocs/BlocNewsList.dart';
 import 'package:flutter_travel/modules/home/views/pages/PageFashion.dart';
@@ -65,6 +65,9 @@ class _HomePageState extends State<HomePage> with CommonNavigator, SingleTickerP
 
 	@override
 	Widget build(BuildContext context) {
+		this.store = ManagerGlobal.instance.getStoreInstance();
+		this._updateTitle(this._tabsData[0].text);
+
 		return Scaffold(
 			// appBar: AppBar(
 			// 	elevation: 0.0,
@@ -117,26 +120,4 @@ class _HomePageState extends State<HomePage> with CommonNavigator, SingleTickerP
 		super.dispose();
 	}
 
-	/// Redux数据调用: 绑定全局动态标题
-	Widget getSearchTitle() {
-		return StoreConnector<AppState, dynamic>(
-			converter: (store) {
-				if (this.store == null) {
-					// 更新第1个标题
-					this.store = store;
-					this._updateTitle(this._tabsData[0].text);
-				}
-				return store.state.auth.toString();
-			},
-			builder: (context, auth) {
-				return Text('Materials - 60 Minute Manaze',
-					style: TextStyle(
-					color: Colors.black,
-					fontWeight: FontWeight.bold,
-					fontSize: 20.0
-					)
-				);
-			}
-		);
-	}
 }
