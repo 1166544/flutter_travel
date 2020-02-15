@@ -21,6 +21,7 @@ class ComponentHomeSkeletonState extends CommonSkeletonItemState {
 		}
 
 		return ListView(
+			padding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 0.0),
 			children: renderList
 		);
 	}

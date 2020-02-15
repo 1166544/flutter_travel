@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:flutter_travel/core/bloc/BlocProvider.dart';
 import 'package:flutter_travel/modules/common/CommonNavigator.dart';
 import 'package:flutter_travel/modules/common/CommonTravelItem.dart';
@@ -176,11 +177,6 @@ class PageDisplayState extends State<PageDisplay> with CommonTravelItem, CommonN
 		// 改进提示
 		renderList.add(ComponentImproving(snapshot: snapshot));
 
-		// 天气消息(首页才增加)
-		// if (widget.requestParams == null) {
-		// 	renderList.add(PageHomeWeather());
-		// }
-
 		// 第2行 横向滚动列表
 		if (coverList.length > 0) {
 			renderList.add(ComponentTitle(snapshot));
@@ -199,13 +195,22 @@ class PageDisplayState extends State<PageDisplay> with CommonTravelItem, CommonN
 				child: Text('Newsleeters', style:TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontFamily: 'Montserrat')),
 			)
 		);
-		// renderList.add(SizedBox(height: 10.0));
+		renderList.add(SizedBox(height: 10.0));
 		renderList.add(this.getDynamicList(snapshotList));
 
-		return ListView(
-			controller: this._controller,
+		return ListView.builder(
 			padding: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
-			children: renderList,
+			itemCount: renderList.length,
+			itemBuilder: (BuildContext context, int index) {
+				return AnimationConfiguration.staggeredList(
+					position: index,
+					duration: Duration(milliseconds: 375),
+					child: SlideAnimation(
+						verticalOffset: 50.0,
+						child: FadeInAnimation(child: renderList[index]),
+					),
+				);
+			}
 		);
 	}
 
