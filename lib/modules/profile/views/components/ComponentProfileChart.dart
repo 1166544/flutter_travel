@@ -1,5 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_travel/modules/common/CommonText.dart';
 import 'package:flutter_travel/modules/profile/models/ModelContributionsData.dart';
 import 'package:flutter_travel/modules/profile/models/ModelLine.dart';
 import 'package:flutter_travel/modules/profile/models/ModelProfile.dart';
@@ -50,7 +51,7 @@ class ComponentProfileChartState extends State<ComponentProfileChart> {
 						crossAxisAlignment: CrossAxisAlignment.stretch,
 						mainAxisAlignment: MainAxisAlignment.center,
 						children: <Widget>[
-							Text(
+							CommonText(
 								'Years of code contribution trends',
 								style: TextStyle(
 									color: Colors.black,
@@ -127,7 +128,7 @@ class ComponentProfileChartState extends State<ComponentProfileChart> {
 			padding: EdgeInsets.fromLTRB(10, 0, 10.0, 5.0),
 			child: Row(
 				children: [
-					Text(
+					CommonText(
 						'${itemData.name}: ', 
 						style: TextStyle(
 							fontSize: 11, 

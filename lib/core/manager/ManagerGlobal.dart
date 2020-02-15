@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_travel/core/bloc/BlocNetwork.dart';
+import 'package:flutter_travel/modules/common/CommonText.dart';
 import 'package:flutter_travel/redux/states/StateApp.dart';
 import 'package:flutter_travel/routers/Routers.dart';
 import 'package:geolocator/geolocator.dart';
@@ -100,11 +101,11 @@ class ManagerGlobal {
 			builder: (BuildContext context) {
 			return AlertDialog(
 				backgroundColor: Colors.white,
-				title: Text('当前定位服务不可用 :(',
+				title: CommonText('当前定位服务不可用 :(',
 					style: TextStyle(color: Colors.black)),
 				actions: <Widget>[
 				FlatButton(
-					child: Text(
+					child: CommonText(
 					'开启!',
 					style: TextStyle(color: Colors.green, fontSize: 16),
 					),

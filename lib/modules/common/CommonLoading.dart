@@ -4,6 +4,7 @@ import 'package:flutter_travel/core/bloc/BlocNetwork.dart';
 import 'package:flutter_travel/core/bloc/BlocProvider.dart';
 import 'package:flutter_travel/core/http/HttpTransformerCore.dart';
 import 'package:flutter_travel/core/manager/ManagerGlobal.dart';
+import 'package:flutter_travel/modules/common/CommonText.dart';
 
 /// 加载中显示网络及错误组件
 class CommonLoading extends StatelessWidget {
@@ -141,7 +142,7 @@ class CommonError extends StatelessWidget {
 	Widget build(BuildContext context) {
 		return Center(
 			child: Container(
-				child: Text(
+				child: CommonText(
 					'Sorry, 网络出了点故障~ \n描述: ${snapshot.errmsg} ${snapshot.errorDesc}\n状态码:${snapshot.errorStatus} \n地址:\n${snapshot.errorServer}', 
 					maxLines: 5, 
 					softWrap: true, 

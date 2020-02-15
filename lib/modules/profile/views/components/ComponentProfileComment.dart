@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_travel/modules/common/CommonText.dart';
 
 /// 公用方法
 class ComponentProfileComment {
 
   	/// 带黄底横线标题
 	Widget getUnderlineText(String content) {
-		return Text(
+		return CommonText(
 			content,
 			style: TextStyle(
 				fontSize: 16.0,

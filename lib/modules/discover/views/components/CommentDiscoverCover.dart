@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_travel/core/bloc/BlocProvider.dart';
 import 'package:flutter_travel/modules/common/CommonImageNetwork.dart';
 import 'package:flutter_travel/modules/common/CommonNavigator.dart';
+import 'package:flutter_travel/modules/common/CommonText.dart';
 import 'package:flutter_travel/modules/common/CommonTimeFormate.dart';
 import 'package:flutter_travel/modules/discover/blocs/BlocDiscoverDetail.dart';
 import 'package:flutter_travel/modules/discover/models/ModelSorter.dart';
@@ -157,9 +158,9 @@ class _ComponentDiscoverCoverState extends State<ComponentDiscoverCover> with Co
 	Widget getCoverItem(String value, String title) {
 		return Column(
 			children: <Widget>[
-				Text(value, style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.white)),
+				CommonText(value, style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.white)),
 				SizedBox(height: 5),
-				Text(title, style: TextStyle(fontSize: 14, fontWeight: FontWeight.normal, color: Colors.white)),
+				CommonText(title, style: TextStyle(fontSize: 14, fontWeight: FontWeight.normal, color: Colors.white)),
 			],
 		);
 	}

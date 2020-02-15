@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_travel/modules/common/CommonNavigator.dart';
+import 'package:flutter_travel/modules/common/CommonText.dart';
 import 'package:flutter_travel/modules/home/models/ModelNewsItem.dart';
 import 'package:flutter_travel/modules/home/views/pages/PageDetail.dart';
 
@@ -52,7 +53,7 @@ class ComponentGrid extends StatelessWidget with CommonNavigator {
 						children: <Widget>[
 							Container(
 								width: MediaQuery.of(context).size.width - 80.0,
-								child: Text(
+								child: CommonText(
 									title,
 									maxLines: 1,
 									overflow: TextOverflow.ellipsis,
@@ -76,7 +77,7 @@ class ComponentGrid extends StatelessWidget with CommonNavigator {
 									width: 45.0,
 									child: Padding(
 										padding: EdgeInsets.fromLTRB(4.0, 2.0, 0, 0),
-										child: Text(
+										child: CommonText(
 											'Show $bedgeeStr',
 											overflow: TextOverflow.ellipsis,
 											softWrap: true,
@@ -95,7 +96,7 @@ class ComponentGrid extends StatelessWidget with CommonNavigator {
 					SizedBox(height: 6.0),
 					Container(
 						width: MediaQuery.of(context).size.width,
-						child: Text(
+						child: CommonText(
 							desc, 
 							overflow: TextOverflow.ellipsis,
 							softWrap: true,

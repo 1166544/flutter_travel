@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_travel/core/bloc/BlocProvider.dart';
+import 'package:flutter_travel/modules/common/CommonText.dart';
 import 'package:flutter_travel/modules/discover/views/components/ComponentDiscoverContent.dart';
 import 'package:flutter_travel/modules/home/blocs/BlocNewsList.dart';
 import 'package:flutter_travel/redux/states/StateApp.dart';
@@ -39,7 +40,7 @@ class _SearchPageState extends State<DiscoverPage> {
 		return StoreConnector<AppState, dynamic>(
 			converter: (store) => store.state.auth,
 			builder: (context, auth) {
-				return Text('影像图志',
+				return CommonText('影像图志',
 					style: TextStyle(
 						color: Colors.black,
 						fontWeight: FontWeight.bold,

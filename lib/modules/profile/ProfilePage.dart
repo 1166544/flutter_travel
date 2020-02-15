@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_travel/core/bloc/BlocProvider.dart';
+import 'package:flutter_travel/modules/common/CommonText.dart';
 import 'package:flutter_travel/modules/profile/blocs/BlocMyInfo.dart';
 import 'package:flutter_travel/modules/profile/views/components/ComponentBlocContent.dart';
 
@@ -22,7 +23,7 @@ class _ProfilePageState extends State<ProfilePage> {
 	  return Scaffold(
 		  appBar: AppBar(
 			  title: Center(
-				  child: Text('Personal Information', style: TextStyle(
+				  child: CommonText('Personal Information', style: TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
                   fontSize: 20.0

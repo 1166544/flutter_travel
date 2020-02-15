@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_travel/core/api/ApiEnum.dart';
 import 'package:flutter_travel/modules/common/CommonImageNetwork.dart';
 import 'package:flutter_travel/modules/common/CommonNavigator.dart';
+import 'package:flutter_travel/modules/common/CommonText.dart';
 import 'package:flutter_travel/modules/common/CommonTimeFormate.dart';
 import 'package:flutter_travel/modules/common/CommonTravelItem.dart';
 import 'package:flutter_travel/modules/home/models/ModelNewsItem.dart';
@@ -108,7 +109,7 @@ class _ViewSearchContentRenderState extends State<ViewSearchContentRender> with 
 					crossAxisAlignment: CrossAxisAlignment.start,
 					mainAxisAlignment: MainAxisAlignment.end,
 					children: <Widget>[
-						Text(
+						CommonText(
 							titleStr,
 							softWrap: true,
 							overflow: TextOverflow.ellipsis,
@@ -126,7 +127,7 @@ class _ViewSearchContentRenderState extends State<ViewSearchContentRender> with 
 								]
 							),
 						),
-						Text(
+						CommonText(
 							subTitleStr,
 							style: TextStyle(
 								color: Colors.white,
@@ -164,7 +165,7 @@ class _ViewSearchContentRenderState extends State<ViewSearchContentRender> with 
 				children: <Widget>[
 					Padding(
 						padding: EdgeInsets.only(bottom: 10.0),
-						child: Text('Latest news', style: TextStyle(fontFamily: 'Montserrat', fontSize: 17.0, fontWeight: FontWeight.bold)),
+						child: CommonText('Latest news', style: TextStyle(fontFamily: 'Montserrat', fontSize: 17.0, fontWeight: FontWeight.bold)),
 					),
 					Container(
 						width: 120.0,
@@ -195,7 +196,7 @@ class _ViewSearchContentRenderState extends State<ViewSearchContentRender> with 
 				children: <Widget>[
 					Container(
 						width: 80.0,
-						child: Text(
+						child: CommonText(
 							widget.snapData.site,
 							softWrap: true,
 							style: TextStyle(
@@ -235,7 +236,7 @@ class _ViewSearchContentRenderState extends State<ViewSearchContentRender> with 
 							SizedBox(width: 12.0),
 							Container(
 								width: 230.0,
-								child: Text(
+								child: CommonText(
 									widget.snapData.title,
 									overflow: TextOverflow.ellipsis,
 									style: TextStyle(
@@ -278,7 +279,7 @@ class _ViewSearchContentRenderState extends State<ViewSearchContentRender> with 
 			// 描述文本
 			Container(
 				width: 230.0,
-				child: Text(
+				child: CommonText(
 					widget.snapData.abs,
 					softWrap: true,
 					overflow: TextOverflow.ellipsis,
@@ -347,7 +348,7 @@ class _ViewSearchContentRenderState extends State<ViewSearchContentRender> with 
 								borderRadius: BorderRadius.circular(2.0)
 							),
 							child: Center(
-								child: Text('M- ${this.timeFormate.getDateText(widget.snapData.pulltime)}', style: TextStyle(
+								child: CommonText('M- ${this.timeFormate.getDateText(widget.snapData.pulltime)}', style: TextStyle(
 											fontFamily: 'Montserrat',
 											fontSize: 12.0,
 											color: Colors.black
@@ -370,7 +371,7 @@ class _ViewSearchContentRenderState extends State<ViewSearchContentRender> with 
 							),
 							// 描述删除按钮
 							child: Center(
-								child: Text('DEL / ${widget.snapData.commentCount}', style: TextStyle(
+								child: CommonText('DEL / ${widget.snapData.commentCount}', style: TextStyle(
 											fontFamily: 'Montserrat',
 											fontSize: 12.0,
 											color: Colors.black

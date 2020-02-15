@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_travel/modules/common/CommonImageNetwork.dart';
+import 'package:flutter_travel/modules/common/CommonText.dart';
 import 'package:flutter_travel/redux/states/StateApp.dart';
 import 'package:flutter_travel/core/manager/ManagerEnviroment.dart';
 
@@ -29,7 +30,7 @@ class LoginLogo extends StatelessWidget {
 									),
 								),
 								SizedBox(width: 9),
-								Text('X', style: TextStyle(color: Colors.grey, fontSize: 20, fontWeight: FontWeight.w100)),
+								CommonText('X', style: TextStyle(color: Colors.grey, fontSize: 20, fontWeight: FontWeight.w100)),
 								SizedBox(width: 16),
 								Container(
 									width: 80,
@@ -70,7 +71,7 @@ class LoginLogo extends StatelessWidget {
 
 				String displayText = errorText != null ? errorText : '';
 
-				return Text(
+				return CommonText(
 					displayText,
 					style: TextStyle(
 						color: Colors.red,

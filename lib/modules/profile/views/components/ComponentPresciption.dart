@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_travel/modules/common/CommonText.dart';
 import 'package:flutter_travel/modules/profile/models/ModelProfile.dart';
 import 'package:flutter_travel/modules/profile/views/components/ComponentProfileComment.dart';
 
@@ -41,7 +42,7 @@ class _ComponentPresciptionState extends State<ComponentPresciption> with Compon
 							),
 						),
 						SizedBox(height: 15.0),
-						Text(
+						CommonText(
 							widget.snapshot.data.contributions.total.toStringAsFixed(1),
 							style: TextStyle(
 								fontSize: 30.0,
@@ -51,7 +52,7 @@ class _ComponentPresciptionState extends State<ComponentPresciption> with Compon
 						),
 						Row(
 							children: <Widget>[
-								Text(
+								CommonText(
 									'Total contributions counts of this year',
 									maxLines: 2,
 									overflow: TextOverflow.ellipsis,
@@ -72,7 +73,7 @@ class _ComponentPresciptionState extends State<ComponentPresciption> with Compon
 	Widget getPresciptonItem(String title, String subTitle) {
 		return Row(
 			children: <Widget>[
-				Text(
+				CommonText(
 					title,
 					style: TextStyle(
 						fontSize: 12.0,
@@ -80,7 +81,7 @@ class _ComponentPresciptionState extends State<ComponentPresciption> with Compon
 					)
 				),
 				Spacer(),
-				Text(
+				CommonText(
 					subTitle,
 					style: TextStyle(
 						fontSize: 12.0,

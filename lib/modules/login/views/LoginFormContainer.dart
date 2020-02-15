@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:flutter_travel/modules/common/CommonText.dart';
 import 'package:flutter_travel/redux/actions/ActionAuth.dart';
 import 'package:flutter_travel/redux/states/StateApp.dart';
 import 'package:redux/redux.dart';
@@ -85,7 +86,7 @@ class _LoginFormState extends State<LoginForm> {
 										),
 										padding: EdgeInsets.all(10.0),
 										child: Center(
-											child: Text(
+											child: CommonText(
 												'Login'.toUpperCase(),
 												style: TextStyle(
 													fontSize: 19.0,

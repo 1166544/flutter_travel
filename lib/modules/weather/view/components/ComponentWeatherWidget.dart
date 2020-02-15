@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_travel/modules/common/CommonText.dart';
 import 'package:flutter_travel/modules/weather/models/ModelWeatherItem.dart';
 import 'package:flutter_travel/modules/weather/view/components/ComponentWeatherSwipePager.dart';
 
@@ -59,7 +60,7 @@ class _ComponentWeatherWidgetState extends State<ComponentWeatherWidget> with Ti
 				mainAxisAlignment: MainAxisAlignment.center,
 				children: <Widget>[
 					SizedBox(height: 20),
-					Text(
+					CommonText(
 						widget.weather.cityName.toUpperCase(),
 						style: TextStyle(
 							fontWeight: FontWeight.w900,
@@ -70,7 +71,7 @@ class _ComponentWeatherWidgetState extends State<ComponentWeatherWidget> with Ti
 						SizedBox(
 						height: 10,
 					),
-					Text(
+					CommonText(
 						widget.weather.description.toUpperCase(),
 						style: TextStyle(
 							fontWeight: FontWeight.w200,

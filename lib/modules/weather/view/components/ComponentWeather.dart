@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_travel/core/bloc/BlocProvider.dart';
+import 'package:flutter_travel/modules/common/CommonText.dart';
 import 'package:flutter_travel/modules/weather/blocs/BlocWeatherList.dart';
 import 'package:flutter_travel/modules/weather/models/ModelDisplayWeatherInfo.dart';
 import 'package:flutter_travel/modules/weather/view/components/ComponentWeatherWidget.dart';
@@ -68,6 +69,6 @@ class _ComponentWeatherState extends State<ComponentWeather> with TickerProvider
 	}
 
 	Widget buildEmptyLayout(BuildContext context) {
-		return Text('');
+		return CommonText('');
 	}
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_travel/modules/common/CommonText.dart';
 
 class LoginWelcome extends StatelessWidget {
   const LoginWelcome({Key key}) : super(key: key);
@@ -26,7 +27,7 @@ class LoginWelcome extends StatelessWidget {
 					),
 				),
 				SizedBox(height: 10.0),
-				Text(
+				CommonText(
 					'Welcome,',
 					style: TextStyle(
 						color: Colors.black,
@@ -35,7 +36,7 @@ class LoginWelcome extends StatelessWidget {
 					),
 					),
 					SizedBox(height: 7.0),
-					Text(
+					CommonText(
 					'Pls sign in with github account to continue',
 					style: TextStyle(
 						color: Colors.black.withOpacity(0.7),

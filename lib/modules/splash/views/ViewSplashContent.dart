@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_travel/core/api/ApiEnum.dart';
 import 'package:flutter_travel/core/bloc/BlocProvider.dart';
+import 'package:flutter_travel/modules/common/CommonText.dart';
 import 'package:flutter_travel/modules/common/CommonTravelItem.dart';
 import 'package:flutter_travel/modules/splash/blocs/BlocSplashList.dart';
 import 'package:flutter_travel/modules/splash/models/ModelsBing.dart';
@@ -117,8 +118,8 @@ class _SplashScreenState extends State<ViewSplashContent> with CommonTravelItem,
 									child: Row(
 										mainAxisAlignment: MainAxisAlignment.end,
 										children: <Widget>[
-											Text(this.currentCountDown.toString(), style: TextStyle(color: Color(0xFFdedede), fontSize: 16.0)),
-											Text('S 跳过', style: TextStyle(color: Color(0xFFdedede), fontSize: 16.0))
+											CommonText(this.currentCountDown.toString(), style: TextStyle(color: Color(0xFFdedede), fontSize: 16.0)),
+											CommonText('S 跳过', style: TextStyle(color: Color(0xFFdedede), fontSize: 16.0))
 										],
 									),
 								),
@@ -133,7 +134,7 @@ class _SplashScreenState extends State<ViewSplashContent> with CommonTravelItem,
 								padding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0),
 								width: MediaQuery.of(this.context).size.width,
 								height: 180.0,
-								child: Text(data.copyright, style: TextStyle(color: Colors.white, fontSize: 14.0)),
+								child: CommonText(data.copyright, style: TextStyle(color: Colors.white, fontSize: 14.0)),
 							)
 						],
 					)

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:flutter_travel/modules/common/CommonText.dart';
 import 'package:flutter_travel/modules/home/models/ModelsNewsList.dart';
 import 'package:flutter_travel/redux/states/StateApp.dart';
 
@@ -56,10 +57,10 @@ class _ComponentImprovingState extends State<ComponentImproving> {
 						mainAxisAlignment: MainAxisAlignment.start,
 						crossAxisAlignment: CrossAxisAlignment.start,
 						children: <Widget>[
-							Text(hotelName, style: TextStyle(fontSize: 18.0, color: Colors.white, fontFamily: 'Montserrat', fontWeight: FontWeight.bold)),
+							CommonText(hotelName, style: TextStyle(fontSize: 18.0, color: Colors.white, fontFamily: 'Montserrat', fontWeight: FontWeight.bold)),
 							Container(
 								padding: EdgeInsets.fromLTRB(0.0, 5.0, 0, 0),
-								child: Text(
+								child: CommonText(
 									displayStr, 
 									style: TextStyle(
 										fontSize: 9.0, 
@@ -102,9 +103,9 @@ class _ComponentImprovingState extends State<ComponentImproving> {
 		return StoreConnector<AppState, dynamic>(
 			converter: (store) => store.state.page.title,
 			builder: (BuildContext context, title) {
-				// return Text('Materials - 60 分钟杂志 ${auth.toString()}',
+				// return CommonText('Materials - 60 分钟杂志 ${auth.toString()}',
 				return Center(
-					child: Text(
+					child: CommonText(
 						title,
 						style: TextStyle(
 							fontSize: 16.0,

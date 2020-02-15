@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:flutter_travel/modules/common/CommonText.dart';
 import 'package:flutter_travel/modules/home/views/pages/PageDisplay.dart';
 import 'package:rxdart/subjects.dart';
 
@@ -105,15 +106,15 @@ class ServiceNotificationWidget extends PageDisplayState {
 				context: context,
 				builder: (BuildContext context) => CupertinoAlertDialog(
 				title: receivedNotification.title != null
-					? Text(receivedNotification.title)
+					? CommonText(receivedNotification.title)
 					: null,
 				content: receivedNotification.body != null
-					? Text(receivedNotification.body)
+					? CommonText(receivedNotification.body)
 					: null,
 				actions: [
 					CupertinoDialogAction(
 					isDefaultAction: true,
-					child: Text('Ok'),
+					child: CommonText('Ok'),
 					onPressed: () async {
 						// Navigator.of(context, rootNavigator: true).pop();
 						// await Navigator.of(context).pushNamedAndRemoveUntil(Routers.profilePage, (_) => false);

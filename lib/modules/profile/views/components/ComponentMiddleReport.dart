@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_travel/modules/common/CommonText.dart';
 import 'package:flutter_travel/modules/profile/models/ModelProfile.dart';
 import 'package:flutter_travel/modules/profile/views/components/ComponentProfileComment.dart';
 import 'package:flutter_travel/redux/states/StateAuth.dart';
@@ -36,7 +37,7 @@ class _ComponentMiddleReportState extends State<ComponentMiddleReport> with Comp
 					
 					SizedBox(height: 15.0),
 					
-					Text(
+					CommonText(
 						'[Personal tech blog] ${widget.auth.user.user.htmlUrl}',
 						maxLines: 2,
 						overflow: TextOverflow.ellipsis,
@@ -49,7 +50,7 @@ class _ComponentMiddleReportState extends State<ComponentMiddleReport> with Comp
 					SizedBox(height: 16.0),
 					
 					// 绿色进度条文本
-					Text(
+					CommonText(
 						'FOLLOWER / FOLLOWING',
 						style: TextStyle(
 							fontSize: 12.0,
@@ -85,7 +86,7 @@ class _ComponentMiddleReportState extends State<ComponentMiddleReport> with Comp
 		return Column(
 			children: [
 				Icon(icon, size: 20, color: color),
-				Text('${descTitle.toString()} ${descNum.toString()}', style: TextStyle(fontSize: 13, color: color, fontWeight: FontWeight.w400))
+				CommonText('${descTitle.toString()} ${descNum.toString()}', style: TextStyle(fontSize: 13, color: color, fontWeight: FontWeight.w400))
 			]
 		);
 	}
@@ -118,7 +119,7 @@ class _ComponentMiddleReportState extends State<ComponentMiddleReport> with Comp
 						children: [
 							Icon(icon, size: 13, color: Colors.white),
 							SizedBox(width: 3),
-							Text(title, 
+							CommonText(title, 
 								overflow: TextOverflow.ellipsis,
 								maxLines: 1,
 								style: TextStyle(
@@ -134,7 +135,7 @@ class _ComponentMiddleReportState extends State<ComponentMiddleReport> with Comp
 						mainAxisAlignment: MainAxisAlignment.start,
 						crossAxisAlignment: CrossAxisAlignment.start,
 						children: [
-							Text(
+							CommonText(
 								trends.toStringAsFixed(1), 
 								overflow: TextOverflow.ellipsis,
 								maxLines: 1,
@@ -145,7 +146,7 @@ class _ComponentMiddleReportState extends State<ComponentMiddleReport> with Comp
 								)
 							),
 							SizedBox(width: 7),
-							Text(increase, 
+							CommonText(increase, 
 								overflow: TextOverflow.ellipsis,
 								maxLines: 1,
 								style: TextStyle(

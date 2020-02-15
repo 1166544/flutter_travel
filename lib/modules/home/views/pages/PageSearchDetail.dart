@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_travel/modules/common/CommonNavigator.dart';
+import 'package:flutter_travel/modules/common/CommonText.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 /// 搜索结果详情WEBVIEW
@@ -28,7 +29,7 @@ class _PageSearchDetailState extends State<PageSearchDetail> with CommonNavigato
 	Widget build(BuildContext context) {
 		return Scaffold(
 			appBar: AppBar(
-				title: Text(widget.title),
+				title: CommonText(widget.title),
 			),
 			body: Container(
 				child: WebView(

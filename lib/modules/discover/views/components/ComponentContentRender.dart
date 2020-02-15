@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_travel/modules/common/CommonText.dart';
 import 'package:flutter_travel/modules/common/CommonTimeFormate.dart';
 import 'package:flutter_travel/modules/common/CommonTravelItem.dart';
 import 'package:flutter_travel/modules/home/models/ModelNewsItem.dart';
@@ -71,7 +72,7 @@ class _ComponentContentRenderState extends State<ComponentContentRender> with Co
 	Widget buildMarkTitle() {
 		return Container(
 			width: MediaQuery.of(context).size.width,
-			child: Text(
+			child: CommonText(
 			'James, touris ' + this.getNormalTime(),
 			textAlign: TextAlign.center,
 			style: TextStyle(
@@ -92,7 +93,7 @@ class _ComponentContentRenderState extends State<ComponentContentRender> with Co
 
 	/// 旅行日志时间
 	Widget buildTravelDate(String travelTitle) {
-		return Text(
+		return CommonText(
 			travelTitle,
 			textAlign: TextAlign.center,
 			style: TextStyle(color: Colors.black.withOpacity(0.4))

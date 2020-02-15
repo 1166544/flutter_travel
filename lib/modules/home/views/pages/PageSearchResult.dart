@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_travel/core/bloc/BlocProvider.dart';
+import 'package:flutter_travel/modules/common/CommonText.dart';
 import 'package:flutter_travel/modules/home/blocs/BlocSearch.dart';
 import 'package:flutter_travel/modules/home/views/compnents/ComponentSearchContent.dart';
 
@@ -21,7 +22,7 @@ class _PageSearchResultState extends State<PageSearchResult> {
 	Widget build(BuildContext context) {
 		return Scaffold(
 			appBar: AppBar(
-				title: Text('Search Keywords: ${widget.searchContent}', style: TextStyle(
+				title: CommonText('Search Keywords: ${widget.searchContent}', style: TextStyle(
 					color: Colors.black,
 					fontWeight: FontWeight.bold,
 					fontSize: 20.0

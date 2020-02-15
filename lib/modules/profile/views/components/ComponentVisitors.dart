@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_travel/modules/common/CommonText.dart';
 import 'package:flutter_travel/modules/profile/models/ModelProfile.dart';
 import 'package:flutter_travel/redux/states/StateAuth.dart';
 
@@ -49,7 +50,7 @@ class _ComponentVisitorsState extends State<ComponentVisitors> {
 			child: Column(
 				mainAxisAlignment: MainAxisAlignment.center,
 				children: <Widget>[
-					Text(
+					CommonText(
 						score.toString(),
 						style: TextStyle(
 							fontSize: 24.0,
@@ -58,7 +59,7 @@ class _ComponentVisitorsState extends State<ComponentVisitors> {
 						)
 					),
 					SizedBox(height: 15.0),
-					Text(
+					CommonText(
 						desc,
 						style: TextStyle(
 							fontSize: 13.0,

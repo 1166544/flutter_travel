@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_travel/modules/common/CommonText.dart';
 import 'package:flutter_travel/modules/weather/view/components/ComponentEemptyWidget.dart';
 
 /// 分隔符
@@ -14,7 +15,7 @@ class ComponentValueTile extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        Text(
+        CommonText(
           this.label,
           style: TextStyle(
               color: Colors.black.withOpacity(0.3),
@@ -32,7 +33,7 @@ class ComponentValueTile extends StatelessWidget {
         SizedBox(
           height: 2,
         ),
-        Text(
+        CommonText(
           this.value,
           style:
               TextStyle(color: Colors.black),

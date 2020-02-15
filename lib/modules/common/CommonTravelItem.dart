@@ -3,6 +3,7 @@ import 'package:flutter_travel/modules/common/CommonImageNetwork.dart';
 import 'package:flutter_travel/modules/common/CommonLoading.dart';
 import 'package:flutter_travel/modules/common/CommonNavigator.dart';
 import 'package:flutter_travel/modules/common/CommonPhotoViewer.dart';
+import 'package:flutter_travel/modules/common/CommonText.dart';
 import 'package:flutter_travel/modules/discover/views/page/PageDiscoverDetail.dart';
 import 'package:flutter_travel/modules/home/models/ModelImage.dart';
 import 'package:flutter_travel/modules/home/models/ModelNewsItem.dart';
@@ -24,7 +25,7 @@ class CommonTravelItem {
 				color: Colors.grey.withOpacity(0.3)
 			),
 			child: Center(
-				child: Text(
+				child: CommonText(
 					'点击加载更多~',
 					style: TextStyle(color: Colors.black)
 				),
@@ -40,7 +41,7 @@ class CommonTravelItem {
 				color: Colors.grey.withOpacity(0.3)
 			),
 			child: Center(
-				child: Text(
+				child: CommonText(
 					'没有更多了~',
 					style: TextStyle(color: Colors.black)
 				),
@@ -188,7 +189,7 @@ class CommonTravelItem {
 					children: <Widget>[
 					Container(
 						width: MediaQuery.of(context).size.width - 86,
-						child: Text(
+						child: CommonText(
 							mainTitle,
 							overflow: TextOverflow.ellipsis,
 							softWrap: false,
@@ -218,7 +219,7 @@ class CommonTravelItem {
 					// 	MaterialPageRoute(builder: (context) => CommentsPage())
 					//   );
 				}),
-				Text(commentTitle, style: TextStyle(
+				CommonText(commentTitle, style: TextStyle(
 				fontSize: 13.0,
 				color: Colors.black,
 			),)
@@ -242,7 +243,7 @@ class CommonTravelItem {
 		children: <Widget>[
 			Container(
 			width: MediaQuery.of(context).size.width - 100,
-			child: Text(subTitle,
+			child: CommonText(subTitle,
 				softWrap: false,
 				overflow: TextOverflow.ellipsis,
 				style: TextStyle(
@@ -257,7 +258,7 @@ class CommonTravelItem {
 			// 	? Icon(Icons.timer, size: 12.0, color: Colors.black)
 			// 	: SizedBox(width: 0.0),
 			// SizedBox(width: 4.0),
-			// Text(timeTitle,
+			// CommonText(timeTitle,
 			// 	style: TextStyle(
 			// 		color: Colors.grey.shade500,
 			// 		fontFamily: 'Montserrat',

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_travel/core/bloc/BlocProvider.dart';
 import 'package:flutter_travel/modules/common/CommonNavigator.dart';
+import 'package:flutter_travel/modules/common/CommonText.dart';
 import 'package:flutter_travel/modules/common/CommonTimeFormate.dart';
 import 'package:flutter_travel/modules/discover/blocs/BlocDiscoverDetail.dart';
 import 'package:flutter_travel/modules/discover/models/ModelDetail.dart';
@@ -58,7 +59,7 @@ class _PageDiscoverDetailState extends State<PageDiscoverDetail> with CommonNavi
 						child: Offstage(
 							offstage: true,
 							child: AppBar(
-								title: Text('test'),
+								title: CommonText('test'),
 								brightness: Brightness.light,
 							),
 						),
@@ -103,7 +104,7 @@ class _PageDiscoverDetailState extends State<PageDiscoverDetail> with CommonNavi
 							child: Row(
 								mainAxisAlignment: MainAxisAlignment.center,
 								children: [
-									Text(widget.item.site, style: TextStyle(fontSize: 18, fontWeight: FontWeight.w300, color: Colors.white))
+									CommonText(widget.item.site, style: TextStyle(fontSize: 18, fontWeight: FontWeight.w300, color: Colors.white))
 								]
 							),
 						),
@@ -139,7 +140,7 @@ class _PageDiscoverDetailState extends State<PageDiscoverDetail> with CommonNavi
 						),
 					),
 					SizedBox(height: 15),
-					Text(
+					CommonText(
 						descTitle, 
 						overflow: TextOverflow.ellipsis,
 						maxLines: 4,
@@ -150,7 +151,7 @@ class _PageDiscoverDetailState extends State<PageDiscoverDetail> with CommonNavi
 						children: [
 							Icon(Icons.brightness_4, size: 10, color: Colors.grey),
 							SizedBox(width: 5),
-							Text(this.getFullTime(dateTitle), style: TextStyle(fontSize: 12, fontWeight: FontWeight.normal, color: Colors.grey))
+							CommonText(this.getFullTime(dateTitle), style: TextStyle(fontSize: 12, fontWeight: FontWeight.normal, color: Colors.grey))
 						]
 					),
 				]
@@ -175,14 +176,14 @@ class _PageDiscoverDetailState extends State<PageDiscoverDetail> with CommonNavi
 			child: Column(
 				crossAxisAlignment: CrossAxisAlignment.start,
 				children: <Widget>[
-					Text(
+					CommonText(
 						title, 
 						overflow: TextOverflow.ellipsis,
 						maxLines: 2,
 						style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black)
 					),
 					SizedBox(height: 5),
-					Text(desc, style: TextStyle(fontSize: 13, fontWeight: FontWeight.normal, color: Colors.grey)),
+					CommonText(desc, style: TextStyle(fontSize: 13, fontWeight: FontWeight.normal, color: Colors.grey)),
 				],
 			)
 		);

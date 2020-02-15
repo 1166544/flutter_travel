@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_travel/modules/common/CommonImageNetwork.dart';
 import 'package:flutter_travel/modules/common/CommonNavigator.dart';
+import 'package:flutter_travel/modules/common/CommonText.dart';
 import 'package:flutter_travel/modules/home/models/ModelContent.dart';
 import 'package:flutter_travel/modules/home/models/ModelNewsItem.dart';
 import 'package:photo_view/photo_view.dart';
@@ -103,7 +104,7 @@ class _CommonPhotoViewerState extends State<CommonPhotoViewer> with CommonNaviga
 				onPressed: () {
 					Navigator.of(context).pop();
 				}),
-				title: Text(
+				title: CommonText(
 					"$imageTitle",
 					style: TextStyle(color: Colors.white, fontFamily: 'Montserrat')
 				),
@@ -169,7 +170,7 @@ class _CommonPhotoViewerState extends State<CommonPhotoViewer> with CommonNaviga
 									),
 									Spacer(),
 									Center(
-										child: Text(
+										child: CommonText(
 											"${currentIndex + 1} / ${this.list.length}", style: TextStyle(color: Colors.white, fontSize: 17.0, decoration: null),
 										),
 									)

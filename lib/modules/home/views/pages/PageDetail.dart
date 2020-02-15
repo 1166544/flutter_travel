@@ -4,6 +4,7 @@ import 'package:flutter_travel/core/bloc/BlocProvider.dart';
 import 'package:flutter_travel/modules/common/CommonGalleryItem.dart';
 import 'package:flutter_travel/modules/common/CommonImageNetwork.dart';
 import 'package:flutter_travel/modules/common/CommonNavigator.dart';
+import 'package:flutter_travel/modules/common/CommonText.dart';
 import 'package:flutter_travel/modules/common/CommonTimeFormate.dart';
 import 'package:flutter_travel/modules/common/CommonTravelItem.dart';
 import 'package:flutter_travel/modules/comments/CommentsPage.dart';
@@ -34,7 +35,7 @@ class _PageDetailState extends State<PageDetail> with CommonNavigator {
 
 		return Scaffold(
 			appBar: AppBar(
-				title: Text(widget.site != null ? widget.site : 'NEWS DETAIL',
+				title: CommonText(widget.site != null ? widget.site : 'NEWS DETAIL',
 					style: TextStyle(
 					color: Colors.black,
 					fontWeight: FontWeight.bold,
@@ -178,7 +179,7 @@ class _PageDetailContentState extends State<PageDetailContent> with CommonTravel
 
 	/// 标题
 	Widget getCircleTitle(ModelNewsItem contentItem) {
-		return Text(
+		return CommonText(
 			contentItem.title, 
 			style: TextStyle(
 				fontSize: 21.0, 
@@ -192,7 +193,7 @@ class _PageDetailContentState extends State<PageDetailContent> with CommonTravel
 	Widget getCircleSubTitle(ModelNewsItem contentItem) {
 		return Row(
 			children: <Widget>[
-				Text(
+				CommonText(
 					contentItem.site, 
 					style: TextStyle(
 						fontSize: 11.0,
@@ -200,7 +201,7 @@ class _PageDetailContentState extends State<PageDetailContent> with CommonTravel
 					)
 				),
 				SizedBox(width: 7.0),
-				Text(
+				CommonText(
 					this.getFullTime(contentItem.ts), 
 					style: TextStyle(
 						fontSize: 14.0,
@@ -305,7 +306,7 @@ class _PageDetailContentState extends State<PageDetailContent> with CommonTravel
 			padding: EdgeInsets.fromLTRB(15.0, 5.0, 26.0, 0.0),
 			child: Container(
 				width: MediaQuery.of(this.context).size.width - 80.0,
-				child: Text('${item.userName}', maxLines: 2, overflow: TextOverflow.ellipsis, style: TextStyle(fontFamily: 'Montserrat', color: Color(0xff5b6774), fontSize: 15, fontWeight: FontWeight.bold)),
+				child: CommonText('${item.userName}', maxLines: 2, overflow: TextOverflow.ellipsis, style: TextStyle(fontFamily: 'Montserrat', color: Color(0xff5b6774), fontSize: 15, fontWeight: FontWeight.bold)),
 			)
 		);
 	}
@@ -316,7 +317,7 @@ class _PageDetailContentState extends State<PageDetailContent> with CommonTravel
 			padding: EdgeInsets.fromLTRB(15.0, 20.0, 26.0, 0.0),
 			child: Row(
 				children: <Widget>[
-					Text('一介草根 ${item.from}', style: TextStyle(color: Color(0xFFaeb2bc), fontSize: 12)),
+					CommonText('一介草根 ${item.from}', style: TextStyle(color: Color(0xFFaeb2bc), fontSize: 12)),
 					Spacer(),
 					this.getSubTitleNum(0)
 				],
@@ -349,7 +350,7 @@ class _PageDetailContentState extends State<PageDetailContent> with CommonTravel
 				borderRadius: BorderRadius.circular(3.0)
 			),
 			child: Center(
-				child: Text(
+				child: CommonText(
 					postTitleNum.toString(),
 					style: TextStyle(
 						color: fontColor,
@@ -381,7 +382,7 @@ class _PageDetailContentState extends State<PageDetailContent> with CommonTravel
 						SizedBox(width: 10.0),
 						Container(
 							width: textWidth,
-							child: Text(
+							child: CommonText(
 							item.text,
 							maxLines: 8,
 							softWrap: true,
@@ -449,7 +450,7 @@ class _PageDetailContentState extends State<PageDetailContent> with CommonTravel
 			padding: EdgeInsets.fromLTRB(15.0, 25.0, 20.0, 30.0),
 			child: Row(
 				children: <Widget>[
-					Text(
+					CommonText(
 						this.getFullTime(item.ts.toString()),
 						style: TextStyle(
 							color: Color(0xFF5f6f7f).withOpacity(0.5),
@@ -479,7 +480,7 @@ class _PageDetailContentState extends State<PageDetailContent> with CommonTravel
 					)
 				),
 				SizedBox(width: 5.0),
-				Text(
+				CommonText(
 					commentNum.toString(),
 					style: TextStyle(
 						color: Color(0xFF5f6f7f).withOpacity(0.5),

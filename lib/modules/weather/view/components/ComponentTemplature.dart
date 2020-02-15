@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_travel/modules/common/CommonText.dart';
 
 /// 温度动画
 class ComponentTemplature extends StatefulWidget {
@@ -49,7 +50,7 @@ class _ComponentTemplatureState extends State<ComponentTemplature> with TickerPr
 		List<Widget> renderList = [];
 		for (var i = 0; i < widget.templature; i++) {
 			renderList.add(
-				Text(
+				CommonText(
 					'${(widget.templature - i).toString()}',
 					style: TextStyle(
 						fontSize: 100,

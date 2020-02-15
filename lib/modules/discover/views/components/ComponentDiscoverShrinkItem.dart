@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_travel/modules/common/CommonText.dart';
 
 /// 收缩小按钮
 class ComponentDiscoverShrinkItem extends StatelessWidget {
@@ -26,7 +27,7 @@ class ComponentDiscoverShrinkItem extends StatelessWidget {
 									child: Column(
 										mainAxisAlignment: MainAxisAlignment.center,
 										children: [
-											Text(
+											CommonText(
 												'+${moreLength.toString()}', 
 												style: TextStyle(
 													fontSize: 15, 

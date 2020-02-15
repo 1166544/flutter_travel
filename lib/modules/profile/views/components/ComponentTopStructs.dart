@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_travel/modules/common/CommonImageNetwork.dart';
 import 'package:flutter_travel/modules/common/CommonNavigator.dart';
+import 'package:flutter_travel/modules/common/CommonText.dart';
 import 'package:flutter_travel/modules/profile/models/ModelProfile.dart';
 import 'package:flutter_travel/modules/profile/views/pages/PageFormSubmit.dart';
 import 'package:flutter_travel/redux/states/StateAuth.dart';
@@ -40,7 +41,7 @@ class _ComponentTopStructsState extends State<ComponentTopStructs> with CommonNa
 				children: <Widget>[
 					Icon(Icons.edit, color: Colors.black, size: 15.0),
 					SizedBox(width: 5.0),
-					Text('EDIT', style: TextStyle(fontSize: 14, color: Colors.black.withOpacity(0.6)),)
+					CommonText('EDIT', style: TextStyle(fontSize: 14, color: Colors.black.withOpacity(0.6)),)
 				],
 			),
 			onTap: this.navigateToProfile,
@@ -84,7 +85,7 @@ class _ComponentTopStructsState extends State<ComponentTopStructs> with CommonNa
 					mainAxisAlignment: MainAxisAlignment.start,
 					crossAxisAlignment: CrossAxisAlignment.start,
 					children: [
-						Text(
+						CommonText(
 							widget.auth.user.user.name,
 							style: TextStyle(
 								fontSize: 22.0,
@@ -93,7 +94,7 @@ class _ComponentTopStructsState extends State<ComponentTopStructs> with CommonNa
 							)
 						),
 						SizedBox(height: 10.0),
-						Text(
+						CommonText(
 							widget.auth.user.user.bio,
 							style: TextStyle(
 								fontSize: 12.0,

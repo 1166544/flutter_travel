@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:flutter_travel/core/bloc/BlocProvider.dart';
 import 'package:flutter_travel/modules/common/CommonNavigator.dart';
+import 'package:flutter_travel/modules/common/CommonText.dart';
 import 'package:flutter_travel/modules/common/CommonTravelItem.dart';
 import 'package:flutter_travel/modules/home/blocs/BlocNewsList.dart';
 import 'package:flutter_travel/modules/home/models/ModelNewsItem.dart';
@@ -192,7 +193,7 @@ class PageDisplayState extends State<PageDisplay> with CommonTravelItem, CommonN
 		renderList.add(
 			Padding(
 				padding: EdgeInsets.fromLTRB(10, 30, 0, 0),
-				child: Text('Newsleeters', style:TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontFamily: 'Montserrat')),
+				child: CommonText('Newsleeters', style:TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontFamily: 'Montserrat')),
 			)
 		);
 		renderList.add(SizedBox(height: 10.0));

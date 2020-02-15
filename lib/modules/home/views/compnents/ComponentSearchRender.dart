@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_travel/modules/common/CommonImageNetwork.dart';
 import 'package:flutter_travel/modules/common/CommonNavigator.dart';
+import 'package:flutter_travel/modules/common/CommonText.dart';
 import 'package:flutter_travel/modules/common/CommonTravelItem.dart';
 import 'package:flutter_travel/modules/home/models/ModelSearch.dart';
 import 'package:flutter_travel/modules/home/views/pages/PageSearchDetail.dart';
@@ -76,7 +77,7 @@ class _ComponentSearchRenderState extends State<ComponentSearchRender> with Comm
 									borderRadius: BorderRadius.circular(2.0)
 								),
 								child: Center(
-									child: Text(widget.snapData.subsitename, style: TextStyle(
+									child: CommonText(widget.snapData.subsitename, style: TextStyle(
 												fontSize: 12.0,
 												color: Colors.black
 									)),
@@ -85,7 +86,7 @@ class _ComponentSearchRenderState extends State<ComponentSearchRender> with Comm
 							SizedBox(width: 10.0),
 							Icon(Icons.check_circle_outline, size: 20.0, color: Colors.blue),
 							SizedBox(width: 10.0),
-							Text(
+							CommonText(
 								widget.snapData.posttime,
 								style: TextStyle(color: Colors.black.withOpacity(0.7), fontSize: 13.0)
 							)
@@ -159,7 +160,7 @@ class _ComponentSearchRenderState extends State<ComponentSearchRender> with Comm
 									borderRadius: BorderRadius.circular(2.0)
 								),
 								child: Center(
-									child: Text(widget.snapData.subsitename, style: TextStyle(
+									child: CommonText(widget.snapData.subsitename, style: TextStyle(
 												fontSize: 12.0,
 												color: Colors.black
 									)),
@@ -168,7 +169,7 @@ class _ComponentSearchRenderState extends State<ComponentSearchRender> with Comm
 							SizedBox(width: 10.0),
 							Icon(Icons.check_circle_outline, size: 20.0, color: Colors.blue),
 							SizedBox(width: 10.0),
-							Text(
+							CommonText(
 								widget.snapData.posttime,
 								style: TextStyle(color: Colors.black.withOpacity(0.7), fontSize: 13.0)
 							)

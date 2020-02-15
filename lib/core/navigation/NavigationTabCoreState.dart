@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_travel/core/navigation/NavigationTabCore.dart';
 import 'package:flutter_travel/core/navigation/NavigationTabItem.dart';
 import 'package:flutter_travel/core/manager/ManagerGlobal.dart';
+import 'package:flutter_travel/modules/common/CommonText.dart';
 
 /// TAB VIEW STATE入口类
 class NavigationTabCoreState extends State<NavigationTabCore> {
@@ -77,7 +78,7 @@ class NavigationTabCoreState extends State<NavigationTabCore> {
 				icon,
 				color: this._colorTabMatching(item: tabItem),
 			),
-			title: Text(
+			title: CommonText(
 				text,
 				style: TextStyle(color: this._colorTabMatching(item: tabItem)),
 			)

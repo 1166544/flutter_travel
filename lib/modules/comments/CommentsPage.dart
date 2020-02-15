@@ -3,6 +3,7 @@ import 'package:flutter_travel/core/bloc/BlocProvider.dart';
 import 'package:flutter_travel/modules/common/CommonGalleryItem.dart';
 import 'package:flutter_travel/modules/common/CommonImageNetwork.dart';
 import 'package:flutter_travel/modules/common/CommonNavigator.dart';
+import 'package:flutter_travel/modules/common/CommonText.dart';
 import 'package:flutter_travel/modules/common/CommonTimeFormate.dart';
 import 'package:flutter_travel/modules/common/CommonTravelItem.dart';
 import 'package:flutter_travel/modules/home/blocs/BlocComment.dart';
@@ -115,9 +116,9 @@ class _CommentPageContentState extends State<CommentPageContent> with CommonTrav
 			child: Column(
 				crossAxisAlignment: CrossAxisAlignment.start,
 				children: <Widget>[
-					Text('CUSTOMER', style: TextStyle(color: Colors.black, fontSize: 10.0)),
+					CommonText('CUSTOMER', style: TextStyle(color: Colors.black, fontSize: 10.0)),
 					SizedBox(height: 10.0),
-					Text('The king of sofa!', style: TextStyle(color: Colors.white, fontSize: 15.0, fontWeight: FontWeight.bold)),
+					CommonText('The king of sofa!', style: TextStyle(color: Colors.white, fontSize: 15.0, fontWeight: FontWeight.bold)),
 					SizedBox(height: 10.0),
 					Row(
 						children: <Widget>[
@@ -126,16 +127,16 @@ class _CommentPageContentState extends State<CommentPageContent> with CommonTrav
 								radius: 25.0,
 							),
 							SizedBox(width: 12.0),
-							Text(firstItem.userName, style: TextStyle(color: Color(0xFFc5e2fa), fontSize: 15.0)),
+							CommonText(firstItem.userName, style: TextStyle(color: Color(0xFFc5e2fa), fontSize: 15.0)),
 							Icon(Icons.favorite_border, color: Color(0xFFa2d1f8), size: 15.0,)
 						],
 					),
 					SizedBox(height: 27.0),
 					Row(
 						children: <Widget>[
-							Text('Henry, Bryce, ${firstItem.isReply}, +3', style: TextStyle(color: Color(0xFF374ca1), fontSize: 12.0)),
+							CommonText('Henry, Bryce, ${firstItem.isReply}, +3', style: TextStyle(color: Color(0xFF374ca1), fontSize: 12.0)),
 							Spacer(),
-							Text(this.getFullTime(firstItem.ts.toString()), style: TextStyle(color: Color(0xFF374ca1), fontSize: 12.0)),
+							CommonText(this.getFullTime(firstItem.ts.toString()), style: TextStyle(color: Color(0xFF374ca1), fontSize: 12.0)),
 						],
 					),
 				],
@@ -185,7 +186,7 @@ class _CommentPageContentState extends State<CommentPageContent> with CommonTrav
 			padding: EdgeInsets.fromLTRB(26.0, 5.0, 26.0, 0.0),
 			child: Container(
 				width: MediaQuery.of(this.context).size.width - 80.0,
-				child: Text('${item.userName}', maxLines: 2, overflow: TextOverflow.ellipsis, style: TextStyle(fontFamily: 'Montserrat', color: Color(0xff5b6774), fontSize: 15, fontWeight: FontWeight.bold)),
+				child: CommonText('${item.userName}', maxLines: 2, overflow: TextOverflow.ellipsis, style: TextStyle(fontFamily: 'Montserrat', color: Color(0xff5b6774), fontSize: 15, fontWeight: FontWeight.bold)),
 			)
 		);
 	}
@@ -196,7 +197,7 @@ class _CommentPageContentState extends State<CommentPageContent> with CommonTrav
 			padding: EdgeInsets.fromLTRB(26.0, 20.0, 26.0, 0.0),
 			child: Row(
 				children: <Widget>[
-					Text('一介草根 ${item.from}', style: TextStyle(color: Color(0xFFaeb2bc), fontSize: 10)),
+					CommonText('一介草根 ${item.from}', style: TextStyle(color: Color(0xFFaeb2bc), fontSize: 10)),
 					Spacer(),
 					this.getSubTitleNum(0)
 				],
@@ -229,7 +230,7 @@ class _CommentPageContentState extends State<CommentPageContent> with CommonTrav
 				borderRadius: BorderRadius.circular(3.0)
 			),
 			child: Center(
-				child: Text(
+				child: CommonText(
 					postTitleNum.toString(),
 					style: TextStyle(
 						color: fontColor,
@@ -261,7 +262,7 @@ class _CommentPageContentState extends State<CommentPageContent> with CommonTrav
 						SizedBox(width: 10.0),
 						Container(
 							width: textWidth,
-							child: Text(
+							child: CommonText(
 							item.text,
 							maxLines: 8,
 							softWrap: true,
@@ -329,7 +330,7 @@ class _CommentPageContentState extends State<CommentPageContent> with CommonTrav
 			padding: EdgeInsets.fromLTRB(26.0, 25.0, 20.0, 30.0),
 			child: Row(
 				children: <Widget>[
-					Text(
+					CommonText(
 						this.getFullTime(item.ts.toString()),
 						style: TextStyle(
 							color: Color(0xFF5f6f7f).withOpacity(0.5),
@@ -361,7 +362,7 @@ class _CommentPageContentState extends State<CommentPageContent> with CommonTrav
 					)
 				),
 				SizedBox(width: 5.0),
-				Text(
+				CommonText(
 					commentNum.toString(),
 					style: TextStyle(
 						color: Color(0xFF5f6f7f).withOpacity(0.5),

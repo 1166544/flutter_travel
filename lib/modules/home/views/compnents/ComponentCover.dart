@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_travel/modules/common/CommonText.dart';
 
 /// 封面
 class ComponentCover extends StatelessWidget {
@@ -74,7 +75,7 @@ class ComponentCover extends StatelessWidget {
 	Widget buildDate() {
 		return Container(
 				width: 120,
-				child: Text('19 th October',
+				child: CommonText('19 th October',
 					style: TextStyle(fontSize: 18.0, color: Colors.white, fontFamily: 'Montserrat'),
 					softWrap: true,
 					maxLines: 2),
@@ -84,7 +85,7 @@ class ComponentCover extends StatelessWidget {
 	/// 阴影文本
 	Widget buildShadowText() {
 		return Expanded(
-			child: Text(
+			child: CommonText(
 				'San Francisco',
 				maxLines: 2,
 				style: TextStyle(
@@ -114,13 +115,13 @@ class ComponentCover extends StatelessWidget {
 			crossAxisAlignment: CrossAxisAlignment.start,
 			mainAxisAlignment: MainAxisAlignment.center,
 			children: <Widget>[
-				Text('10',
+				CommonText('10',
 					style: TextStyle(fontSize: 45.0, color: Colors.white)),
 				Row(
 				crossAxisAlignment: CrossAxisAlignment.start,
 				children: <Widget>[
-					Text('0', style: TextStyle(fontSize: 12.0, color: Colors.white)),
-					Text('C', style: TextStyle(fontSize: 18.0, color: Colors.white)),
+					CommonText('0', style: TextStyle(fontSize: 12.0, color: Colors.white)),
+					CommonText('C', style: TextStyle(fontSize: 18.0, color: Colors.white)),
 				],
 				)
 			],

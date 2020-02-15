@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_travel/core/http/HttpServiceCore.dart';
+import 'package:flutter_travel/modules/common/CommonText.dart';
 
 /// 基础功能类封装
 class CommonNavigator {
@@ -45,14 +46,14 @@ class CommonNavigator {
 					this.navigateBack(context);
 					},
 				),
-				title: Text(title, style: TextStyle(color: Colors.black)),
+				title: CommonText(title, style: TextStyle(color: Colors.black)),
 				centerTitle: true,
 			);
 		} else {
 			return AppBar(
 				backgroundColor: Colors.white,
 				elevation: 0.3,
-				title: Text(title, style: TextStyle(color: Colors.black)),
+				title: CommonText(title, style: TextStyle(color: Colors.black)),
 				centerTitle: true,
 			);
 		}

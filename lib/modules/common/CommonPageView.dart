@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_travel/modules/common/CommonText.dart';
 
 /// 页面预览
 class AllPageView extends StatefulWidget {
@@ -32,7 +33,7 @@ class _AllPageViewState extends State<AllPageView> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text('Guide of the month All view',
+                CommonText('Guide of the month All view',
                     style: TextStyle(
                         fontFamily: 'Montserrat',
                         fontWeight: FontWeight.bold,
@@ -46,7 +47,7 @@ class _AllPageViewState extends State<AllPageView> {
           ),
           Padding(
             padding: EdgeInsets.fromLTRB(15.0, 0.0, 15.0, 30.0),
-            child: Text(
+            child: CommonText(
                 "Plugin that allows Flutter to communicate with a native WebView.Warning: The webview is not integrated in the widget tree, it is a native view on top of the flutter view. you won't be able to use snackbars, dialogs ...",
                 style:
                     TextStyle(fontWeight: FontWeight.normal, fontSize: 14.0)),
@@ -63,12 +64,12 @@ class _AllPageViewState extends State<AllPageView> {
                 children: <Widget>[
                   Padding(
                     padding: EdgeInsets.only(left: 15.0),
-                    child: Text('IDR 300.00',
+                    child: CommonText('IDR 300.00',
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 18.0)),
                   ),
                   SizedBox(width: 10.0),
-                  Text('(Total Price)',
+                  CommonText('(Total Price)',
                       style: TextStyle(
                           fontWeight: FontWeight.normal, fontSize: 12.0)),
                   Spacer(),
@@ -78,7 +79,7 @@ class _AllPageViewState extends State<AllPageView> {
                     decoration: BoxDecoration(
                         color: Color(0xFFffcd00), shape: BoxShape.rectangle),
                     child: Center(
-                      child: Text('CONTAINUE',
+                      child: CommonText('CONTAINUE',
                           style: TextStyle(
                               fontFamily: 'Montserrat',
                               fontWeight: FontWeight.bold,
@@ -108,7 +109,7 @@ class _AllPageViewState extends State<AllPageView> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text('Participant',
+          CommonText('Participant',
               style: TextStyle(
                   fontFamily: 'Montserrat',
                   fontSize: 23.0,
@@ -151,7 +152,7 @@ class _AllPageViewState extends State<AllPageView> {
       child: Column(
         children: <Widget>[
 			// Back to Nature Camping Under the Star
-          Text('Back to Nature Camping Under the Star',
+          CommonText('Back to Nature Camping Under the Star',
               maxLines: 3,
               softWrap: true,
               style: TextStyle(
@@ -164,7 +165,7 @@ class _AllPageViewState extends State<AllPageView> {
             children: <Widget>[
               Icon(Icons.location_on, color: Colors.white.withOpacity(0.8)),
               SizedBox(width: 10.0),
-              Text('Labuan Bajo, NTT. Indonesia',
+              CommonText('Labuan Bajo, NTT. Indonesia',
                   style: TextStyle(
                       fontFamily: 'Montserrat',
                       fontSize: 12.0,
@@ -178,7 +179,7 @@ class _AllPageViewState extends State<AllPageView> {
               SizedBox(width: 10.0),
               Container(
                 width: 220.0,
-                child: Text('Mon, 28 Dec 2018 - Wed 28 Dec 2019',
+                child: CommonText('Mon, 28 Dec 2018 - Wed 28 Dec 2019',
                     style: TextStyle(
                         fontFamily: 'Montserrat',
                         fontSize: 12.0,
@@ -209,12 +210,12 @@ class _AllPageViewState extends State<AllPageView> {
                   stops: [0.0, 0.99]),
               shape: BoxShape.rectangle),
           child: Center(
-            child: Text(subTitle.toString(),
+            child: CommonText(subTitle.toString(),
                 style: TextStyle(fontSize: 14.0, color: Colors.white)),
           ),
         ),
         SizedBox(width: 15.0),
-        Text(title, style: TextStyle(fontSize: 16.0, color: Colors.black))
+        CommonText(title, style: TextStyle(fontSize: 16.0, color: Colors.black))
       ],
     );
   }

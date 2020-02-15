@@ -4,6 +4,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_travel/core/navigation/NavigationTabCore.dart';
 import 'package:flutter_travel/core/navigation/NavigationTabItem.dart';
 import 'package:flutter_travel/modules/common/CommonNavigator.dart';
+import 'package:flutter_travel/modules/common/CommonText.dart';
 import 'package:intl/intl.dart';  
 
 /// 表单提交
@@ -23,7 +24,7 @@ class _PageFormSubmitState extends State<PageFormSubmit> with CommonNavigator {
 	Widget build(BuildContext context) {    
 		return Scaffold(    
 			appBar: AppBar(    
-				title: Text("个人信息编辑", style: TextStyle(color: Colors.white),),
+				title: CommonText("个人信息编辑", style: TextStyle(color: Colors.white),),
 				backgroundColor: Color(0xFF45489e),  
 				leading: IconButton(
 					icon: Icon(Icons.arrow_back_ios),
@@ -79,14 +80,14 @@ class _PageFormSubmitState extends State<PageFormSubmit> with CommonNavigator {
 				children: <Widget>[    
 					CupertinoButton(    
 						padding: EdgeInsets.fromLTRB(40.0, 5.0, 40.0, 5.0),
-						child: Text("重置", style: TextStyle(color: Colors.white)),  
+						child: CommonText("重置", style: TextStyle(color: Colors.white)),  
 						color: Color(0xFF45489e),  
 						onPressed: this.cancelInfo,    
 					), 
 					SizedBox(width: 20.0),   
 					CupertinoButton(
 						padding: EdgeInsets.fromLTRB(40.0, 5.0, 40.0, 5.0),
-						child: Text("提交", style: TextStyle(color: Colors.white)),  
+						child: CommonText("提交", style: TextStyle(color: Colors.white)),  
 						color: Color(0xFF45489e),  
 						onPressed: this.submitInfo,    
 					),    
@@ -142,11 +143,11 @@ class _PageFormSubmitState extends State<PageFormSubmit> with CommonNavigator {
 						attribute: "gender",    
 						decoration: InputDecoration(labelText: "姓别"),    
 						// initialValue: 'Male',    
-						hint: Text('请选择'),    
+						hint: CommonText('请选择'),    
 						validators: [FormBuilderValidators.required()],    
 						items: ['男', '女']    
 							.map((gender) => DropdownMenuItem(    
-								value: gender, child: Text("$gender")))    
+								value: gender, child: CommonText("$gender")))    
 							.toList(),    
 					),    
 					SizedBox(height: 20.0),
@@ -220,7 +221,7 @@ class _PageFormSubmitState extends State<PageFormSubmit> with CommonNavigator {
 					FormBuilderCheckbox( 
 						activeColor: Color(0xFF45489e),   
 						attribute: 'accept_terms',    
-						label: Text("我已阅读并同意以上描述条款"),    
+						label: CommonText("我已阅读并同意以上描述条款"),    
 						validators: [    
 						FormBuilderValidators.requiredTrue(    
 							errorText: "请勾选同意条款",    

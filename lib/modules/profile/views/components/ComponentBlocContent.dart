@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:flutter_travel/core/bloc/BlocProvider.dart';
+import 'package:flutter_travel/modules/common/CommonText.dart';
 import 'package:flutter_travel/modules/common/CommonTravelItem.dart';
 import 'package:flutter_travel/modules/profile/blocs/BlocMyInfo.dart';
 import 'package:flutter_travel/modules/profile/models/ModelProfile.dart';
@@ -153,7 +154,7 @@ class _ComponentBlocContentState extends State<ComponentBlocContent> with Common
 						),
 						padding: EdgeInsets.all(14.0),
 						child: Center(
-							child: Text(
+							child: CommonText(
 								'Logout system'.toUpperCase(),
 								style: TextStyle(
 									fontSize: 15.0,

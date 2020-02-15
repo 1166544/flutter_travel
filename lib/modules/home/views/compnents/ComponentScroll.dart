@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_travel/modules/common/CommonImageNetwork.dart';
 import 'package:flutter_travel/modules/common/CommonNavigator.dart';
+import 'package:flutter_travel/modules/common/CommonText.dart';
 import 'package:flutter_travel/modules/home/models/ModelImage.dart';
 import 'package:flutter_travel/modules/home/models/ModelNewsItem.dart';
 import 'package:flutter_travel/modules/home/views/pages/PageDetail.dart';
@@ -123,7 +124,7 @@ class ComponentScroll extends StatelessWidget with CommonNavigator {
 								SizedBox(width: 10.0),
 								Container(
 									width: 200.0,
-									child: Text(item.title,
+									child: CommonText(item.title,
 										maxLines: 2,
 										softWrap: true,
 										overflow: TextOverflow.ellipsis,

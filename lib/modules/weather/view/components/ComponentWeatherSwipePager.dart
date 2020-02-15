@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_travel/modules/common/CommonText.dart';
 import 'package:flutter_travel/modules/weather/models/ModelWeatherItem.dart';
 import 'package:flutter_travel/modules/weather/view/components/ComponentConverters.dart';
 import 'package:flutter_travel/modules/weather/view/components/ComponentTemplature.dart';
@@ -62,7 +63,7 @@ class _ComponentWeatherSwiperPagerState extends State<ComponentWeatherSwiperPage
 						ComponentTemplature(templature: widget.weather.temperature.as(this.temperatureUnit).round()),
 						SlideTransition(
 							position: this.animationLeft,
-							child: Text(
+							child: CommonText(
 								' °',
 								style: TextStyle(
 									fontSize: 100,
@@ -73,7 +74,7 @@ class _ComponentWeatherSwiperPagerState extends State<ComponentWeatherSwiperPage
 						),
 						SlideTransition(
 							position: this.animationRight,
-							child: Text(
+							child: CommonText(
 								'C',
 								style: TextStyle(
 									fontSize: 100,

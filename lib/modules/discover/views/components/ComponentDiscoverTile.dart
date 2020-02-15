@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_travel/core/bloc/BlocProvider.dart';
+import 'package:flutter_travel/modules/common/CommonText.dart';
 import 'package:flutter_travel/modules/discover/blocs/BlocDiscoverDetail.dart';
 import 'package:flutter_travel/modules/discover/views/components/ComponentDiscoverCoverItem.dart';
 import 'package:flutter_travel/modules/discover/views/components/ComponentDiscoverShrinkItem.dart';
@@ -138,7 +139,7 @@ class _ComponentDiscoverTileState extends State<ComponentDiscoverTile> {
 						child: Column(
 							mainAxisAlignment: MainAxisAlignment.center,
 							children: [
-								Text(
+								CommonText(
 									'+${moreLength.toString()}', 
 									style: TextStyle(
 										fontSize: 15, 

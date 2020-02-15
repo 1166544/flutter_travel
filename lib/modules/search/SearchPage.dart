@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_travel/core/bloc/BlocProvider.dart';
 import 'package:flutter_travel/modules/common/CommonNavigator.dart';
+import 'package:flutter_travel/modules/common/CommonText.dart';
 import 'package:flutter_travel/modules/home/blocs/BlocNewsList.dart';
 import 'package:flutter_travel/modules/search/views/ViewSearchContent.dart';
 
@@ -20,7 +21,7 @@ class _SearchPageState extends State<SearchPage> with CommonNavigator {
 	return Scaffold(
 		appBar: AppBar(
 			title: Center(
-			child: Text('SIENCE TECHNOLOGY',
+			child: CommonText('SIENCE TECHNOLOGY',
 				style: TextStyle(
 					color: Colors.black,
 					fontWeight: FontWeight.bold,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_travel/modules/common/CommonImageNetwork.dart';
 import 'package:flutter_travel/modules/common/CommonNavigator.dart';
+import 'package:flutter_travel/modules/common/CommonText.dart';
 import 'package:flutter_travel/modules/common/CommonTimeFormate.dart';
 import 'package:flutter_travel/modules/home/models/ModelImage.dart';
 import 'package:flutter_travel/modules/home/models/ModelNewsItem.dart';
@@ -20,7 +21,7 @@ class ComponentList extends StatelessWidget with CommonTimeFormate, CommonNaviga
 			child: Column(
 				crossAxisAlignment: CrossAxisAlignment.start,
 				children: <Widget>[
-				Text('Express',
+				CommonText('Express',
 					style:
 						TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontFamily: 'Montserrat')),
 				SizedBox(height: 20.0),
@@ -132,7 +133,7 @@ class ComponentList extends StatelessWidget with CommonTimeFormate, CommonNaviga
 					children: <Widget>[
 						Container(
 							width: MediaQuery.of(context).size.width - 160,
-							child: Text(chatTitle,
+							child: CommonText(chatTitle,
 								maxLines: 2,
 								softWrap: true,
 								style: TextStyle(
@@ -143,7 +144,7 @@ class ComponentList extends StatelessWidget with CommonTimeFormate, CommonNaviga
 						SizedBox(height: 5.0),
 						Container(
 							width: MediaQuery.of(context).size.width - 160,
-							child: Text(chatDesc,
+							child: CommonText(chatDesc,
 								maxLines: 2,
 								softWrap: true,
 								style: TextStyle(
@@ -162,12 +163,12 @@ class ComponentList extends StatelessWidget with CommonTimeFormate, CommonNaviga
 										color: Colors.grey,
 									),
 									SizedBox(width: 5.0),
-									Text(this.getDateText(chatNum),
+									CommonText(this.getDateText(chatNum),
 										style: TextStyle(color: Colors.grey, fontSize: 12.0)),
 									Spacer(),
 									Container(
 										width: 80.0,
-										child: Text('[$favNum]',
+										child: CommonText('[$favNum]',
 										textAlign: TextAlign.right,
 										overflow: TextOverflow.ellipsis,
 										style: TextStyle(

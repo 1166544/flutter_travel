@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:flutter_travel/modules/common/CommonText.dart';
 
 /// 天气模块
 class WeatherPage extends StatefulWidget {
@@ -11,7 +12,7 @@ class _WeatherPageState extends State<WeatherPage> {
   @override
   Widget build(BuildContext context) {
 	return Container(
-	   child: Text('data'),
+	   child: CommonText('data'),
 	);
   }
 }

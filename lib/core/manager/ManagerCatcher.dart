@@ -4,6 +4,7 @@ import 'package:flutter_travel/core/CoreApp.dart';
 import 'package:flutter_travel/core/api/ApiEnviroment.dart';
 import 'package:flutter_travel/core/manager/ManagerEnviroment.dart';
 import 'package:flutter_travel/core/manager/ManagerNotification.dart';
+import 'package:flutter_travel/modules/common/CommonText.dart';
 
 String emilTitle = 'Travels异常报告';
 String emailHeader = 'Travels异常详情';
@@ -84,18 +85,18 @@ class _ManagerCustomPage extends StatelessWidget {
 	Widget build(BuildContext context) {
 		return Scaffold(
 			appBar: AppBar(
-				title: Text(emilTitle),
+				title: CommonText(emilTitle),
 			),
 			body: Container(
 				child: Row(children: [
 				RaisedButton(
-					child: Text('发送报告'),
+					child: CommonText('发送报告'),
 					onPressed: () {
 					reportMode.onActionConfirmed(report);
 					},
 				),
 				RaisedButton(
-					child: Text('取消发送'),
+					child: CommonText('取消发送'),
 					onPressed: () {
 					reportMode.onActionRejected(report);
 					Navigator.pop(context);
