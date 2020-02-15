@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:flutter_travel/core/bloc/BlocProvider.dart';
 import 'package:flutter_travel/modules/common/CommonTravelItem.dart';
 import 'package:flutter_travel/modules/profile/blocs/BlocMyInfo.dart';
@@ -73,26 +74,43 @@ class _ComponentBlocContentState extends State<ComponentBlocContent> with Common
 				return store.state.auth;
 			},
 			builder: (context, auth) {
-				return ListView(
-					children: <Widget>[
-						// 顶部头像
-						this.buildTopStucts(snapshot, auth),
 
-						// 中部报告信息
-						this.buildMiddleReportStucts(snapshot, auth),
+				List<Widget> renderList = [
+					// 顶部头像
+					this.buildTopStucts(snapshot, auth),
 
-						// 中部表格
-						this.buildMiddleChart(snapshot, auth),
+					// 中部报告信息
+					this.buildMiddleReportStucts(snapshot, auth),
 
-						// 中部实现信息
-						this.buildMiddlePresciptionStucts(snapshot),
+					// 中部表格
+					this.buildMiddleChart(snapshot, auth),
 
-						// 中部访问信息
-						this.buildMiddleVisitorStucts(snapshot, auth),
+					// 中部实现信息
+					this.buildMiddlePresciptionStucts(snapshot),
 
-						// 底部按钮
-						this.buildButtonStucts(snapshot),
-					]
+					// 中部访问信息
+					this.buildMiddleVisitorStucts(snapshot, auth),
+
+					// 底部按钮
+					this.buildButtonStucts(snapshot),
+				];
+
+				return AnimationLimiter(
+					child: ListView.builder(
+						itemCount: renderList.length,
+						itemBuilder: (BuildContext context, int index) {
+							return AnimationConfiguration.staggeredList(
+								position: index, 
+								duration: Duration(milliseconds: 375),
+								child: SlideAnimation(
+									verticalOffset: 50.0,
+									child: FadeInAnimation(
+										child: FadeInAnimation(child: renderList[index])
+									),
+								),
+							);
+						}
+					)
 				);
 			}
 		);
