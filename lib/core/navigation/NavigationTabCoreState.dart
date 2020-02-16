@@ -60,7 +60,7 @@ class NavigationTabCoreState extends State<NavigationTabCore> {
 			type: BottomNavigationBarType.fixed,
 			items: [
 				this._buildItem(icon: Icons.home, tabItem: NavigationTabItem.Home),
-				this._buildItem(icon: Icons.search, tabItem: NavigationTabItem.Search),
+				this._buildItem(icon: Icons.chrome_reader_mode, tabItem: NavigationTabItem.Search),
 				this._buildItem(icon: Icons.graphic_eq, tabItem: NavigationTabItem.Discover),
 				this._buildItem(icon: Icons.account_circle, tabItem: NavigationTabItem.Profile),
 			],
