@@ -4,15 +4,15 @@ import 'package:flutter_travel/modules/common/CommonTravelItem.dart';
 import 'package:flutter_travel/modules/home/blocs/BlocNewsList.dart';
 import 'package:flutter_travel/modules/home/models/ModelNewsItem.dart';
 import 'package:flutter_travel/modules/home/models/ModelsNewsList.dart';
-import 'package:flutter_travel/modules/search/views/ViewSearchContentRender.dart';
+import 'package:flutter_travel/modules/search/views/components/ComponentSearchContentRender.dart';
 
-class ViewSearchContent extends StatefulWidget {
-  ViewSearchContent({Key key}) : super(key: key);
+class ComponentSearchContent extends StatefulWidget {
+  ComponentSearchContent({Key key}) : super(key: key);
 
-  _ViewSearchContentState createState() => _ViewSearchContentState();
+  _ComponentSearchContentState createState() => _ComponentSearchContentState();
 }
 
-class _ViewSearchContentState extends State<ViewSearchContent> with CommonTravelItem {
+class _ComponentSearchContentState extends State<ComponentSearchContent> with CommonTravelItem {
 	
 	BlocNewsList blocGalleryList;
 	GlobalKey<RefreshIndicatorState> refreshKey = GlobalKey<RefreshIndicatorState>();
@@ -122,7 +122,7 @@ class _ViewSearchContentState extends State<ViewSearchContent> with CommonTravel
 						return this.getNoMoreItem();
 					}
 				} else {
-					return ViewSearchContentRender(
+					return ComponentSearchContentRender(
 						snapData: this.renderListData[index], 
 						index: index, 
 						coverImage: coverImage

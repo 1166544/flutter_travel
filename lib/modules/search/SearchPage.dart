@@ -1,9 +1,10 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_travel/core/bloc/BlocProvider.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_travel/modules/common/CommonNavigator.dart';
 import 'package:flutter_travel/modules/common/CommonText.dart';
-import 'package:flutter_travel/modules/home/blocs/BlocNewsList.dart';
-import 'package:flutter_travel/modules/search/views/ViewSearchContent.dart';
+import 'package:flutter_travel/modules/search/views/components/ComponentSearchStructs.dart';
 
 /// 搜索页
 class SearchPage extends StatefulWidget {
@@ -16,27 +17,34 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> with CommonNavigator {
-  @override
-  Widget build(BuildContext context) {
-	return Scaffold(
-		appBar: AppBar(
-			title: Center(
-			child: CommonText('SIENCE TECHNOLOGY',
-				style: TextStyle(
-					color: Colors.black,
-					fontWeight: FontWeight.bold,
-					fontSize: 20.0
-				)
+	/// 隐藏页面头部效果
+	@override
+	Widget build(BuildContext context) {
+		return Container(
+			child: AnnotatedRegion<SystemUiOverlayStyle>(
+				value: SystemUiOverlayStyle.dark,
+				child: Scaffold(
+					appBar: PreferredSize(
+						child: Offstage(
+							offstage: true,
+							child: AppBar(
+								title: CommonText(''),
+								brightness: Brightness.dark
+							)
+						),
+						preferredSize: Size.fromHeight(MediaQuery.of(context).size.height * 007),
+					),
+					body: this.getBody()
+				),
 			),
-			),
-			elevation: 0.0,
-			backgroundColor: Colors.white
-		),
-		body: BlocProvider(
-			bloc: blocNewsList,
-			child: ViewSearchContent(),
-		),
-	);
-  }
+		);
+	}
 
+	/// 页面布局
+	Widget getBody() {
+		return Padding(
+			padding: EdgeInsets.fromLTRB(0, MediaQuery.of(context).padding.top, 0, 0),
+			child: ComponentSearchStructs(),
+		);
+	}
 }

@@ -13,17 +13,17 @@ import 'package:flutter_travel/core/manager/ManagerEnviroment.dart';
 import 'package:flutter_travel/core/manager/ManagerGlobal.dart';
 import 'package:redux/redux.dart';
 
-class ViewSearchContentRender extends StatefulWidget {
+class ComponentSearchContentRender extends StatefulWidget {
 	final ModelNewsItem snapData;
 	final int index;
 	final String coverImage;
 
-	ViewSearchContentRender({Key key, this.snapData, this.index, this.coverImage}) : super(key: key);
+	ComponentSearchContentRender({Key key, this.snapData, this.index, this.coverImage}) : super(key: key);
 
-	_ViewSearchContentRenderState createState() => _ViewSearchContentRenderState();
+	_ComponentSearchContentRenderState createState() => _ComponentSearchContentRenderState();
 }
 
-class _ViewSearchContentRenderState extends State<ViewSearchContentRender> with CommonTravelItem, CommonNavigator {
+class _ComponentSearchContentRenderState extends State<ComponentSearchContentRender> with CommonTravelItem, CommonNavigator {
 
 	final CommonTimeFormate timeFormate = new CommonTimeFormate();
 
