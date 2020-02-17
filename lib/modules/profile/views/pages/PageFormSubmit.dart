@@ -182,7 +182,7 @@ class _PageFormSubmitState extends State<PageFormSubmit> with CommonNavigator {
 					// 			(number) => FormBuilderFieldOption(value: number))    
 					// 		.toList(),    
 					// ),    
-					FormBuilderStepper(    
+					FormBuilderTouchSpin(    
 						decoration: InputDecoration(labelText: "步长计数"),    
 						attribute: "stepper",    
 						initialValue: 10,    

@@ -137,7 +137,9 @@ class _CommonPhotoViewerState extends State<CommonPhotoViewer> with CommonNaviga
 								);
 							},
 							itemCount: this.list.length,
-							loadingChild: widget.loadingChild,
+							loadingBuilder: (BuildContext context, ImageChunkEvent event) {
+								return widget.loadingChild;
+							},
 							backgroundDecoration: widget.backgroundDecoration,
 							pageController: widget.pageController,
 							onPageChanged: onPageChanged,
