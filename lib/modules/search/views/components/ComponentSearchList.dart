@@ -11,14 +11,25 @@ class ComponentSearchList extends StatefulWidget {
 class _ComponentSearchListState extends State<ComponentSearchList> {
   	@override
   	Widget build(BuildContext context) {
-		return Padding(
-				padding: EdgeInsets.fromLTRB(10, 30, 5, 0),
-				child: Column(
-					children: <Widget>[
-						this.getHotTitle(),
-						// this.getTrendsList()
-					]
-				)
+		List<Widget> renderList = [
+			CommonText('test', color: Colors.black),
+			CommonText('test', color: Colors.black),
+			CommonText('test', color: Colors.black),
+			CommonText('test', color: Colors.black),
+		];
+
+		return Flexible( 
+			fit: FlexFit.tight, 
+			child: ListView.separated(
+				padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+				itemBuilder: (context, index) {
+					return renderList[index];
+				}, 
+				separatorBuilder: (context, index) {
+					return SizedBox(height:5.0);
+				}, 
+				itemCount: renderList.length + 1
+			)
 		);
 	}
 

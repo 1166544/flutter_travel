@@ -4,8 +4,8 @@ import 'package:flutter_travel/modules/search/views/components/ComponentHotSearc
 import 'package:flutter_travel/modules/search/views/components/ComponentHotSearchBar.dart';
 import 'package:flutter_travel/modules/search/views/components/ComponentHotTypeList.dart';
 import 'package:flutter_travel/modules/search/views/components/ComponentSearchFocus.dart';
-import 'package:flutter_travel/modules/search/views/components/ComponentSearchList.dart';
 import 'package:flutter_travel/modules/search/views/components/ComponentSearchType.dart';
+import 'package:flutter_travel/modules/common/CommonText.dart';
 
 /// 页面结构
 class ComponentSearchStructs extends StatefulWidget {
@@ -31,7 +31,7 @@ class _ComponentSearchStructsState extends State<ComponentSearchStructs> {
 			ComponentHotTypeList(),
 
 			// 长列表
-			ComponentSearchList()
+			this.getDynamicList()
 		];
 
 		return Stack(
@@ -56,6 +56,22 @@ class _ComponentSearchStructsState extends State<ComponentSearchStructs> {
 				// 上层 搜索条
 				ComponentHotSearchBar(),
 			]
+		);
+	}
+
+	/// 动态增长列表
+	Widget getDynamicList() {
+		return ListView.separated(
+			padding: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
+			physics: BouncingScrollPhysics(),	// 禁用滑动事件
+			shrinkWrap: true,					// 无限高度兼容
+			itemBuilder: (context, index) {
+				return CommonText('data');
+			},
+			separatorBuilder: (context, index) {
+				return SizedBox(height: 5.0);
+			},
+			itemCount: 5,
 		);
 	}
 }
