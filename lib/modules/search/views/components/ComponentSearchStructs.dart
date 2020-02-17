@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:flutter_travel/modules/search/views/components/ComponentHotSearch.dart';
 import 'package:flutter_travel/modules/search/views/components/ComponentHotSearchBar.dart';
 import 'package:flutter_travel/modules/search/views/components/ComponentHotTypeList.dart';
@@ -16,33 +17,44 @@ class ComponentSearchStructs extends StatefulWidget {
 class _ComponentSearchStructsState extends State<ComponentSearchStructs> {
 	@override
 	Widget build(BuildContext context) {
+		List<Widget> renderList = [
+			// 热搜文字列表
+			ComponentHotSearch(),
+
+			// 分类
+			ComponentSearchType(),
+
+			// 头条
+			ComponentSearchFocus(),
+
+			// 热门TAB
+			ComponentHotTypeList(),
+
+			// 长列表
+			ComponentSearchList()
+		];
+
 		return Stack(
 			children: [
-				// 上层 搜索条
-				ComponentHotSearchBar(),
 
 				// 下层列表
-				Padding(
+				ListView.builder(
 					padding: EdgeInsets.fromLTRB(0, 69, 0, 0),
-					child: ListView(
-						children: [
-							// 热搜文字列表
-							ComponentHotSearch(),
+					itemCount: renderList.length,
+					itemBuilder: (BuildContext context, int index) {
+						return AnimationConfiguration.staggeredList(
+							position: index, 
+							duration: Duration(milliseconds: 375),
+							child: SlideAnimation(
+								verticalOffset: 50.0,
+								child: FadeInAnimation(child: renderList[index])
+							)
+						);
+					}
+				),
 
-							// 分类
-							ComponentSearchType(),
-
-							// 头条
-							ComponentSearchFocus(),
-
-							// 热门TAB
-							ComponentHotTypeList(),
-
-							// 长列表
-							ComponentSearchList()
-						]
-					),
-				)
+				// 上层 搜索条
+				ComponentHotSearchBar(),
 			]
 		);
 	}

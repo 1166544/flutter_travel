@@ -9,36 +9,42 @@ class ComponentHotSearchBar extends StatefulWidget {
 }
 
 class _ComponentHotSearchBarState extends State<ComponentHotSearchBar> {
-  @override
-  Widget build(BuildContext context) {
-	return Container(
-		width: MediaQuery.of(context).size.width,
-		height: 45,
-		margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
-		decoration: BoxDecoration(
-			shape: BoxShape.rectangle,
-			color: Colors.grey.withOpacity(0.2),
-			borderRadius: BorderRadius.all(Radius.circular(25))
-		),
-	   	child: Center(
-			child: Row(
-				mainAxisAlignment: MainAxisAlignment.center,
-				children: [
-					Icon(
-						Icons.search, 
-						color: Colors.grey.withOpacity(0.7), 
-						size: 25
-					),
-					SizedBox(width: 5),
-					CommonText(
-						'Search your favorite video', 
-						fontSize: 19, 
-						color: Colors.grey.withOpacity(0.7),
-						fontWeight: FontWeight.w300,
-					)				
-				]
+	@override
+	Widget build(BuildContext context) {
+		return Container(
+			width: MediaQuery.of(context).size.width,
+			height: 50,	
+			decoration: BoxDecoration(
+				color: Colors.white,
+				shape: BoxShape.rectangle
 			),
-		),
-	);
-  }
+			child: Container(
+				margin: EdgeInsets.fromLTRB(10, 5, 10, 5),
+				decoration: BoxDecoration(
+					shape: BoxShape.rectangle,
+					color: Colors.grey.withOpacity(0.2),
+					borderRadius: BorderRadius.all(Radius.circular(25))
+				),
+				child: Center(
+					child: Row(
+						mainAxisAlignment: MainAxisAlignment.center,
+						children: [
+							Icon(
+								Icons.search, 
+								color: Colors.grey.withOpacity(0.7), 
+								size: 25
+							),
+							SizedBox(width: 5),
+							CommonText(
+								'Search your favorite video', 
+								fontSize: 19, 
+								color: Colors.grey.withOpacity(0.7),
+								fontWeight: FontWeight.w300,
+							)				
+						]
+					),
+				),
+			),
+		);
+	}
 }

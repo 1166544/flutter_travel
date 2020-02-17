@@ -13,7 +13,7 @@ class _ComponentHotSearchState extends State<ComponentHotSearch> {
 	@override
 	Widget build(BuildContext context) {
 		return Padding(
-			padding: EdgeInsets.fromLTRB(10, 10, 5, 0),
+			padding: EdgeInsets.fromLTRB(10, 0, 5, 0),
 			child: Column(
 				children: <Widget>[
 					this.getHotTitle(),

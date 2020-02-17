@@ -16,14 +16,14 @@ class _ComponentSearchListState extends State<ComponentSearchList> {
 				child: Column(
 					children: <Widget>[
 						this.getHotTitle(),
-						this.getTrendsList()
+						// this.getTrendsList()
 					]
 				)
 		);
 	}
 
 	Widget getTrendsList() {
-		return Text('');
+		return Text('data');
 	}
 
 	/// 标题
