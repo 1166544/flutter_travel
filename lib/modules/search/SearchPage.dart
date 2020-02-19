@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_travel/modules/common/CommonNavigator.dart';
 import 'package:flutter_travel/modules/common/CommonText.dart';
+import 'package:flutter_travel/modules/search/models/ModelSearchConfig.dart';
 import 'package:flutter_travel/modules/search/views/components/ComponentSearchStructs.dart';
 
 /// 搜索页
@@ -42,6 +43,11 @@ class _SearchPageState extends State<SearchPage> with CommonNavigator {
 
 	/// 页面布局
 	Widget getBody() {
+		ModelSearchConfig configData = ModelSearchConfig();
+		configData.update();
+		
+		print(configData);
+
 		return Padding(
 			padding: EdgeInsets.fromLTRB(0, MediaQuery.of(context).padding.top, 0, 0),
 			child: ComponentSearchStructs(),
