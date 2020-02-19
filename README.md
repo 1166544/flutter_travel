@@ -4,17 +4,32 @@ A travels Flutter project.
 
 ## Proview
 ![App proview](./snapshot/demo1.gif "App proview animation")
+<br/>
+<br/>
 
 ## Upgrade
 ```shell 
 flutter upgrade
 ```
+<br/>
 
-## RUN
-```shell
-flutter run 
+## DEVELOPMENT RUN
+> 对接接口时借助 Charles 抓包析工具能提升开发效率和快速定位问题,请注意 Charles 端口是否已设置为 8888(默认值)
+
+[Charles Web Debugging Proxy](https://www.charlesproxy.com/)<br/>
+
+#### 开发环境启动注意：
+1.配置config/ConfigDev.dart配置
+```js
+/// proxy服务器地址，只有开发环境走proxy
+String getProxyUrl() {
+	return '127.0.0.1:8888';
+}
 ```
-
+2.点击DEBUG启动按钮，选择开发环境启动
+![App debug](./snapshot/debug.png "App debug")
+<br/>
+<br/>
 ## BUILD
 ```shell
 // 开发环境 
@@ -29,6 +44,8 @@ flutter build -t lib/core/env/EnviromentGrey.dart
 // 生产环境
 flutter build -t lib/main.dart
 ```
+<br/>
+
 
 ## STRUCTS
 ```shell
@@ -57,6 +74,8 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter, view our 
 [online documentation](https://flutter.io/docs), which offers tutorials, 
 samples, guidance on mobile development, and a full API reference.
+
+<br/>
 
 # Tips:
 ### Could not determine the dependencies of task ':app:flutterBuildDebug' when start vscode flutter debugging 错误解决办法
