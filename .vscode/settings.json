@@ -9,6 +9,6 @@
     "powermode.enabled": true,
     "powermode.enableShake": false,
     "files.exclude": {
-        "**/.g.dart": true
+        "**/**.g.dart": true
     },
 }
