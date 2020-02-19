@@ -52,7 +52,8 @@ class ServiceSearchList extends HttpServiceCore {
 				'Sec-Fetch-Mode': 'cors',
 				'User-Agent': this.ua,
 				'X-Requested-With': 'XMLHttpRequest',
-				'X-XSRF-TOKEN': this.config.st
+				'X-XSRF-TOKEN': this.config.st,
+				'Cookie': this.config.cookie,
 			};
 		}
 
@@ -73,7 +74,7 @@ class ServiceSearchList extends HttpServiceCore {
 			// 检测st
 			Response response = await this.get('');
 			this.config = new ModelSearchConfig();
-			this.config.update(source: response.data);
+			this.config.update(source: response.data, headers: response.headers);
 			this.openStMode();
 
 			// 调用列表数据
@@ -94,8 +95,18 @@ class ServiceSearchList extends HttpServiceCore {
 		return ModelSearchTabList.fromJson(response.data);
 	}
 
-	/// 渲染数据
-	Future<ModelSearchList> getRenderList() async {
-		return ModelSearchList();
+	/// 页面渲染数据
+	/// * [String containerid] 容器ID
+	/// * [String sinceId] 页面
+	/// * [String openApp] openApp
+	Future<ModelSearchList> getRenderList({String containerid, String sinceId = '1', String openApp = '0'}) async {
+		dynamic requestData = {
+			'containerid': containerid,
+			'openApp': openApp,
+			'since_id': sinceId
+		};
+		Response response = await this.get('api/container/getIndex', queryParameters: requestData);
+		
+		return ModelSearchList.fromJson(response.data);
 	}
 }

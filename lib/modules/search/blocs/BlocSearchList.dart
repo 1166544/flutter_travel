@@ -31,12 +31,15 @@ class BlocSearchList implements BlocBase {
 	}
 
 	/// 初始化调用
-	Future<Null> init() async {
+	/// * [String containerid] 容器ID
+	/// * [String sinceId] 页面
+	/// * [String openApp] openApp
+	Future<Null> init({String containerid, String sinceId = '1', String openApp = '0'}) async {
 		// st check
 		await this._serviceSearchList.getTicket();
 
 		// 页面数据源
-		ModelSearchList renderData = await this._serviceSearchList.getRenderList();
+		ModelSearchList renderData = await this._serviceSearchList.getRenderList(containerid: containerid, sinceId: sinceId);
 
 		/// 触发数据更新
 		this.update(renderData);

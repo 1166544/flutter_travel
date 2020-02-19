@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:html/dom.dart' as dom;
 import 'package:html/parser.dart' as parser;
 
@@ -9,6 +10,7 @@ class ModelSearchConfig {
 	String uid;
 	String preferQuickapp;
 	String wm;
+	String cookie;
 
 	static String finalStReplaceTag = 'st: ';
 	static String finalVersionReplaceTag = 'version: ';
@@ -22,7 +24,7 @@ class ModelSearchConfig {
 	static String localVarName = 'var ';
 	static String localVersionName = 'version';
 
-	void update({dynamic source}) {
+	void update({dynamic source, Headers headers}) {
 		var html = source ?? '';
 		String data = html;
 		dom.Document document = parser.parse(data);
@@ -80,6 +82,14 @@ class ModelSearchConfig {
 						}
 					}
 				}
+			}
+		}
+
+		var setCookie = headers['set-cookie'];
+		if (setCookie.length > 0) {
+			for (var i = 0; i < setCookie.length; i++) {
+				String firstItem = setCookie[i];
+				this.cookie += '$firstItem;';
 			}
 		}
 	}
