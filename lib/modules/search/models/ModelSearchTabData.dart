@@ -14,7 +14,7 @@ class ModelSearchTabData {
 	List<ModelSearchTabChannel> channel;
 
 	@JsonKey(name: 'hot')
-	List<ModelSearchHot> hot;
+	ModelSearchHot hot;
 
 	ModelSearchTabData({this.groups, this.channel, this.hot});
 

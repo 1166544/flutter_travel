@@ -73,7 +73,8 @@ class ServiceSearchList extends HttpServiceCore {
 			// 检测st
 			Response response = await this.get('');
 			this.config = new ModelSearchConfig();
-			this.config.update(response.data);
+			this.config.update(source: response.data);
+			this.openStMode();
 
 			// 调用列表数据
 			ModelSearchTabList tabList = await this.getTabList();
@@ -81,17 +82,16 @@ class ServiceSearchList extends HttpServiceCore {
 			this.enviroment.getEnv().updateTicket(ModelSearchPage(config: this.config, tabList: tabList));
 		} else {
 			this.config = pageConfigData.config;
+			this.openStMode();
 		}
-		this.openStMode();
 
 		return pageConfigData;
 	}
 
 	/// TAB列表
 	Future<ModelSearchTabList> getTabList() async {
-		// https://m.weibo.cn/api/config/list
-		return ModelSearchTabList();
-    
+		Response response = await this.get('api/config/list');
+		return ModelSearchTabList.fromJson(response.data);
 	}
 
 	/// 渲染数据

@@ -14,11 +14,9 @@ ModelSearchTabData _$ModelSearchTabDataFromJson(Map<String, dynamic> json) {
             ? null
             : ModelSearchTabChannel.fromJson(e as Map<String, dynamic>))
         ?.toList(),
-    hot: (json['hot'] as List)
-        ?.map((e) => e == null
-            ? null
-            : ModelSearchHot.fromJson(e as Map<String, dynamic>))
-        ?.toList(),
+    hot: json['hot'] == null
+        ? null
+        : ModelSearchHot.fromJson(json['hot'] as Map<String, dynamic>),
   );
 }
 
