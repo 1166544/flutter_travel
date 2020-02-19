@@ -22,5 +22,7 @@ enum API_ENUM {
 	
 	GITHUB,
 
-	NOW
+	NOW,
+
+	WEIBO
 }

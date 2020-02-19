@@ -88,6 +88,8 @@ flutter run
 
 生成JSON序列化文件.g.dart
 flutter packages pub run build_runner build
+或者
+flutter packages pub run build_runner build --delete-conflicting-outputs
 ```
 
 <br/>

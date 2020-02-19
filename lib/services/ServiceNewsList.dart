@@ -3,7 +3,7 @@ import 'package:flutter_travel/core/api/ApiEnum.dart';
 import 'package:flutter_travel/core/http/HttpServiceCore.dart';
 import 'package:flutter_travel/core/manager/ManagerEnviroment.dart';
 
-/// 百度 API服务
+/// news API服务
 class ServiceNewsList extends HttpServiceCore {
 	factory ServiceNewsList() => _getInstance();
 	static ServiceNewsList get instance => _getInstance();

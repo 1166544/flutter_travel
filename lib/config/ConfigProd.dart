@@ -51,6 +51,10 @@ class ConfigProd extends ConfigDefault {
 			key: API_ENUM.NOW,
 			serverUrl: 'https://github-contributions-api.now.sh/'
 		));
+		this.serverUrlList.add(ApiConfigVO(
+			key: API_ENUM.WEIBO,
+			serverUrl: 'https://m.weibo.cn/'
+		));
 	}
 
 }

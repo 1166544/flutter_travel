@@ -2,6 +2,7 @@ import 'package:flutter_travel/core/api/ApiConfigVO.dart';
 import 'package:flutter_travel/core/api/ApiEnum.dart';
 import 'package:flutter_travel/core/api/ApiLibInfo.dart';
 import 'package:flutter_travel/core/api/ApiToken.dart';
+import 'package:flutter_travel/modules/search/models/ModelSearchPage.dart';
 
 /// 默认配置
 class ConfigDefault {
@@ -10,7 +11,8 @@ class ConfigDefault {
 	List<ApiConfigVO> serverUrlList = [];
 	ApiToken _apiToken;
 	ApiLibInfo _apiLibInfo;
-
+	ModelSearchPage _ticketData;
+	
 	ConfigDefault() {
 		/// 服务器默认URL配置(各环境在构造函数中重写)
 		this.serverUrlList.add(ApiConfigVO(
@@ -57,6 +59,10 @@ class ConfigDefault {
 			key: API_ENUM.NOW,
 			serverUrl: 'https://github-contributions-api.now.sh/'
 		));
+		this.serverUrlList.add(ApiConfigVO(
+			key: API_ENUM.WEIBO,
+			serverUrl: 'https://m.weibo.cn/'
+		));
 	}
 
 	/// 获取服务器URL
@@ -81,9 +87,18 @@ class ConfigDefault {
 		this._apiToken = val;
 	}
 
+	/// 更新ticket
+	void updateTicket(ModelSearchPage ticketData) {
+		this._ticketData = ticketData;
+	}
+
 	/// 更新LIBINFO
 	void updateLibInfo(ApiLibInfo val) {
 		this._apiLibInfo = val;
+	}
+
+	ModelSearchPage getTicket() {
+		return this._ticketData;
 	}
 
 	/// token

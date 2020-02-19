@@ -2,9 +2,10 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_travel/core/bloc/BlocProvider.dart';
 import 'package:flutter_travel/modules/common/CommonNavigator.dart';
 import 'package:flutter_travel/modules/common/CommonText.dart';
-import 'package:flutter_travel/modules/search/models/ModelSearchConfig.dart';
+import 'package:flutter_travel/modules/search/blocs/BlocSearchList.dart';
 import 'package:flutter_travel/modules/search/views/components/ComponentSearchStructs.dart';
 
 /// 搜索页
@@ -35,7 +36,10 @@ class _SearchPageState extends State<SearchPage> with CommonNavigator {
 						),
 						preferredSize: Size.fromHeight(MediaQuery.of(context).size.height * 007),
 					),
-					body: this.getBody()
+					body: BlocProvider(
+						child: this.getBody(), 
+						bloc: blocSearchList
+					)
 				),
 			),
 		);
@@ -43,11 +47,6 @@ class _SearchPageState extends State<SearchPage> with CommonNavigator {
 
 	/// 页面布局
 	Widget getBody() {
-		ModelSearchConfig configData = ModelSearchConfig();
-		configData.update();
-		
-		print(configData);
-
 		return Padding(
 			padding: EdgeInsets.fromLTRB(0, MediaQuery.of(context).padding.top, 0, 0),
 			child: ComponentSearchStructs(),

@@ -22,7 +22,7 @@ class ModelSearchConfig {
 	static String localVarName = 'var ';
 	static String localVersionName = 'version';
 
-	void update({String source}) {
+	void update(data, {String source}) {
 		var html = source ?? '';
 		String data = html;
 		dom.Document document = parser.parse(data);
