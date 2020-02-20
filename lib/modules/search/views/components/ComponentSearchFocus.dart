@@ -4,6 +4,7 @@ import 'package:flutter_travel/modules/common/CommonImageNetwork.dart';
 import 'package:flutter_travel/modules/common/CommonText.dart';
 import 'package:flutter_travel/modules/search/models/model-container/ModelSearchCards.dart';
 import 'package:flutter_travel/modules/search/views/components/ComponentSearchHotItem.dart';
+import 'package:flutter_travel/modules/utils/Utils.dart';
 
 /// 头条
 class ComponentSearchFocus extends StatefulWidget {
@@ -19,6 +20,24 @@ class _ComponentSearchFocusState extends State<ComponentSearchFocus> {
 
 		// 三张图边界计算
 		String coverUrl = ManagerEnviroment.instance.getEnv().loginLogoUrl();
+		String cover1Url = coverUrl;
+		String cover1Title = '';
+		String cover2Url = coverUrl;
+		String cover2Title = '';
+		String cover3Url = coverUrl;
+		String cover3Title = '';
+
+		if (widget.list != null && widget.list.length > 2) {
+			cover1Url = widget.list[0].mblog.thumbnailPic;
+			cover1Title = Utils.splitHtml(widget.list[0].mblog.text);
+
+			cover2Url = widget.list[1].mblog.thumbnailPic;
+			cover2Title = Utils.splitHtml(widget.list[1].mblog.text);
+
+			cover3Url = widget.list[2].mblog.thumbnailPic;
+			cover3Title = Utils.splitHtml(widget.list[2].mblog.text);
+		}
+
 		double screenWidth = MediaQuery.of(context).size.width;
 		double leftWidth = screenWidth / 2 + 40;
 		double rightGap = 6;
@@ -37,8 +56,8 @@ class _ComponentSearchFocusState extends State<ComponentSearchFocus> {
 					this.getStackCover(
 						width: leftWidth, 
 						height: coverHeight, 
-						coverUrl: coverUrl,
-						coverTitle: 'May 17 is no longer... ',
+						coverUrl: cover1Url,
+						coverTitle: cover1Title,
 						showIcon: true
 					),
 					SizedBox(width: rightGap),
@@ -50,15 +69,15 @@ class _ComponentSearchFocusState extends State<ComponentSearchFocus> {
 							this.getStackCover(
 								width: rightWidth, 
 								height: rightHheight, 
-								coverUrl: coverUrl,
-								coverTitle: '130 million to read... ',
+								coverUrl: cover2Url,
+								coverTitle: cover2Title,
 							),
 							SizedBox(height: rightGap),
 							this.getStackCover(
 								width: rightWidth, 
 								height: rightHheight, 
-								coverUrl: coverUrl,
-								coverTitle: 'List of topics... '
+								coverUrl: cover3Url,
+								coverTitle: cover3Title,
 							),
 						],
 					)
@@ -78,7 +97,7 @@ class _ComponentSearchFocusState extends State<ComponentSearchFocus> {
 					softWrap: true, 
 					maxLines: 2,
 					style: TextStyle(
-						fontSize: 18, 
+						fontSize: 16, 
 						color: Colors.white
 					)
 				)
@@ -124,7 +143,7 @@ class _ComponentSearchFocusState extends State<ComponentSearchFocus> {
 					borderRadius: BorderRadius.circular(8),
 				),
 				child: Flex(
-					mainAxisAlignment: MainAxisAlignment.center,
+					mainAxisAlignment: MainAxisAlignment.start,
 					crossAxisAlignment: CrossAxisAlignment.end,
 					direction: Axis.horizontal,
 					children: renderTextList

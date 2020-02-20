@@ -17,7 +17,7 @@ class BlocSearchList implements BlocBase {
 	List<ModelSearchCards> _focusList;
 	List<ModelSearchCards> _topicList;
 	int hotNum = 2;
-	int focusNum = 4;
+	int focusNum = 3;
 
 
 	/// 数据流处理对象
@@ -76,24 +76,28 @@ class BlocSearchList implements BlocBase {
 	void devideList(ModelSearchList renderData) {
 		List<ModelSearchCards> cards = renderData.data.cards;
 
-		while(
-			cards.length != 0 && 
-			this._hotList.length < this.focusNum && 
-			this._focusList.length < this.focusNum && 
-			this._topicList.length < this.hotNum) {
-				ModelSearchCards insertItem = cards.removeAt(0);
+		while(cards.length != 0 && this._hotList.length < this.focusNum ) {
+			ModelSearchCards insertItem = cards.removeAt(0);
 
-				if (this._hotList.length < this.focusNum) {
-					this._hotList.add(insertItem);
-				} else {
-					if (this._focusList.length < this.focusNum) {
-						this._focusList.add(insertItem);
-					} else {
-						if (this._topicList.length < this.hotNum) {
-							this._topicList.add(insertItem);
-						}
-					}
-				}
+			if (this._hotList.length < this.focusNum) {
+				this._hotList.add(insertItem);
+			}
+		}
+
+		while(cards.length != 0 && this._focusList.length < this.focusNum ) {
+			ModelSearchCards insertItem = cards.removeAt(0);
+
+			if (this._focusList.length < this.focusNum) {
+				this._focusList.add(insertItem);
+			}
+		}
+
+		while(cards.length != 0 && this._topicList.length < this.hotNum ) {
+			ModelSearchCards insertItem = cards.removeAt(0);
+
+			if (this._topicList.length < this.hotNum) {
+				this._topicList.add(insertItem);
+			}
 		}
 	}
 
@@ -133,12 +137,12 @@ class BlocSearchList implements BlocBase {
 
 	/// 获取头条列表
 	List<ModelSearchCards> getFocusList() {
-		return this._topicList;
+		return this._focusList;
 	}
 
 	/// 获取热门TAB
 	List<ModelSearchCards> getHotTopicList() {
-		return this._focusList;
+		return this._topicList;
 	}
 }
 

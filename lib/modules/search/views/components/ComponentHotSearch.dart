@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_travel/modules/common/CommonText.dart';
 import 'package:flutter_travel/modules/search/models/model-container/ModelSearchCards.dart';
 import 'package:flutter_travel/modules/search/views/components/ComponentSearchHotItem.dart';
@@ -67,7 +66,7 @@ class _ComponentHotSearchState extends State<ComponentHotSearch> {
 			crossAxisAlignment: CrossAxisAlignment.center,
 			mainAxisAlignment: MainAxisAlignment.center,
 			children: <Widget>[
-				CommonText('Weibo hot search', fontWeight: FontWeight.bold, fontSize: 20),
+				CommonText('Hot search', fontWeight: FontWeight.bold, fontSize: 20),
 				Spacer(),
 				Row(
 					crossAxisAlignment: CrossAxisAlignment.center,
