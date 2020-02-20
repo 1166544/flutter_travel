@@ -84,7 +84,7 @@ class _ComponentSearchStructsState extends State<ComponentSearchStructs> with Co
 			// 热门TAB
 			ComponentHotTypeList(list: this.blocSearchList.getHotTopicList()),
 
-			SizedBox(height: 20),
+			SizedBox(height: 30),
 
 			// 长列表
 			this.getDynamicList()
