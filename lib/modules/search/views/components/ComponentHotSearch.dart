@@ -102,7 +102,7 @@ class _ComponentHotSearchState extends State<ComponentHotSearch> {
 	}
 
 	/// 热搜显示项
-	Widget getHotRenderItem(ModelSearchCards content, {int type = 0}) {
+	Widget getHotRenderItem(ModelSearchCards content) {
 		return Container(
 			margin: EdgeInsets.fromLTRB(0, 0, 15, 15),
 			padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
@@ -113,7 +113,7 @@ class _ComponentHotSearchState extends State<ComponentHotSearch> {
 			),
 			child: Row(
 				children: <Widget>[
-					this.getHotIcon(type),
+					this.getHotIcon(content.mblog.attitudesCount),
 					SizedBox(width: 5),
 					CommonText(Utils.splitHtml(content.mblog.text))
 				]
@@ -123,6 +123,10 @@ class _ComponentHotSearchState extends State<ComponentHotSearch> {
 
 	/// 热搜小图标
 	Widget getHotIcon(int type) {
-		return ComponentSearchHotItem();
+		if (type > 300) {
+			return ComponentSearchHotItem(text: 'hot', firstColor: Color(0xffff5626), lastColor: Color(0xFFfd9d83));
+		} else {
+			return ComponentSearchHotItem(text: 'new', firstColor: Color(0xFFff4c62), lastColor: Color(0xFFff9fae));
+		}
 	}
 }

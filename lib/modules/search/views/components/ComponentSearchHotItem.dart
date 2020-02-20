@@ -3,7 +3,10 @@ import 'package:flutter_travel/modules/common/CommonText.dart';
 
 class ComponentSearchHotItem extends StatelessWidget {
 	final int type;
-	const ComponentSearchHotItem({Key key, this.type}) : super(key: key);
+	final Color firstColor;
+	final Color lastColor;
+	final String text;
+	const ComponentSearchHotItem({Key key, this.text, this.type, this.firstColor, this.lastColor}) : super(key: key);
 
 	@override
 	Widget build(BuildContext context) {
@@ -13,10 +16,9 @@ class ComponentSearchHotItem extends StatelessWidget {
 	/// 热搜小图标
 	Widget getHotIcon() {
 		List<Color> renderColors = [
-			Color(0xFFff4c62),
-			Color(0xFFff9fae),
+			this.firstColor,
+			this.lastColor,
 		];
-		String typeTitle = 'new';
 
 		return Container(
 			width: 30,
@@ -32,7 +34,7 @@ class ComponentSearchHotItem extends StatelessWidget {
 				)
 			),
 			child: Center(
-				child: CommonText(typeTitle, color: Colors.white, fontSize: 12)
+				child: CommonText(this.text, color: Colors.white, fontSize: 12)
 			),
 		);
 	}
