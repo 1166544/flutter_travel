@@ -3,6 +3,7 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_travel/modules/common/CommonText.dart';
 import 'package:flutter_travel/modules/search/models/model-container/ModelSearchCards.dart';
 import 'package:flutter_travel/modules/search/views/components/ComponentSearchHotItem.dart';
+import 'package:flutter_travel/modules/utils/Utils.dart';
 
 /// 热搜文字列表
 class ComponentHotSearch extends StatefulWidget {
@@ -48,6 +49,7 @@ class _ComponentHotSearchState extends State<ComponentHotSearch> {
 
 				if (addedList.length < 3) {
 					addedList.add(insertItem);
+					break;
 				}
 			}
 		}
@@ -113,11 +115,7 @@ class _ComponentHotSearchState extends State<ComponentHotSearch> {
 				children: <Widget>[
 					this.getHotIcon(type),
 					SizedBox(width: 5),
-					Html(
-						data: content.mblog.text,
-						useRichText: true,
-						defaultTextStyle: TextStyle(color: Colors.black, fontSize: 16.0),
-					)
+					CommonText(Utils.splitHtml(content.mblog.text))
 				]
 			),
 		);

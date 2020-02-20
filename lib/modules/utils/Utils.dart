@@ -1,6 +1,9 @@
+import 'package:html/dom.dart' as dom;
+import 'package:html/parser.dart' as parser;
 /// 格式模板。可自定义格式，例如："yyyy/MM/dd HH:mm:ss"，"yyyy/M/d HH:mm:ss"
 /// year -> yyyy/yy   month -> MM/M    day -> dd/d
 /// hour -> HH/H      minute -> mm/m   second -> ss/s
+
 class DataFormats {
 	static String full = "yyyy-MM-dd HH:mm:ss";
 	// static String y_mo_d_h_m = "yyyy-MM-dd HH:mm";
@@ -76,6 +79,19 @@ class Utils {
 
 	Utils._internal() {
 		// hole
+	}
+
+	/// 去除HTML结构
+	static String splitHtml(String source) {
+		source = source.trim();
+		dom.Document document = parser.parse(source);
+		dom.NodeList nodeList = document.body.nodes;
+		String plusContent = '';
+		for (var i = 0; i < nodeList.length; i++) {
+			plusContent += nodeList[i].text;
+		}
+
+		return plusContent;
 	}
 
 	/// 返回时间截 2019/11/22 格式
