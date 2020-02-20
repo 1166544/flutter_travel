@@ -87,7 +87,7 @@ class _ComponentSearchStructsState extends State<ComponentSearchStructs> with Co
 			SizedBox(height: 30),
 
 			// 长列表
-			this.getDynamicList()
+			this.getDynamicList(snapshot.data)
 		];
 
 		return Stack(
@@ -116,7 +116,7 @@ class _ComponentSearchStructsState extends State<ComponentSearchStructs> with Co
 	}
 
 	/// 动态增长列表
-	Widget getDynamicList() {
+	Widget getDynamicList(ModelSearchList listData) {
 		return ListView.separated(
 			padding: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
 			physics: BouncingScrollPhysics(),	// 禁用滑动事件

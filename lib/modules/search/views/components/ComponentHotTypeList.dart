@@ -113,7 +113,7 @@ class _ComponentHotTypeListState extends State<ComponentHotTypeList> {
 		if (widget.list != null && widget.list.length > 0) {
 			ModelSearchCards cards = widget.list[0];
 			hotTopicTitle = cards.mblog.source;
-			hotComment = cards.mblog.commentsCount.toString();
+			hotComment = cards.mblog.numberDisplayStrategy.displayText;
 		}
 
 		return Padding(
@@ -131,7 +131,7 @@ class _ComponentHotTypeListState extends State<ComponentHotTypeList> {
 					),
 					Spacer(),
 					CommonText(
-						'$hotComment comments', 
+						'$hotComment', 
 						fontSize: 14, 
 						fontWeight: FontWeight.normal, 
 						color: Colors.black.withOpacity(0.3)
