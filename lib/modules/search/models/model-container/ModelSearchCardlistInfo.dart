@@ -36,7 +36,7 @@ class ModelSearchCardlistInfo {
     String desc;
 
     @JsonKey(name: 'cardlist_head_cards')
-    ModelSearchCardListHeadCards cardlistHeadCards;
+    List<ModelSearchCardListHeadCards> cardlistHeadCards;
 
     ModelSearchCardlistInfo({
         this.vp,

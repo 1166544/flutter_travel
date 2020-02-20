@@ -1,13 +1,17 @@
 import 'dart:async';
 
 import 'package:flutter_travel/core/bloc/BlocBase.dart';
+import 'package:flutter_travel/core/manager/ManagerEnviroment.dart';
 import 'package:flutter_travel/modules/search/models/ModelSearchList.dart';
+import 'package:flutter_travel/modules/search/models/ModelSearchPage.dart';
+import 'package:flutter_travel/modules/search/models/ModelSearchTabChannel.dart';
 import 'package:flutter_travel/services/ServiceSearchList.dart';
 
 /// SEARCH页数据源
 class BlocSearchList implements BlocBase {
 	ModelSearchList _data;
 	ServiceSearchList _serviceSearchList;
+	ManagerEnviroment _enviroment;
 
 	/// 数据流处理对象
 	StreamController<ModelSearchList> _dataController;
@@ -19,6 +23,7 @@ class BlocSearchList implements BlocBase {
 	Stream<ModelSearchList> get outStream => this._dataController.stream;
 
 	BlocSearchList(this._dataController) {
+		this._enviroment = ManagerEnviroment.instance;
 		this._serviceSearchList = new ServiceSearchList();
 	}
 
@@ -38,11 +43,42 @@ class BlocSearchList implements BlocBase {
 		// st check
 		await this._serviceSearchList.getTicket();
 
+		// 默认值为当前第1个TAB选中内容
+		if (containerid == null) {
+			List<ModelSearchTabChannel> tabList = this.getTabList();
+
+			if(tabList.length > 0) {
+				containerid = tabList[0].gid;
+			}
+		}
+
 		// 页面数据源
 		ModelSearchList renderData = await this._serviceSearchList.getRenderList(containerid: containerid, sinceId: sinceId);
 
 		/// 触发数据更新
 		this.update(renderData);
+	}
+
+  	/// 获取TAB列表
+	List<ModelSearchTabChannel> getTabList() {
+		ModelSearchPage searchPage = this._enviroment.getEnv().getTicket();
+
+		if (searchPage != null && searchPage.tabList != null && searchPage.tabList.data != null && searchPage.tabList.data.channel != null) {
+      		return searchPage.tabList.data.channel;
+		}
+
+    	return [];
+	}
+
+	/// 获取配置内容包括热搜标题
+	ModelSearchPage getPageConfig() {
+		ModelSearchPage pageConfig = this._enviroment.getEnv().getTicket();
+
+		if (pageConfig != null) {
+			return pageConfig;
+		}
+
+		return ModelSearchPage();
 	}
 
 	/// 更新操作

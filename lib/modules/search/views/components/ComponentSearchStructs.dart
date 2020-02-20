@@ -69,6 +69,7 @@ class _ComponentSearchStructsState extends State<ComponentSearchStructs> with Co
 		);
 	}
 
+	/// 构建外观
 	Widget buildLayout(AsyncSnapshot<ModelSearchList> snapshot) {
 		List<Widget> renderList = [
 			// 热搜文字列表
@@ -109,7 +110,7 @@ class _ComponentSearchStructsState extends State<ComponentSearchStructs> with Co
 				),
 
 				// 上层 搜索条
-				ComponentHotSearchBar(),
+				ComponentHotSearchBar(pageConfig: this.blocSearchList.getPageConfig()),
 			]
 		);
 	}

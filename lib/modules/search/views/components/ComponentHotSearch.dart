@@ -4,9 +4,9 @@ import 'package:flutter_travel/modules/search/views/components/ComponentSearchHo
 
 /// 热搜文字列表
 class ComponentHotSearch extends StatefulWidget {
-  ComponentHotSearch({Key key}) : super(key: key);
+	ComponentHotSearch({Key key}) : super(key: key);
 
-  _ComponentHotSearchState createState() => _ComponentHotSearchState();
+	_ComponentHotSearchState createState() => _ComponentHotSearchState();
 }
 
 class _ComponentHotSearchState extends State<ComponentHotSearch> {

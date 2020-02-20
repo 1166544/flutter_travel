@@ -8,8 +8,8 @@ part of 'ModelSearchGeo.dart';
 
 ModelSearchGeo _$ModelSearchGeoFromJson(Map<String, dynamic> json) {
   return ModelSearchGeo(
-    json['width'] as int,
-    json['height'] as int,
+    json['width'],
+    json['height'],
     json['croped'] as bool,
   );
 }

@@ -24,6 +24,10 @@ class ModelSearchConfig {
 	static String localVarName = 'var ';
 	static String localVersionName = 'version';
 
+	ModelSearchConfig() {
+		this.cookie = '';
+	}
+
 	void update({dynamic source, Headers headers}) {
 		var html = source ?? '';
 		String data = html;

@@ -19,10 +19,11 @@ ModelSearchCardlistInfo _$ModelSearchCardlistInfoFromJson(
     sinceId: json['since_id'] as int,
     cardlistTitle: json['cardlist_title'] as String,
     desc: json['desc'] as String,
-    cardlistHeadCards: json['cardlist_head_cards'] == null
-        ? null
-        : ModelSearchCardListHeadCards.fromJson(
-            json['cardlist_head_cards'] as Map<String, dynamic>),
+    cardlistHeadCards: (json['cardlist_head_cards'] as List)
+        ?.map((e) => e == null
+            ? null
+            : ModelSearchCardListHeadCards.fromJson(e as Map<String, dynamic>))
+        ?.toList(),
   );
 }
 

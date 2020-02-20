@@ -4,13 +4,13 @@ part 'ModelSearchGeo.g.dart';
 
 
 @JsonSerializable()
-  class ModelSearchGeo extends Object {
+class ModelSearchGeo extends Object {
 
   @JsonKey(name: 'width')
-  int width;
+  dynamic width;
 
   @JsonKey(name: 'height')
-  int height;
+  dynamic height;
 
   @JsonKey(name: 'croped')
   bool croped;
