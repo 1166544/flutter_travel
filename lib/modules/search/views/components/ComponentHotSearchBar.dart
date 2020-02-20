@@ -50,7 +50,7 @@ class _ComponentHotSearchBarState extends State<ComponentHotSearchBar> {
 							SizedBox(width: 5),
 							CommonText(
 								hotWord, 
-								fontSize: 19, 
+								fontSize: 16, 
 								color: Colors.grey.withOpacity(0.7),
 								fontWeight: FontWeight.w300,
 							)				

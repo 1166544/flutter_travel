@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_travel/core/manager/ManagerEnviroment.dart';
 import 'package:flutter_travel/modules/common/CommonImageNetwork.dart';
 import 'package:flutter_travel/modules/common/CommonText.dart';
+import 'package:flutter_travel/modules/search/models/model-container/ModelSearchCards.dart';
 import 'package:flutter_travel/modules/search/views/components/ComponentSearchHotItem.dart';
 
 /// 头条
 class ComponentSearchFocus extends StatefulWidget {
-  ComponentSearchFocus({Key key}) : super(key: key);
+	final List<ModelSearchCards> list;
+	ComponentSearchFocus({Key key, this.list}) : super(key: key);
 
-  _ComponentSearchFocusState createState() => _ComponentSearchFocusState();
+	_ComponentSearchFocusState createState() => _ComponentSearchFocusState();
 }
 
 class _ComponentSearchFocusState extends State<ComponentSearchFocus> {

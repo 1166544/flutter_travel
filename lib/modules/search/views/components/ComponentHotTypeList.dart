@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_travel/core/manager/ManagerEnviroment.dart';
 import 'package:flutter_travel/modules/common/CommonImageNetwork.dart';
 import 'package:flutter_travel/modules/common/CommonText.dart';
+import 'package:flutter_travel/modules/search/models/model-container/ModelSearchCards.dart';
 import 'package:flutter_travel/modules/search/views/components/ComponentSearchHotItem.dart';
 
 /// 热门TAB
 class ComponentHotTypeList extends StatefulWidget {
-	ComponentHotTypeList({Key key}) : super(key: key);
+	final List<ModelSearchCards> list;
+	ComponentHotTypeList({Key key, this.list}) : super(key: key);
 
 	_ComponentHotTypeListState createState() => _ComponentHotTypeListState();
 }

@@ -73,16 +73,16 @@ class _ComponentSearchStructsState extends State<ComponentSearchStructs> with Co
 	Widget buildLayout(AsyncSnapshot<ModelSearchList> snapshot) {
 		List<Widget> renderList = [
 			// 热搜文字列表
-			ComponentHotSearch(),
+			ComponentHotSearch(list: this.blocSearchList.getHotList()),
 
 			// 分类
 			ComponentSearchType(),
 
 			// 头条
-			ComponentSearchFocus(),
+			ComponentSearchFocus(list: this.blocSearchList.getFocusList()),
 
 			// 热门TAB
-			ComponentHotTypeList(),
+			ComponentHotTypeList(list: this.blocSearchList.getHotTopicList()),
 
 			SizedBox(height: 20),
 

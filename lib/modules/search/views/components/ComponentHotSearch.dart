@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_travel/modules/common/CommonText.dart';
+import 'package:flutter_travel/modules/search/models/model-container/ModelSearchCards.dart';
 import 'package:flutter_travel/modules/search/views/components/ComponentSearchHotItem.dart';
 
 /// 热搜文字列表
 class ComponentHotSearch extends StatefulWidget {
-	ComponentHotSearch({Key key}) : super(key: key);
+	final List<ModelSearchCards> list;
+	ComponentHotSearch({Key key, this.list}) : super(key: key);
 
 	_ComponentHotSearchState createState() => _ComponentHotSearchState();
 }
@@ -12,23 +15,48 @@ class ComponentHotSearch extends StatefulWidget {
 class _ComponentHotSearchState extends State<ComponentHotSearch> {
 	@override
 	Widget build(BuildContext context) {
+
+		List<Widget> renderList = [
+			this.getHotTitle(),
+			SizedBox(height: 20),
+		];
+		renderList = this.getDynamicTitle(renderList);
+
 		return Padding(
 			padding: EdgeInsets.fromLTRB(10, 0, 5, 0),
-			child: Column(
-				children: <Widget>[
-					this.getHotTitle(),
-					SizedBox(height: 20),
-					this.getHotItem([
-						'Taiwanese gays can get marrried',
-						'Movie citiy games live more'
-					]),
-					this.getHotItem([
-						'Love dearly Faker',
-						'The most memorable village'
-					]),
-				]
-			),
+			child: Column(children: renderList),
 		);
+	}
+
+	/// 动态生成标题
+	List<Widget> getDynamicTitle(List<Widget> renderList) {
+		int total = widget.list.length;
+		int lines = (total / 2).round();
+		List<List<ModelSearchCards>> dynamicList = [];
+
+		// 拼足行数
+		for (var i = 0; i < lines; i++) {
+			dynamicList.add([]);
+		}
+
+		// 拼足每行内容子列表数据
+		for (var k = 0; k < total; k++) {
+			ModelSearchCards insertItem = widget.list[k];
+
+			for (var j = 0; j < dynamicList.length; j++) {
+				List<ModelSearchCards> addedList = dynamicList[j];
+
+				if (addedList.length < 3) {
+					addedList.add(insertItem);
+				}
+			}
+		}
+
+		// 拼装显示列表
+		for (var h = 0; h < dynamicList.length; h++) {
+			renderList.add(this.getHotItem(dynamicList[h]));
+		}
+		return renderList;
 	}
 
 	/// 微博标题
@@ -52,7 +80,7 @@ class _ComponentHotSearchState extends State<ComponentHotSearch> {
 	}
 
 	/// 热搜显示列表
-	Widget getHotItem(List<String> list) {
+	Widget getHotItem(List<ModelSearchCards> list) {
 
 		List<Widget> renderList = [];
 		for (var i = 0; i < list.length; i++) {
@@ -72,7 +100,7 @@ class _ComponentHotSearchState extends State<ComponentHotSearch> {
 	}
 
 	/// 热搜显示项
-	Widget getHotRenderItem(String content, {int type = 0}) {
+	Widget getHotRenderItem(ModelSearchCards content, {int type = 0}) {
 		return Container(
 			margin: EdgeInsets.fromLTRB(0, 0, 15, 15),
 			padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
@@ -85,9 +113,10 @@ class _ComponentHotSearchState extends State<ComponentHotSearch> {
 				children: <Widget>[
 					this.getHotIcon(type),
 					SizedBox(width: 5),
-					CommonText(
-						content,
-						fontSize: 16
+					Html(
+						data: content.mblog.text,
+						useRichText: true,
+						defaultTextStyle: TextStyle(color: Colors.black, fontSize: 16.0),
 					)
 				]
 			),

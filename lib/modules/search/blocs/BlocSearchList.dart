@@ -5,6 +5,7 @@ import 'package:flutter_travel/core/manager/ManagerEnviroment.dart';
 import 'package:flutter_travel/modules/search/models/ModelSearchList.dart';
 import 'package:flutter_travel/modules/search/models/ModelSearchPage.dart';
 import 'package:flutter_travel/modules/search/models/ModelSearchTabChannel.dart';
+import 'package:flutter_travel/modules/search/models/model-container/ModelSearchCards.dart';
 import 'package:flutter_travel/services/ServiceSearchList.dart';
 
 /// SEARCH页数据源
@@ -12,6 +13,12 @@ class BlocSearchList implements BlocBase {
 	ModelSearchList _data;
 	ServiceSearchList _serviceSearchList;
 	ManagerEnviroment _enviroment;
+	List<ModelSearchCards> _hotList;
+	List<ModelSearchCards> _focusList;
+	List<ModelSearchCards> _topicList;
+	int hotNum = 2;
+	int focusNum = 4;
+
 
 	/// 数据流处理对象
 	StreamController<ModelSearchList> _dataController;
@@ -25,6 +32,9 @@ class BlocSearchList implements BlocBase {
 	BlocSearchList(this._dataController) {
 		this._enviroment = ManagerEnviroment.instance;
 		this._serviceSearchList = new ServiceSearchList();
+		this._hotList = [];
+		this._focusList = [];
+		this._topicList = [];
 	}
 
 	ModelSearchList get data {
@@ -55,8 +65,36 @@ class BlocSearchList implements BlocBase {
 		// 页面数据源
 		ModelSearchList renderData = await this._serviceSearchList.getRenderList(containerid: containerid, sinceId: sinceId);
 
+		// 数据分层
+		this.devideList(renderData);
+
 		/// 触发数据更新
 		this.update(renderData);
+	}
+
+	/// 分离数据
+	void devideList(ModelSearchList renderData) {
+		List<ModelSearchCards> cards = renderData.data.cards;
+
+		while(
+			cards.length != 0 && 
+			this._hotList.length < this.focusNum && 
+			this._focusList.length < this.focusNum && 
+			this._topicList.length < this.hotNum) {
+				ModelSearchCards insertItem = cards.removeAt(0);
+
+				if (this._hotList.length < this.focusNum) {
+					this._hotList.add(insertItem);
+				} else {
+					if (this._focusList.length < this.focusNum) {
+						this._focusList.add(insertItem);
+					} else {
+						if (this._topicList.length < this.hotNum) {
+							this._topicList.add(insertItem);
+						}
+					}
+				}
+		}
 	}
 
   	/// 获取TAB列表
@@ -86,6 +124,21 @@ class BlocSearchList implements BlocBase {
 	void update(ModelSearchList data) {
 		this._data = data;
 		this._inStream.add(this._data);
+	}
+
+	/// 获取热搜文字列表
+	List<ModelSearchCards> getHotList() {
+		return this._hotList;
+	}
+
+	/// 获取头条列表
+	List<ModelSearchCards> getFocusList() {
+		return this._topicList;
+	}
+
+	/// 获取热门TAB
+	List<ModelSearchCards> getHotTopicList() {
+		return this._focusList;
 	}
 }
 
