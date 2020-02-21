@@ -46,7 +46,7 @@ class _ComponentHotSearchState extends State<ComponentHotSearch> {
 			for (var j = 0; j < dynamicList.length; j++) {
 				List<ModelSearchCards> addedList = dynamicList[j];
 
-				if (addedList.length < 3) {
+				if (addedList.length < 2) {
 					addedList.add(insertItem);
 					break;
 				}

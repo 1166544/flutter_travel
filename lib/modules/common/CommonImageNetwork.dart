@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_travel/core/manager/ManagerEnviroment.dart';
 
 /// 异常图片处理
 class CommentImageNetwork {
@@ -20,10 +21,12 @@ class CommentImageNetwork {
 
 	/// 加载缓存图片
 	static ImageProvider<dynamic> imageNetwork(String url, {Map<String, String> headers}) {
+		url = url ?? ManagerEnviroment.instance.getEnv().loginLogoUrl();
 		return NetworkImage(url, headers: headers);
 	}
 
 	static Widget getNetworkImage(url, {Map<String, String> headers, BoxFit fit}) {
+		url = url ?? ManagerEnviroment.instance.getEnv().loginLogoUrl();
 		Image image = Image.network(
 			url, 
 			headers: 

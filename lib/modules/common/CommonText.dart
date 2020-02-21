@@ -349,6 +349,7 @@ class CommonText extends StatelessWidget {
 
 	@override
 	Widget build(BuildContext context) {
+		var tempData = this.data ?? '';
 		TextStyle style;
 		if (this.style == null) {
 			style = TextStyle(
@@ -378,7 +379,7 @@ class CommonText extends StatelessWidget {
 			style = this.style;
 		}
 		return Text(
-			this.data, 
+			tempData, 
 			key: this.key,
 			strutStyle: this.strutStyle,
 			textAlign: this.textAlign,

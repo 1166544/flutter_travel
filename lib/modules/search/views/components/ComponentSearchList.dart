@@ -84,6 +84,11 @@ class _ComponentSearchListState extends State<ComponentSearchList> {
 	Widget getContentMedia({int type = 2}) {
 		Widget renderContent;
 
+		// pageInfo存在-视频
+		// pics存在，图片宫格形式
+		// 三图以下 column
+		// 三图以上 grid
+
 		switch(type) {
 			case 0:
 				// 长方形三栏展示方式

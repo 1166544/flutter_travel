@@ -16,6 +16,7 @@ class BlocSearchList implements BlocBase {
 	List<ModelSearchCards> _hotList;
 	List<ModelSearchCards> _focusList;
 	List<ModelSearchCards> _topicList;
+	List<ModelSearchCards> _renderDataList;
 	int hotNum = 2;
 	int focusNum = 3;
 
@@ -35,6 +36,7 @@ class BlocSearchList implements BlocBase {
 		this._hotList = [];
 		this._focusList = [];
 		this._topicList = [];
+		this._renderDataList = [];
 	}
 
 	ModelSearchList get data {
@@ -99,6 +101,9 @@ class BlocSearchList implements BlocBase {
 				this._topicList.add(insertItem);
 			}
 		}
+
+		// 分离动态增长列表
+		
 	}
 
   	/// 获取TAB列表
@@ -143,6 +148,11 @@ class BlocSearchList implements BlocBase {
 	/// 获取热门TAB
 	List<ModelSearchCards> getHotTopicList() {
 		return this._topicList;
+	}
+
+	/// 动态增长列表
+	List<ModelSearchCards> getDynamicRenderList() {
+		return this._renderDataList;
 	}
 }
 
