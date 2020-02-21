@@ -163,11 +163,11 @@ class _ComponentSearchListState extends State<ComponentSearchList> {
 
 		return Container(
 			width: MediaQuery.of(context).size.width,
-			height: 280,
+			height: 390,
 			child: GridView.count(
-				crossAxisCount: 5,
-				crossAxisSpacing: 3,
-				mainAxisSpacing: 3,
+				crossAxisCount: 3,
+				crossAxisSpacing: 4,
+				mainAxisSpacing: 4,
 				padding: EdgeInsets.all(4.0),
 				childAspectRatio: 1,
 				children: renderList,
