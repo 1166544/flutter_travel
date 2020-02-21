@@ -1,6 +1,7 @@
 import 'package:flutter_travel/modules/search/models/model-container/ModelSearchButtons.dart';
 import 'package:flutter_travel/modules/search/models/model-container/ModelSearchMblogButtons.dart';
 import 'package:flutter_travel/modules/search/models/model-container/ModelSearchNumberDisplayStrategy.dart';
+import 'package:flutter_travel/modules/search/models/model-container/ModelSearchPageInfo.dart';
 import 'package:flutter_travel/modules/search/models/model-container/ModelSearchPics.dart';
 import 'package:flutter_travel/modules/search/models/model-container/ModelSearchUser.dart';
 import 'package:flutter_travel/modules/search/models/model-container/ModelSearchVisible.dart';
@@ -138,6 +139,9 @@ class ModelSearchMblog {
 
 	@JsonKey(name: 'pics')
 	List<ModelSearchPics> pics;
+
+    @JsonKey(name: 'page_info')
+    ModelSearchPageInfo pageInfo;
 
     ModelSearchMblog({
         this.visible,

@@ -20,7 +20,6 @@ class BlocSearchList implements BlocBase {
 	int hotNum = 2;
 	int focusNum = 3;
 
-
 	/// 数据流处理对象
 	StreamController<ModelSearchList> _dataController;
 
@@ -102,8 +101,16 @@ class BlocSearchList implements BlocBase {
 			}
 		}
 
-		// 分离动态增长列表
-		
+		// 剩余内容往动态增长列表中增加，达到动态增长效果
+		while(cards.length != 0) {
+			ModelSearchCards addedItem = cards.removeAt(cards.length - 1);
+			this._renderDataList.add(addedItem);
+			// if (this._renderDataList.length == 0) {
+			// 	this._renderDataList.add(addedItem);
+			// } else {
+			// 	this._renderDataList.insert(this._renderDataList.length - 1, addedItem);
+			// }
+		}
 	}
 
   	/// 获取TAB列表

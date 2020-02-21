@@ -32,7 +32,7 @@ ModelSearchUser _$ModelSearchUserFromJson(Map<String, dynamic> json) {
     bedge: json['bedge'] == null
         ? null
         : ModelSearchBedge.fromJson(json['bedge'] as Map<String, dynamic>),
-  );
+  )..verifiedReason = json['verified_reason'] as String;
 }
 
 Map<String, dynamic> _$ModelSearchUserToJson(ModelSearchUser instance) =>
@@ -46,6 +46,7 @@ Map<String, dynamic> _$ModelSearchUserToJson(ModelSearchUser instance) =>
       'verified_type': instance.verifiedType,
       'close_blue_v': instance.closeBlueV,
       'description': instance.description,
+      'verified_reason': instance.verifiedReason,
       'gender': instance.gender,
       'mbtype': instance.mbtype,
       'urank': instance.urank,

@@ -70,7 +70,9 @@ ModelSearchMblog _$ModelSearchMblogFromJson(Map<String, dynamic> json) {
             ? null
             : ModelSearchPics.fromJson(e as Map<String, dynamic>))
         ?.toList(),
-  );
+  )..pageInfo = json['page_info'] == null
+      ? null
+      : ModelSearchPageInfo.fromJson(json['page_info'] as Map<String, dynamic>);
 }
 
 Map<String, dynamic> _$ModelSearchMblogToJson(ModelSearchMblog instance) =>
@@ -118,4 +120,5 @@ Map<String, dynamic> _$ModelSearchMblogToJson(ModelSearchMblog instance) =>
       'bid': instance.bid,
       'mblog_buttons': instance.mblogButtons,
       'pics': instance.pics,
+      'page_info': instance.pageInfo,
     };

@@ -34,6 +34,9 @@ class ModelSearchUser extends Object {
 	@JsonKey(name: 'description')
 	String description;
 
+	@JsonKey(name: 'verified_reason')
+	String verifiedReason;
+
 	@JsonKey(name: 'gender')
 	String gender;
 

@@ -4,6 +4,7 @@ import 'package:flutter_travel/core/bloc/BlocProvider.dart';
 import 'package:flutter_travel/modules/common/CommonTravelItem.dart';
 import 'package:flutter_travel/modules/search/blocs/BlocSearchList.dart';
 import 'package:flutter_travel/modules/search/models/ModelSearchList.dart';
+import 'package:flutter_travel/modules/search/models/model-container/ModelSearchCards.dart';
 import 'package:flutter_travel/modules/search/views/components/ComponentHotSearch.dart';
 import 'package:flutter_travel/modules/search/views/components/ComponentHotSearchBar.dart';
 import 'package:flutter_travel/modules/search/views/components/ComponentHotTypeList.dart';
@@ -117,17 +118,18 @@ class _ComponentSearchStructsState extends State<ComponentSearchStructs> with Co
 
 	/// 动态增长列表
 	Widget getDynamicList(ModelSearchList listData) {
+		List<ModelSearchCards> dynamicRenderList = this.blocSearchList.getDynamicRenderList();
 		return ListView.separated(
 			padding: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
 			physics: BouncingScrollPhysics(),	// 禁用滑动事件
 			shrinkWrap: true,					// 无限高度兼容
 			itemBuilder: (context, index) {
-				return ComponentSearchList();
+				return ComponentSearchList(renderData: dynamicRenderList[index]);
 			},
 			separatorBuilder: (context, index) {
 				return SizedBox(height: 5.0);
 			},
-			itemCount: 2,
+			itemCount: dynamicRenderList.length,
 		);
 	}
 }
