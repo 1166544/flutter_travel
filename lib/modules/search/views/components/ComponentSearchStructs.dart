@@ -76,7 +76,7 @@ class _ComponentSearchStructsState extends State<ComponentSearchStructs> with Co
 			ComponentHotSearch(list: this.blocSearchList.getHotList()),
 
 			// 分类
-			ComponentSearchType(),
+			ComponentSearchType(pageConfig: this.blocSearchList.getPageConfig()),
 
 			// 头条
 			ComponentSearchFocus(list: this.blocSearchList.getFocusList()),
