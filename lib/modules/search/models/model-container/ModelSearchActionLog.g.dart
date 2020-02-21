@@ -9,8 +9,8 @@ part of 'ModelSearchActionLog.dart';
 ModelSearchActionLog _$ModelSearchActionLogFromJson(Map<String, dynamic> json) {
   return ModelSearchActionLog(
     json['source'] as String,
-    json['act_code'] as String,
-    json['act_type'] as String,
+    json['act_code'],
+    json['act_type'],
     json['fid'] as String,
     json['lfid'] as String,
     json['oid'] as String,

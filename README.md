@@ -7,6 +7,15 @@ A travels Flutter project.
 <br/>
 <br/>
 
+资讯页 | 发现页 |  图片预览  
+-|-|-
+![资讯页](./snapshot/WechatIMG325.jpeg "资讯页") | ![发现页](./snapshot/WechatIMG326.jpeg "发现页") | ![图片预览](./snapshot/WechatIMG327.jpeg "图片预览") |
+
+图片列表 | 个人页 |  详情页  
+-|-|-
+![图片列表](./snapshot/WechatIMG328.jpeg "图片列表") | ![个人页](./snapshot/WechatIMG330.jpeg "个人页") | ![详情页](./snapshot/WechatIMG331.jpeg "详情页") |
+
+
 ## Upgrade
 ```shell 
 flutter upgrade

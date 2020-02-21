@@ -10,10 +10,10 @@ part 'ModelSearchActionLog.g.dart';
   String source;
 
   @JsonKey(name: 'act_code')
-  String actCode;
+  dynamic actCode;
 
   @JsonKey(name: 'act_type')
-  String actType;
+  dynamic actType;
 
   @JsonKey(name: 'fid')
   String fid;
