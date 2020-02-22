@@ -34,10 +34,10 @@ class _ComponentSearchListState extends State<ComponentSearchList> {
 					this.getContentText(),
 
 					// 内容图片、视频
-					// this.getContentMedia(),
+					this.getContentMedia(),
 
 					// 操作按钮
-					// this.getContentOperationButtton()
+					this.getContentOperationButtton()
 				]
 			),
 		);
@@ -261,10 +261,10 @@ class _ComponentSearchListState extends State<ComponentSearchList> {
 					height: height,
 					decoration: BoxDecoration(
 						shape: BoxShape.rectangle,
-						color: Colors.black.withOpacity(0.5)
+						color: Colors.black.withOpacity(0.3)
 					),
 					child: Center(
-						child: CommonText('+ ${renaimNum.toString()}')
+						child: CommonText('+ ${renaimNum.toString()}', color: Colors.white, fontSize: 22, fontWeight: FontWeight.bold,)
 					),	
 				),
 			);
@@ -325,7 +325,7 @@ class _ComponentSearchListState extends State<ComponentSearchList> {
 									borderRadius: BorderRadius.circular(3.0)
 								),
 								child: Center(
-									child: Icon(Icons.play_arrow, size: 130, color: Colors.grey.withOpacity(0.5))
+									child: Icon(Icons.play_arrow, size: 130, color: Colors.white.withOpacity(0.6))
 								),
 							)
 						)
