@@ -25,6 +25,7 @@ class ComponentSearchHotItem extends StatelessWidget {
 			height: 15,
 			decoration: BoxDecoration(
 				shape: BoxShape.rectangle,
+				color: Colors.grey,
 				borderRadius: BorderRadius.circular(3),
 				gradient: LinearGradient(
 					begin: Alignment.topLeft,

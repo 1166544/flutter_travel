@@ -23,14 +23,26 @@ class _ComponentSearchStructsState extends State<ComponentSearchStructs> with Co
 
 	BlocSearchList blocSearchList;
 	GlobalKey<RefreshIndicatorState> refreshKey = GlobalKey<RefreshIndicatorState>();
+	ScrollController _controller = new ScrollController();
 
 	@override
 	void initState() {
 		super.initState();
+
+		// 添加监听
+		this._controller.addListener(() {
+			if (this._controller.position.pixels == this._controller.position.maxScrollExtent) {
+				// 最后一页数据位置生成新的数据添加到LIST列表里
+				// if (this.hasMore) {
+				// 	this.retriveData();
+				// }
+			}
+		});
 	}
 
 	@override
 	void dispose() {
+		this._controller.dispose();
 		this.blocSearchList.dispose();
 		super.dispose();
 	}

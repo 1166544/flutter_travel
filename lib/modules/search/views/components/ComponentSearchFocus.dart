@@ -3,7 +3,6 @@ import 'package:flutter_travel/core/manager/ManagerEnviroment.dart';
 import 'package:flutter_travel/modules/common/CommonImageNetwork.dart';
 import 'package:flutter_travel/modules/common/CommonText.dart';
 import 'package:flutter_travel/modules/search/models/model-container/ModelSearchCards.dart';
-import 'package:flutter_travel/modules/search/views/components/ComponentSearchHotItem.dart';
 import 'package:flutter_travel/modules/utils/Utils.dart';
 
 /// 头条
@@ -47,7 +46,7 @@ class _ComponentSearchFocusState extends State<ComponentSearchFocus> {
 		double rightHheight = coverHeight / 2 - rightGap /2;
 		
 		return Padding(
-			padding: EdgeInsets.only(left: paddingNum, right: paddingNum, top: 30.0),
+			padding: EdgeInsets.only(left: paddingNum, right: paddingNum, top: 30.0, bottom: 1),
 			child: Row(
 				mainAxisAlignment: MainAxisAlignment.start,
 				crossAxisAlignment: CrossAxisAlignment.start,
@@ -90,27 +89,6 @@ class _ComponentSearchFocusState extends State<ComponentSearchFocus> {
 	/// 封装封面内容
 	Widget getStackCover({double width, double height, String coverUrl, String coverTitle, int coverType = 0, bool showIcon = false}) {
 		
-		List<Widget> renderTextList = <Widget>[
-			Expanded(
-				child: CommonText(
-					coverTitle, 
-					softWrap: true, 
-					maxLines: 2,
-					style: TextStyle(
-						fontSize: 16, 
-						color: Colors.white
-					)
-				)
-			)
-		];
-
-		if (showIcon) {
-			renderTextList.insert(0, Container(
-				margin: EdgeInsets.fromLTRB(0, 0, 5, 0),
-				child: ComponentSearchHotItem()
-			));
-		}
-
 		return Stack(children: <Widget>[
 			Container(
 				width: width,
@@ -140,13 +118,17 @@ class _ComponentSearchFocusState extends State<ComponentSearchFocus> {
 							Colors.black.withOpacity(0.7),
 						],
 					),
+					shape: BoxShape.rectangle,
 					borderRadius: BorderRadius.circular(8),
 				),
-				child: Flex(
-					mainAxisAlignment: MainAxisAlignment.start,
-					crossAxisAlignment: CrossAxisAlignment.end,
-					direction: Axis.horizontal,
-					children: renderTextList
+				child: CommonText(
+					coverTitle, 
+					softWrap: true, 
+					maxLines: 2,
+					style: TextStyle(
+						fontSize: 16, 
+						color: Colors.white
+					)
 				)
 			)
 		]);

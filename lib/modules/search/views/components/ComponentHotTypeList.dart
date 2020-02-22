@@ -3,7 +3,6 @@ import 'package:flutter_travel/core/manager/ManagerEnviroment.dart';
 import 'package:flutter_travel/modules/common/CommonImageNetwork.dart';
 import 'package:flutter_travel/modules/common/CommonText.dart';
 import 'package:flutter_travel/modules/search/models/model-container/ModelSearchCards.dart';
-import 'package:flutter_travel/modules/search/views/components/ComponentSearchHotItem.dart';
 import 'package:flutter_travel/modules/utils/Utils.dart';
 
 /// 热门TAB
@@ -18,7 +17,7 @@ class _ComponentHotTypeListState extends State<ComponentHotTypeList> {
 	@override
 	Widget build(BuildContext context) {
 		return Padding(
-			padding: EdgeInsets.fromLTRB(10, 30, 5, 0),
+			padding: EdgeInsets.fromLTRB(10, 30, 5, 1),
 			child: Column(
 				children: <Widget>[
 					this.getHotTitle(),
@@ -116,12 +115,11 @@ class _ComponentHotTypeListState extends State<ComponentHotTypeList> {
 			hotComment = cards.mblog.numberDisplayStrategy.displayText;
 		}
 
-		return Padding(
-			padding: EdgeInsets.fromLTRB(0, 20, 5, 0),
-			child: Flex(
-				direction: Axis.horizontal,
+		return Container(
+			padding: EdgeInsets.fromLTRB(1, 20, 5, 1),
+			child: Row(
 				children: <Widget>[
-					ComponentSearchHotItem(),
+					// ComponentSearchHotItem(),
 					SizedBox(width: 5),
 					CommonText(
 						hotTopicTitle, 

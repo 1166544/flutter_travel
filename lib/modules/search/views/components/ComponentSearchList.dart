@@ -21,6 +21,8 @@ class _ComponentSearchListState extends State<ComponentSearchList> {
   	@override
   	Widget build(BuildContext context) {
 		return Container(
+			width: MediaQuery.of(context).size.width,
+			height: 100.0,
 			padding: EdgeInsets.fromLTRB(10, 0, 10, 10),
 			child: Column(
 				mainAxisAlignment: MainAxisAlignment.start,
@@ -33,10 +35,10 @@ class _ComponentSearchListState extends State<ComponentSearchList> {
 					this.getContentText(),
 
 					// 内容图片、视频
-					this.getContentMedia(),
+					// this.getContentMedia(),
 
 					// 操作按钮
-					this.getContentOperationButtton()
+					// this.getContentOperationButtton()
 				]
 			),
 		);
@@ -336,7 +338,15 @@ class _ComponentSearchListState extends State<ComponentSearchList> {
 
 	/// 微博内容
 	Widget getContentText() {
-		return Padding(
+		String secondText = '';
+		if (widget.renderData != null && 
+			widget.renderData.mblog != null && 
+			widget.renderData.mblog.numberDisplayStrategy != null && 
+			widget.renderData.mblog.numberDisplayStrategy.displayText != null) {
+			secondText = widget.renderData.mblog.numberDisplayStrategy.displayText;
+		}
+
+		return Container(
 			padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
 			child: Column(
 				mainAxisAlignment: MainAxisAlignment.start,
@@ -347,9 +357,9 @@ class _ComponentSearchListState extends State<ComponentSearchList> {
 						fontSize: 17, 
 						fontWeight: FontWeight.w500, 
 						color: Colors.black.withOpacity(0.7), 
-						maxLines: 4
+						maxLines: 1
 					),
-					CommonText(widget.renderData.mblog.numberDisplayStrategy.displayText, fontSize: 14, fontWeight: FontWeight.w300, color: Colors.grey.withOpacity(0.5)),
+					CommonText(secondText, fontSize: 14, fontWeight: FontWeight.w300, color: Colors.grey.withOpacity(0.5)),
 				]
 			)
 		);
