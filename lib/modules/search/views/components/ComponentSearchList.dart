@@ -22,7 +22,6 @@ class _ComponentSearchListState extends State<ComponentSearchList> {
   	Widget build(BuildContext context) {
 		return Container(
 			width: MediaQuery.of(context).size.width,
-			height: 100.0,
 			padding: EdgeInsets.fromLTRB(10, 0, 10, 10),
 			child: Column(
 				mainAxisAlignment: MainAxisAlignment.start,
@@ -347,6 +346,7 @@ class _ComponentSearchListState extends State<ComponentSearchList> {
 		}
 
 		return Container(
+			width: MediaQuery.of(context).size.width,
 			padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
 			child: Column(
 				mainAxisAlignment: MainAxisAlignment.start,
@@ -357,7 +357,7 @@ class _ComponentSearchListState extends State<ComponentSearchList> {
 						fontSize: 17, 
 						fontWeight: FontWeight.w500, 
 						color: Colors.black.withOpacity(0.7), 
-						maxLines: 1
+						maxLines: 6
 					),
 					CommonText(secondText, fontSize: 14, fontWeight: FontWeight.w300, color: Colors.grey.withOpacity(0.5)),
 				]
