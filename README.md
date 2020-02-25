@@ -18,7 +18,7 @@ A travels Flutter project.
 
 ## Upgrade
 ```shell 
-flutter upgrade
+flutter upgrade 
 ```
 <br/>
 
