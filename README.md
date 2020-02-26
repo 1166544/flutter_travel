@@ -23,7 +23,7 @@ flutter upgrade
 <br/>
 
 ## DEVELOPMENT RUN
-> 对接接口时借助 Charles 抓包析工具能提升开发效率和快速定位问题,请注意 Charles 端口是否已设置为 8888(默认值)
+> 对接接口时借助 Charles 抓包析工具能提升开发效率和快速定位问题,请注意 Charles 端口是否已设置为 8888(默认值)  
 
 [Charles Web Debugging Proxy](https://www.charlesproxy.com/)<br/>
 
