@@ -14,7 +14,7 @@ A travels Flutter project.
 图片列表 | 个人页 |  详情页  
 -|-|-
 ![图片列表](./snapshot/WechatIMG328.jpeg "图片列表") | ![个人页](./snapshot/WechatIMG330.jpeg "个人页") | ![详情页](./snapshot/WechatIMG380.png "详情页") |
-
+ 
 
 ## Upgrade
 ```shell 
