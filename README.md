@@ -32,7 +32,7 @@ flutter upgrade
 ```js
 /// proxy服务器地址，只有开发环境走proxy
 String getProxyUrl() {
-	return '127.0.0.1:8888';
+	return '127.0.0.1:8888'; 
 }
 ```
 2.点击DEBUG启动按钮，选择开发环境启动
