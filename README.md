@@ -152,7 +152,7 @@ Macintosh HD⁩ ▸ ⁨用户⁩ ▸ ⁨rabbit⁩ ▸ ⁨资源库⁩ ▸ ⁨Flu
     dependencies {
         classpath 'com.android.tools.build:gradle:3.1.2'
     }
-}
+} 
 ```
 
 <br/>
