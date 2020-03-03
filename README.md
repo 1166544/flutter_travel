@@ -28,7 +28,7 @@ flutter upgrade
 [Charles Web Debugging Proxy](https://www.charlesproxy.com/)<br/>
 
 #### 开发环境启动注意：
-1.配置config/ConfigDev.dart配置
+1.配置config/ConfigDev.dart配置 
 ```js
 /// proxy服务器地址，只有开发环境走proxy
 String getProxyUrl() {
