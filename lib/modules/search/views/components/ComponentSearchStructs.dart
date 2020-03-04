@@ -22,27 +22,15 @@ class ComponentSearchStructs extends StatefulWidget {
 class _ComponentSearchStructsState extends State<ComponentSearchStructs> with CommonTravelItem {
 
 	BlocSearchList blocSearchList;
-	GlobalKey<RefreshIndicatorState> refreshKey = GlobalKey<RefreshIndicatorState>();
-	ScrollController _controller = new ScrollController();
-
+	bool hasMore = false;
+	
 	@override
 	void initState() {
 		super.initState();
-
-		// 添加监听
-		this._controller.addListener(() {
-			if (this._controller.position.pixels == this._controller.position.maxScrollExtent) {
-				// 最后一页数据位置生成新的数据添加到LIST列表里
-				// if (this.hasMore) {
-				// 	this.retriveData();
-				// }
-			}
-		});
 	}
 
 	@override
 	void dispose() {
-		this._controller.dispose();
 		this.blocSearchList.dispose();
 		super.dispose();
 	}
@@ -55,12 +43,7 @@ class _ComponentSearchStructsState extends State<ComponentSearchStructs> with Co
 		// 调用数据
 		this.blocSearchList.init();
 
-		return RefreshIndicator(
-			key: refreshKey,
-			color: Colors.lightBlue,
-			child: this.getStreamBuilder(context), 
-			onRefresh: this.refreshData
-		);
+		return this.getStreamBuilder(context);
 	}
 
 	/// 刷新
@@ -84,6 +67,10 @@ class _ComponentSearchStructsState extends State<ComponentSearchStructs> with Co
 
 	/// 构建外观
 	Widget buildLayout(AsyncSnapshot<ModelSearchList> snapshot) {
+
+		// 是否还有数据
+		hasMore = snapshot.data.data.cards.length > 0;
+
 		List<Widget> renderList = [
 			// 热搜文字列表
 			ComponentHotSearch(list: this.blocSearchList.getHotList()),
@@ -136,12 +123,23 @@ class _ComponentSearchStructsState extends State<ComponentSearchStructs> with Co
 			physics: BouncingScrollPhysics(),	// 禁用滑动事件
 			shrinkWrap: true,					// 无限高度兼容
 			itemBuilder: (context, index) {
-				return ComponentSearchList(renderData: dynamicRenderList[index]);
+				if (index == dynamicRenderList.length) {
+					if (this.hasMore) {
+						return GestureDetector(
+							child: this.getLoadMoreItem(),
+							onTap: this.refreshData,
+						);
+					} else {
+						return this.getNoMoreItem();
+					}
+				} else {
+					return ComponentSearchList(renderData: dynamicRenderList[index]);;
+				}
 			},
 			separatorBuilder: (context, index) {
 				return SizedBox(height: 5.0);
 			},
-			itemCount: dynamicRenderList.length,
+			itemCount: dynamicRenderList.length + 1,
 		);
 	}
 }

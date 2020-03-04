@@ -249,7 +249,7 @@ class _ComponentSearchListState extends State<ComponentSearchList> {
 				width: width,
 				height: height,
 				decoration: BoxDecoration(
-					border: Border.all(color: Colors.black.withOpacity(0.2), width: 0.5),
+					border: Border.all(color: Colors.black.withOpacity(0.3), width: 0.5),
 					borderRadius:
 						BorderRadius.all(Radius.circular(radius)),
 					image: DecorationImage(
