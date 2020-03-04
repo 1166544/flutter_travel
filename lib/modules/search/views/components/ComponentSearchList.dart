@@ -231,6 +231,11 @@ class _ComponentSearchListState extends State<ComponentSearchList> {
 			}
 		}
 
+		// 如果不足三张，补足空白
+		while (renderList.length < maxShowPicNum) {
+			renderList.add(this.getColumnImage(width: imageWidth, columnData: null));
+		}
+
 		return Container(
 			padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
 			child: Row(
@@ -242,6 +247,21 @@ class _ComponentSearchListState extends State<ComponentSearchList> {
 	
 	/// 圆角图片
 	Widget getColumnImage({double width = 120, double height = 90, double radius = 3.0, ModelSearchPics columnData, int renaimNum = 0}) {
+
+		// 兼容显示空内容
+		if (columnData == null) {
+			return Container(
+				width: width,
+				height: height,
+				decoration: BoxDecoration(
+					border: Border.all(color: Colors.black.withOpacity(0.2), width: 0.5),
+					borderRadius:
+						BorderRadius.all(Radius.circular(radius)),
+					shape: BoxShape.rectangle,
+					color: Colors.black.withOpacity(0.1)
+				),
+			);
+		}
 
 		if (renaimNum > 0) {
 			// 显示剩余多少张

@@ -68,9 +68,6 @@ class _ComponentSearchStructsState extends State<ComponentSearchStructs> with Co
 	/// 构建外观
 	Widget buildLayout(AsyncSnapshot<ModelSearchList> snapshot) {
 
-		// 是否还有数据
-		hasMore = snapshot.data.data.cards.length > 0;
-
 		List<Widget> renderList = [
 			// 热搜文字列表
 			ComponentHotSearch(list: this.blocSearchList.getHotList()),
@@ -118,6 +115,10 @@ class _ComponentSearchStructsState extends State<ComponentSearchStructs> with Co
 	/// 动态增长列表
 	Widget getDynamicList(ModelSearchList listData) {
 		List<ModelSearchCards> dynamicRenderList = this.blocSearchList.getDynamicRenderList();
+
+		// 是否还有数据
+		hasMore = dynamicRenderList.length > 0;
+
 		return ListView.separated(
 			padding: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
 			physics: BouncingScrollPhysics(),	// 禁用滑动事件
@@ -133,7 +134,7 @@ class _ComponentSearchStructsState extends State<ComponentSearchStructs> with Co
 						return this.getNoMoreItem();
 					}
 				} else {
-					return ComponentSearchList(renderData: dynamicRenderList[index]);;
+					return ComponentSearchList(renderData: dynamicRenderList[index]);
 				}
 			},
 			separatorBuilder: (context, index) {
