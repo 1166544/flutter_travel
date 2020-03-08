@@ -83,7 +83,7 @@ class ModelNewsItem {
 			this.ext = ModelExt.fromJson(data['ext']);
 		}
 
-		// 图片
+		// 图片 
 		this.imageurls = new List<ModelImage>();
 		var imageUrls = data['imageurls'];
 		if (imageUrls != null) {
