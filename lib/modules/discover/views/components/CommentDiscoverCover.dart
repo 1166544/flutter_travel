@@ -13,7 +13,7 @@ import 'package:flutter_travel/modules/utils/Utils.dart';
 /// 封面内容
 class ComponentDiscoverCover extends StatefulWidget {
 	final ModelNewsItem item;
-	final ModelContent coverData;
+	final ModelContent coverData; 
 	final List<ModelContent> fullDisplayList;
 	ComponentDiscoverCover({Key key, this.item, this.coverData, this.fullDisplayList}) : super(key: key);
 
