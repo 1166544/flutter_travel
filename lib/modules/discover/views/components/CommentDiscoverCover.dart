@@ -32,7 +32,7 @@ class _ComponentDiscoverCoverState extends State<ComponentDiscoverCover> with Co
 	void initState() {
 		super.initState();
 		this.fadeController = AnimationController(
-			vsync: this,
+			vsync: this, 
 			duration: Duration(milliseconds: 500),
 		);
 		this.scaleController = AnimationController(
