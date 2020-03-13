@@ -29,7 +29,7 @@ part 'ModelSearchPageInfo.g.dart';
   ModelSearchMediaInfo mediaInfo;
 
   @JsonKey(name: 'play_count')
-  int playCount;
+  dynamic playCount;
 
   @JsonKey(name: 'object_id')
   String objectId;
