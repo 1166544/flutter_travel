@@ -20,7 +20,7 @@ ModelSearchPageInfo _$ModelSearchPageInfoFromJson(Map<String, dynamic> json) {
         ? null
         : ModelSearchMediaInfo.fromJson(
             json['media_info'] as Map<String, dynamic>),
-    json['play_count'] as int,
+    json['play_count'],
     json['object_id'] as String,
   );
 }

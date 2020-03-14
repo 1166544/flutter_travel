@@ -11,4 +11,5 @@
     "files.exclude": {
         "**/**.g.dart": true
     },
+    "terminal.explorerKind": "external",
 }
