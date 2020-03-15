@@ -5,18 +5,19 @@ import 'package:flutter_travel/modules/common/CommonText.dart';
 import 'package:flutter_travel/modules/search/models/model-container/ModelSearchCards.dart';
 import 'package:flutter_travel/modules/search/models/model-container/ModelSearchPics.dart';
 import 'package:flutter_travel/modules/search/models/model-container/ModelSearchUser.dart';
+import 'package:flutter_travel/modules/search/views/components/ComponentSearchVideoPlayer.dart';
 import 'package:flutter_travel/modules/utils/Utils.dart';
 
 /// 长列表
 class ComponentSearchList extends StatefulWidget {
 	final ModelSearchCards renderData;
+	final String coverUrl = ManagerEnviroment.instance.getEnv().loginLogoUrl();
 	ComponentSearchList({Key key, this.renderData}) : super(key: key);
 
 	_ComponentSearchListState createState() => _ComponentSearchListState();
 }
 
 class _ComponentSearchListState extends State<ComponentSearchList> {
-	String coverUrl = ManagerEnviroment.instance.getEnv().loginLogoUrl();
 
   	@override
   	Widget build(BuildContext context) {
@@ -273,7 +274,7 @@ class _ComponentSearchListState extends State<ComponentSearchList> {
 					borderRadius:
 						BorderRadius.all(Radius.circular(radius)),
 					image: DecorationImage(
-						image: CommentImageNetwork.imageNetwork(columnData.url ?? this.coverUrl),
+						image: CommentImageNetwork.imageNetwork(columnData.url ?? widget.coverUrl),
 						fit: BoxFit.cover)
 				),
 				child: Container(
@@ -298,7 +299,7 @@ class _ComponentSearchListState extends State<ComponentSearchList> {
 					borderRadius:
 						BorderRadius.all(Radius.circular(radius)),
 					image: DecorationImage(
-						image: CommentImageNetwork.imageNetwork(columnData.url ?? this.coverUrl),
+						image: CommentImageNetwork.imageNetwork(columnData.url ?? widget.coverUrl),
 						fit: BoxFit.cover)
 				),
 			);
@@ -309,49 +310,10 @@ class _ComponentSearchListState extends State<ComponentSearchList> {
 	Widget getVideoColumn() {
 		double videoWidth = MediaQuery.of(context).size.width - 20;
 		double videoHeight = 250;
-		return Padding(
-			padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
-			child: Container(
-				width: videoWidth,
-				height: videoHeight,
-				decoration: BoxDecoration(
-					shape: BoxShape.rectangle,
-					color: Color(0xFFe6e9f1),
-					borderRadius: BorderRadius.circular(3.0)
-				),
-				child: Column(
-					mainAxisAlignment: MainAxisAlignment.start,
-					crossAxisAlignment: CrossAxisAlignment.start,
-					children: <Widget>[
-						SizedBox(height: 10),
-						Padding(
-							padding: EdgeInsets.fromLTRB(8, 0, 0, 0),
-							child: CommonText(
-								'@${widget.renderData.mblog.pageInfo.pageTitle}: ${widget.renderData.mblog.pageInfo.content2}', 
-								color: Colors.black.withOpacity(0.8)
-							),
-						),
-						SizedBox(height: 8),
-						Center(
-							child: Container(
-								width: videoWidth - 14,
-								height: videoHeight - 40,
-								decoration: BoxDecoration(
-									shape: BoxShape.rectangle,
-									image: DecorationImage(
-										fit: BoxFit.cover,
-										image: CommentImageNetwork.imageNetwork(widget.renderData.mblog.pageInfo.pagePic.url ?? this.coverUrl)
-									),
-									borderRadius: BorderRadius.circular(3.0)
-								),
-								child: Center(
-									child: Icon(Icons.play_arrow, size: 130, color: Colors.white.withOpacity(0.6))
-								),
-							)
-						)
-					]
-				),
-			),
+		return ComponentSearchVideoPlayer(
+			videoWidth: videoWidth, 
+			videoHeight: videoHeight, 
+			renderData: widget.renderData
 		);
 	}
 
@@ -388,7 +350,7 @@ class _ComponentSearchListState extends State<ComponentSearchList> {
 	/// 横向标题
 	Widget getContentTitle() {
 		ModelSearchUser user = widget.renderData.mblog.user;
-		String headUrl = user.profileImageUrl ?? coverUrl;
+		String headUrl = user.profileImageUrl ?? widget.coverUrl;
 		double rowWidth = MediaQuery.of(context).size.width;
 
 		return Container(
