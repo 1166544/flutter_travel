@@ -219,7 +219,7 @@ class _PageDetailContentState extends State<PageDetailContent> with CommonTravel
 
 			// 渲染文本
 			return Padding(
-				padding: EdgeInsets.fromLTRB(0, 8.0, 0, 18.0),
+				padding: EdgeInsets.fromLTRB(0, 0.0, 0, 0.0),
 				child: Html(
 					data: replaceContent,
 					useRichText: true,
