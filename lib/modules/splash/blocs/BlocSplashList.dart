@@ -38,7 +38,7 @@ class BlocSplashList implements BlocBase {
 		// 加载完闪页信息后异步同步更新用户信息
 		await this._serviceGithub.getUserInfo(this._gallery);
 
-		// 触发数据更新
+		// 触发数据更新 
 		this._inStream.add(this._gallery);
 
 	}
