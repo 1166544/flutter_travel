@@ -44,7 +44,7 @@ class _ComponentSearchContentRenderState extends State<ComponentSearchContentRen
 					this.buildAboutTitle(),
 					SizedBox(height: 20.0),
 					this.builRenderReadItem()
-				],
+				], 
 			);
 		} else {
 			// 第2行以上
