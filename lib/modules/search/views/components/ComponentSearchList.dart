@@ -223,7 +223,7 @@ class _ComponentSearchListState extends State<ComponentSearchList> {
 		for (var i = 0; i < targetNum; i++) {
 			ModelSearchPics item = widget.renderData.mblog.pics[i];
 
-			// 最后一个显示还剩多少张
+			// 最后一个显示还剩多少张 
 			if (i == targetNum - 1) {
 				int renaimNum = widget.renderData.mblog.pics.length - maxShowPicNum;
 				renderList.add(this.getColumnImage(width: imageWidth, columnData: item, renaimNum: renaimNum));
